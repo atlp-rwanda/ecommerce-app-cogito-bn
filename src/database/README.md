@@ -5,6 +5,7 @@ DB_USERNAME =
 DB_NAME = 
 DB_PASSWORD = 
 DB_PORT = 
+DIARECT = 
 
 Installing Sequerize with this command `npm install --save sequelize`
 
