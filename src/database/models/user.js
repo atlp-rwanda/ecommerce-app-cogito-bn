@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   user.init({
+    carts_id: DataTypes.INTEGER,
+    orders_id: DataTypes.INTEGER,
+    wishlists_id: DataTypes.INTEGER,
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,

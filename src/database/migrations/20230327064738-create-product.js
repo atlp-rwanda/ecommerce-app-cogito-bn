@@ -17,6 +17,18 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      orders_id: {
+      
+        type: Sequelize.INTEGER
+      },
+      wishlists_id: {
+     
+        type: Sequelize.INTEGER
+      },
+      carts_id: {
+       
+        type: Sequelize.INTEGER
+      },
       vendor_id: {
         type: Sequelize.INTEGER,
         allowNull: false

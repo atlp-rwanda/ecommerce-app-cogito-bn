@@ -5,6 +5,9 @@ module.exports = {
   async up (queryInterface, Sequelize) {
 
   await queryInterface.bulkInsert('users', [{
+      orders_id: 1,
+      wishlists_id:1,
+      carts_id:1,
       firstName: "Agnes",
       lastName: "Kunda",
       email: "kundaaggy@gmail.com",
@@ -13,15 +16,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     }],
-    [{
-      firstName: "user",
-      lastName: "vendor",
-      email: "user@gmail.com",
-      password: "user123",
-      role: "vendor",
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }],
+  
       {});
 
       await queryInterface.bulkInsert('carts', [{
@@ -40,13 +35,18 @@ module.exports = {
         price: "600$",
         quantity: "100",
         stock: "In Stock",
+        carts_id: 1,
+        orders_id: 2,
+        wishlists_id:2,
         createdAt: new Date(),
         updatedAt: new Date()
       }],
         {});
         await queryInterface.bulkInsert('wishlists', [{
           name: "Laptop",
-          seller_id: "1",
+          seller_id: 1,
+          user_id: 2,
+          product_id: 3,
           description: "MacBook Pro",
           image: "image.png",
           price: "600$",
@@ -60,6 +60,7 @@ module.exports = {
           {}); 
           await queryInterface.bulkInsert('categories', [{
             name: "Laptop",
+            product_id: 4,
             createdAt: new Date(),
             updatedAt: new Date()
           }],
@@ -73,14 +74,7 @@ module.exports = {
               createdAt: new Date(),
               updatedAt: new Date()
             }],
-            [{
-              user_id: 2,
-              product_id:2,
-              quantity: 20,
-              status: "Delivered",
-              createdAt: new Date(),
-              updatedAt: new Date()
-            }],
+           
               {}); 
   },
 

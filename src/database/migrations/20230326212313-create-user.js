@@ -10,15 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       orders_id: {
-        allowNull: false,
+    
         type: Sequelize.INTEGER
       },
       wishlists_id: {
-        allowNull: false,
+    
         type: Sequelize.INTEGER
       },
       carts_id: {
-        allowNull: false,
+     
         type: Sequelize.INTEGER
       },
       firstName: {

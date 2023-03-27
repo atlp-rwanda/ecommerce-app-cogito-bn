@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   wishlist.init({
     name: DataTypes.STRING,
     seller_id: DataTypes.INTEGER,
+    user_id: DataTypes.STRING,
+    product_id: DataTypes.STRING,
     description: DataTypes.STRING,
     image: DataTypes.STRING,
     price: DataTypes.STRING,
