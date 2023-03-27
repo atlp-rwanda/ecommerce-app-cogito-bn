@@ -64,6 +64,24 @@ module.exports = {
             updatedAt: new Date()
           }],
             {}); 
+            await queryInterface.bulkInsert('orders', 
+            [{
+              user_id: 1,
+              product_id:1,
+              quantity: 50,
+              status: "Picking on Site",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }],
+            [{
+              user_id: 2,
+              product_id:2,
+              quantity: 20,
+              status: "Delivered",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }],
+              {}); 
   },
 
   async down (queryInterface, Sequelize) {
@@ -74,6 +92,7 @@ module.exports = {
   await queryInterface.bulkDelete('products', null, {});
   await queryInterface.bulkDelete('wishlists', null, {});
   await queryInterface.bulkDelete('categories', null, {});
+  await queryInterface.bulkDelete('orders', null, {});
      
   }
 };
