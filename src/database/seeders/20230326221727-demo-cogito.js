@@ -44,6 +44,20 @@ module.exports = {
         updatedAt: new Date()
       }],
         {});
+        await queryInterface.bulkInsert('wishlists', [{
+          name: "Laptop",
+          seller_id: "1",
+          description: "MacBook Pro",
+          image: "image.png",
+          price: "600$",
+          quantity: "100",
+          totalPrice: "60000$",
+          stock: "In Stock",
+          Expire_Date: "2035-03-27 ",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }],
+          {}); 
   },
 
   async down (queryInterface, Sequelize) {
@@ -51,6 +65,8 @@ module.exports = {
    
   await queryInterface.bulkDelete('users', null, {});
   await queryInterface.bulkDelete('carts', null, {});
+  await queryInterface.bulkDelete('products', null, {});
+  await queryInterface.bulkDelete('wishlists', null, {});
      
   }
 };
