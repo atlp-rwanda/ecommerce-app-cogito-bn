@@ -16,8 +16,8 @@ install the Sequelize CLI for migrations and project bootstrapping:
 
 run this command to create an empty project `npx sequelize-cli init`
 
-Create a model called user with following attribute using this command 
-`npx sequelize-cli model:generate --name user --attributes firstName:string,lastName:string,email:string, password:string, role:string`
+Create a model called users with following attribute using this command 
+`npx sequelize-cli model:generate --name users --attributes firstName:string,lastName:string,email:string, password:string, role:string`
 
 remember to configure path on `.sequelizerc` before running migration
 
@@ -44,3 +44,5 @@ If you wish to undo a specific seed:
 If you wish to undo all seeds:
 
 `npx sequelize-cli db:seed:undo:all`
+
+To run server use `npm run dev`
