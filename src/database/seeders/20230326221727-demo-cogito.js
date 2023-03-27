@@ -23,14 +23,21 @@ module.exports = {
       updatedAt: new Date()
     }],
       {});
+
+      await queryInterface.bulkInsert('carts', [{
+        user_id: "1",
+        product_id: "5",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }],
+        {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    // Add commands to revert seed here.
+   
+  await queryInterface.bulkDelete('users', null, {});
+  await queryInterface.bulkDelete('carts', null, {});
+     
   }
 };
