@@ -31,6 +31,19 @@ module.exports = {
         updatedAt: new Date()
       }],
         {});
+      await queryInterface.bulkInsert('products', [{
+        name: "Laptop",
+        description: "MacBook Pro",
+        category_id: "1",
+        vendor_id: "1",
+        image: "image.png",
+        price: "600$",
+        quantity: "100",
+        stock: "In Stock",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }],
+        {});
   },
 
   async down (queryInterface, Sequelize) {
