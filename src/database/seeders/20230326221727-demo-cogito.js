@@ -58,6 +58,12 @@ module.exports = {
           updatedAt: new Date()
         }],
           {}); 
+          await queryInterface.bulkInsert('categories', [{
+            name: "Laptop",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }],
+            {}); 
   },
 
   async down (queryInterface, Sequelize) {
@@ -67,6 +73,7 @@ module.exports = {
   await queryInterface.bulkDelete('carts', null, {});
   await queryInterface.bulkDelete('products', null, {});
   await queryInterface.bulkDelete('wishlists', null, {});
+  await queryInterface.bulkDelete('categories', null, {});
      
   }
 };
