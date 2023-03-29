@@ -16,7 +16,7 @@ blocks:
             - chmod +x ./cc-test-reporter
             - ./cc-test-reporter before-build
             - npm install
-            - npm run start
+            - npm run dev
       env_vars:
         - name: CC_TEST_REPORTER_ID
           value: f0511727f45acbf99306691682f135ee0449102b0325675f1b95ea0116335137
