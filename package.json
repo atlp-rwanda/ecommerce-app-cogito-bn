@@ -4,19 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index",
+    "start": "cross-env NODE_ENV=development nodemon --exec babel-node src/index",
+    "start:prod": "cross-env NODE_ENV=production nodemon --exec babel-node src/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.3",
-    "@babel/node": "^7.20.7",
-    "@babel/plugin-transform-runtime": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/runtime": "^7.21.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -24,9 +19,16 @@
     "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/node": "^7.20.7",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.36.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "webpack": "^5.77.0"
   }
 }
