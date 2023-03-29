@@ -33,12 +33,7 @@ const specs = swaggerJSDoc(options);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-//app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
-app.get('/', (req, res) => {
-  const language = req.query.language || 'fr'; // default to 'en' if no language is provided
-  const data = { language: language, welcome_message: req.t('welcome_message') };
-  res.status(200).json({ status: 200, data: data });
-});
+app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 
 app.post('/change-language', (req, res) => {
   const { language } = req.body;
