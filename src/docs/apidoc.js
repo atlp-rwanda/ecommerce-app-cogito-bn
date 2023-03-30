@@ -1,15 +1,19 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'API Library',
+      title: "Cogito's ecommerce API Library",
       version: 1.0,
-      description: 'Swagger Api Documentation',
+      description: 'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
     },
   },
   servers: [
     {
-      url: 'http://localhost:3000/',
+      url: process.env.SWAGGER_SERVER_URL,
       description: 'Api server',
     },
   ],
