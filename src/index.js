@@ -35,16 +35,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 
-app.post('/change-language', (req, res) => {
-  const { language } = req.body;
-
-  if (language) {
-    req.i18n.changeLanguage(language);
-    res.status(200).json({ status: 200, welcome_message: req.t('welcome_message') });
-  } else {
-    res.status(400).json({ status: 400, message: 'Language not provided' });
-  }
-});
 app.use(router);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
