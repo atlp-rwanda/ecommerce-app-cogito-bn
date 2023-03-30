@@ -3,9 +3,13 @@
 name: Node.js CI
 on:
   push:
-    branches: [ "develop" ]
+    branches: 
+      - main
+      - develop
   pull_request:
-    branches: [ "develop" ]
+    branches: 
+      - main
+      - develop
 jobs:
   npm-tasks:
     runs-on: ubuntu-latest
