@@ -24,14 +24,9 @@ app.get("/", (req, res) =>
 );
 
 app.use(router);
-if (process.env.NODE_ENV == "production") {
-  app.listen(port, () =>
-    console.log(`app listening on port ${port}`, process.env.NODE_ENV)
-  );
-} else {
-  app.listen(port, () =>
-    console.log(`app listening on port ${port}`, process.env.NODE_ENV)
-  );
-}
+
+app.listen(port, () =>
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV)
+);
 
 export default app;
