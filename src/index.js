@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import router from './routes/routes';
-import options from './docs/apidoc';
+import router from './routes/routes.js';
+import options from './docs/apidoc.js';
 
 const app = express();
 app.use(cors());
