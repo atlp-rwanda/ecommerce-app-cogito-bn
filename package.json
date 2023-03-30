@@ -8,6 +8,7 @@
     "start": "nodemon --exec babel-node src/index",
     "test": "mocha ./src/test/sum.test.js",
     "lint": "eslint"
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/index",
   },
   "keywords": [],
   "author": "",
@@ -30,8 +31,15 @@
   },
   "devDependencies": {
     "eslint": "^8.37.0",
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/node": "^7.20.7",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "cross-env": "^7.0.3",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "webpack": "^5.77.0"
   }
 }
