@@ -1,10 +1,11 @@
-{
+
+
+ {
   "development": {
     "username": "postgres",
     "password": "54321",
     "database": "ecommerce-app-cogito-db",
     "host": "localhost",
-    "port": "8080",
     "dialect": "postgres"
   },
   "test": {
@@ -22,3 +23,4 @@
     "dialect": "postgres"
   }
 }
+
