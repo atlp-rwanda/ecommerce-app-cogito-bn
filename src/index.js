@@ -5,6 +5,8 @@ import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import router from "./routes/routes";
 import options from "./docs/apidoc";
+import userRoutes from "./routes/user/userRoutes"
+import confirmEmailRoutes from "./routes/user/confirmEmail";
 
 const app = express();
 app.use(cors());
@@ -16,7 +18,8 @@ app.use(express.json());
 const specs = swaggerJSDoc(options);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
-
+app.use("/user" ,userRoutes);
+app.use("/email",confirmEmailRoutes)
 app.get("/", (req, res) =>
   res
     .status(200)
