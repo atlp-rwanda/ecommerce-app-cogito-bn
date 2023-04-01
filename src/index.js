@@ -9,6 +9,8 @@ import userRoutes from "./routes/user/userRoutes"
 import confirmEmailRoutes from "./routes/user/confirmEmail";
 
 const app = express();
+
+app.use(i18nextMiddleware.handle(i18next));
 app.use(cors());
 
 dotenv.config();
@@ -28,8 +30,5 @@ app.get("/", (req, res) =>
 
 app.use(router);
 
-app.listen(port, () =>
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV)
-);
-
+app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));
 export default app;
