@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import {Sequelize} from 'sequelize'
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
@@ -27,6 +28,16 @@ app.use(cors());
 
 dotenv.config();
 const port = process.env.PORT;
+const sequelize = new Sequelize(
+  process.env.DATABASE,
+  process.env.DATABASE_USERNAME,
+  process.env.DATABASE_PASSWORD,
+  {
+    host: "postgres",
+    dialect: "postgres",
+  }
+);
+
 app.use(express.json());
 
 const specs = swaggerJSDoc(options);
@@ -37,5 +48,10 @@ app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('w
 
 app.use(router);
 
-app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));
+app.listen(port, async () => {
+  await sequelize.authenticate();
+  console.log("Database Connected!");
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
+});
+
 export default app;
