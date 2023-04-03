@@ -52,9 +52,22 @@ jobs:
           wait: 16000
           sleep: 30000
 
-      - name: Generate Render Badge
-        uses: shieldsio/shields@master
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          label: Render Preview
-          message: deployed
-          color: success
+          tag_name: v1.0.0
+          release_name: Release v1.0.0
+          body: This is the release of version 1.0.0
+          draft: false
+          prerelease: false
+
+      - name: Generate Badge
+        uses: badgen/badgen@v1
+        with:
+          subject: Release
+          status: ${{ env.GITHUB_REF }}
+          color: green
+
