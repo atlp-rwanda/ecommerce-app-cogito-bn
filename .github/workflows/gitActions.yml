@@ -63,7 +63,7 @@ jobs:
           prerelease: false
 
       - name: Generate Badge
-        uses: badgen/badgen-action@v1.0.2
+        uses: badgen/badgen@v1
         with:
           subject: Release
           status: ${{ env.GITHUB_REF }}
