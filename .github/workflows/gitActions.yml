@@ -39,14 +39,4 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Render Preview
-        uses: Bounceapp/render-action@0.6.0
-        with:
-          command: preview
-          environment: production
-          api-key: ${{ secrets.RENDER_API}}
-          service-id: srv-cghddf82qv23kcq8i580
-          retries: 20
-          wait: 16000
-          sleep: 30000
 
