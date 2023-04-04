@@ -39,13 +39,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-name: Deploy to Render
-
-on:
-  push:
-    branches: [ develop ]
-
-jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
