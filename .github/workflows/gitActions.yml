@@ -39,17 +39,27 @@ jobs:
       - name: Run tests
         run: npm test
 
+name: Deploy to Render
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
   deploy:
-    name: Wait for Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for Render Deployment
-        uses: bounceapp/render-action@0.6.0
-        with:
-          render-token: ${{ secrets.RENDER_API }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          service-id: srv-cghddf82qv23kcq8i580
-          retries: 20
-          wait: 16000
-          sleep: 30000
-         
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Render CLI
+        uses: renderapp/action-setup-render-cli@v1
+
+      - name: Deploy to Render
+        env:
+          RENDER_API: ${{ secrets.RENDER_API }}
+        run: |
+          render deploy \
+            --name Cogito_API \
+            --branch main \
+            --api-key $RENDER_API
