@@ -3,7 +3,7 @@
     "username": "postgres",
     "password": "123456",
     "database": "ecommerce-app-cogito-db",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "port": "5432",
     "dialect": "postgres"
   },
@@ -11,14 +11,14 @@
     "username": "postgres",
     "password": "123456",
     "database": "ecommerce-app-cogito-db",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": "123456",
     "database": "ecommerce-app-cogito-db",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres"
   }
 }

@@ -6,7 +6,6 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { sequelize } from './database/models';
 import router from './routes/routes';
 import options from './docs/apidoc';
 
@@ -28,6 +27,7 @@ app.use(cors());
 
 dotenv.config();
 const port = process.env.PORT;
+
 app.use(express.json());
 
 const specs = swaggerJSDoc(options);
@@ -39,9 +39,8 @@ app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('w
 app.use(router);
 
 app.listen(port, async () => {
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
-  await sequelize.authenticate();
   console.log('Database Connected!');
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
 });
 
 export default app;
