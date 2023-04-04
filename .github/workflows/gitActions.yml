@@ -42,12 +42,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Set up Render CLI
-        uses: onrender/onrender@v1.0.0
-        with:
-          deploy_key: ${{ secrets.RENDER_API }}
+     - name: Wait for Render Deployment
+       uses: bounceapp/render-action@0.6.0
+       with:
+          render-token: ${{ secrets.RENDER_API }}
+          github-token: ${{ secrets.TOKEN }}
+          service-id: srv-cghddf82qv23kcq8i580
+          retries: 20
+          wait: 16000
+          sleep: 30000
        
        
