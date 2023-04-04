@@ -39,32 +39,15 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Render Preview
-        uses: Bounceapp/render-action@0.6.0
+  deploy:
+    name: Wait for Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Render Deployment
+        uses: bounceapp/render-action@0.6.0
         with:
-          command: preview
-          environment: production
-          api-key: ${{ secrets.RENDER_API}}
+          API: ${{ secrets.RENDER_API }}
           service-id: srv-cghddf82qv23kcq8i580
           retries: 20
           wait: 16000
           sleep: 30000
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v1.0.0
-          release_name: Release v1.0.0
-          body: This is the release of version 1.0.0
-          draft: false
-          prerelease: false
-
-      - name: Generate Badge
-        uses: badgen/badgen-action@v1.0.2
-        with:
-          subject: Release
-          status: ${{ env.GITHUB_REF }}
-          color: green
