@@ -39,17 +39,5 @@ jobs:
       - name: Run tests
         run: npm test
 
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-     - name: Wait for Render Deployment
-       uses: bounceapp/render-action@0.6.0
-       with:
-          render-token: ${{ secrets.RENDER_API }}
-          github-token: ${{ secrets.TOKEN }}
-          service-id: srv-cghddf82qv23kcq8i580
-          retries: 20
-          wait: 16000
-          sleep: 30000
-       
+
        
