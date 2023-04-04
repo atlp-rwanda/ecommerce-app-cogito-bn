@@ -47,8 +47,6 @@ jobs:
 
       - name: Set up Render CLI
         uses: onrender/onrender@v1.0.0
-
-      - name: Deploy to Render
         with:
           deploy_key: ${{ secrets.RENDER_API }}
        
