@@ -41,9 +41,9 @@ To use our project locally, you will need the following:
 To contribute to this project:
 1. Clone the repo
 2. Create a branch choose a naming convention depending on what you are working on:
-- feature: ` git checkout -b ft-name-of-the-feature `
-- bug: ` git checkout -b bg-name-of-the-bug `
-- chore: ` git checkout -b ft-name-of-the-chore `
+- feature: ` git checkout -b ft-name-of-the-feature-bn-TrelloCardNumber `
+- bug: ` git checkout -b bg-name-of-the-bug-bn-TrelloCardNumber  `
+- chore: ` git checkout -b ft-name-of-the-chore-bn-TrelloCardNumber  `
 3. Commit your changes using this git command ` git commit -m "commit message" `
 4. Push your changes to the branch you created ` git push origin branch-name `
 5. Open a pull request
