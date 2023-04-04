@@ -23,18 +23,5 @@ const config={
       host: process.env.DATABASE_HOST,
       dialect: "postgres"
     }
-  
 }
-
-
-module.exports=config;
-
-
-
-
-
-
-
-
-
-
+export default config;
