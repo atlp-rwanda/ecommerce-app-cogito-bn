@@ -1,10 +1,24 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import swaggerJSDoc from "swagger-jsdoc";
-import swaggerUi from "swagger-ui-express";
-import router from "./routes/routes";
-import options from "./docs/apidoc";
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import i18next from 'i18next';
+import Backend from 'i18next-fs-backend';
+import i18nextMiddleware from 'i18next-http-middleware';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import router from './routes/routes';
+import options from './docs/apidoc';
+
+i18next
+  .use(Backend)
+  .use(i18nextMiddleware.LanguageDetector)
+  .init({
+    backend: {
+      loadPath: './src/locales/{{lng}}/{{ns}}.json',
+    },
+    fallbackLng: 'en',
+    preload: ['en', 'fr'],
+  });
 
 const app = express();
 app.use(cors());
