@@ -76,6 +76,27 @@ module.exports = {
             }],
            
               {}); 
+              await queryInterface.bulkInsert('vendors', [{
+                id: "1",
+                fullName: "NDAHAYO Bertin",
+                email:"ndahayosibertin17@gmail.com",
+                password: "NDABer123",
+                phoneNumber:"+250786949188",
+                businessName: "ITH",
+                businessAddress: "KN 48B ST",
+                businessPhoneNumber: "+250781346188",
+                businessEmail: "ith.querries@gmail.com",
+                businessWebsite: "www.ith.com",
+                businessDescription: "We are the Number One Wholesale company of all IT related product in Rwanda",
+                businessLogo: "https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/",
+                productCategories: "Computers, Phones, Printers, Phones, Accessories",
+                paymentMethods: "MoMo, PayPal, VISA",
+                status: "ACTIVE",
+                createdAt: new Date(),
+                updatedAt: new Date()
+              }],
+            
+                {});
   },
 
   async down (queryInterface, Sequelize) {
@@ -87,6 +108,7 @@ module.exports = {
   await queryInterface.bulkDelete('wishlists', null, {});
   await queryInterface.bulkDelete('categories', null, {});
   await queryInterface.bulkDelete('orders', null, {});
+  await queryInterface.bulkDelete('vendors', null, {});
      
   }
 };
