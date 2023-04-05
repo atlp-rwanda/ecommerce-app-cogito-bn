@@ -1,4 +1,3 @@
-'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,31 +6,36 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
-      orders_id: {
-    
-        type: Sequelize.INTEGER
-      },
-      wishlists_id: {
-    
-        type: Sequelize.INTEGER
-      },
-      carts_id: {
-     
-        type: Sequelize.INTEGER
-      },
-      firstName: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      lastName: {
-        type: Sequelize.STRING
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+      },
+      gender: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      birthdate: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      preferred_language: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      preferred_currency: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      billing_address: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: true,
       },
       password: {
         type: Sequelize.STRING,
@@ -41,17 +45,17 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('users');
-  }
+  },
 };

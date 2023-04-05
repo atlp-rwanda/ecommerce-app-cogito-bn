@@ -1,0 +1,29 @@
+version: "3"
+services:
+  node-app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - port=9090
+
+    command: npm run migrate
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_DB=${DATABASE}
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
