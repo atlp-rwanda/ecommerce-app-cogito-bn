@@ -21,6 +21,8 @@ i18next
   });
 
 const app = express();
+
+app.use(i18nextMiddleware.handle(i18next));
 app.use(cors());
 
 dotenv.config();
