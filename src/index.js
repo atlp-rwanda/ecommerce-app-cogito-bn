@@ -6,15 +6,25 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+<<<<<<< HEAD
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/userrouters';
 import { sequelize } from './database/models';
+=======
+import bodyParser from 'body-parser';
+>>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
 import router from './routes/routes';
 import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
+<<<<<<< HEAD
 import signupRouter from './routes/user/userRoutes';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
+=======
+import { vendors } from './database/models';
+
+//const { Vendors } = require('./database/models');
+>>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
 
 i18next
   .use(Backend)
@@ -27,7 +37,12 @@ i18next
     preload: ['en', 'fr'],
   });
 const app = express();
+<<<<<<< HEAD
+=======
+app.use(express.urlencoded({extended: false}));
+>>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
 app.use(i18nextMiddleware.handle(i18next));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
 
@@ -43,6 +58,7 @@ app.use(facebookAuth);
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 
+<<<<<<< HEAD
 app.use(userRouter);
 app.use('/profile', profileRouter);
 app.use(router);
@@ -54,4 +70,66 @@ app.listen(port, async () => {
   console.log('Database Connected!');
 });
 
+=======
+app.get('/vendors', async (req, res) => {
+  try {
+    const vendor = await vendors.findAll();
+    res.status(200).json(vendor);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+});
+
+app.post('/vendors', async (req, res) => {
+  try {
+    const vendor = await vendors.create(req.body);
+    res.status(201).json(vendor);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+});
+
+app.get('/vendors/:id', async (req, res) => {
+  try{
+    const vendor = await vendors.findByPk(req.params.id);
+    res.status(200).json(vendor);
+  }catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+});
+
+app.put('/vendors/:id', async (req, res) => {
+  try{
+    const vendor = await vendors.findByPk(req.params.id);
+    await vendors.update(req.body);
+    res.status(200).json(vendor);
+  }catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+
+});
+app.delete('/vendors/:id', async (req, res) => {
+  try{
+    const vendor = await vendors.findByPk(req.params.id);
+    await vendors.destroy({
+      where:{
+        id: req.params.id
+      }
+    });
+    res.status(200).json(vendor);
+  }catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+
+});
+
+
+app.use(router);
+app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));
+>>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
 export default app;

@@ -129,6 +129,7 @@ module.exports = {
           stock: 'In Stock',
           Expire_Date: '2035-03-27 ',
           createdAt: new Date(),
+<<<<<<< HEAD
           updatedAt: new Date(),
         },
       ],
@@ -242,10 +243,55 @@ module.exports = {
 
       {},
     );
+=======
+          updatedAt: new Date()
+        }],
+          {}); 
+          await queryInterface.bulkInsert('categories', [{
+            name: "Laptop",
+            product_id: 4,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }],
+            {}); 
+            await queryInterface.bulkInsert('orders', 
+            [{
+              user_id: 1,
+              product_id:1,
+              quantity: 50,
+              status: "Picking on Site",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }],
+           
+              {}); 
+              await queryInterface.bulkInsert('vendors', [{
+                id: "1",
+                fullName: "NDAHAYO Bertin",
+                email:"ndahayosibertin17@gmail.com",
+                password: "NDABer123",
+                phoneNumber:"+250786949188",
+                businessName: "ITH",
+                businessAddress: "KN 48B ST",
+                businessPhoneNumber: "+250781346188",
+                businessEmail: "ith.querries@gmail.com",
+                businessWebsite: "www.ith.com",
+                businessDescription: "We are the Number One Wholesale company of all IT related product in Rwanda",
+                businessLogo: "https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/",
+                productCategories: "Computers, Phones, Printers, Phones, Accessories",
+                paymentMethods: "MoMo, PayPal, VISA",
+                status: "ACTIVE",
+                createdAt: new Date(),
+                updatedAt: new Date()
+              }],
+            
+                {});
+>>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
   },
 
   async down(queryInterface) {
     // Add commands to revert seed here.
+<<<<<<< HEAD
 
     await queryInterface.bulkDelete('users', null, {});
     await queryInterface.bulkDelete('carts', null, {});
@@ -258,4 +304,16 @@ module.exports = {
     await queryInterface.bulkDelete('userRoles', null, {});
     await queryInterface.bulkDelete('RolePermissions', null, {});
   },
+=======
+   
+  await queryInterface.bulkDelete('users', null, {});
+  await queryInterface.bulkDelete('carts', null, {});
+  await queryInterface.bulkDelete('products', null, {});
+  await queryInterface.bulkDelete('wishlists', null, {});
+  await queryInterface.bulkDelete('categories', null, {});
+  await queryInterface.bulkDelete('orders', null, {});
+  await queryInterface.bulkDelete('vendors', null, {});
+     
+  }
+>>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
 };
