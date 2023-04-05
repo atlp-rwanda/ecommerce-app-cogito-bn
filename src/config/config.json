@@ -5,7 +5,8 @@
     "username": "postgres",
     "password": "54321",
     "database": "ecommerce-app-cogito-db",
-    "host": "localhost",
+    "host": "postgres",
+    "port": "8080",
     "dialect": "postgres"
   },
   "test": {

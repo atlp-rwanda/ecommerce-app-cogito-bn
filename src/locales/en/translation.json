@@ -1,6 +1,4 @@
 
-    
-  
 {
     "welcome_message": "Welcome to Cogito's Ecommerce app API",
     "key": "translation",
@@ -15,6 +13,26 @@
     "invalidEmail": "Invalid email address",
     "passwordTooShort": "Password must be at least 8 characters",
     "emailAlreadyExists": "Email already exists",
-    "failedToCreateUser": "Failed to create user"
-  }
-  
+    "failedToCreateUser": "Failed to create user", 
+    "role_create_message":"Role Created Successfully!",
+    "role_unexist_message":"Role doesn't exist",
+    "role_fetch_message":"Roles fetched Successfully",
+    "role_delete_message":"Role deleted Successfully",
+    "role_update_message":"Role updated Successfully",
+    "set-role-message":"Role Assined to specific user Successfully!",
+    "permission_create_message":"Permission Created Successfully!",
+    "permission_unexist_message":"Permission doesn't exist",
+    "permission_fetch_message":"Permissions fetched Successfully",
+    "permission_delete_message":"Permission deleted Successfully",
+    "permission_update_message":"Permission updated Successfully",
+    "set-permission-message":"Permission Assined to specific role Successfully!",
+    "update_message":"Updated Successfully!",
+    "delete_message":"deleted Successfully!",
+    "id_unexist_message":"the id doesn't exist",
+    "token_unexist_message":"Token not provided",
+    "token_invalid_message":"Invalid Token",
+    "user_unexist_message":"User not found",
+    "unauthorised_message":"You are not authorized to perform this action",
+    "server_error_message":"Internal server error"
+   
+}

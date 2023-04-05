@@ -10,7 +10,7 @@ module.exports = {
       carts_id:1,
       firstName: "Agnes",
       lastName: "Kunda",
-      email: "kundaaggy@gmail.com",
+      email: "kundaaggy4@gmail.com",
       password: "kunda123",
       role: "admin",
       createdAt: new Date(),
@@ -76,6 +76,44 @@ module.exports = {
             }],
            
               {}); 
+              await queryInterface.bulkInsert('roles', 
+              [{
+                roleName: "Admin",
+                description: "Managing users",
+                createdAt: new Date(),
+                updatedAt: new Date()
+              }],
+             
+                {});  
+                await queryInterface.bulkInsert('permissions', 
+                [{
+                  permName: "manage roles",
+                  description: "Assigning and removing roles to the user",
+                  createdAt: new Date(),
+                  updatedAt: new Date()
+                }],
+               
+                {}); 
+                await queryInterface.bulkInsert('userRoles', 
+                [{
+                  userId: 1,
+                  roleId: 1,
+                  createdAt: new Date(),
+                  updatedAt: new Date()
+                }],
+               
+                  {});   
+                  
+                  await queryInterface.bulkInsert('RolePermissions', 
+                  [{
+
+                    roleId: 1,
+                    permissionId:1,
+                    createdAt: new Date(),
+                    updatedAt: new Date()
+                  }],
+                 
+                    {});                
   },
 
   async down (queryInterface, Sequelize) {
@@ -87,6 +125,10 @@ module.exports = {
   await queryInterface.bulkDelete('wishlists', null, {});
   await queryInterface.bulkDelete('categories', null, {});
   await queryInterface.bulkDelete('orders', null, {});
+  await queryInterface.bulkDelete('roles', null, {});
+  await queryInterface.bulkDelete('permissions', null, {});
+  await queryInterface.bulkDelete('userRoles', null, {});
+  await queryInterface.bulkDelete('RolePermissions', null, {});
      
   }
 };

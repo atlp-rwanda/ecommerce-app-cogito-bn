@@ -10,6 +10,7 @@
  */
 
 import express from 'express';
-
+import Route from './roleRoute';
 const router = express.Router();
+router.use("/create", Route)
 export default router;

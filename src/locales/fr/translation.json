@@ -12,11 +12,25 @@
     "invalidEmail": "Adresse e-mail invalide",
     "passwordTooShort": "Le mot de passe doit comporter au moins 8 caractères",
     "emailAlreadyExists": "L'adresse e-mail existe déjà",
-    "failedToCreateUser": "Impossible de créer l'utilisateur"
-    }
-    
-    
-    
-    
-    
-    
+    "failedToCreateUser": "Impossible de créer l'utilisateur",
+    "role_create_message":"Rôle créé avec succès!",
+    "role_fetch_message":"Rôles récupéré avec succès",
+    "role_unexist_message":"Le rôle n'existe pas",
+    "role_delete_message":"Rôle supprimé avec succès",
+    "role_update_message":"Rôle mis à jour avec succès",
+    "set-role-message":"Rôle attribué à un utilisateur spécifique avec succès!",
+    "permission_create_message":"Autorisation créée avec succès!",
+    "permission_unexist_message":"L'autorisation n'existe pas",
+    "permission_fetch_message":"Autorisations récupérées avec succès",
+    "permission_delete_message":"Autorisation supprimée avec succès",
+    "permission_update_message":"Autorisation mise à jour avec succès",
+    "set-permission-message":"Autorisation attribuée à un rôle spécifique avec succès!",
+    "update_message":"Mis à jour avec succés!",
+    "delete_message":"Supprimé avec succès",
+    "id_unexist_message":"l'identifiant n'existe pas",
+    "token_unexist_message":"Jeton non fourni",
+    "token_invalid_message":"jeton invalide",
+    "user_unexist_message":"Utilisateur non trouvé",
+    "unauthorised_message":"Vous n'êtes pas autorisé à effectuer cette action",
+    "server_error_message":"Erreur interne du serveur"
+}

@@ -14,6 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   user.init({
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+      unique: true,
+      type: DataTypes.INTEGER,
+    },
     carts_id: DataTypes.INTEGER,
     orders_id: DataTypes.INTEGER,
     wishlists_id: DataTypes.INTEGER,
