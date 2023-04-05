@@ -11,7 +11,7 @@ import router from './routes/routes';
 import options from './docs/apidoc';
 import { vendors } from './database/models';
 
-//const { Vendors } = require('./database/models');
+// const { Vendors } = require('./database/models');
 
 i18next
   .use(Backend)
@@ -25,7 +25,7 @@ i18next
   });
 
 const app = express();
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(i18nextMiddleware.handle(i18next));
 app.use(bodyParser.json());
 app.use(cors());
@@ -61,42 +61,43 @@ app.post('/vendors', async (req, res) => {
 });
 
 app.get('/vendors/:id', async (req, res) => {
-  try{
+  try {
     const vendor = await vendors.findByPk(req.params.id);
     res.status(200).json(vendor);
-  }catch (error) {
+  } catch (error) {
     console.log(error.message);
     res.status(500).json(error.message);
   }
 });
 
 app.put('/vendors/:id', async (req, res) => {
-  try{
+  try {
     const vendor = await vendors.findByPk(req.params.id);
-    await vendors.update(req.body);
-    res.status(200).json(vendor);
-  }catch (error) {
-    console.log(error.message);
-    res.status(500).json(error.message);
-  }
-
-});
-app.delete('/vendors/:id', async (req, res) => {
-  try{
-    const vendor = await vendors.findByPk(req.params.id);
-    await vendors.destroy({
-      where:{
-        id: req.params.id
-      }
+    await vendor.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
     });
     res.status(200).json(vendor);
-  }catch (error) {
+  } catch (error) {
     console.log(error.message);
     res.status(500).json(error.message);
   }
-
 });
-
+app.delete('/vendors/:id', async (req, res) => {
+  try {
+    const vendor = await vendors.findByPk(req.params.id);
+    await vendors.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json(vendor);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+});
 
 app.use(router);
 app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));
