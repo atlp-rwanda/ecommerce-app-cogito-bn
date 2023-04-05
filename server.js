@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const express = require('express')
-const { sequelize, users} = require('./src/database/models')
+const { sequelize, users } = require('./src/models')
 
 const app = express()
 app.use(express.json())
@@ -11,8 +11,8 @@ app.get('/', (req, res) => {
 
 //Connect Postgress db
 
-app.listen({ port: 4000  }, async () => {
-    console.log('Server up on http://localhost:4000')
+app.listen({ port: 4000 }, async () => {
+    console.log('Server up on http://localhost:4000');
     await sequelize.authenticate()
     console.log('Database Connected!')
-  })
+})
