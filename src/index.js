@@ -23,8 +23,12 @@ import facebookAuth from './routes/user/facebookAuthRoutes';
 =======
 import { vendors } from './database/models';
 
+<<<<<<< HEAD
 //const { Vendors } = require('./database/models');
 >>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
+=======
+// const { Vendors } = require('./database/models');
+>>>>>>> 02830ce (fixed update endpoint)
 
 i18next
   .use(Backend)
@@ -38,9 +42,13 @@ i18next
   });
 const app = express();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 app.use(express.urlencoded({extended: false}));
 >>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
+=======
+app.use(express.urlencoded({ extended: false }));
+>>>>>>> 02830ce (fixed update endpoint)
 app.use(i18nextMiddleware.handle(i18next));
 app.use(bodyParser.json());
 app.use(cors());
@@ -92,42 +100,43 @@ app.post('/vendors', async (req, res) => {
 });
 
 app.get('/vendors/:id', async (req, res) => {
-  try{
+  try {
     const vendor = await vendors.findByPk(req.params.id);
     res.status(200).json(vendor);
-  }catch (error) {
+  } catch (error) {
     console.log(error.message);
     res.status(500).json(error.message);
   }
 });
 
 app.put('/vendors/:id', async (req, res) => {
-  try{
+  try {
     const vendor = await vendors.findByPk(req.params.id);
-    await vendors.update(req.body);
-    res.status(200).json(vendor);
-  }catch (error) {
-    console.log(error.message);
-    res.status(500).json(error.message);
-  }
-
-});
-app.delete('/vendors/:id', async (req, res) => {
-  try{
-    const vendor = await vendors.findByPk(req.params.id);
-    await vendors.destroy({
-      where:{
-        id: req.params.id
-      }
+    await vendor.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
     });
     res.status(200).json(vendor);
-  }catch (error) {
+  } catch (error) {
     console.log(error.message);
     res.status(500).json(error.message);
   }
-
 });
-
+app.delete('/vendors/:id', async (req, res) => {
+  try {
+    const vendor = await vendors.findByPk(req.params.id);
+    await vendors.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json(vendor);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+});
 
 app.use(router);
 app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));

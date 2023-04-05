@@ -1,4 +1,3 @@
-'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,61 +6,61 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       fullName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       phoneNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       businessName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       businessAddress: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       businessPhoneNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       businessEmail: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       businessWebsite: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       businessDescription: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       businessLogo: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       productCategories: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       paymentMethods: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('vendors');
-  }
+  },
 };

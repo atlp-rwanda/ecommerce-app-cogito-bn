@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 /* eslint-disable indent */
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
+=======
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+>>>>>>> 02830ce (fixed update endpoint)
     await queryInterface.bulkInsert(
       'users',
       [
         {
+<<<<<<< HEAD
           name: 'Leo Messi',
           email: 'leo@example.com',
           gender: 'male',
@@ -44,6 +51,18 @@ module.exports = {
           roleId: 3,
           created_at: new Date(),
           updated_at: new Date(),
+=======
+          orders_id: 1,
+          wishlists_id: 1,
+          carts_id: 1,
+          firstName: 'Agnes',
+          lastName: 'Kunda',
+          email: 'kundaaggy@gmail.com',
+          password: 'kunda123',
+          role: 'admin',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+>>>>>>> 02830ce (fixed update endpoint)
         },
       ],
 
@@ -80,6 +99,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+<<<<<<< HEAD
         {
           name: 'Phone',
           description: 'Samsung note 20',
@@ -110,6 +130,8 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+=======
+>>>>>>> 02830ce (fixed update endpoint)
       ],
       {},
     );
@@ -130,6 +152,7 @@ module.exports = {
           Expire_Date: '2035-03-27 ',
           createdAt: new Date(),
 <<<<<<< HEAD
+<<<<<<< HEAD
           updatedAt: new Date(),
         },
       ],
@@ -142,6 +165,8 @@ module.exports = {
           name: 'Laptop',
           product_id: 4,
           createdAt: new Date(),
+=======
+>>>>>>> 02830ce (fixed update endpoint)
           updatedAt: new Date(),
         },
       ],
@@ -175,11 +200,33 @@ module.exports = {
       {},
     );
     await queryInterface.bulkInsert(
+<<<<<<< HEAD
       'roles',
       [
         {
           roleName: 'Admin',
           description: 'Managing users',
+=======
+      'vendors',
+      [
+        {
+          id: '1',
+          fullName: 'NDAHAYO Bertin',
+          email: 'ndahayosibertin17@gmail.com',
+          password: 'NDABer123',
+          phoneNumber: '+250786949188',
+          businessName: 'ITH',
+          businessAddress: 'KN 48B ST',
+          businessPhoneNumber: '+250781346188',
+          businessEmail: 'ith.querries@gmail.com',
+          businessWebsite: 'www.ith.com',
+          businessDescription:
+            'We are the Number One Wholesale company of all IT related product in Rwanda',
+          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
+          productCategories: 'Computers, Phones, Printers, Phones, Accessories',
+          paymentMethods: 'MoMo, PayPal, VISA',
+          status: 'ACTIVE',
+>>>>>>> 02830ce (fixed update endpoint)
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -187,6 +234,7 @@ module.exports = {
 
       {},
     );
+<<<<<<< HEAD
     await queryInterface.bulkInsert(
       'permissions',
       [
@@ -292,6 +340,12 @@ module.exports = {
   async down(queryInterface) {
     // Add commands to revert seed here.
 <<<<<<< HEAD
+=======
+  },
+
+  async down(queryInterface, Sequelize) {
+    // Add commands to revert seed here.
+>>>>>>> 02830ce (fixed update endpoint)
 
     await queryInterface.bulkDelete('users', null, {});
     await queryInterface.bulkDelete('carts', null, {});
@@ -299,6 +353,7 @@ module.exports = {
     await queryInterface.bulkDelete('wishlists', null, {});
     await queryInterface.bulkDelete('categories', null, {});
     await queryInterface.bulkDelete('orders', null, {});
+<<<<<<< HEAD
     await queryInterface.bulkDelete('roles', null, {});
     await queryInterface.bulkDelete('permissions', null, {});
     await queryInterface.bulkDelete('userRoles', null, {});
@@ -316,4 +371,8 @@ module.exports = {
      
   }
 >>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
+=======
+    await queryInterface.bulkDelete('vendors', null, {});
+  },
+>>>>>>> 02830ce (fixed update endpoint)
 };
