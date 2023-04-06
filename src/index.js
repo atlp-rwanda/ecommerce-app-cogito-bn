@@ -17,6 +17,7 @@ import router from './routes/routes';
 import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import signupRouter from './routes/user/userRoutes';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
@@ -29,6 +30,9 @@ import { vendors } from './database/models';
 =======
 // const { Vendors } = require('./database/models');
 >>>>>>> 02830ce (fixed update endpoint)
+=======
+import vendorRouter from './routes/vendorsRoutes';
+>>>>>>> 891c0a1 (worked on sending email using nodemailer and gmail)
 
 i18next
   .use(Backend)
@@ -65,6 +69,7 @@ app.use(googleAuth);
 app.use(facebookAuth);
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 app.use(userRouter);
@@ -138,7 +143,10 @@ app.delete('/vendors/:id', async (req, res) => {
   }
 });
 
+=======
+>>>>>>> 891c0a1 (worked on sending email using nodemailer and gmail)
 app.use(router);
+app.use('/vendors', vendorRouter);
 app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));
 >>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
 export default app;
