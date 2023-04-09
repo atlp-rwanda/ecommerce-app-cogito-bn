@@ -9,7 +9,7 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import router from './routes/routes';
 import options from './docs/apidoc';
-import vendorRouter from './routes/vendorsRoutes';
+import vendorRouter from './routes/vendor/vendorsRoutes';
 
 i18next
   .use(Backend)

@@ -8,7 +8,7 @@ const {
   updateVendor,
   deleteVendor,
   vendorLogin,
-} = require('../controllers/vendorsController');
+} = require('../../controllers/vendor/vendorsController');
 
 router.get('/', getAllVendors);
 router.post('/', registerVendor);
