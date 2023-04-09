@@ -14,6 +14,9 @@ import usersRouter from './API/user';
 
 const router = express.Router();
 
+<<<<<<< HEAD
 router.use('/users', usersRouter);
 
+=======
+>>>>>>> admin license to block user account
 export default router;

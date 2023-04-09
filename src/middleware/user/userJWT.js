@@ -5,13 +5,13 @@ dotenv.config();
 const secret = process.env.JWT_KEY;
 
 module.exports = {
-  vendorSignAccessToken: (id, fullName, status) => new Promise((resolve, reject) => {
+  usersignAccessToken: (id, firstName, role) => new Promise((resolve, reject) => {
     const payload = {
       id,
-      fullName,
-      status,
+      firstName,
+      role,
     };
-    const options = { expiresIn: process.env.VENDOR_LOGIN_JWT_EXPIRE };
+    const options = { expiresIn: process.env.USER_LOGIN_JWT_EXPIRE };
     JWT.sign(payload, secret, options, (err, token) => {
       if (err) reject(err);
       resolve({ token });

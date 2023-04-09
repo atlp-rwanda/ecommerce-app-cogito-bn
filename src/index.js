@@ -14,10 +14,14 @@ import bodyParser from 'body-parser';
 import { sequelize, vendors } from './database/models';
 import router from './routes/routes';
 import options from './docs/apidoc';
-
 import router from './routes/routes';
+import userRouter from './routes/userrouters';
 import options from './docs/apidoc';
-import vendorRouter from './routes/vendorsRoutes';
+import vendorRouter from './routes/vendor/vendorsRoutes';
+import signupRouter from './routes/user/userRoutes';
+import googleAuth from './routes/user/googleAuthRoutes';
+import facebookAuth from './routes/user/facebookAuthRoutes';
+import userRouter from './routes/user/userRoutes';
 
 i18next
   .use(Backend)
@@ -44,6 +48,9 @@ app.use(express.json());
 const specs = swaggerJSDoc(options);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/user', signupRouter);
+app.use(googleAuth);
+app.use(facebookAuth);
 
 app.get('/', (req, res) =>
   res.status(200).json({ status: 200, message: req.t('welcome_message') }),
@@ -57,5 +64,4 @@ app.listen(port, async () => {
 });
 
 app.use('/vendors', vendorRouter);
-
 export default app;
