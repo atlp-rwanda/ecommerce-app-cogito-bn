@@ -45,8 +45,7 @@ const options = {
       description: 'Api server',
     },
   ],
-
-  apis: ['./src/docs/apiDocs/*.js'],
+  apis: ['./src/routes/*.js', './src/routes/vendor/*.js', './src/docs/apiDocs/*.js'],
 };
 
 export default options;

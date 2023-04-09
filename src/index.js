@@ -18,6 +18,7 @@ import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import signupRouter from './routes/user/userRoutes';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
@@ -33,6 +34,9 @@ import { vendors } from './database/models';
 =======
 import vendorRouter from './routes/vendorsRoutes';
 >>>>>>> 891c0a1 (worked on sending email using nodemailer and gmail)
+=======
+import vendorRouter from './routes/vendor/vendorsRoutes';
+>>>>>>> 2da3d98 (done with the vendor api endpoints documentation using swagger)
 
 i18next
   .use(Backend)

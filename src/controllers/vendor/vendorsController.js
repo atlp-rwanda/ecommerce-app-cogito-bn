@@ -1,17 +1,17 @@
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
-const { vendors } = require('../database/models');
-const { validateVendorRegistration } = require('../middleware/vendor/registerVendorValidator');
-const { validateVendorLogin } = require('../middleware/vendor/registerVendorValidator');
-const { vendorSignAccessToken } = require('../middleware/vendor/registerVendorValidator');
+const { vendors } = require('../../database/models');
+const { validateVendorRegistration } = require('../../middleware/vendor/registerVendorValidator');
+const { validateVendorLogin } = require('../../middleware/vendor/registerVendorValidator');
+const { vendorSignAccessToken } = require('../../middleware/vendor/vendorJWT');
 
 const getAllVendors = async (req, res) => {
   try {
     const vendor = await vendors.findAll();
-    res.status(200).json(vendor);
+  res.status(200).json({success: true, message: `Succesfully Retrieved all Vendors from the database.`, response: vendor});
   } catch (error) {
     console.log(error.message);
-    res.status(500).json(error.message);
+    res.status(500).json({success: false, message: `Error in retrieving Vendor from the database`, Error: error.message});
   }
 };
 
@@ -21,7 +21,7 @@ const registerVendor = async (req, res) => {
     const { error } = validateVendorRegistration(req.body);
     if (error) {
       console.log(error);
-      return res.status(400).json({ message: error.details[0].message });
+      return res.status(400).json({success: false, message: `Input Validation Error`, Error: error.details[0].message});
     }
     const vendorEmail = await vendors.findOne({
       where: {
@@ -29,7 +29,7 @@ const registerVendor = async (req, res) => {
       },
     });
     if (vendorEmail) {
-      return res.status(409).json({ message: 'Vendor with this email already exists' });
+      return res.status(409).json({success: false, message: `Vendor with this email already exists.`});
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newVendor = await vendors.create({
@@ -48,6 +48,24 @@ const registerVendor = async (req, res) => {
       paymentMethods: req.body.paymentMethods,
       status: req.body.status,
     });
+    if (
+      !req.body.fullName
+      || !req.body.email
+      || !req.body.password
+      || !req.body.phoneNumber
+      || !req.body.businessName
+      || !req.body.businessAddress
+      || !req.body.businessPhoneNumber
+      || !req.body.businessEmail
+      || !req.body.businessWebsite
+      || !req.body.businessDescription
+      || !req.body.businessLogo
+      || !req.body.productCategories
+      || !req.body.paymentMethods
+      || !req.body.status
+    ) {
+      return res.json({ message: 'Please enter all the details' });
+    }
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -64,25 +82,28 @@ const registerVendor = async (req, res) => {
     transporter.sendMail(mailOptions, (mailError, info) => {
       if (mailError) {
         console.log(mailError);
-        res.status(500).json('Error sending email');
+        res.status(500).json({success: false, message: `Error sending email to the newly registerd vendor.`, Error: mailError});
       } else {
         console.log(`Email sent: ${info.response}`);
-        res.status(201).json(newVendor);
+        res.status(201).json({success: true, message: `Succesfully created a new Vendor.`, response: newVendor});
       }
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({success: false, message: `Failed to create a new Vendor.`, Error: error});
   }
 };
 
 const findVendorByID = async (req, res) => {
   try {
     const vendor = await vendors.findByPk(req.params.id);
-    res.status(200).json(vendor);
+    if (vendor === null) {
+      res.status(404).json({ success: false, message: `Vendor with ID ${req.params.id} was not found` });
+    }
+    res.status(200).json({success: true, message: `Succesfully retrieved vendor with ID: ${req.params.id}.`, response: vendor});
   } catch (error) {
     console.log(error.message);
-    res.status(500).json(error.message);
+    res.status(500).json({success: false, message: `Failed to retrieve vendor with ID: ${req.params.id}.`, Error: error.message});
   }
 };
 
@@ -94,10 +115,13 @@ const updateVendor = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json(vendor);
+    if (vendor === null) {
+      res.status(404).json({ success: false, message: `Vendor with ID ${req.params.id} was not found` });
+    }
+    res.status(200).json({success: true, message: `Sucessfully Updated the Vendor with ID: ${req.params.id}`, response: vendor});
   } catch (error) {
     console.log(error.message);
-    res.status(500).json(error.message);
+    res.status(500).json({success: false, message: `Failed to Update the Vendor with ID: ${req.params.id}`, Error: error.message});
   }
 };
 
@@ -109,10 +133,13 @@ const deleteVendor = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json(vendor);
+    if (vendor === null) {
+      res.status(404).json({ success: false, message: `Vendor with ID ${req.params.id} was not found` });
+    }
+    res.status(200).json({success: true, message: `Sucessfully Deleted the Vendor with ID: ${req.params.id}`, response: vendor});
   } catch (error) {
     console.log(error.message);
-    res.status(500).json(error.message);
+    res.status(500).json({success: false, message: `Failed to Delete the Vendor with ID: ${req.params.id}`, Error: error.message});
   }
 };
 const vendorLogin = async (req, res, next) => {
@@ -122,26 +149,28 @@ const vendorLogin = async (req, res, next) => {
     const { error } = validateVendorLogin(req.body);
     if (error) {
       console.log(error);
-      return res.status(400).json({ message: error.details[0].message });
+      return res.status(400).json({success: false, message: `Input Validation Error`, Error: error.details[0].message });
     }
     const vendor = await vendors.findOne({ where: { email } });
     if (!vendor) {
-      return res.status(401).json({ message: 'Invalid email' });
+      return res.status(401).json({success: false, message: 'Invalid email, First Register with Cogito Team' });
     }
     const isMatch = await bcrypt.compare(password, vendor.password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({success: false, message: 'Invalid email or password' });
     }
     const vendorLoginToken = await vendorSignAccessToken(
       vendor.id,
       vendor.fullName,
-      vendor.email,
       vendor.status,
     );
-    res.status(200).json({ vendorLoginToken });
+    res
+      .cookie('token', vendorLoginToken, { httpOnly: true, secure: true })
+      .status(200)
+      .json({ success: true, message: `${vendor.fullName} You Have LoggedIn Successfully!!`, token: vendorLoginToken });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({success: false, message: `Server error - Vendor Login Failed.`, Error: error});
   }
 };
 
