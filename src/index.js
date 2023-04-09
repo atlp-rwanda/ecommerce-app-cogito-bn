@@ -9,6 +9,7 @@ import swaggerUi from 'swagger-ui-express';
 import cookieParser from 'cookie-parser';
 import { sequelize } from './database/models';
 import router from './routes/routes';
+import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 import signupRouter from "./routes/user/userRoutes";
 import googleAuth from "./routes/user/googleAuthRoutes";
@@ -44,7 +45,7 @@ app.use(googleAuth)
 app.use(facebookAuth)
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
-
+app.use('/profile', profileRouter);
 app.use(router);
 
 app.listen(port, async () => {
