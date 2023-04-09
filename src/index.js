@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 dotenv.config();
 const port = process.env.PORT;
+
 app.use(express.json());
 const specs = swaggerJSDoc(options);
 
@@ -38,5 +39,10 @@ app.use(router);
 app.listen(port, () =>
   console.log(`app listening on port ${port}`, process.env.NODE_ENV)
 );
+=======
+app.listen(port, async () => {
+  console.log('Database Connected!');
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
+});
 
 export default app;
