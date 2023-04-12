@@ -17,7 +17,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        name: 'John Doe',
+        name: 'Neymar Jr',
         email: 'john@example.com',
         gender: 'male',
         phone: '0788719892',
@@ -62,17 +62,30 @@ module.exports = {
       'products',
       [
         {
-          name: 'Laptop',
-          description: 'MacBook Pro',
-          category_id: '1',
-          vendor_id: '1',
-          image: 'image.png',
-          price: '600$',
-          quantity: '100',
+          name: 'tablet',
+          description: 'electonic device',
+          price: '8k',
+          image: [
+            'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
+          ],
+          quantity: '1k',
           stock: 'In Stock',
-          carts_id: 1,
-          orders_id: 2,
-          wishlists_id: 2,
+          category_id: 1,
+          vendor_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'laptop',
+          description: 'electronic device',
+          price: '8k',
+          image: [
+            'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
+          ],
+          quantity: '1k',
+          stock: 'In Stock',
+          category_id: 1,
+          vendor_id: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -85,7 +98,6 @@ module.exports = {
         {
           user_id: 2,
           product_id: 1,
-         
           created_at: new Date(),
           updated_at: new Date(),
         },

@@ -83,6 +83,10 @@
   "getRecommendedProducts_403_msg": "Interdit",
   "getRecommendedProducts_404_msg": "L'utilisateur n'a pas été trouvé",
   "getRecommendedProducts_200_msg": "Les produits recommandés ont été récupérés avec succès!!",
-  "getRecommendedProducts_500_msg": "Erreur lors de la récupération des produits recommandés"
-}
-
+  "getRecommendedProducts_500_msg": "Erreur lors de la récupération des produits recommandés",
+  "disactvated": "votre statut a été désactivé",
+  "fail": "utilisateur non trouvé",
+  "failId": "aucun utilisateur trouvé avec cet ID",
+  "retrievedAll": "tous les utilisateurs récupérés",
+  "updateStatus": "statut mis à jour avec succès"
+    }

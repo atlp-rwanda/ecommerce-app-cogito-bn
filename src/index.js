@@ -14,7 +14,6 @@ app.listen(port, async () => {
   console.log(`app listening on port ${port}`, process.env.NODE_ENV);
   await sequelize.authenticate();
   console.log('Database Connected!');
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
 });
 export default app;
 
