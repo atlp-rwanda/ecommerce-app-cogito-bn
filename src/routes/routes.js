@@ -31,6 +31,7 @@ import roleRoute from './roleRoute';
 import { createUser, loginUser } from '../controllers/userController';
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
+import searchProducts from '../controllers/search/productController';
 import wishListRouter from './wishListRouter';
 // Login route
 
@@ -73,5 +74,6 @@ router.use('/wishlist', wishListRouter);
 router.use('/create', Route);
 router.use('/OTP', usersRouter);
 router.use('/create', Route);
+router.use('/search', searchProducts);
 
 export default router;

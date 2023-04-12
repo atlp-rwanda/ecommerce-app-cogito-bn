@@ -104,5 +104,11 @@
   "profile_update_unthorize_message": "demande non autorisée",
   "wishlist_fetched": "Liste de souhaits récupérée",
   "product_added": "Produit ajouté à la liste de souhaits",
-  "product_already_added": "Produit déjà ajouté à la liste de souhaits"
-}
+  "product_already_added": "Produit déjà ajouté à la liste de souhaits",
+  "not_logged_in_message": "Vous n'êtes pas connecté",
+  "disactvated": "votre statut a été désactivé",
+  "fail": "utilisateur non trouvé",
+  "failId": "aucun utilisateur trouvé avec cet ID",
+  "retrievedAll": "tous les utilisateurs récupérés",
+  "updateStatus": "statut mis à jour avec succès"
+    }

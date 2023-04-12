@@ -1,3 +1,6 @@
+
+    
+  
 {
   "welcome_message": "Welcome to Cogito's Ecommerce app API",
 
@@ -106,5 +109,11 @@
   "not_logged_in_message": "You're not logged in",
   "wishlist_fetched": "Wishlist fetched",
   "product_added": "Product added to the wishlist",
-  "product_already_added": "Product already added to the wishlist"
-}
+  "product_already_added": "Product already added to the wishlist",
+  "disactvated": "your status has been disactivated",
+  "fail": "user not found",
+  "failId": "no user found with that ID",
+  "retrievedAll": "all users retrieved",
+  "updateStatus": "status updated successfully"
+  }
+  

@@ -8,11 +8,21 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
+<<<<<<< HEAD
     user: process.env.EMAIL_ADDRESS_STATUS,
     pass: process.env.EMAIL_PASSWORD_STATUS,
   },
 });
 
+=======
+    user: process.env.EMAIL_ADDRESS,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
+
+// import { authenticate } from "../middleware/authMiddleware";
+
+>>>>>>> 81468ae (feat(search)create a search endpoint)
 const User = db.user;
 export const getAllUsers = catchAsync(async (req, res) => {
   try {
@@ -76,10 +86,17 @@ export const updateStatus = catchAsync(async (req, res) => {
       { where: { id } },
     );
     await transporter.sendMail({
+<<<<<<< HEAD
       from: process.env.EMAIL_ADDRESS_STATUS,
       to: user.email,
       subject: `Your status has been updated to ${status}`,
       text: `Dear ${user.name}, your status has been updated to ${status}.`,
+=======
+      from: 'charlesntwari2@gmail.com',
+      to: user.email,
+      subject: `Your status has been updated to ${status}`,
+      text: `Dear ${user.firstName}, your status has been updated to ${status}.`,
+>>>>>>> 81468ae (feat(search)create a search endpoint)
     });
     res.status(200).json({
       status: 200,
