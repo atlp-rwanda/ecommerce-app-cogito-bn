@@ -6,7 +6,7 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import router from './routes/routes';
+import userRouter from './routes/userrouters';
 import options from './docs/apidoc';
 
 i18next
@@ -35,7 +35,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 
-app.use(router);
+app.use(userRouter);
 
 app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));
 export default app;
