@@ -1,24 +1,24 @@
 {
   "development": {
     "username": "postgres",
-    "password": "54321",
+    "password": "1234567",
     "database": "ecommerce-app-cogito-db-dev",
-    "host": "postgres",
+    "host": "localhost",
     "port": "5432",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
-    "password": "54321",
+    "password": "1234567",
     "database": "ecommerce-app-cogito-db-test",
-    "host": "postgres",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
-    "password": "54321",
+    "password": "1234567",
     "database": "ecommerce-app-cogito-db",
-    "host": "postgres",
+    "host": "localhost",
     "dialect": "postgres"
   }
 }
