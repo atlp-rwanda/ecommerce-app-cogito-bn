@@ -18,7 +18,7 @@
     "username": "postgres",
     "password": "123456",
     "database": "ecommerce-app-cogito-db",
-    "host": "postgres",
+    "host": "localhost",
     "dialect": "postgres"
   }
 }
