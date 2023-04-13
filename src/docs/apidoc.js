@@ -10,6 +10,15 @@ const options = {
       version: 1.0,
       description: 'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
   servers: [
     {
@@ -17,17 +26,7 @@ const options = {
       description: 'Api server',
     },
   ],
-  components: {
-    securitySchemes: {
-      bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
-    },
-  },
-
-  apis: ['./src/routes/*.js'],
+  apis: ['./src/docs/apiDocs/*'],
 };
 
 export default options;
