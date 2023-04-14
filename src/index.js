@@ -36,7 +36,11 @@ import vendorRouter from './routes/vendorsRoutes';
 >>>>>>> 891c0a1 (worked on sending email using nodemailer and gmail)
 =======
 import vendorRouter from './routes/vendor/vendorsRoutes';
+<<<<<<< HEAD
 >>>>>>> 2da3d98 (done with the vendor api endpoints documentation using swagger)
+=======
+import userRouter from './routes/user/userRoutes';
+>>>>>>> d6cc9fb (ft-vendor endpoint authorization)
 
 i18next
   .use(Backend)
@@ -151,6 +155,7 @@ app.delete('/vendors/:id', async (req, res) => {
 >>>>>>> 891c0a1 (worked on sending email using nodemailer and gmail)
 app.use(router);
 app.use('/vendors', vendorRouter);
+app.use('/users', userRouter);
 app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));
 >>>>>>> b0a7e53 (feat(vendor): register vendor functionalities)
 export default app;

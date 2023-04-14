@@ -37,13 +37,13 @@
  *           description: Vendor Phone Number
  *         businessName:
  *           type: string
- *           description: Business Name 
+ *           description: Business Name
  *         businessAddress:
  *           type: string
- *           description: Business Address 
+ *           description: Business Address
  *         businessPhoneNumber:
  *           type: string
- *           description: Business Phone Number 
+ *           description: Business Phone Number
  *         businessEmail:
  *           type: string
  *           description: Business Email
@@ -84,7 +84,7 @@
  *         businessPhoneNumber: +250781346188
  *         businessEmail: ith.querries@gmail.com
  *         businessWebsite: www.ith.com
- *         businessDescription: We are the Number One Wholesale company of all IT related product in Rwanda
+ *         businessDescription: We are the Number One Wholesale company of all IT related product
  *         businessLogo: https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/
  *         productCategories: Computers, Phones, Printers, Phones, Accessories
  *         paymentMethods: MoMo, PayPal, VISA
@@ -114,9 +114,8 @@
  *       example:
  *         email: ndahayosibertin17@gmail.com
  *         password: NDABer123
- * 
+ *
  */
-
 
 /**
  * @swagger
@@ -224,11 +223,12 @@
  *         description: Vendor with the specified ID was not found
  */
 
-
 /**
  *  @swagger
  * /vendors/{id}:
  *  put:
+ *    security:
+ *      - bearerAuth: []
  *    summary: Update the Vendor with the specified id
  *    tags: [Vendor]
  *    parameters:
@@ -257,11 +257,12 @@
  *        description: Vendor with specified ID Not Available
  */
 
-
 /**
  *  @swagger
  * /vendors/{id}:
  *  delete:
+ *    security:
+ *      - bearerAuth: []
  *    summary: Delete the Vendor with the specified id
  *    tags: [Vendor]
  *    parameters:

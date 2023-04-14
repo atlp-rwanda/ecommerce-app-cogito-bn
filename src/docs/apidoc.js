@@ -45,7 +45,16 @@ const options = {
       description: 'Api server',
     },
   ],
-  apis: ['./src/routes/*.js', './src/routes/vendor/*.js', './src/docs/apiDocs/*.js'],
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+    },
+  },
+  apis: ['./src/routes/*.js', './src/routes/vendor/*.js', './src/routes/user/*.js'],
 };
-
 export default options;
