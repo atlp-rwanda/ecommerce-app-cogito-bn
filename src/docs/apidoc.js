@@ -8,7 +8,8 @@ const options = {
     info: {
       title: "Cogito's ecommerce API Library",
       version: 1.0,
-      description: 'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
+      description:
+        'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
     },
   },
   servers: [
@@ -23,11 +24,10 @@ const options = {
         type: 'http',
         scheme: 'bearer',
         bearerFormat: 'JWT',
+        in: 'header',
       },
     },
   },
-
-  apis: ['./src/routes/*.js', './src/routes/vendor/*.js'],
+  apis: ['./src/routes/*.js', './src/routes/vendor/*.js', './src/routes/user/*.js'],
 };
-
 export default options;
