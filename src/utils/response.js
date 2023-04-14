@@ -1,19 +1,19 @@
-export default class Response {
-    static successMessage(res, message, data = null, status) {
-      return res
-        .status(status)
-        .json(
-          data
-            ? { status, result: data.length, message, data }
-            : { status, message }
-        );
-    }
-  
-    static errorMessage(res, message, status) {
-      return res.status(status).json({
-        status,
-        error: message,
-      });
-    }
+class Response {
+  static successMessage(res, message, status) {
+    console.log(`Sending success response with status ${status}: ${message}`);
+    return res.status(status).json({
+      message,
+      status,
+    });
   }
-  
+
+  static errorMessage(res, message, status) {
+    console.log(`Sending error response with status ${status}: ${message}`);
+    return res.status(status).json({
+      message,
+      status,
+    });
+  }
+}
+
+export default Response;
