@@ -4,13 +4,15 @@ import {
   verify,
   sendOtp,
   loginUser,
+  deleteUser,
 } from '../../controllers/userController';
 import verifVendorJWT from '../../middleware/verifyJWT';
 
 const usersRouter = express.Router();
 usersRouter.post('/register', createUser);
 usersRouter.post('/login', loginUser);
-usersRouter.get('/verify', verifVendorJWT, verify);
+usersRouter.post('/verify', verifVendorJWT, verify);
 usersRouter.get('/sendOtp', verifVendorJWT, sendOtp);
+usersRouter.delete('/deleteUser', deleteUser);
 
 export default usersRouter;

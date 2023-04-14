@@ -41,14 +41,12 @@
  *         phone: +250791324567
  *         role: user
  */
-
 /**
  * @swagger
  * tags:
  *   name: Users
  *   description: The user operations API
  */
-
 /**
  * @swagger
  * /users/login:
@@ -80,7 +78,7 @@
  *                   type: object
  *                 token:
  *                   type: string
- *       400:
+ *       401:
  *         description: The user did not provide their email or password
  *         content:
  *           application/json:
@@ -91,8 +89,8 @@
  *                   type: integer
  *                 message:
  *                   type: string
- *       401:
- *         description: The user provided incorrect password or they are not registered
+ *       500:
+ *         description: Server error
  *         content:
  *           application/json:
  *             schema:
@@ -103,7 +101,6 @@
  *                 message:
  *                   type: string
  */
-
 /**
  * @swagger
  * /users/sendOtp:
@@ -156,7 +153,6 @@
  *                      Error:
  *                          type: string
  */
-
 /**
  * @swagger
  * /users/verify:

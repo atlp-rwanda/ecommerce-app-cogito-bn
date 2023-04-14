@@ -128,6 +128,8 @@
  * @swagger
  * /vendors/:
  *   get:
+ *     security:
+ *       - bearerAuth: []
  *     summary: Get All Vendors Registered
  *     tags: [Vendor]
  *     responses:
@@ -146,6 +148,8 @@
  * @swagger
  * /vendors/:
  *   post:
+ *     security:
+ *       - bearerAuth: []
  *     summary: Register a new Vendor
  *     tags: [Vendor]
  *     requestBody:
@@ -173,6 +177,8 @@
  * @swagger
  * /vendors/login:
  *   post:
+ *     security:
+ *       - bearerAuth: []
  *     summary: Vendor Log In
  *     tags: [Vendor]
  *     requestBody:
@@ -201,6 +207,8 @@
  * @swagger
  * /vendors/{id}:
  *   get:
+ *     security:
+ *       - bearerAuth: []
  *     summary: Get Vendor Information by ID
  *     tags: [Vendor]
  *     parameters:
