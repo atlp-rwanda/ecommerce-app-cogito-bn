@@ -6,6 +6,7 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import cookieParser from 'cookie-parser';
 import { sequelize } from './database/models';
 import router from './routes/routes';
 import options from './docs/apidoc';
@@ -25,6 +26,7 @@ const app = express();
 
 app.use(i18nextMiddleware.handle(i18next));
 app.use(cors());
+app.use(cookieParser());
 
 dotenv.config();
 const port = process.env.PORT;

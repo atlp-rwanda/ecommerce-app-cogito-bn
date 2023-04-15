@@ -160,7 +160,7 @@
 /**
  * @swagger
  * /users/verify:
- *   get:
+ *   post:
  *     summary: verify if the OTP provided by the user matches the one that was sent to their email
  *     tags: [Users]
  *     security:

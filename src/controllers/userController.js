@@ -173,6 +173,7 @@ export async function sendOtp(req, res) {
     status: 200,
     message: 'OTP has been sent to user email',
     data: user,
+    cookie: encodedOTP,
   });
 }
 
@@ -184,6 +185,7 @@ export async function verify(req, res) {
       message: 'Please provide the OTP to verify!',
     });
   }
+  console.log(req.headers);
   if (req.headers.cookie) {
     const Cookiearray = req.headers.cookie.trim().split(';');
     const cookiesObj = {};

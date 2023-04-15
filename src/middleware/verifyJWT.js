@@ -1,17 +1,17 @@
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 export default async function verifVendorJWT(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
-    return res.status(401).json({ message: "Not logged in" });
+    return res.status(401).json({ message: 'Not logged in' });
   }
-  const token = await authHeader.split(" ")[1];
+  const token = await authHeader.split(' ')[1];
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
     if (err) {
-      return res.status(403).json({ message: "Invalid token" });
+      return res.status(403).json({ message: 'Invalid token' });
     }
     req.email = decoded.email;
     req.role = decoded.role;
