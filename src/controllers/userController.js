@@ -235,3 +235,38 @@ export async function verify(req, res) {
     }
   }
 }
+
+export async function deleteUser(req, res) {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({
+      status: 400,
+      message: 'Please provide the email of user to delete!',
+    });
+  }
+  const user = await User.findOne({
+    where: { email },
+  });
+
+  if (!user) {
+    return res.status(401).json({
+      status: 401,
+      message: 'User not found!',
+    });
+  }
+
+  try {
+    await user.destroy();
+    return res.status(200).json({
+      status: 200,
+      message: 'User deleted successfully!',
+      data: user,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: 500,
+      message: 'Server error',
+      Error: err.message,
+    });
+  }
+}

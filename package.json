@@ -10,7 +10,8 @@
     "down": "npx sequelize-cli db:migrate:undo",
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/index",
     "start": "node -r @babel/register src/index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000",
+    "coverage": "nyc --reporter=html --reporter=text npm run test"
   },
   "keywords": [],
   "author": "",
@@ -40,11 +41,15 @@
     "@babel/node": "^7.20.7",
     "@babel/plugin-transform-runtime": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.37.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
+    "nyc": "^15.1.0",
     "prettier": "^2.8.7",
     "sequelize-cli": "^6.6.0",
     "webpack": "^5.77.0"
