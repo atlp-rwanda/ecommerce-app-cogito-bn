@@ -1,22 +1,13 @@
 import { user } from '../database/models';
 
-const isUserExist = async (req, res, next) => {
-  const { id } = req.params;
-  const profile = await user.findByPk(id);
-  if (!profile) {
-    res
-      .status(404)
-      .json({ status: 404, message: `user with the id ${id} does not exist`, data: [] });
-  }
-  next();
-};
-
 const getProfile = async (req, res) => {
   const { id } = req.params;
-  const profile = await user.findByPk(id);
-  return res
-    .status(200)
-    .json({ status: 200, message: 'Profile fetched successfully', data: [profile] });
+  try {
+    const profile = await user.findByPk(id);
+    res.status(200).json({ status: 200, message: req.t('profile_fetch_message'), data: profile });
+  } catch (error) {
+    res.status(404).json({ status: error.status, message: error.message, data: {} });
+  }
 };
 
 const updateProfile = async (req, res) => {
@@ -26,13 +17,12 @@ const updateProfile = async (req, res) => {
       where: { id },
       returning: true,
     });
-    return res
+    res
       .status(200)
-      .json({ status: 200, message: 'Profile updated successfully.', data: updatedProfile[1] });
+      .json({ status: 200, message: req.t('profile_updated_message'), data: updatedProfile[1][0] });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ status: 500, message: error.message, data: [] });
+    res.status(error.status).json({ status: error.status, message: error.message, data: {} });
   }
 };
 
-export default { getProfile, updateProfile, isUserExist };
+export default { getProfile, updateProfile };

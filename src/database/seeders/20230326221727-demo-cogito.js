@@ -13,7 +13,7 @@ module.exports = {
           preferred_currency: 'RF',
           billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
-          role: 'vendor',
+          role: 1,
           created_at: new Date(),
           updated_at: new Date(),
         },
