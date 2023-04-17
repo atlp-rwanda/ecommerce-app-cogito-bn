@@ -145,7 +145,6 @@ export async function sendOtp(req, res) {
     time: Math.floor(Date.now() / 1000 / 90),
     step: 90,
   });
-
   const salt = await Bcrypt.genSalt(10);
   const hashedOTP = await Bcrypt.hash(token, salt);
   // define email options
@@ -185,7 +184,6 @@ export async function verify(req, res) {
       message: 'Please provide the OTP to verify!',
     });
   }
-  console.log(req.headers);
   if (req.headers.cookie) {
     const Cookiearray = req.headers.cookie.trim().split(';');
     const cookiesObj = {};
@@ -200,7 +198,6 @@ export async function verify(req, res) {
     const decodedOTP = Buffer.from(hashedOTP, 'base64').toString('utf-8');
     const newOtp = otp.trim();
     const isMatch = await Bcrypt.compare(newOtp, decodedOTP);
-
     if (isMatch) {
       res.cookie('loginOTP', '');
 
