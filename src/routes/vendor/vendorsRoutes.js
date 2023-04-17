@@ -11,9 +11,9 @@ const {
   vendorLogin,
 } = require('../../controllers/vendor/vendorsController');
 
-router.get('/', getAllVendors);
-router.post('/', registerVendor);
-router.get('/:id', findVendorByID);
+router.get('/', vendorAuth, getAllVendors);
+router.post('/', vendorAuth, registerVendor);
+router.get('/:id', vendorAuth, findVendorByID);
 router.put('/:id', vendorAuth, updateVendor);
 router.delete('/:id', vendorAuth, deleteVendor);
 router.post('/login', vendorLogin);
