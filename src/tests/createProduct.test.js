@@ -7,12 +7,10 @@ import {
 import app from '../index';
 import CloudUpload from '../utils/cloudinary/cloudinary';
 import { product } from '../database/models';
-
 chai.use(chaiHttp);
-
 const req = {
   body: {
-    name: 'Testing',
+    name: 'Testing2',
     description: 'Test description',
     price: 10000,
     quantity: 10,
@@ -22,9 +20,8 @@ const req = {
   },
 };
 after(async () => {
-  await product.destroy({ where: { name: 'Testing' } });
+  await product.destroy({ where: { name: 'Testing2' } });
 });
-
 describe('createNewProduct', () => {
   let token;
   before(async () => {
@@ -34,7 +31,6 @@ describe('createNewProduct', () => {
       .send({ email: 'john@example.com', password: 'kunda123' });
     token = res.body.token;
   });
-
   it('should create a new product successfully', (done) => {
     const files = [];
     const fakeImage = [
@@ -47,7 +43,6 @@ describe('createNewProduct', () => {
       multi: () => fakeImage,
     };
     sinon.stub(CloudUpload, 'multi').callsFake(CloudUploadMock.multi);
-
     chai
       .request(app)
       .post('/products/add')
@@ -75,3 +70,15 @@ describe('createNewProduct', () => {
       });
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+

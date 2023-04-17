@@ -115,3 +115,64 @@
 
 
 
+/**
+ * @swagger
+ * /users/login:
+ *   post:
+ *     summary: Login user
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User email
+ *                 example: user@example.com
+ *               password:
+ *                 type: string
+ *                 description: User password
+ *                 example: password123
+ *             required:
+ *               - email
+ *               - password
+ *     responses:
+ *       '200':
+ *         description: Successful login
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: number
+ *                   description: Response status code
+ *                   example: 200
+ *                
+ *                 token:
+ *                   type: string
+ *                   description: Access token
+ *                   example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+ *                 message:
+ *                   type: string
+ *                   description: Success message
+ *                   example: Login successfully
+ *       '400':
+ *         description: Invalid credentials or missing email/password
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: number
+ *                   description: Response status code
+ *                   example: 400
+ *                 message:
+ *                   type: string
+ *                   description: Error message
+ *                   example: Invalid email/password
+ */

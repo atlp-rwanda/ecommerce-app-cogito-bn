@@ -1,4 +1,4 @@
-/** @type {import('sequelize-cli').Migration} */
+[/** @type {import('sequelize-cli').Migration} */]
 module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert('users', [
@@ -107,7 +107,6 @@ module.exports = {
       ],
       {},
     );
-
     await queryInterface.bulkInsert(
       'carts',
       [
@@ -169,7 +168,6 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-
       {},
     );
     await queryInterface.bulkInsert(
@@ -194,10 +192,8 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-
       {},
     );
-
     await queryInterface.bulkInsert(
       'permissions',
       [
@@ -210,7 +206,6 @@ module.exports = {
       ],
       {},
     );
-
     await queryInterface.bulkInsert(
       'rolepermissions',
       [
@@ -223,7 +218,6 @@ module.exports = {
       ],
       {},
     );
-
     await queryInterface.bulkInsert(
       'orders',
       [
@@ -286,10 +280,8 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-
       {},
     );
-
     await queryInterface.bulkInsert(
       'payment',
       [
@@ -323,7 +315,6 @@ module.exports = {
   },
   async down(queryInterface) {
     // Add commands to revert seed here.
-
     await queryInterface.bulkDelete('users', null, {});
     await queryInterface.bulkDelete('carts', null, {});
     await queryInterface.bulkDelete('products', null, {});
