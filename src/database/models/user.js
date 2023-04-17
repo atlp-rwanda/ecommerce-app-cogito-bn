@@ -1,48 +1,3 @@
-<<<<<<< HEAD
-import { Sequelize, DataTypes } from 'sequelize';
-
-import config from '../config/config.json';
-
-const environment = process.env.NODE_ENV || 'development';
-const sequelize = new Sequelize(config[environment]);
-
-const User = sequelize.define(
-  'User',
-  {
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    role: {
-      type: DataTypes.ENUM('user', 'vendor', 'admin'),
-      defaultValue: 'user',
-    },
-  },
-  {
-    freezeTableName: true,
-  },
-);
-
-export default User;
-
-const { Model } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -50,22 +5,24 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    // eslint-disable-next-line no-unused-vars
-    static associate(models) {
+    static associate() {
       // define association here
     }
   }
   user.init(
     {
-      carts_id: DataTypes.INTEGER,
-      orders_id: DataTypes.INTEGER,
-      wishlists_id: DataTypes.INTEGER,
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
+      name: DataTypes.STRING,
       email: DataTypes.STRING,
+      gender: DataTypes.STRING,
+      birthdate: DataTypes.DATE,
+      preferredLanguage: { type: DataTypes.STRING, field: 'preferred_language' },
+      preferredCurrency: { type: DataTypes.STRING, field: 'preferred_currency' },
+      billingAddress: { type: DataTypes.ARRAY(DataTypes.STRING), field: 'billing_address' },
       password: DataTypes.STRING,
-      role: DataTypes.STRING,
+      roleId: DataTypes.INTEGER,
       status: DataTypes.STRING,
+      createdAt: { type: DataTypes.DATE, field: 'created_at' },
+      updatedAt: { type: DataTypes.DATE, field: 'updated_at' },
     },
     {
       sequelize,
@@ -74,39 +31,3 @@ module.exports = (sequelize, DataTypes) => {
   );
   return user;
 };
-=======
-/* eslint-disable indent */
-import { Sequelize, DataTypes } from 'sequelize';
-import config from '../config/config.json';
-const environment = process.env.NODE_ENV || 'development';
-const sequelize = new Sequelize(config[environment]);
-const User = sequelize.define('User', {
-    firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    lastName: {
-        type: DataTypes.STRING,
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    phone: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    role: {
-        type: DataTypes.ENUM('user', 'vendor', 'admin'),
-        defaultValue: 'user',
-    },
-}, {
-    freezeTableName: true,
-});
-export default User;
->>>>>>> sihmup

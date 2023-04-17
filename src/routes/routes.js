@@ -9,7 +9,6 @@ const router = express.Router();
 router.use('/users', usersRouter);
 
 // Login route
-// router.post('/login', vendorLogin);
 
 // Create a new user route
 router.post('/register', createUser);

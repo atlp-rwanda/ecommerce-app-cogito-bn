@@ -1,3 +1,17 @@
 {
-    "welcome_message": "Welcome to Cogito's Ecommerce app API"
+  "welcome_message": "Welcome to Cogito's Ecommerce app API",
+  "loginUser_message": "Please provide email, and password to log in!",
+  "key": "translation",
+  "defaultFirstName": "John",
+  "defaultLastName": "Doe",
+  "confirmAccount": "Confirm your account",
+  "clickLink": "Click the link",
+  "here": "here",
+  "toConfirmAccount": "to confirm your account",
+  "confirmEmailSent": "Confirmation email sent successfully",
+  "failedToSendConfirmationEmail": "Failed to send confirmation email: {{message}}",
+  "invalidEmail": "Invalid email address",
+  "passwordTooShort": "Password must be at least 8 characters",
+  "emailAlreadyExists": "Email already exists",
+  "failedToCreateUser": "Failed to create user"
 }

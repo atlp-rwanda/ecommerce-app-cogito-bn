@@ -1,20 +1,51 @@
+/* eslint-disable indent */
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.bulkInsert(
       'users',
       [
         {
-          orders_id: 1,
-          wishlists_id: 1,
-          carts_id: 1,
-          firstName: 'Agnes',
-          lastName: 'Kunda',
-          email: 'kundaaggy@gmail.com',
+          name: 'Agnes Kunda',
+          email: 'kundaaggy@example.com',
+          gender: 'female',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kicukiro', 'Kigali', 'Rwanda'],
           password: 'kunda123',
-          role: 'admin',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          roleId: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'John Doe',
+          email: 'john456@example.com',
+          gender: 'male',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+          password: 'kunda123',
+          roleId: 2,
+          status: 'active',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'Leo',
+          email: 'leo@example.com',
+          gender: 'male',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kacyiru', 'Kigali', 'Rwanda'],
+          password: 'leo123',
+          roleId: 3,
+          status: 'active',
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
 
