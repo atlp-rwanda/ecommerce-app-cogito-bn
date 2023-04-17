@@ -30,7 +30,13 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  resetTokenExpiry: DataTypes.DATE
+  resetToken: {
+   type: DataTypes.STRING
+  } ,
+
+  resetTokenExpiry: {
+ type:    DataTypes.STRING
+  } 
  
 }, {
   freezeTableName: true,
