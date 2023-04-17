@@ -25,14 +25,16 @@ app.use(i18nextMiddleware.handle(i18next));
 app.use(cors());
 dotenv.config();
 const port = process.env.PORT;
+
 app.use(express.json());
 const specs = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 app.use(router);
+
 app.listen(port, async () => {
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
-  await sequelize.authenticate();
   console.log('Database Connected!');
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
 });
+
 export default app;
