@@ -5,6 +5,7 @@ const { validateVendorRegistration } = require('../../middleware/vendor/register
 const { validateVendorLogin } = require('../../middleware/vendor/registerVendorValidator');
 const { vendorSignAccessToken } = require('../../middleware/vendor/vendorJWT');
 
+// eslint-disable-next-line consistent-return
 const getAllVendors = async (req, res) => {
   try {
     const { authenticatedUser } = req;
