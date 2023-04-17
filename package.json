@@ -8,7 +8,7 @@
     "seed": "npx sequelize-cli db:seed:all",
     "seed-down": "npx sequelize-cli db:seed:undo:all",
     "down": "npx sequelize-cli db:migrate:undo",
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/index",
+    "dev": "node -r @babel/register src/index",
     "start": "node -r @babel/register src/index",
     "test": "mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000",
     "coverage": "nyc --reporter=html --reporter=text npm run test"
