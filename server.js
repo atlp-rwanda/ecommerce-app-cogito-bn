@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize');
 const express = require('express');
-const { sequelize, users } = require('./src/database/models');
-
+const { sequelize } = require('./src/database/models');
 const app = express();
 app.use(express.json());
 app.get('/', (req, res) => {

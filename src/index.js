@@ -31,6 +31,7 @@ app.use(cors());
 
 dotenv.config();
 const port = process.env.PORT;
+
 app.use(express.json());
 
 const specs = swaggerJSDoc(options);
@@ -41,5 +42,8 @@ app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('w
 app.use(router);
 app.use('/vendors', vendorRouter);
 app.use('/users', userRouter);
-app.listen(port, () => console.log(`app listening on port ${port}`, process.env.NODE_ENV));
+app.listen(port, async () => {
+  console.log('Database Connected!');
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
+});
 export default app;

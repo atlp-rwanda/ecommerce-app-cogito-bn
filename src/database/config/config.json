@@ -10,15 +10,15 @@
   "test": {
     "username": "postgres",
     "password": "54321",
-    "database": "ecommerce-app-cogito-db",
-    "host": "localhost",
+    "database": "ecommerce-app-cogito-db-test",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": "54321",
     "database": "ecommerce-app-cogito-db",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   }
 }
