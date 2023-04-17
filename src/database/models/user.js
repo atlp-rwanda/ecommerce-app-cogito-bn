@@ -1,5 +1,4 @@
 const { Model } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -22,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       preferred_currency: { type: DataTypes.STRING, field: 'preferred_currency' },
       billingAddress: { type: DataTypes.ARRAY(DataTypes.STRING), field: 'billing_address' },
       password: DataTypes.STRING,
+      roleId: DataTypes.INTEGER,
       resetToken: {
         type: DataTypes.STRING,
       },
@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
        } ,
       roleId: DataTypes.INTEGER,
+     
       confirmationCode: DataTypes.INTEGER,
       confirmed: DataTypes.BOOLEAN,
       status: DataTypes.STRING,
@@ -43,3 +44,10 @@ module.exports = (sequelize, DataTypes) => {
   );
   return user;
 };
+
+
+
+
+
+
+

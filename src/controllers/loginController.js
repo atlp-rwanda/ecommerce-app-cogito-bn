@@ -23,14 +23,7 @@ const LoginUser = async (req, res) => {
 
   });
 
-
-
-
-
-
-
-
-  if (!user) {
+if (!user) {
     return res.status(400).json({ status: 400, message: req.t('User does not exist Message') })
 
   }
