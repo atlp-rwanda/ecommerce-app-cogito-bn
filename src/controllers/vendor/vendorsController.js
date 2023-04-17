@@ -7,6 +7,13 @@ const { vendorSignAccessToken } = require('../../middleware/vendor/vendorJWT');
 
 const getAllVendors = async (req, res) => {
   try {
+    const { authenticatedUser } = req;
+    if (!authenticatedUser) {
+      return res.status(403).json({
+        success: false,
+        message: 'Forbidden',
+      });
+    }
     const vendor = await vendors.findAll();
     res.status(200).json({
       success: true,
@@ -26,6 +33,13 @@ const getAllVendors = async (req, res) => {
 // eslint-disable-next-line consistent-return
 const registerVendor = async (req, res) => {
   try {
+    const { authenticatedUser } = req;
+    if (!authenticatedUser) {
+      return res.status(403).json({
+        success: false,
+        message: 'Forbidden',
+      });
+    }
     const { error } = validateVendorRegistration(req.body);
     if (error) {
       console.log(error);
@@ -120,6 +134,13 @@ const registerVendor = async (req, res) => {
 
 const findVendorByID = async (req, res) => {
   try {
+    const { authenticatedUser } = req;
+    if (!authenticatedUser) {
+      return res.status(403).json({
+        success: false,
+        message: 'Forbidden',
+      });
+    }
     const vendor = await vendors.findByPk(req.params.id);
     if (vendor === null) {
       res
