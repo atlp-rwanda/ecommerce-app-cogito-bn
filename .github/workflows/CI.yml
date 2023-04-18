@@ -29,6 +29,7 @@ jobs:
       JWT_KEY: ${{secrets.JWT_KEY}}
       ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}  
       PASSWORD_RESET_EMAIL: ${{secrets.PASSWORD_RESET_EMAIL}}
+      RESET_URL: ${{secrets.RESET_URL}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2

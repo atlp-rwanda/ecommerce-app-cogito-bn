@@ -10,16 +10,8 @@ const port = process.env.PORT;
 app.use(router);
 
 app.listen(port, async () => {
-  console.log(process.env.CLIENT_ID, process.env.FACEBOOK_APP_ID);
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
   await sequelize.authenticate();
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
   console.log('Database Connected!');
 });
 export default app;
-
-
-
-
-
-
-

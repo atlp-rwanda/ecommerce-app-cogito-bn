@@ -18,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       image: DataTypes.ARRAY(DataTypes.STRING),
       price: DataTypes.STRING,
       vendor_id: DataTypes.INTEGER,
+      quantity: DataTypes.STRING,
+      stock: DataTypes.STRING,
       category_id: DataTypes.INTEGER,
-      vendor_id:DataTypes.INTEGER,
-      stock:DataTypes.ENUM('In Stock', 'Out of Stock', 'Expired')
-      
+      expiredAt: DataTypes.DATE,
     },
     {
       sequelize,

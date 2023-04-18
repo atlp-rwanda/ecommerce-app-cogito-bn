@@ -16,15 +16,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      orders_id: {
-        type: Sequelize.INTEGER,
-      },
-      wishlists_id: {
-        type: Sequelize.INTEGER,
-      },
-      carts_id: {
-        type: Sequelize.INTEGER,
-      },
       vendor_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -33,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.STRING(10000)),
       },
       price: {
         type: Sequelize.STRING,
@@ -42,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       stock: {
-        type: Sequelize.ENUM('In Stock', 'Out of Stock', 'Expired'),
+        type: Sequelize.ENUM('In Stock', 'Out of Stock'),
         defaultValue: 'In Stock',
       },
       createdAt: {
@@ -52,6 +43,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+      },
+      expiredAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
       },
     });
   },

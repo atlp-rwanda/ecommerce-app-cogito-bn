@@ -30,6 +30,7 @@ import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
 import productItem from './product/itemsRoutes';
 import searchProducts from '../controllers/search/productController';
+import productRouter from './product/productsRoutes';
 import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
 import authRoutes from './API/SendResetEmail';
@@ -85,5 +86,7 @@ router.use('/search', searchProducts);
 router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
+router.use('/create', Route);
+router.use('/products', productRouter);
 
 export default router;
