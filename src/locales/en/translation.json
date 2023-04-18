@@ -15,6 +15,20 @@
     "invalidEmail": "Invalid email address",
     "passwordTooShort": "Password must be at least 8 characters",
     "emailAlreadyExists": "Email already exists",
-    "failedToCreateUser": "Failed to create user"
-  }
-  
+    "failedToCreateUser": "Failed to create user",
+    "not_enough_credentials_for_login": "Please provide email, and password to log in!",
+    "user_not_found":"User not found",
+    "successful_login": "User logged in successfully",
+    "incorrect_password": "Incorrect password",
+    "provide_all_details_signup": "Please provide firstName, lastName, email, password, phone, and role to create a user!",
+    "account_exists": "An account with that email already exists!",
+    "signup-success": "New user created successfully",
+    "server_error": "Server error",
+    "email_not_sent": "Email was not sent",
+    "otp_sent": "OTP has been sent to user email",
+    "enter_otp": "Please provide the OTP to verify!",
+    "otp_verified": "OTP verified",
+    "otp_invalid": "OTP invalid!",
+    "provide_user_email_to_delete": "Please provide the email of user to delete!",
+    "user_deleted": "User deleted successfully!"
+}
