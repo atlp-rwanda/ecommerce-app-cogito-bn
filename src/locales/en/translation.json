@@ -106,5 +106,8 @@
   "not_logged_in_message": "You're not logged in",
   "wishlist_fetched": "Wishlist fetched",
   "product_added": "Product added to the wishlist",
-  "product_already_added": "Product already added to the wishlist"
+  "product_already_added": "Product already added to the wishlist",
+  "createUser_message": "Please provide firstName, lastName, email, password, phone, and role to create a user!",
+  "logoutUser_message": "User logged in successfully"
 }
+

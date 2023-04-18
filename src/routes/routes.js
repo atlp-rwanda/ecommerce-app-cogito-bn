@@ -26,9 +26,8 @@ import vendorRouter from './vendor/vendorsRoutes';
 import signupRouter from './user/userRoutes';
 import googleAuth from './user/googleAuthRoutes';
 import facebookAuth from './user/facebookAuthRoutes';
-import Route from './roleRoute';
 import roleRoute from './roleRoute';
-import { createUser, loginUser } from '../controllers/userController';
+import { createUser, loginUser, logoutUser } from '../controllers/userController';
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
 import wishListRouter from './wishListRouter';
@@ -72,6 +71,6 @@ router.post('/login', loginUser);
 router.use('/wishlist', wishListRouter);
 router.use('/create', Route);
 router.use('/OTP', usersRouter);
-router.use('/create', Route);
+router.post('/logout', logoutUser);
 
 export default router;
