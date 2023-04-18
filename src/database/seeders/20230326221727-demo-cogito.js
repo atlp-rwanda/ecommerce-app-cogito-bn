@@ -8,7 +8,7 @@ module.exports = {
       [
         {
           name: 'Nelly Kawera',
-          email: 'kaweranelly@example.com',
+          email: 'kaweranelly123@example.com',
           gender: 'female',
           birthdate: new Date(),
           preferred_language: 'en',
@@ -21,7 +21,7 @@ module.exports = {
         },
         {
           name: 'John Doe',
-          email: 'john@example.com',
+          email: 'john456@example.com',
           gender: 'male',
           birthdate: new Date(),
           preferred_language: 'en',
@@ -35,7 +35,7 @@ module.exports = {
         },
         {
           name: 'Ange',
-          email: 'ange@example.com',
+          email: 'ange789@example.com',
           gender: 'female',
           birthdate: new Date(),
           preferred_language: 'en',
@@ -119,7 +119,7 @@ module.exports = {
       {},
     );
     await queryInterface.bulkInsert(
-      'ordersz',
+      'orders',
       [
         {
           user_id: 1,

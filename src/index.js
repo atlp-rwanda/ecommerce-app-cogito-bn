@@ -6,7 +6,6 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { sequelize } from './database/models';
 import router from './routes/routes';
 import options from './docs/apidoc';
 
