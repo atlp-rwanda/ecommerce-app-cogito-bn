@@ -7,7 +7,7 @@ export async function loginUser(req, res) {
   if (!email || !password) {
     return res.status(400).json({
       status: 400,
-      message: 'Please provide email, and password to log in!',
+      message: req.t('not_enough_credentials_for_login'),
     });
   }
   const User = await user.findOne({
@@ -18,7 +18,7 @@ export async function loginUser(req, res) {
   if (!User) {
     return res.status(401).json({
       status: 401,
-      message: 'User not found!',
+      message: req.t('user_not_found'),
     });
   }
   if (User.password === password) {
@@ -42,7 +42,7 @@ export async function loginUser(req, res) {
   }
   return res.status(401).json({
     status: 401,
-    message: 'Incorrect password',
+    message: req.t('incorrect_password'),
   });
 }
 export async function createUser(req, res) {
@@ -52,8 +52,7 @@ export async function createUser(req, res) {
   if (!firstName || !lastName || !email || !password || !phone || !role) {
     return res.status(400).json({
       status: 400,
-      message:
-        'Please provide firstName, lastName, email, password, phone, and role to create a user!',
+      message: req.t('provide_all_details_signup'),
     });
   }
   const emailExists = await user.findOne({
@@ -64,7 +63,7 @@ export async function createUser(req, res) {
   if (emailExists) {
     return res.status(409).json({
       status: 400,
-      message: 'An account with that email already exists!',
+      message: req.t('account_exists'),
     });
   }
   try {
@@ -78,13 +77,169 @@ export async function createUser(req, res) {
     });
     return res.status(201).json({
       status: 201,
-      message: 'New user created successfully',
+      message: req.t('signup-success'),
       data: newUser,
     });
   } catch (err) {
     return res.status(500).json({
       status: 500,
-      message: 'Server error',
+      message: req.t('server_error'),
+      Error: err.message,
+    });
+  }
+}
+
+export async function sendOtp(req, res) {
+  const userDetails = decodeJWT(req.headers.authorization);
+  // const { id } = req.body;
+  const user = await User.findOne({
+    where: {
+      id: userDetails.id,
+    },
+  });
+
+  if (!user) {
+    return res.status(401).json({
+      status: 401,
+      message: req.t('user_not_found'),
+    });
+  }
+
+  // Generate a secret key for the user
+  const { base32: secret } = speakeasy.generateSecret({ length: 20 });
+
+  // Generate an OTP for the user
+  const token = speakeasy.totp({
+    secret,
+    encoding: 'base32',
+    time: Math.floor(Date.now() / 1000 / 90),
+    step: 90,
+  });
+  const salt = await Bcrypt.genSalt(10);
+  const hashedOTP = await Bcrypt.hash(token, salt);
+  // define email options
+  const mailOptions = {
+    from: process.env.EMAIL_ADDRESS,
+    to: userDetails.email,
+    subject: 'Cogito ecommerce app otp',
+    text: `Your OTP is ${token}`,
+  };
+
+  // send the email
+  // eslint-disable-next-line no-unused-vars
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).json({
+        status: 500,
+        message: req.t('email_not_sent'),
+        Error: error,
+      });
+    }
+  });
+  const encodedOTP = Buffer.from(hashedOTP).toString('base64');
+
+  delete user.dataValues.password;
+  res.cookie('loginOTP', encodedOTP);
+  res.status(200).json({
+    status: 200,
+    message: req.t('otp_sent'),
+    data: user,
+    cookie: encodedOTP,
+  });
+}
+
+export async function verify(req, res) {
+  const { otp } = req.body;
+  if (!otp) {
+    return res.status(400).json({
+      status: 400,
+      message: req.t('enter_otp'),
+    });
+  }
+  if (req.headers.cookie) {
+    const Cookiearray = req.headers.cookie.trim().split(';');
+    const cookiesObj = {};
+    for (let i = 0; i < Cookiearray.length; i++) {
+      const parts = Cookiearray[i].split('=');
+      const key = parts[0].trim(); // Trim the key
+      const value = parts[1].trim().replace(/=/g, ':');
+      cookiesObj[key] = value;
+    }
+    const hashedOTP = cookiesObj.loginOTP;
+    // compare incoming OTP with OTP sent in a cookie
+    const decodedOTP = Buffer.from(hashedOTP, 'base64').toString('utf-8');
+    const newOtp = otp.trim();
+    const isMatch = await Bcrypt.compare(newOtp, decodedOTP);
+    if (isMatch) {
+      res.cookie('loginOTP', '');
+
+      const userDetails = decodeJWT(req.headers.authorization);
+      const user = await User.findOne({
+        where: { id: userDetails.id },
+      });
+
+      const accessToken = jwt.sign(
+        {
+          id: userDetails.id,
+          email: userDetails.email,
+          firstName: userDetails.firstName,
+          lastName: userDetails.lastName,
+          role: userDetails.role,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: '1d' },
+      );
+
+      delete user.dataValues.password;
+
+      res.status(200).json({
+        status: 200,
+        message: req.t('otp_verified'),
+        data: user,
+        token: accessToken,
+      });
+    } else {
+      return res.status(401).json({
+        status: 401,
+        message: req.t('otp_invalid'),
+      });
+    }
+  }
+}
+
+export async function deleteUser(req, res) {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({
+      status: 400,
+      message: req.t('provide_user_email_to_delete'),
+    });
+  }
+  const user = await User.findOne({
+    where: { email },
+  });
+
+  if (!user) {
+    return res.status(401).json({
+      status: 401,
+      message: req.t('user_not_found'),
+    });
+  }
+
+  try {
+    await user.destroy();
+
+    delete user.dataValues.password;
+
+    return res.status(200).json({
+      status: 200,
+      message: req.t('user_deleted'),
+      data: user,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: 500,
+      message: req.t('server_error'),
       Error: err.message,
     });
   }
