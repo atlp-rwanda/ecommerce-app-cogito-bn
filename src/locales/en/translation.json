@@ -1,6 +1,4 @@
 
-    
-  
 {
   "welcome_message": "Welcome to Cogito's Ecommerce app API",
 
@@ -114,6 +112,7 @@
   "fail": "user not found",
   "failId": "no user found with that ID",
   "retrievedAll": "all users retrieved",
-  "updateStatus": "status updated successfully"
-  }
-  
+  "updateStatus": "status updated successfully",
+    "set-role-message":"Role Assined to specific user Successfully!",
+    "set-permission-message":"Permission Assined to specific role Successfully!"
+}

@@ -110,5 +110,6 @@
   "fail": "utilisateur non trouvé",
   "failId": "aucun utilisateur trouvé avec cet ID",
   "retrievedAll": "tous les utilisateurs récupérés",
-  "updateStatus": "statut mis à jour avec succès"
-    }
+    "set-role-message":"Rôle attribué à un utilisateur spécifique avec succès!",
+    "set-permission-message":"Autorisation attribuée à un rôle spécifique avec succès!"
+}

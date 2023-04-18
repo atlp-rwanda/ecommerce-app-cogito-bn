@@ -76,4 +76,6 @@ router.use('/OTP', usersRouter);
 router.use('/create', Route);
 router.use('/search', searchProducts);
 
+router.use('/create', Route);
+
 export default router;

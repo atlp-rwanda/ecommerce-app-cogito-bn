@@ -1,34 +1,31 @@
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
-import db from '../database/models/index';
-import catchAsync from '../utils/catchAsync';
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+import db from "../database/models/index";
+import catchAsync from "../utils/catchAsync";
 
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-<<<<<<< HEAD
     user: process.env.EMAIL_ADDRESS_STATUS,
     pass: process.env.EMAIL_PASSWORD_STATUS,
   },
 });
 
-=======
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
-
-// import { authenticate } from "../middleware/authMiddleware";
-
->>>>>>> 81468ae (feat(search)create a search endpoint)
 const User = db.user;
 export const getAllUsers = catchAsync(async (req, res) => {
   try {
     const users = await User.findAll({
       attributes: {
-        exclude: ['password', 'createdAt', 'updatedAt', 'carts_id', 'orders_id', 'wishlists_id'],
+        exclude: [
+          "password",
+          "createdAt",
+          "updatedAt",
+          "carts_id",
+          "orders_id",
+          "wishlists_id",
+        ],
       },
     });
 
@@ -37,7 +34,7 @@ export const getAllUsers = catchAsync(async (req, res) => {
 
       data: users,
 
-      message: req.t('retrieved_all'),
+      message: req.t("retrieved_all"),
     });
   } catch (error) {
     return res.status(500).json(error.message);
@@ -47,14 +44,21 @@ export const getUserData = catchAsync(async (req, res, next) => {
   try {
     const user = await User.findOne({
       attributes: {
-        exclude: ['password', 'createdAt', 'updatedAt', 'carts_id', 'orders_id', 'wishlists_id'],
+        exclude: [
+          "password",
+          "createdAt",
+          "updatedAt",
+          "carts_id",
+          "orders_id",
+          "wishlists_id",
+        ],
       },
 
       where: { id: req.params.id },
     });
 
     if (!user) {
-      return next(req.t('user_not_found'), 404);
+      return next(req.t("user_not_found"), 404);
     }
 
     return res.status(200).json({
@@ -62,7 +66,7 @@ export const getUserData = catchAsync(async (req, res, next) => {
 
       data: user,
 
-      message: req.t('retrieved'),
+      message: req.t("retrieved"),
     });
   } catch (error) {
     return res.status(500).json(error.message);
@@ -76,31 +80,24 @@ export const updateStatus = catchAsync(async (req, res) => {
     if (!user) {
       res.status(404).json({
         status: 404,
-        message: req.t('user_not_found'),
+        message: req.t("user_not_found"),
       });
     }
     await user.update(
       {
         status,
       },
-      { where: { id } },
+      { where: { id } }
     );
     await transporter.sendMail({
-<<<<<<< HEAD
       from: process.env.EMAIL_ADDRESS_STATUS,
       to: user.email,
       subject: `Your status has been updated to ${status}`,
       text: `Dear ${user.name}, your status has been updated to ${status}.`,
-=======
-      from: 'charlesntwari2@gmail.com',
-      to: user.email,
-      subject: `Your status has been updated to ${status}`,
-      text: `Dear ${user.firstName}, your status has been updated to ${status}.`,
->>>>>>> 81468ae (feat(search)create a search endpoint)
     });
     res.status(200).json({
       status: 200,
-      message: req.t('update_status'),
+      message: req.t("update_status"),
     });
   } catch (err) {
     res.send(err);

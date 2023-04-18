@@ -3,7 +3,6 @@ import { generateConfirmationCode } from "../../utils/validation/generateCode";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { hashPassword } from "../../utils/validation/hashedPassword";
-
 dotenv.config();
 const signUp = async (req, res) => {
   const { email, password } = req.body;

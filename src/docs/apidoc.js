@@ -31,6 +31,7 @@ const options = {
           type: 'http',
           scheme: 'bearer',
           bearerFormat: 'JWT',
+          in: 'header',
         },
         cookieAuth: {
           type: 'apiKey',

@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       price: {
         type: Sequelize.STRING,
@@ -42,7 +42,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       stock: {
-        type: Sequelize.ENUM('In Stock', 'Out of Stock', 'Expired'),
+        type: Sequelize.ENUM('In Stock', 'Out of Stock'),
         defaultValue: 'In Stock',
       },
       createdAt: {
@@ -52,6 +52,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+      },
+      expiredAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
       },
     });
   },
