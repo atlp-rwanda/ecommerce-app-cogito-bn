@@ -30,6 +30,7 @@ app.use(cookieParser());
 
 dotenv.config();
 const port = process.env.PORT;
+
 app.use(express.json());
 
 const specs = swaggerJSDoc(options);
