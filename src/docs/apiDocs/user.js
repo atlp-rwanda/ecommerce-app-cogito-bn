@@ -55,6 +55,13 @@
  *   post:
  *     summary: Authenticate user email and password
  *     tags: [Users]
+ *     parameters:
+ *       - in: header
+ *         name: accept-language
+ *         required: false
+ *         type: string
+ *         enum: [de, en, es]
+ *         description: Language preference for the response
  *     requestBody:
  *       required: true
  *       content:
@@ -112,6 +119,13 @@
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: header
+ *         name: accept-language
+ *         required: false
+ *         type: string
+ *         enum: [de, en, es]
+ *         description: Language preference for the response
  *     responses:
  *       200:
  *         description: The OTP was sent to the user's email successfully
@@ -166,6 +180,12 @@
  *     security:
  *       - bearerAuth: []
  *     parameters:
+ *       - in: header
+ *         name: accept-language
+ *         required: false
+ *         type: string
+ *         enum: [de, en, es]
+ *         description: Language preference for the response
  *       - in: header
  *         name: Cookie
  *         schema:

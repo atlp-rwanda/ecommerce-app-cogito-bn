@@ -26,7 +26,7 @@ export async function loginUser(req, res) {
   if (!email || !password) {
     return res.status(400).json({
       status: 400,
-      message: 'Please provide email, and password to log in!',
+      message: req.t('not_enough_credentials_for_login'),
     });
   }
 
@@ -39,7 +39,7 @@ export async function loginUser(req, res) {
   if (!user) {
     return res.status(401).json({
       status: 401,
-      message: 'User not found!',
+      message: req.t('user_not_found'),
     });
   }
 
@@ -56,9 +56,10 @@ export async function loginUser(req, res) {
       { expiresIn: '1d' },
     );
 
+    delete user.dataValues.password;
     return res.status(200).json({
       status: 200,
-      message: 'User logged in successfully',
+      message: req.t('successful_login'),
       data: user,
       token: accessToken,
     });
@@ -66,7 +67,7 @@ export async function loginUser(req, res) {
 
   return res.status(401).json({
     status: 401,
-    message: 'Incorrect password',
+    message: req.t('incorrect_password'),
   });
 }
 
@@ -77,8 +78,7 @@ export async function createUser(req, res) {
   if (!firstName || !lastName || !email || !password || !phone || !role) {
     return res.status(400).json({
       status: 400,
-      message:
-        'Please provide firstName, lastName, email, password, phone, and role to create a user!',
+      message: req.t('provide_all_details_signup'),
     });
   }
 
@@ -91,7 +91,7 @@ export async function createUser(req, res) {
   if (emailExists) {
     return res.status(409).json({
       status: 400,
-      message: 'An account with that email already exists!',
+      message: req.t('account_exists'),
     });
   }
 
@@ -105,15 +105,17 @@ export async function createUser(req, res) {
       role,
     });
 
+    delete newUser.dataValues.password;
+
     return res.status(201).json({
       status: 201,
-      message: 'New user created successfully',
+      message: req.t('signup-success'),
       data: newUser,
     });
   } catch (err) {
     return res.status(500).json({
       status: 500,
-      message: 'Server error',
+      message: req.t('server_error'),
       Error: err.message,
     });
   }
@@ -131,7 +133,7 @@ export async function sendOtp(req, res) {
   if (!user) {
     return res.status(401).json({
       status: 401,
-      message: 'User not registered!',
+      message: req.t('user_not_found'),
     });
   }
 
@@ -161,16 +163,18 @@ export async function sendOtp(req, res) {
     if (error) {
       return res.status(500).json({
         status: 500,
-        message: 'Email was not sent',
+        message: req.t('email_not_sent'),
         Error: error,
       });
     }
   });
   const encodedOTP = Buffer.from(hashedOTP).toString('base64');
+
+  delete user.dataValues.password;
   res.cookie('loginOTP', encodedOTP);
   res.status(200).json({
     status: 200,
-    message: 'OTP has been sent to user email',
+    message: req.t('otp_sent'),
     data: user,
     cookie: encodedOTP,
   });
@@ -181,7 +185,7 @@ export async function verify(req, res) {
   if (!otp) {
     return res.status(400).json({
       status: 400,
-      message: 'Please provide the OTP to verify!',
+      message: req.t('enter_otp'),
     });
   }
   if (req.headers.cookie) {
@@ -218,16 +222,18 @@ export async function verify(req, res) {
         { expiresIn: '1d' },
       );
 
+      delete user.dataValues.password;
+
       res.status(200).json({
         status: 200,
-        message: 'OTP verified!',
+        message: req.t('otp_verified'),
         data: user,
         token: accessToken,
       });
     } else {
       return res.status(401).json({
         status: 401,
-        message: 'OTP invalid!',
+        message: req.t('otp_invalid'),
       });
     }
   }
@@ -238,7 +244,7 @@ export async function deleteUser(req, res) {
   if (!email) {
     return res.status(400).json({
       status: 400,
-      message: 'Please provide the email of user to delete!',
+      message: req.t('provide_user_email_to_delete'),
     });
   }
   const user = await User.findOne({
@@ -248,21 +254,24 @@ export async function deleteUser(req, res) {
   if (!user) {
     return res.status(401).json({
       status: 401,
-      message: 'User not found!',
+      message: req.t('user_not_found'),
     });
   }
 
   try {
     await user.destroy();
+
+    delete user.dataValues.password;
+
     return res.status(200).json({
       status: 200,
-      message: 'User deleted successfully!',
+      message: req.t('user_deleted'),
       data: user,
     });
   } catch (err) {
     return res.status(500).json({
       status: 500,
-      message: 'Server error',
+      message: req.t('server_error'),
       Error: err.message,
     });
   }
