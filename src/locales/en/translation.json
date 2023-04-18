@@ -1,6 +1,4 @@
 
-    
-  
 {
     "welcome_message": "Welcome to Cogito's Ecommerce app API",
     "key": "translation",
@@ -30,5 +28,32 @@
     "otp_verified": "OTP verified",
     "otp_invalid": "OTP invalid!",
     "provide_user_email_to_delete": "Please provide the email of user to delete!",
-    "user_deleted": "User deleted successfully!"
+    "user_deleted": "User deleted successfully!", 
+    "role_create_message":"Role Created Successfully!",
+    "role_unexist_message":"Role doesn't exist",
+    "role_fetch_message":"Roles fetched Successfully",
+    "role_delete_message":"Role deleted Successfully",
+    "role_update_message":"Role updated Successfully",
+    "set-role-message":"Role Assined to specific user Successfully!",
+    "permission_create_message":"Permission Created Successfully!",
+    "permission_unexist_message":"Permission doesn't exist",
+    "permission_fetch_message":"Permissions fetched Successfully",
+    "permission_delete_message":"Permission deleted Successfully",
+    "permission_update_message":"Permission updated Successfully",
+    "set-permission-message":"Permission Assined to specific role Successfully!",
+    "update_message":"Updated Successfully!",
+    "delete_message":"deleted Successfully!",
+    "id_unexist_message":"the id doesn't exist",
+    "token_unexist_message":"Token not provided",
+    "token_invalid_message":"Invalid Token",
+    "user_unexist_message":"User not found",
+    "unauthorised_message":"You are not authorized to perform this action",
+    "server_error_message":"Internal server error",
+    "not_logged_in": "Not logged in!",
+    "invalid_token": "Invalid token",
+    "profile_fetch_message": "Profile fetched successfully",
+    "profile_updated_message": "Profile updated successfully",
+    "profile_update_unthorize_message": "unauthorized request",
+    "not_logged_in_message": "You're not logged in"
+   
 }

@@ -9,11 +9,13 @@
  *
  */
 
+import Route from './roleRoute';
 import express from 'express';
 import usersRouter from './API/user';
 
-const router = express.Router();
-
 router.use('/users', usersRouter);
 
+
+const router = express.Router();
+router.use("/create", Route)
 export default router;

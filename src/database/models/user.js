@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -9,24 +7,28 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate() {
       // define association here
     }
   }
-  user.init({
-    carts_id: DataTypes.INTEGER,
-    orders_id: DataTypes.INTEGER,
-    wishlists_id: DataTypes.INTEGER,
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: DataTypes.STRING,
-    confirmationCode: DataTypes.INTEGER,
-    confirmed: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'user',
-  });
+  user.init(
+    {
+      name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      gender: DataTypes.STRING,
+      birthdate: DataTypes.DATE,
+      preferredLanguage: { type: DataTypes.STRING, field: 'preferred_language' },
+      preferredCurrency: { type: DataTypes.STRING, field: 'preferred_currency' },
+      billingAddress: { type: DataTypes.ARRAY(DataTypes.STRING), field: 'billing_address' },
+      password: DataTypes.STRING,
+      roleId: DataTypes.INTEGER,
+      createdAt: { type: DataTypes.DATE, field: 'created_at' },
+      updatedAt: { type: DataTypes.DATE, field: 'updated_at' },
+    },
+    {
+      sequelize,
+      modelName: 'user',
+    },
+  );
   return user;
 };
