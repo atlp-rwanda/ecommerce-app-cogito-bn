@@ -64,12 +64,10 @@ router.use('/profile', profileRouter);
 router.use('/vendors', vendorRouter);
 router.use('/', roleRoute);
 router.use('/', permissionRoute);
-router.post('/register', newUserValidation, createUser);
+router.post('/register', newUserValidation);
 router.post('/login', loginUser);
 router.post('/register', createUser);
-router.post('/login', loginUser);
 router.use('/wishlist', wishListRouter);
-router.use('/create', Route);
 router.use('/OTP', usersRouter);
 router.post('/logout', logoutUser);
 
