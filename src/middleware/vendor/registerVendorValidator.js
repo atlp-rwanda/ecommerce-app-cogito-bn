@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const validator = (schema) => (payload) => schema.validate(payload, { abortEarly: false });
 
@@ -25,5 +25,6 @@ const loginVendor = Joi.object({
   password: Joi.string().pattern(/^[a-zA-Z0-9]{3,30}$/).min(8).max(16)
     .required(),
 });
-exports.validateVendorRegistration = validator(registerVendor);
-exports.validateVendorLogin = validator(loginVendor);
+
+export const validateVendorRegistration = validator(registerVendor);
+export const validateVendorLogin = validator(loginVendor);

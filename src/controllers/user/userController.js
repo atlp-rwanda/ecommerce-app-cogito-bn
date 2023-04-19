@@ -1,9 +1,9 @@
-const bcrypt = require('bcrypt');
-const { user } = require('../../database/models');
-const { validateUserLogin } = require('../../middleware/user/UserValidator');
-const { usersignAccessToken } = require('../../middleware/user/userJWT');
+import bcrypt from 'bcrypt';
+import { user } from '../../database/models';
+import { validateUserLogin } from '../../middleware/user/UserValidator';
+import { usersignAccessToken } from '../../middleware/user/userJWT';
 
-const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     const User = await user.findAll();
     res.status(200).json({
@@ -21,8 +21,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
-const UserLogin = async (req, res) => {
+export const UserLogin = async (req, res) => {
   const { email } = req.body;
   const { password } = req.body;
   try {
@@ -61,8 +60,8 @@ const UserLogin = async (req, res) => {
       .json({ success: false, message: 'Server error - User Login Failed.', Error: error });
   }
 };
-// eslint-disable-next-line consistent-return
-const registerUsers = async (req, res) => {
+
+export const registerUsers = async (req, res) => {
   try {
     const userEmail = await user.findOne({
       where: {
@@ -96,10 +95,4 @@ const registerUsers = async (req, res) => {
       .status(500)
       .json({ success: false, message: 'Failed to create a new Users.', Error: error });
   }
-};
-
-module.exports = {
-  getAllUsers,
-  UserLogin,
-  registerUsers,
 };

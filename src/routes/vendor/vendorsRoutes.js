@@ -1,16 +1,15 @@
-const express = require('express');
-const vendorAuth = require('../../middleware/vendor/vendorAuth');
-
-const router = express.Router();
-const {
+import express from 'express';
+import vendorAuth from '../../middleware/vendor/vendorAuth';
+import {
   getAllVendors,
   registerVendor,
   findVendorByID,
   updateVendor,
   deleteVendor,
   vendorLogin,
-} = require('../../controllers/vendor/vendorsController');
+} from '../../controllers/vendor/vendorsController';
 
+const router = express.Router();
 router.get('/', vendorAuth, getAllVendors);
 router.post('/', vendorAuth, registerVendor);
 router.get('/:id', vendorAuth, findVendorByID);
@@ -18,4 +17,4 @@ router.put('/:id', vendorAuth, updateVendor);
 router.delete('/:id', vendorAuth, deleteVendor);
 router.post('/login', vendorLogin);
 
-module.exports = router;
+export default router;
