@@ -11,11 +11,11 @@ const isUserExist = async (req, res, next) => {
       if (err) {
         res.status(400).json({ status: err.status, message: err.message });
       } else {
-        const { userId } = decodedToken;
+        const userId = decodedToken.id;
         const { id } = req.params;
-        if (userId === id) {
+        if (userId == id) {
           try {
-            const profile = await user.findByPk(id);
+            const profile = await user.findByPk(userId);
             if (!profile) {
               res.status(404).json({ status: 404, message: req.t('user_not_found'), data: {} });
             }

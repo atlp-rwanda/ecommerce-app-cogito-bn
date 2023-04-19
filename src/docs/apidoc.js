@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import { updateProfile, getProfile } from './profile';
 
 dotenv.config();
 
@@ -11,9 +10,6 @@ const options = {
       version: 1.0,
       description:
         'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
-    },
-    paths: {
-      '/profile/{id}': { put: updateProfile, get: getProfile },
     },
     components: {
       securitySchemes: {
