@@ -1,12 +1,13 @@
-const nodemailer = require('nodemailer');
-const bcrypt = require('bcrypt');
-const { vendors } = require('../../database/models');
-const { validateVendorRegistration } = require('../../middleware/vendor/registerVendorValidator');
-const { validateVendorLogin } = require('../../middleware/vendor/registerVendorValidator');
-const { vendorSignAccessToken } = require('../../middleware/vendor/vendorJWT');
+import nodemailer from 'nodemailer';
+import bcrypt from 'bcrypt';
+import { vendors } from '../../database/models';
+import {
+  validateVendorRegistration,
+  validateVendorLogin,
+} from '../../middleware/vendor/registerVendorValidator';
+import { vendorSignAccessToken } from '../../middleware/vendor/vendorJWT';
 
-// eslint-disable-next-line consistent-return
-const getAllVendors = async (req, res) => {
+export const getAllVendors = async (req, res) => {
   try {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
@@ -31,8 +32,7 @@ const getAllVendors = async (req, res) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
-const registerVendor = async (req, res) => {
+export const registerVendor = async (req, res) => {
   try {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
@@ -133,7 +133,7 @@ const registerVendor = async (req, res) => {
   }
 };
 
-const findVendorByID = async (req, res) => {
+export const findVendorByID = async (req, res) => {
   try {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
@@ -163,7 +163,7 @@ const findVendorByID = async (req, res) => {
   }
 };
 
-const updateVendor = async (req, res) => {
+export const updateVendor = async (req, res) => {
   try {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
@@ -200,7 +200,7 @@ const updateVendor = async (req, res) => {
   }
 };
 
-const deleteVendor = async (req, res) => {
+export const deleteVendor = async (req, res) => {
   try {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
@@ -234,8 +234,8 @@ const deleteVendor = async (req, res) => {
     });
   }
 };
-// eslint-disable-next-line consistent-return
-const vendorLogin = async (req, res) => {
+
+export const vendorLogin = async (req, res) => {
   const { email } = req.body;
   const { password } = req.body;
   try {
@@ -273,13 +273,4 @@ const vendorLogin = async (req, res) => {
       .status(500)
       .json({ success: false, message: 'Server error - Vendor Login Failed.', Error: error });
   }
-};
-
-module.exports = {
-  getAllVendors,
-  registerVendor,
-  findVendorByID,
-  updateVendor,
-  deleteVendor,
-  vendorLogin,
 };

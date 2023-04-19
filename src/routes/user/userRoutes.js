@@ -7,7 +7,6 @@ router.post("/signup", userAuthController.signUp);
 router.get("/confirm/:confirmationCode", confirmationEmail.confirmEmail);
 router.get('/', getAllUsers);
 router.post('/', registerUsers);
-
 router.post('/login', UserLogin);
 
 export default router;
