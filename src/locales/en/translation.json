@@ -1,3 +1,46 @@
 {
-    "welcome_message": "Welcome to Cogito's Ecommerce app API"
+    "welcome_message": "Welcome to Cogito's Ecommerce app API",
+    
+    "unauthorized_msg": "Forbidden",
+
+    "getAllVendors_200_msg": "Succesfully Retrieved all Vendors from the database.",
+    "getAllVendors_500_msg": "Error in retrieving Vendor from the database.",
+
+    "registerVendor_400_msg": "Input Validation Error.",
+    "registerVendor_409_msg": "Vendor with this email already exists.",
+    "registerVendor_validation_001_msg": "Please enter all the details.",
+    "registerVendor_500_001_msg": "Error sending email to the newly registerd vendor.",
+    "registerVendor_201_msg": "Succesfully created a new Vendor.",
+    "registerVendor_500_002_msg": "Failed to create a new Vendor.",
+
+    "findVendorByID_404_msg": "Vendor Not Found!! ID: ",
+    "findVendorByID_200_msg": "Succesfully retrieved vendor with ID: ",
+    "findVendorByID_500_msg": "Failed to retrieve vendor with ID: ",
+
+    "updateVendor_404_msg": "Vendor Not Found!! ID: ",
+    "updateVendor_200_msg": "Sucessfully Updated the Vendor with ID: ",
+    "updateVendor_500_msg": "Failed to Update the Vendor with ID: ",
+
+    "deleteVendor_404_msg": "Vendor Not Found!! ID: ",
+    "deleteVendor_200_msg": "Sucessfully Deleted the Vendor with ID: ",
+    "deleteVendor_500_msg": "Failed to Delete the Vendor with ID: ",
+
+    "vendorLogin_400_msg": "Input Validation Error",
+    "vendorLogin_401_001_msg": "Invalid email, First Register with Cogito Team",
+    "vendorLogin_401_002_msg": "Invalid email or password",
+    "vendorLogin_200_msg": "You Have LoggedIn Successfully!!",
+    "vendorLogin_500_msg": "Server error - Vendor Login Failed.",
+
+    "getAllUsers_200_msg": "Succesfully Retrieved all users from the database.",
+    "getAllUsers_500_msg": "Error in retrieving User from the database.",
+
+    "UserLogin_400_msg": "Input Validation Error",
+    "UserLogin_401_001_msg": "Invalid email, First Register with Cogito Team",
+    "UserLogin_401_002_msg": "Invalid email or password",
+    "UserLogin_200_msg": "You Have LoggedIn Successfully!!",
+    "UserLogin_500_msg": "Server error - User Login Failed.",
+    
+    "registerUsers_409_msg": "Users with this email already exists.",
+    "registerUsers_201_msg": "Succesfully created a new Users.",
+    "registerUsers_500_msg": "Failed to create a new Users."
 }

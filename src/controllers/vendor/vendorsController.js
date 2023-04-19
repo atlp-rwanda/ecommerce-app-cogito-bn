@@ -1,5 +1,9 @@
+import express from 'express';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
+import i18next from 'i18next';
+import Backend from 'i18next-fs-backend';
+import i18nextMiddleware from 'i18next-http-middleware';
 import { vendors } from '../../database/models';
 import {
   validateVendorRegistration,
@@ -7,26 +11,39 @@ import {
 } from '../../middleware/vendor/registerVendorValidator';
 import { vendorSignAccessToken } from '../../middleware/vendor/vendorJWT';
 
+const app = express();
+app.use(express.urlencoded({ extended: false }));
+app.use(i18nextMiddleware.handle(i18next));
+i18next
+  .use(Backend)
+  .use(i18nextMiddleware.LanguageDetector)
+  .init({
+    backend: {
+      loadPath: '././src/locales/{{lng}}/{{ns}}.json',
+    },
+    fallbackLng: 'en',
+    preload: ['en', 'fr'],
+  });
 export const getAllVendors = async (req, res) => {
   try {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
         success: false,
-        message: 'Forbidden',
+        message: req.t('unauthorized_msg'),
       });
     }
     const vendor = await vendors.findAll();
     res.status(200).json({
       success: true,
-      message: 'Succesfully Retrieved all Vendors from the database.',
+      message: req.t('getAllVendors_200_msg'),
       response: vendor,
     });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({
       success: false,
-      message: 'Error in retrieving Vendor from the database',
+      message: req.t('getAllVendors_500_msg'),
       Error: error.message,
     });
   }
@@ -38,7 +55,7 @@ export const registerVendor = async (req, res) => {
     if (!authenticatedUser) {
       return res.status(403).json({
         success: false,
-        message: 'Forbidden',
+        message: req.t('unauthorized_msg'),
       });
     }
     const { error } = validateVendorRegistration(req.body);
@@ -46,7 +63,7 @@ export const registerVendor = async (req, res) => {
       console.log(error);
       return res.status(400).json({
         success: false,
-        message: 'Input Validation Error',
+        message: req.t('registerVendor_400_msg'),
         Error: error.details[0].message,
       });
     }
@@ -56,9 +73,7 @@ export const registerVendor = async (req, res) => {
       },
     });
     if (vendorEmail) {
-      return res
-        .status(409)
-        .json({ success: false, message: 'Vendor with this email already exists.' });
+      return res.status(409).json({ success: false, message: req.t('registerVendor_409_msg') });
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newVendor = await vendors.create({
@@ -93,7 +108,7 @@ export const registerVendor = async (req, res) => {
       || !req.body.paymentMethods
       || !req.body.status
     ) {
-      return res.json({ message: 'Please enter all the details' });
+      return res.json({ message: req.t('registerVendor_validation_001_msg') });
     }
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -113,14 +128,14 @@ export const registerVendor = async (req, res) => {
         console.log(mailError);
         res.status(500).json({
           success: false,
-          message: 'Error sending email to the newly registerd vendor.',
+          message: req.t('registerVendor_500_001_msg'),
           Error: mailError,
         });
       } else {
         console.log(`Email sent: ${info.response}`);
         res.status(201).json({
           success: true,
-          message: 'Succesfully created a new Vendor.',
+          message: req.t('registerVendor_201_msg'),
           response: newVendor,
         });
       }
@@ -129,7 +144,7 @@ export const registerVendor = async (req, res) => {
     console.log(error);
     res
       .status(500)
-      .json({ success: false, message: 'Failed to create a new Vendor.', Error: error });
+      .json({ success: false, message: req.t('registerVendor_500_002_msg'), Error: error });
   }
 };
 
@@ -139,25 +154,25 @@ export const findVendorByID = async (req, res) => {
     if (!authenticatedUser) {
       return res.status(403).json({
         success: false,
-        message: 'Forbidden',
+        message: req.t('unauthorized_msg'),
       });
     }
     const vendor = await vendors.findByPk(req.params.id);
     if (vendor === null) {
       res
         .status(404)
-        .json({ success: false, message: `Vendor with ID ${req.params.id} was not found` });
+        .json({ success: false, message: `${req.t('findVendorByID_404_msg')} ${req.params.id}` });
     }
     res.status(200).json({
       success: true,
-      message: `Succesfully retrieved vendor with ID: ${req.params.id}.`,
+      message: `${req.t('findVendorByID_200_msg')} ${req.params.id} `,
       response: vendor,
     });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({
       success: false,
-      message: `Failed to retrieve vendor with ID: ${req.params.id}.`,
+      message: `${req.t('findVendorByID_500_msg')} ${req.params.id}.`,
       Error: error.message,
     });
   }
@@ -169,7 +184,7 @@ export const updateVendor = async (req, res) => {
     if (!authenticatedUser) {
       return res.status(403).json({
         success: false,
-        message: 'Forbidden',
+        message: req.t('unauthorized_msg'),
       });
     }
 
@@ -183,18 +198,18 @@ export const updateVendor = async (req, res) => {
     if (vendor === null) {
       res
         .status(404)
-        .json({ success: false, message: `Vendor with ID ${req.params.id} was not found` });
+        .json({ success: false, message: `${req.t('updateVendor_404_msg')} ${req.params.id} ` });
     }
     res.status(200).json({
       success: true,
-      message: `Sucessfully Updated the Vendor with ID: ${req.params.id}`,
+      message: `${req.t('updateVendor_200_msg')} ${req.params.id}`,
       response: vendor,
     });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({
       success: false,
-      message: `Failed to Update the Vendor with ID: ${req.params.id}`,
+      message: `${req.t('updateVendor_500_msg')} ${req.params.id}`,
       Error: error.message,
     });
   }
@@ -206,7 +221,7 @@ export const deleteVendor = async (req, res) => {
     if (!authenticatedUser) {
       return res.status(403).json({
         success: false,
-        message: 'Forbidden',
+        message: req.t('unauthorized_msg'),
       });
     }
     const vendor = await vendors.findByPk(req.params.id);
@@ -216,20 +231,18 @@ export const deleteVendor = async (req, res) => {
       },
     });
     if (vendor === null) {
-      res
-        .status(404)
-        .json({ success: false, message: `Vendor with ID ${req.params.id} was not found` });
+      res.status(404).json({ success: false, message: req.t('deleteVendor_404_msg') });
     }
     res.status(200).json({
       success: true,
-      message: `Sucessfully Deleted the Vendor with ID: ${req.params.id}`,
+      message: `${req.t('deleteVendor_200_msg')} ${req.params.id}`,
       response: vendor,
     });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({
       success: false,
-      message: `Failed to Delete the Vendor with ID: ${req.params.id}`,
+      message: `${req.t('deleteVendor_500_msg')} ${req.params.id}`,
       Error: error.message,
     });
   }
@@ -244,19 +257,17 @@ export const vendorLogin = async (req, res) => {
       console.log(error);
       return res.status(400).json({
         success: false,
-        message: 'Input Validation Error',
+        message: req.t('vendorLogin_400_msg'),
         Error: error.details[0].message,
       });
     }
     const vendor = await vendors.findOne({ where: { email } });
     if (!vendor) {
-      return res
-        .status(401)
-        .json({ success: false, message: 'Invalid email, First Register with Cogito Team' });
+      return res.status(401).json({ success: false, message: req.t('vendorLogin_401_001_msg') });
     }
     const isMatch = await bcrypt.compare(password, vendor.password);
     if (!isMatch) {
-      return res.status(401).json({ success: false, message: 'Invalid email or password' });
+      return res.status(401).json({ success: false, message: req.t('vendorLogin_401_002_msg') });
     }
     const vendorLoginToken = await vendorSignAccessToken(vendor.id, vendor.fullName, vendor.status);
     res
@@ -264,13 +275,11 @@ export const vendorLogin = async (req, res) => {
       .status(200)
       .json({
         success: true,
-        message: `${vendor.fullName} You Have LoggedIn Successfully!!`,
+        message: `${vendor.fullName} ${req.t('vendorLogin_200_msg')}`,
         token: vendorLoginToken,
       });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({ success: false, message: 'Server error - Vendor Login Failed.', Error: error });
+    res.status(500).json({ success: false, message: req.t('vendorLogin_500_msg'), Error: error });
   }
 };
