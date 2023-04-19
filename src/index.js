@@ -27,6 +27,8 @@ const port = process.env.PORT;
 app.use(express.json());
 const specs = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/ResetPasswordDocs', swaggerUi.serve, swaggerUi.setup(specs));
+
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 app.use(router);
 app.listen(port, async () => {

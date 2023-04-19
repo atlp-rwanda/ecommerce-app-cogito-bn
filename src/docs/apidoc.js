@@ -27,7 +27,7 @@ const options = {
     },
   },
 
-  apis: ['./src/routes/*.js'],
+  apis: ['./src/docs/*ResetPasswordDocs.js'],
 };
 
 export default options;

@@ -7,7 +7,12 @@ const app = express()
 
 const createUser = async (req, res) => {
   const {
-    firstName, lastName, email, password, phone, role,
+    firstName, 
+    lastName, 
+    email, 
+    password, 
+    phone, 
+    role,
   } = req.body;
   if (!firstName || !lastName || !email || !password || !phone || !role) {
     return res.status(400).json({
@@ -54,7 +59,6 @@ const createUser = async (req, res) => {
     });
   }
 };
-
 
 
 

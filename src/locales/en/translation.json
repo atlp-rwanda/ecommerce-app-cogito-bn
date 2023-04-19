@@ -1,3 +1,13 @@
 {
-    "welcome_message": "Welcome to Cogito's Ecommerce app API"
+    "welcome_message": "Welcome to Cogito's Ecommerce app API",
+    "User not found message":"User not found ",
+    "Password reset email message":"Password reset email sent successfully",
+    "Reset token not provided message":"Reset token not provided",
+    "New Password Not Provided message":"New Password Not Provided",
+    "Invalid token message": "Invalid or expired reset token",
+    "Password reset successfull message": "Password reset successfully",
+    "Provide Email and Password Message": " Please Provide Email and Password ",
+    "Invalid Password message":"Invalid Password",
+    "Login Successfully message": "Login Successfully "
+    
 }
