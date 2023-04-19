@@ -52,7 +52,6 @@ app.use("/user", signupRouter)
 app.use(googleAuth)
 app.use(facebookAuth)
 
-
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 
 app.use(router);
@@ -60,6 +59,11 @@ app.use('/',userRoute);
 app.use('/',roleRoute);
 app.use('/',permRoute);
 
+
+app.listen(port, async () => {
+  console.log('Database Connected!');
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
+});
 
 app.listen(port, async () => {
   console.log('Database Connected!');
