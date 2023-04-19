@@ -27,7 +27,9 @@
     "invalidEmail": "Adresse e-mail invalide",
     "passwordTooShort": "Le mot de passe doit comporter au moins 8 caractères",
     "emailAlreadyExists": "L'adresse e-mail existe déjà",
-    "failedToCreateUser": "Impossible de créer l'utilisateur"
+    "failedToCreateUser": "Impossible de créer l'utilisateur",
+    "not_logged_in": "Pas connecté!",
+    "invalid_token": "Invalid token"
 }
     
     

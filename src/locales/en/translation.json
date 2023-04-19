@@ -30,6 +30,8 @@
     "invalidEmail": "Invalid email address",
     "passwordTooShort": "Password must be at least 8 characters",
     "emailAlreadyExists": "Email already exists",
-    "failedToCreateUser": "Failed to create user"
+    "failedToCreateUser": "Failed to create user",
+    "not_logged_in": "Not logged in!",
+    "invalid_token": "Invalid token"
 }
   
