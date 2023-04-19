@@ -29,6 +29,12 @@ const User = sequelize.define('User', {
     type: DataTypes.ENUM('user', 'vendor', 'admin'),
     defaultValue: 'user',
   },
+  confirmationCode: {
+    type: DataTypes.INTEGER,
+  },
+  confirmed: {
+    type: DataTypes.BOOLEAN,
+  },
 }, {
   freezeTableName: true,
 });

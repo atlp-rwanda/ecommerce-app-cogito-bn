@@ -14,6 +14,24 @@
     "otp_verified": "OTP vérifié",
     "otp_invalid": "OTP invalide!",
     "provide_user_email_to_delete": "Veuillez fournir l'e-mail de l'utilisateur à supprimer!",
-    "user_deleted": "Utilisateur supprimé avec succès!"
-
+    "user_deleted": "Utilisateur supprimé avec succès!",
+    "key": "traduction",
+    "defaultFirstName": "Jean",
+    "defaultLastName": "Dupont",
+    "confirmAccount": "Confirmer votre compte",
+    "clickLink": "Cliquez sur le lien",
+    "here": "ici",
+    "toConfirmAccount": "pour confirmer votre compte",
+    "confirmEmailSent": "Email de confirmation envoyé avec succès",
+    "failedToSendConfirmationEmail": "Impossible d'envoyer l'e-mail de confirmation: {{message}}",
+    "invalidEmail": "Adresse e-mail invalide",
+    "passwordTooShort": "Le mot de passe doit comporter au moins 8 caractères",
+    "emailAlreadyExists": "L'adresse e-mail existe déjà",
+    "failedToCreateUser": "Impossible de créer l'utilisateur"
 }
+    
+    
+    
+    
+    
+    

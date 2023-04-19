@@ -8,30 +8,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      carts_id: {
+        type: Sequelize.INTEGER,
+      },
       orders_id: {
         type: Sequelize.INTEGER,
       },
       wishlists_id: {
         type: Sequelize.INTEGER,
       },
-      carts_id: {
-        type: Sequelize.INTEGER,
-      },
       firstName: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       lastName: {
         type: Sequelize.STRING,
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       phone: {
         type: Sequelize.STRING,
@@ -39,7 +35,12 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING,
-        allowNull: false,
+      },
+      confirmationCode: {
+        type: Sequelize.INTEGER,
+      },
+      confirmed: {
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,

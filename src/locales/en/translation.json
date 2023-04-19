@@ -1,3 +1,6 @@
+
+    
+  
 {
     "welcome_message": "Welcome to Cogito's Ecommerce app API",
     "not_enough_credentials_for_login": "Please provide email, and password to log in!",
@@ -14,5 +17,19 @@
     "otp_verified": "OTP verified",
     "otp_invalid": "OTP invalid!",
     "provide_user_email_to_delete": "Please provide the email of user to delete!",
-    "user_deleted": "User deleted successfully!"
+    "user_deleted": "User deleted successfully!",
+    "key": "translation",
+    "defaultFirstName": "John",
+    "defaultLastName": "Doe",
+    "confirmAccount": "Confirm your account",
+    "clickLink": "Click the link",
+    "here": "here",
+    "toConfirmAccount": "to confirm your account",
+    "confirmEmailSent": "Confirmation email sent successfully",
+    "failedToSendConfirmationEmail": "Failed to send confirmation email: {{message}}",
+    "invalidEmail": "Invalid email address",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "emailAlreadyExists": "Email already exists",
+    "failedToCreateUser": "Failed to create user"
 }
+  

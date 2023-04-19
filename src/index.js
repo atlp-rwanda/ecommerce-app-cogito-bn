@@ -10,6 +10,9 @@ import cookieParser from 'cookie-parser';
 import { sequelize } from './database/models';
 import router from './routes/routes';
 import options from './docs/apidoc';
+import signupRouter from "./routes/user/userRoutes";
+import googleAuth from "./routes/user/googleAuthRoutes";
+import facebookAuth from "./routes/user/facebookAuthRoutes"
 
 i18next
   .use(Backend)
@@ -36,6 +39,9 @@ app.use(express.json());
 const specs = swaggerJSDoc(options);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use("/user", signupRouter)
+app.use(googleAuth)
+app.use(facebookAuth)
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 
