@@ -1,5 +1,20 @@
 {
-    "welcome_message": "Bienvenue sur l'API d'application de commerce électronique de Cogito",
+    "welcome_message": "Bienvenue dans l'API de l'application Ecommerce de Cogito",
+    "not_enough_credentials_for_login": "Veuillez fournir un e-mail et un mot de passe pour vous connecter!",
+    "user_not_found":"utilisateur non trouvé",
+    "successful_login": "L'utilisateur s'est connecté avec succès",
+    "incorrect_password": "Mot de passe incorrect",
+    "provide_all_details_signup":"Veuillez fournir le prénom, le nom, l'e-mail, le mot de passe, le téléphone et le rôle pour créer un utilisateur!",
+    "account_exists": "Un compte avec cet e-mail existe déjà!",
+    "signup-success": "Nouvel utilisateur créé avec succès",
+    "server_error": "Erreur du serveur",
+    "email_not_sent": "L'e-mail n'a pas été envoyé",
+    "otp_sent": "OTP a été envoyé à l'adresse e-mail de l'utilisateur",
+    "enter_otp": "Veuillez fournir l'OTP pour vérifier!",
+    "otp_verified": "OTP vérifié",
+    "otp_invalid": "OTP invalide!",
+    "provide_user_email_to_delete": "Veuillez fournir l'e-mail de l'utilisateur à supprimer!",
+    "user_deleted": "Utilisateur supprimé avec succès!",
     "key": "traduction",
     "defaultFirstName": "Jean",
     "defaultLastName": "Dupont",
@@ -12,8 +27,10 @@
     "invalidEmail": "Adresse e-mail invalide",
     "passwordTooShort": "Le mot de passe doit comporter au moins 8 caractères",
     "emailAlreadyExists": "L'adresse e-mail existe déjà",
-    "failedToCreateUser": "Impossible de créer l'utilisateur"
-    }
+    "failedToCreateUser": "Impossible de créer l'utilisateur",
+    "not_logged_in": "Pas connecté!",
+    "invalid_token": "Invalid token"
+}
     
     
     
