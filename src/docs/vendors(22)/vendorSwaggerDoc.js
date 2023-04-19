@@ -132,6 +132,12 @@
  *       - bearerAuth: []
  *     summary: Get All Vendors Registered
  *     tags: [Vendor]
+ *     parameters:
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
  *     responses:
  *       200:
  *         description: Succesfully Retrieved all Vendors from the database.
@@ -158,6 +164,12 @@
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/Vendor'
+ *     parameters:
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
  *     responses:
  *       201:
  *         description: Succesfully created a new Vendor.
@@ -177,8 +189,6 @@
  * @swagger
  * /vendors/login:
  *   post:
- *     security:
- *       - bearerAuth: []
  *     summary: Vendor Log In
  *     tags: [Vendor]
  *     requestBody:
@@ -187,6 +197,12 @@
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/VendorLogin'
+ *     parameters:
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
  *     responses:
  *       200:
  *         description: Vendor have Succesfully Signed in.
@@ -218,6 +234,11 @@
  *         description: Get Vendor By Id
  *         schema:
  *           type: string
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
  *     responses:
  *       200:
  *         description: Succesfully Retrieved the Vendor from the database.
@@ -246,6 +267,11 @@
  *          type: string
  *        required: true
  *        description: The ID of the Vendor you want to update
+ *      - name: Accept-Language
+ *        in: header
+ *        description: Preferred language
+ *        default: en
+ *        required: true
  *    requestBody:
  *      required: true
  *      content:
@@ -280,6 +306,11 @@
  *          type: string
  *        required: true
  *        description: The ID of the Vendor you want to delete
+ *      - name: Accept-Language
+ *        in: header
+ *        description: Preferred language
+ *        default: en
+ *        required: true
  *    requestBody:
  *      required: true
  *      content:

@@ -19,6 +19,7 @@ module.exports = {
       },
       gender: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       birthdate: {
         type: Sequelize.DATE,
@@ -39,12 +40,8 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
       },
-      roleId: {
+      role: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      status: {
-        type: Sequelize.STRING,
       },
       confirmationCode: {
         type: Sequelize.INTEGER,
@@ -52,16 +49,7 @@ module.exports = {
       confirmed: {
         type: Sequelize.BOOLEAN,
       },
-
-      token: {
-        type: Sequelize.STRING,
-
-        status: {
-          type: Sequelize.STRING,
-          allowNull: false,
-          defaultValue: 'active',
-        },
-
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },

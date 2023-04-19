@@ -24,6 +24,33 @@ const options = {
         },
       },
     },
+    // paths: {
+    //   '/role': { post: createNewRole, get: getAllRole },
+    //   '/role/{id}': { get: getRoleById, put: updateRoleById, delete: deleteRoleById },
+    //   '/user': { post: createNewUser, get: getAllUser },
+    //   '/user/{id}': { get: getUserById, put: updateUserById, delete: deleteUserById },
+    //   '/permission': { post: createNewPermission, get: getAllPermission },
+    //   '/permission/{id}': {
+    //     get: getPermissionById,
+    //     put: updatePermissionById,
+    //     delete: deletePermissionById,
+    //   },
+    //   '/setRole': { post: createuserRole },
+    //   '/users/Roles': { get: getAlluserRole },
+    //   '/users/Roles/{id}': {
+    //     get: getuserRoleById,
+    //     put: updateuserRoleById,
+    //     delete: deleteuserRoleById,
+    //   },
+    //   '/setpermission': { post: createrolePermission },
+    //   '/roles/permissions': { get: getAllrolePermission },
+    //   '/roles/permissions/{id}': {
+    //     get: getrolePermissionById,
+    //     put: updaterolePermissionById,
+    //     delete: deleterolePermissionById,
+    //   },
+    // },
+
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -38,13 +65,13 @@ const options = {
         },
       },
     },
+    servers: [
+      {
+        url: process.env.SWAGGER_SERVER_URL,
+        description: 'Api server',
+      },
+    ],
+    apis: ['./src/routes/*.js', './src/docs/vendors(22)/*'],
   },
-  servers: [
-    {
-      url: process.env.SWAGGER_SERVER_URL,
-      description: 'Api server',
-    },
-  ],
-  apis: ['./src/routes/*.js', './src/routes/vendor/*.js', './src/routes/user/*.js'],
 };
 export default options;

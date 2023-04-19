@@ -13,43 +13,7 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-<<<<<<< HEAD
-fs
-<<<<<<< HEAD
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file));(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
 
-=======
-    .readdirSync(__dirname)
-    .filter(file => {
-        return (
-            file.indexOf('.') !== 0 &&
-            file !== basename &&
-            file.slice(-3) === '.js' &&
-            file.indexOf('.test.js') === -1
-        );
-    })
-    .forEach(file => {
-        const model = require(path.join(__dirname, file)); (sequelize, Sequelize.DataTypes);
-        db[model.name] = model;
-    });
->>>>>>> sihmup
-Object.keys(db).forEach(modelName => {
-    if (db[modelName].associate) {
-        db[modelName].associate(db);
-    }
-=======
 fs.readdirSync(__dirname)
   .filter(
     (file) => file.indexOf('.') !== 0
@@ -61,11 +25,28 @@ fs.readdirSync(__dirname)
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
+
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
->>>>>>>  feat(signin): create the sign in feature
+
+  fs.readdirSync(__dirname)
+    .filter(
+      (file) => file.indexOf('.') !== 0
+        && file !== basename
+        && file.slice(-3) === '.js'
+        && file.indexOf('.test.js') === -1,
+    )
+    .forEach((file) => {
+      const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+      db[model.name] = model;
+    });
+  Object.keys(db).forEach((modelName) => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
+  });
 });
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

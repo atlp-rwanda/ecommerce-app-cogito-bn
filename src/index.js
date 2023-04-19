@@ -1,36 +1,31 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { Sequelize } from 'sequelize';
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
+import { sequelize } from 'sequelize';
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
-import { sequelize, vendors } from './database/models';
-import router from './routes/routes';
-import options from './docs/apidoc';
 import cookieParser from 'cookie-parser';
-import { sequelize } from './database/models';
 import router from './routes/routes';
-import userRouter from './routes/userrouters';
+import roleRoute from './routes/roleRoute';
+import productRoute from './routes/productRoute';
+import permissionRoute from './routes/permissionRoute';
+import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 import vendorRouter from './routes/vendor/vendorsRoutes';
 import signupRouter from './routes/user/userRoutes';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
-import userRouter from './routes/user/userRoutes';
 
 i18next
   .use(Backend)
   .use(i18nextMiddleware.LanguageDetector)
   .init({
     backend: {
-      loadPath: './src/locales/{{lng}}/{{ns}}.json',
+      loadPath: '././././././src/locales/{{lng}}/{{ns}}.json',
     },
     fallbackLng: 'en',
     preload: ['en', 'fr'],
@@ -45,17 +40,35 @@ app.use(cookieParser());
 dotenv.config();
 const port = process.env.PORT;
 
+// const sequelize = new Sequelize(
+//   process.env.DATABASE,
+//   process.env.DATABASE_USERNAME,
+//   process.env.DATABASE_PASSWORD,
+//   {
+//     host: 'postgres',
+//     dialect: 'postgres',
+//   },
+// );
+
 app.use(express.json());
 const specs = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/user', signupRouter);
 app.use(googleAuth);
 app.use(facebookAuth);
-
-app.get('/', (req, res) =>
-  res.status(200).json({ status: 200, message: req.t('welcome_message') }),
-);
+app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
+app.use('/profile', profileRouter);
 app.use(router);
+app.use('/', userRoute);
+app.use('/vendors', vendorRouter);
+app.use('/', roleRoute);
+app.use('/vendors', vendorRouter);
+app.use(router);
+app.use(userRouter);
+app.use('/profile', profileRouter);
+app.use('/', roleRoute);
+app.use('/', permissionRoute);
+app.use('/', productRoute);
 
 app.listen(port, async () => {
   console.log(`app listening on port ${port}`, process.env.NODE_ENV);
@@ -63,5 +76,4 @@ app.listen(port, async () => {
   console.log('Database Connected!');
 });
 
-app.use('/vendors', vendorRouter);
 export default app;

@@ -1,45 +1,25 @@
-<<<<<<< HEAD
- {
-  "development": {
-    "username": "postgres",
-    "password": "123456",
-    "database": "ecommerce-app-cogito-db",
-    "host": "127.0.0.1",
-=======
 {
   "development": {
     "username": "postgres",
-    "password": "123",
-    "database": "e_commerce_app",
-    "host": "localhost",
-    "port": "5432",
->>>>>>> sihmup
-    "dialect": "postgres"
-  },
-  "test": {
-    "username": "postgres",
-<<<<<<< HEAD
     "password": "123456",
     "database": "ecommerce-app-cogito-db",
     "host": "127.0.0.1",
-=======
-    "password": "123",
-    "database": "e_commerce_app",
-    "host": "localhost",
->>>>>>> sihmup
+    "port": "8080",
+    "dialect": "postgres"
+  },
+
+  "test": {
+    "username": "postgres",
+    "password": "123456",
+    "database": "ecommerce-app-cogito-db",
+    "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
-<<<<<<< HEAD
     "password": "123456",
     "database": "ecommerce-app-cogito-db",
     "host": "127.0.0.1",
-=======
-    "password": "123",
-    "database": "e_commerce_app",
-    "host": "localhost",
->>>>>>> sihmup
     "dialect": "postgres"
   }
 }

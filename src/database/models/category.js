@@ -11,15 +11,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-<<<<<<< HEAD:src/models/category.js
-  category.init({
-    name: DataTypes.STRING,
-    category_id: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'category',
-  });
-=======
+
+  category.init(
+    {
+      name: DataTypes.STRING,
+      category_id: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: 'category',
+    },
+  );
+
   category.init(
     {
       name: DataTypes.STRING,
@@ -30,6 +33,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'category',
     },
   );
->>>>>>>  feat(signin): create the sign in feature:src/database/models/category.js
+
   return category;
 };

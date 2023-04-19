@@ -11,6 +11,9 @@ services:
       - /app/node_modules
     environment:
       - port=9090
+
+    command: npm run migrate
+
   postgres:
     image: postgres
     environment:

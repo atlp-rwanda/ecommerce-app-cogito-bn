@@ -15,4 +15,8 @@ db-logs:
 migrate:
 	docker exec e_commerce-node-app-1 npm run migrate
 migrate-rollback:
-	docker exec e_commerce-node-app-1 npm run down   	
+	docker exec e_commerce-node-app-1 npm run down
+seed:
+	docker exec e_commerce-node-app-1 npm run seed
+seed-rollback:
+	docker exec e_commerce-node-app-1 nom run seed-down
