@@ -1,3 +1,4 @@
 {
-    "welcome_message": "Welcome to Cogito's Ecommerce app API"
+  "welcome_message": "Welcome to Cogito's Ecommerce app API",
+  "disactvated": "your status has been disactivated"
 }

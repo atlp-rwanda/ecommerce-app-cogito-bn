@@ -13,8 +13,7 @@ const transporter = nodemailer.createTransport({
 // import { authenticate } from "../middleware/authMiddleware";
 
 const User = db.user;
-// eslint-disable-next-line no-unused-vars
-export const getAllUsers = catchAsync(async (req, res, next) => {
+export const getAllUsers = catchAsync(async (req, res) => {
   // console.log(User);
   try {
     const users = await User.findAll({
@@ -64,21 +63,17 @@ export const updateStatus = catchAsync(async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
-
     const user = await User.findOne({ where: { id } });
     if (!user) {
       return res.status(404).json({
         status: 404,
-
         message: 'No user found with that ID',
       });
     }
-
     await user.update(
       {
         status,
       },
-
       { where: { id } },
     );
     await transporter.sendMail({
@@ -88,10 +83,8 @@ export const updateStatus = catchAsync(async (req, res) => {
       text: `Dear ${user.firstName}, your status has been updated to ${status}.`,
     });
     console.log(`Email sent to ${user.email}`);
-
     res.status(200).json({
       status: 200,
-
       message: 'status updated successfully',
     });
   } catch (err) {
@@ -109,7 +102,7 @@ export const signIn = catchAsync(async (req, res) => {
       return res.status(404).json({
         status: 404,
 
-        message: 'No user found with that email or your status has been disactivated',
+        message: 'your status has been disactivated',
       });
     }
 
