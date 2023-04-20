@@ -13,9 +13,10 @@ import Route from './roleRoute';
 import express from 'express';
 import usersRouter from './API/user';
 
-router.use('/users', usersRouter);
+
 
 
 const router = express.Router();
 router.use("/create", Route)
+router.use('/users', usersRouter);
 export default router;

@@ -5,7 +5,20 @@ module.exports = {
       'users',
       [
         {
-          name: 'John Doe',
+          name: 'Leo Messi',
+          email: 'leo@example.com',
+          gender: 'male',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+          password: 'kunda123',
+          roleId: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'Neymar Jr',
           email: 'john@example.com',
           gender: 'male',
           birthdate: new Date(),
@@ -13,7 +26,20 @@ module.exports = {
           preferred_currency: 'RF',
           billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
-          role: 1,
+          roleId: 2,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'Agnes Kunda',
+          email: 'kundaaggy@example.com',
+          gender: 'Female',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+          password: 'kunda123',
+          roleId: 3,
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -170,7 +196,7 @@ module.exports = {
   async down(queryInterface) {
     // Add commands to revert seed here.
    
-  await queryInterface.bulkDelete('User', null, {});
+  await queryInterface.bulkDelete('users', null, {});
   await queryInterface.bulkDelete('carts', null, {});
   await queryInterface.bulkDelete('products', null, {});
   await queryInterface.bulkDelete('wishlists', null, {});

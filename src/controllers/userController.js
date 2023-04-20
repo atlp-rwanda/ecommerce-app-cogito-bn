@@ -73,9 +73,9 @@ export async function loginUser(req, res) {
 
 export async function createUser(req, res) {
   const {
-    firstName, lastName, email, password, phone, role,
+    firstName, lastName, email, password, phone, roleId,
   } = req.body;
-  if (!firstName || !lastName || !email || !password || !phone || !role) {
+  if (!firstName || !lastName || !email || !password || !phone || !roleId) {
     return res.status(400).json({
       status: 400,
       message: req.t('provide_all_details_signup'),
@@ -96,7 +96,7 @@ export async function createUser(req, res) {
   }
 
   try {
-    const newUser = await User.create({
+    const newUser = await user.create({
       firstName,
       lastName,
       email,

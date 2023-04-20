@@ -1,14 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import {Sequelize} from 'sequelize'
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import cookieParser from 'cookie-parser';
-import { sequelize } from './database/models';
 import router from './routes/routes';
 import userRoute from './routes/userRoute';
 import roleRoute from './routes/roleRoute';
@@ -17,7 +15,8 @@ import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 import signupRouter from "./routes/user/userRoutes";
 import googleAuth from "./routes/user/googleAuthRoutes";
-import facebookAuth from "./routes/user/facebookAuthRoutes"
+import facebookAuth from "./routes/user/facebookAuthRoutes";
+
 
 i18next
   .use(Backend)

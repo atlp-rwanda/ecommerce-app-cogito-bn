@@ -40,7 +40,7 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
       },
-      role: {
+      roleId: {
         type: Sequelize.INTEGER,
       },
       confirmationCode: {

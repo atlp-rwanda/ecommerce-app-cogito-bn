@@ -9,10 +9,11 @@ const isAdmin = async (req, res, next) => {
   }
   try {
     const decodedToken = JwtUtility.verifyToken(token);
+   const {id, roleId} = decodedToken.value;
     const User = await db.user.findOne({
-      where: { id: decodedToken.value.id },
+      where: { id },
     });
-    if (User && decodedToken && decodedToken.value.roleId === 7) {
+    if (User && decodedToken && roleId === 1) {
       next();
     } else {
       res
