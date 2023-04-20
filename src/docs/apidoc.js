@@ -19,6 +19,11 @@ const options = {
           bearerFormat: 'JWT',
           in: 'header',
         },
+        cookieAuth: {
+          type: 'apiKey',
+          in: 'cookie',
+          name: 'loginOTP',
+        },
       },
     },
   },
@@ -28,6 +33,6 @@ const options = {
       description: 'Api server',
     },
   ],
-  apis: ['./src/routes/*.js', './src/docs/vendors(22)/*'],
+  apis: ['./src/routes/*.js','./src/docs/apiDocs/*','./src/docs/vendors(22)/*'],
 };
 export default options;

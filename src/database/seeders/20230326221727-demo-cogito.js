@@ -1,20 +1,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.bulkInsert(
       'users',
       [
         {
-          orders_id: 1,
-          wishlists_id: 1,
-          carts_id: 1,
-          firstName: 'Agnes',
-          lastName: 'Kunda',
-          email: 'kundaaggy@gmail.com',
+          name: 'John Doe',
+          email: 'john@example.com',
+          gender: 'male',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
-          role: 'admin',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          role: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
 
@@ -99,7 +100,6 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-
       {},
     );
     await queryInterface.bulkInsert(
@@ -115,13 +115,23 @@ module.exports = {
           businessAddress: 'KN 48B ST',
           businessPhoneNumber: '+250781346188',
           businessEmail: 'ith.querries@gmail.com',
-          businessWebsite: 'www.ith.com',
+          businessWebsite: 'https://www.ith.com',
           businessDescription:
             'We are the Number One Wholesale company of all IT related product in Rwanda',
           businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
           productCategories: 'Computers, Phones, Printers, Phones, Accessories',
           paymentMethods: 'MoMo, PayPal, VISA',
           status: 'ACTIVE',
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'orders',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 50,
+          status: 'Picking on Site',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -130,8 +140,7 @@ module.exports = {
       {},
     );
   },
-
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     // Add commands to revert seed here.
 
     await queryInterface.bulkDelete('users', null, {});
