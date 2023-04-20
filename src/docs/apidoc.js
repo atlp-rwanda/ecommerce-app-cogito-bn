@@ -8,7 +8,22 @@ const options = {
     info: {
       title: "Cogito's ecommerce API Library",
       version: 1.0,
-      description: 'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
+      description:
+        'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+        cookieAuth: {
+          type: 'apiKey',
+          in: 'cookie',
+          name: 'loginOTP',
+        },
+      },
     },
   },
   servers: [
@@ -17,17 +32,7 @@ const options = {
       description: 'Api server',
     },
   ],
-  components: {
-    securitySchemes: {
-      bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
-    },
-  },
-
-  apis: ['./src/routes/*.js'],
+  apis: ['./src/docs/apiDocs/*'],
 };
 
 export default options;

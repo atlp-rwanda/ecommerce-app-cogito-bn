@@ -1,35 +1,22 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  // eslint-disable-next-line no-unused-vars
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.bulkInsert(
       'users',
       [
         {
-          orders_id: 1,
-          wishlists_id: 1,
-          carts_id: 1,
-          firstName: 'Agnes',
-          lastName: 'Kunda',
-          email: 'kundaaggy@gmail.com',
+          name: 'John Doe',
+          email: 'john@example.com',
+          gender: 'male',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
-          role: 'admin',
+          role: 1,
           status: 'active',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          orders_id: 2,
-          wishlists_id: 2,
-          carts_id: 2,
-          firstName: 'ntwari',
-          lastName: 'charles',
-          email: 'ntwarichar@gmail.com',
-          password: '12345',
-          role: 'user',
-          status: 'active',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
 
@@ -119,8 +106,7 @@ module.exports = {
     );
   },
 
-  // eslint-disable-next-line no-unused-vars
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     // Add commands to revert seed here.
 
     await queryInterface.bulkDelete('users', null, {});

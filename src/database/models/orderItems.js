@@ -1,26 +1,27 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  class wishlist extends Model {
+  class orderItems extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    // eslint-disable-next-line no-unused-vars
     static associate(models) {
       // define association here
     }
   }
-  wishlist.init({
-    seller_id: DataTypes.INTEGER,
-    user_id: DataTypes.STRING,
-    product_id: DataTypes.STRING,
-    date_added: DataTypes.STRING,
+  orderItems.init({
+    order_id: DataTypes.INTEGER,
+    product_id: DataTypes.INTEGER,
+    quantity: DataTypes.INTEGER,
+    unit_price: DataTypes.FLOAT,
   }, {
     sequelize,
-    modelName: 'wishlist',
+    modelName: 'orderItems',
   });
-  return wishlist;
+  return orderItems;
 };

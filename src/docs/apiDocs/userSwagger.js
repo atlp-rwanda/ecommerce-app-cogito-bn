@@ -48,28 +48,6 @@
  * @swagger
  * components:
  *   schemas:
- *     userSignIn:
- *       type: object
- *       required:
- *         - email
- *         - password
- *       properties:
- *         email:
- *           type: string
- *           description: The user email
- *         password:
- *           type: string
- *           description: The user password
- *       example:
- *         email: ntwarichar@gmail.com
- *         password: 12345
- *
- */
-
-/**
- * @swagger
- * components:
- *   schemas:
  *     userUpdate:
  *       type: object
  *       required:
@@ -95,6 +73,12 @@
  *   get:
  *     summary: Get All users Registered
  *     tags: [user]
+ *     parameters:
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
  *     responses:
  *       200:
  *         description: Succesfully Retrieved all users from the database.
@@ -168,32 +152,4 @@
  *        description: user Update Error
  *      404:
  *        description: user with specified ID Not Available
- */
-
-/**
- * @swagger
- * /signIn:
- *   post:
- *     summary: user Log In
- *     tags: [user]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/userSignIn'
- *     responses:
- *       200:
- *         description: user Succesfully Signed in.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/userSignIn'
- *       400:
- *         description: Input Validation Error.
- *       401:
- *         description: Invalid email or password.
- *       500:
- *         description: Server error - User Login Failed.
- *
  */

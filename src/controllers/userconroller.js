@@ -10,8 +10,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// import { authenticate } from "../middleware/authMiddleware";
-
 const User = db.user;
 export const getAllUsers = catchAsync(async (req, res) => {
   // console.log(User);
@@ -67,7 +65,7 @@ export const updateStatus = catchAsync(async (req, res) => {
     if (!user) {
       return res.status(404).json({
         status: 404,
-        message: 'No user found with that ID',
+        message: req.t('failId'),
       });
     }
     await user.update(
@@ -85,7 +83,7 @@ export const updateStatus = catchAsync(async (req, res) => {
     console.log(`Email sent to ${user.email}`);
     res.status(200).json({
       status: 200,
-      message: 'status updated successfully',
+      message: req.t('updateStatus'),
     });
   } catch (err) {
     res.send(err);
