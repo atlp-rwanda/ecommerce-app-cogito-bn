@@ -1,5 +1,20 @@
 name: CI
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
+jobs:
+  display-variables:
+    name: ${{ vars.Env }}
+    # You can use configuration variables with the `vars` context for dynamic jobs
+    if: ${{ vars.USE_VARIABLES == 'true' }}
+    runs-on: ${{ vars.RUNNER }}
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    steps:
+    - name: Use variables
+      run: |
+        echo "repository variable : ${{ vars.REPOSITORY_VAR }}"
+        echo "variable from shell environment : $env_var"
 on:
   push:
     branches: 
