@@ -12,15 +12,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  order.init({
-    order_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    order_date: DataTypes.STRING,
-    total_price: DataTypes.FLOAT,
-    status: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'order',
-  });
+  order.init(
+    {
+      order_id: DataTypes.INTEGER,
+      user_id: DataTypes.INTEGER,
+      order_date: DataTypes.STRING,
+      total_price: DataTypes.FLOAT,
+      status: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: 'order',
+    },
+  );
   return order;
 };

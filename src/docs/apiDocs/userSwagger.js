@@ -71,6 +71,8 @@
  * @swagger
  * /users:
  *   get:
+ *     security:
+ *       - bearerAuth: []
  *     summary: Get All users Registered
  *     tags: [user]
  *     parameters:
@@ -95,6 +97,8 @@
  * @swagger
  * /users/{id}:
  *   get:
+ *     security:
+ *       - bearerAuth: []
  *     summary: Get user Information by ID
  *     tags: [user]
  *     parameters:
@@ -126,6 +130,8 @@
  *  @swagger
  * /users/status/{id}:
  *  put:
+ *    security:
+ *     - bearerAuth: []
  *    summary: Update the user with the specified id
  *    tags: [user]
  *    parameters:

@@ -12,9 +12,9 @@ import { sequelize } from './database/models';
 import router from './routes/routes';
 import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
-import signupRouter from "./routes/user/userRoutes";
-import googleAuth from "./routes/user/googleAuthRoutes";
-import facebookAuth from "./routes/user/facebookAuthRoutes";
+import signupRouter from './routes/user/userRoutes';
+import googleAuth from './routes/user/googleAuthRoutes';
+import facebookAuth from './routes/user/facebookAuthRoutes';
 
 i18next
   .use(Backend)
@@ -26,9 +26,7 @@ i18next
     fallbackLng: 'en',
     preload: ['en', 'fr'],
   });
-
 const app = express();
-
 app.use(i18nextMiddleware.handle(i18next));
 app.use(cors());
 app.use(cookieParser());
@@ -37,13 +35,11 @@ dotenv.config();
 const port = process.env.PORT;
 
 app.use(express.json());
-
 const specs = swaggerJSDoc(options);
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-app.use("/user", signupRouter)
-app.use(googleAuth)
-app.use(facebookAuth)
+app.use('/user', signupRouter);
+app.use(googleAuth);
+app.use(facebookAuth);
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 
