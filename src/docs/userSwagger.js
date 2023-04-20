@@ -120,6 +120,11 @@
  *         description: Get user By Id
  *         schema:
  *           type: string
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
  *     responses:
  *       200:
  *         description: Succesfully Retrieved user from the database.

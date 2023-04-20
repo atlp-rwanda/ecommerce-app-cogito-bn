@@ -1,4 +1,9 @@
 {
   "welcome_message": "Welcome to Cogito's Ecommerce app API",
-  "disactvated": "your status has been disactivated"
+  "disactvated": "your status has been disactivated",
+  "fail": "user not found",
+  "failId": "no user found with that ID",
+  "retrievedAll": "all users retrieved",
+  "retrieved": "user retrieved",
+  "updateStatus": "status updated successfully"
 }

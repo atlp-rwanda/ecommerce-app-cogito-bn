@@ -1,3 +1,9 @@
 {
-    "welcome_message": "Bienvenue dans l'API de l'application Ecommerce de Cogito"
+  "welcome_message": "Bienvenue dans l'API de l'application Ecommerce de Cogito",
+  "disactvated": "votre statut a été désactivé",
+  "fail": "utilisateur non trouvé",
+  "failId": "aucun utilisateur trouvé avec cet ID",
+  "retrievedAll": "tous les utilisateurs récupérés",
+  "retrieved": "utilisateur récupéré",
+  "updateStatus": "statut mis à jour avec succès"
 }

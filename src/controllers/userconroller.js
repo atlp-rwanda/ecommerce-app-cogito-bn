@@ -27,7 +27,7 @@ export const getAllUsers = catchAsync(async (req, res) => {
 
       data: users,
 
-      message: 'Retrieved',
+      message: req.t('retrievedAll'),
     });
   } catch (error) {
     return res.status(500).json(error.message);
@@ -44,7 +44,7 @@ export const getUserData = catchAsync(async (req, res, next) => {
     });
 
     if (!user) {
-      return next('User not found', 404);
+      return next(req.t('fail'), 404);
     }
 
     return res.status(200).json({
@@ -52,7 +52,7 @@ export const getUserData = catchAsync(async (req, res, next) => {
 
       data: user,
 
-      message: 'Retrieved',
+      message: req.t('retrieved'),
     });
   } catch (error) {
     return res.status(500).json(error.message);
@@ -86,29 +86,6 @@ export const updateStatus = catchAsync(async (req, res) => {
     res.status(200).json({
       status: 200,
       message: 'status updated successfully',
-    });
-  } catch (err) {
-    res.send(err);
-  }
-});
-// eslint-disable-next-line consistent-return
-export const signIn = catchAsync(async (req, res) => {
-  try {
-    // eslint-disable-next-line no-unused-vars
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ where: { email, status: 'active' } });
-    if (!user) {
-      return res.status(404).json({
-        status: 404,
-
-        message: 'your status has been disactivated',
-      });
-    }
-
-    res.status(200).json({
-      status: 200,
-      message: 'signed in successfully',
     });
   } catch (err) {
     res.send(err);
