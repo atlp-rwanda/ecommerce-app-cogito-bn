@@ -73,6 +73,12 @@
  *   get:
  *     summary: Get All Users Registered
  *     tags: [User]
+ *     parameters:
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
  *     responses:
  *       200:
  *         description: Succesfully Retrieved all Users from the database.
@@ -97,6 +103,12 @@
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/User'
+ *     parameters:
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
  *     responses:
  *       200:
  *         description: User have Succesfully Signed in.
