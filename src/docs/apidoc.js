@@ -8,7 +8,8 @@ const options = {
     info: {
       title: "Cogito's ecommerce API Library",
       version: 1.0,
-      description: 'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
+      description:
+        'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
     },
     components: {
       securitySchemes: {
