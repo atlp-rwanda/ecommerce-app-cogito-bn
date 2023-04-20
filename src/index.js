@@ -17,7 +17,16 @@ import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 import signupRouter from "./routes/user/userRoutes";
 import googleAuth from "./routes/user/googleAuthRoutes";
-import facebookAuth from "./routes/user/facebookAuthRoutes"
+import facebookAuth from "./routes/user/facebookAuthRoutes";
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import userRoute from "./routes/userRoute";
+import roleRoute from "./routes/roleRoute";
+import permRoute from "./routes/permRoute";
+import options from "./docs/apidoc";
 
 i18next
   .use(Backend)
