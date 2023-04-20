@@ -17,16 +17,7 @@ import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 import signupRouter from "./routes/user/userRoutes";
 import googleAuth from "./routes/user/googleAuthRoutes";
-import facebookAuth from "./routes/user/facebookAuthRoutes";
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import swaggerJSDoc from "swagger-jsdoc";
-import swaggerUi from "swagger-ui-express";
-import userRoute from "./routes/userRoute";
-import roleRoute from "./routes/roleRoute";
-import permRoute from "./routes/permRoute";
-import options from "./docs/apidoc";
+import facebookAuth from "./routes/user/facebookAuthRoutes"
 
 i18next
   .use(Backend)
@@ -56,7 +47,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/user", signupRouter)
 app.use(googleAuth)
 app.use(facebookAuth)
-
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 app.use('/profile', profileRouter);
