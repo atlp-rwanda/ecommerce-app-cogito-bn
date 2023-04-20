@@ -1,5 +1,6 @@
 {
   "welcome_message": "Welcome to Cogito's Ecommerce app API",
+  "loginUser_message": "Please provide email, and password to log in!",
   "not_enough_credentials_for_login": "Please provide email, and password to log in!",
   "user_not_found": "User not found",
   "successful_login": "User logged in successfully",
