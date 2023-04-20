@@ -39,8 +39,8 @@ module.exports = {
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
+<<<<<<< HEAD:src/database/migrations/20230326212313-create-user.js
       roleId: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -59,6 +59,25 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+=======
+      role: {
+        type: Sequelize.INTEGER,
+      },
+      confirmationCode: {
+        type: Sequelize.INTEGER,
+      },
+      confirmed: {
+        type: Sequelize.BOOLEAN,
+      },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+>>>>>>> a84c243cf595935bb3c658307b81e93305ae41fb:src/database/migrations/20230409220608-create-user.js
     });
   },
   async down(queryInterface) {
