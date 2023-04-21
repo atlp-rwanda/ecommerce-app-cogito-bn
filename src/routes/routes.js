@@ -15,7 +15,6 @@ import usersRouter from './API/user';
 
 
 
-
 const router = express.Router();
 router.use("/create", Route)
 router.use('/users', usersRouter);

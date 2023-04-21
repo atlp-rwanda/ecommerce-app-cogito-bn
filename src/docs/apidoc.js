@@ -5,7 +5,7 @@ deletePermissionById,createNewUser,getAllUser,getUserById,updateUserById,
 deleteUserById,createuserRole,getAlluserRole,getuserRoleById,updateuserRoleById,
 deleteuserRoleById,createrolePermission,getAllrolePermission,getrolePermissionById,
 updaterolePermissionById,deleterolePermissionById} from './rolePermissionSwagger'
-
+import { updateProfile, getProfile } from './profile';
 
 dotenv.config();
 

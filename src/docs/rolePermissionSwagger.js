@@ -78,6 +78,7 @@ export const createNewRole = {
 };
 export const getAllRole = {
   security: [],
+  bearerAuth: [],
   tags: ['Role'],
   summary: 'Fetch all roles',
   responses: {

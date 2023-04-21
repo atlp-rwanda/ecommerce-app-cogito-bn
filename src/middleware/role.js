@@ -9,7 +9,7 @@ const isAdmin = async (req, res, next) => {
   }
   try {
     const decodedToken = JwtUtility.verifyToken(token);
-   const {id, roleId} = decodedToken.value;
+    const {id, roleId} = decodedToken.value;
     const User = await db.user.findOne({
       where: { id },
     });
@@ -35,8 +35,10 @@ const isSeller = async (req, res, next) => {
   const { id } = req.params;
   try {
     const decodedToken = JwtUtility.verifyToken(token);
-    const user = await db.user.findOne({ where: { id: decodedToken.va.id } });
-    if (user && decodedToken && decodedToken.roleId === 2) {
+    const {id, roleId} = decodedToken.value;
+    const User = await db.user.findOne({ 
+      where: { id} });
+    if (User && decodedToken && roleId === 2) {
       next();
     } else {
       res
@@ -58,8 +60,10 @@ const isBuyer = async (req, res, next) => {
   const { id } = req.params;
   try {
     const decodedToken = JwtUtility.verifyToken(token);
-    const user = await db.user.findOne({ where: { id: decodedToken.value.id } });
-    if (user && decodedToken && decodedToken.roleId === 3) {
+    const {id, roleId} = decodedToken.value;
+    const user = await db.user.findOne({ 
+      where: { id } });
+    if (user && decodedToken && roleId === 3) {
       next();
     } else {
       res

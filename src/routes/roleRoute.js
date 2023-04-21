@@ -6,7 +6,7 @@ import { isAdmin, isSeller,isBuyer, checkPermission } from "../middleware/role";
 const Route = Router();
 
 Route.post('/role', isAdmin, RolesControlle.createNewRole),
-Route.get('/role', isAdmin, RolesControlle.getAllRoles),
+Route.get('/role', isBuyer, RolesControlle.getAllRoles),
 Route.get('/role/:id', RolesControlle.getOneRole),
 Route.put('/role/:id', RolesControlle.updateOneRole),
 Route.delete('/role/:id', RolesControlle.deleteOneRole),
