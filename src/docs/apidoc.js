@@ -1,7 +1,5 @@
 import dotenv from 'dotenv';
-
 dotenv.config();
-
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -18,6 +16,20 @@ const options = {
           scheme: 'bearer',
           bearerFormat: 'JWT',
           in: 'header',
+        },
+        cookieAuth: {
+          type: 'apiKey',
+          in: 'cookie',
+          name: 'loginOTP',
+        },
+      },
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
         },
         cookieAuth: {
           type: 'apiKey',
