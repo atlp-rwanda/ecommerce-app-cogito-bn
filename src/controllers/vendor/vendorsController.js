@@ -1,4 +1,5 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import i18next from 'i18next';
@@ -10,6 +11,8 @@ import {
   validateVendorLogin,
 } from '../../middleware/vendor/registerVendorValidator';
 import { vendorSignAccessToken } from '../../middleware/vendor/vendorJWT';
+
+dotenv.config();
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -113,15 +116,15 @@ export const registerVendor = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'ndahayosibertin17@gmail.com',
-        pass: 'aobjjmbjustvrpvm',
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
     const mailOptions = {
-      from: 'ndahayosibertin17@gmail.com',
+      from: process.env.EMAIL_SENDER,
       to: newVendor.email,
       subject: 'Welcome to Cogito',
-      text: `Dear ${newVendor.fullName},\n\nWelcome to Cogito! We are excited to have you as a new vendor. Your business information has been successfully saved in our system.\n\nHere is the information you provided:\n\nFull Name: ${newVendor.fullName}\nBusiness Name: ${newVendor.businessName}\nBusiness Address: ${newVendor.businessAddress}\nBusiness Phone Number: ${newVendor.businessPhoneNumber}\nBusiness Email: ${newVendor.businessEmail}\nBusiness Website: ${newVendor.businessWebsite}\nBusiness Description: ${newVendor.businessDescription}\nProduct Categories: ${newVendor.productCategories}\nPayment Methods: ${newVendor.paymentMethods}\nRandom Password: ${req.body.password}, You can change this password only after login to our site.\n Login Here.\n\nThank you for choosing Cogito!\n\nBest regards,\nThe Cogito Team`,
+      text: `Dear ${newVendor.fullName},\n\nWelcome to Cogito! We are excited to have you as a new vendor. Your business information has been successfully saved in our system.\n\nHere is the information you provided:\n\nFull Name: ${newVendor.fullName}\nBusiness Name: ${newVendor.businessName}\nBusiness Address: ${newVendor.businessAddress}\nBusiness Phone Number: ${newVendor.businessPhoneNumber}\nBusiness Email: ${newVendor.businessEmail}\nBusiness Website: ${newVendor.businessWebsite}\nBusiness Description: ${newVendor.businessDescription}\nProduct Categories: ${newVendor.productCategories}\nPayment Methods: ${newVendor.paymentMethods}\nRandom Password: ${req.body.password}, You can change this password only after login to our site.\n Login Here:\t http://localhost:9090/vendors/login \n\nThank you for choosing Cogito!\n\nBest regards,\nThe Cogito Team`,
     };
     transporter.sendMail(mailOptions, (mailError, info) => {
       if (mailError) {

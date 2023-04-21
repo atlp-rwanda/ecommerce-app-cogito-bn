@@ -122,6 +122,10 @@ module.exports = {
           productCategories: 'Computers, Phones, Printers, Phones, Accessories',
           paymentMethods: 'MoMo, PayPal, VISA',
           status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
       {},
     );
     await queryInterface.bulkInsert(
