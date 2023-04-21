@@ -3,7 +3,7 @@
     "username": "postgres",
     "password": "54321",
     "database": "ecommerce-app-cogito-db-dev",
-    "host": "localhost",
+    "host": "postgres",
     "port": "5432",
     "dialect": "postgres"
   },

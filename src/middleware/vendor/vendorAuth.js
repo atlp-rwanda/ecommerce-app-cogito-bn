@@ -11,7 +11,7 @@ const vendorAuth = async (req, res, next) => {
     const token = authorization.substring(7);
     const result = jwt.verify(token, secret);
     const authenticatedUser = await user.findByPk(result.id);
-    if (authenticatedUser && authenticatedUser.role === 'admin') {
+    if (authenticatedUser && authenticatedUser.role === 1) {
       req.authenticatedUser = authenticatedUser;
     }
   }
