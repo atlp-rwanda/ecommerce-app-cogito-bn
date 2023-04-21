@@ -9,11 +9,7 @@
   },
   "test": {
     "username": "postgres",
-<<<<<<< HEAD
     "password": "54321",
-=======
-    "password": "123456",
->>>>>>> 2737c1cafec8683c5aef02a49b58566fbca4dd91
     "database": "ecommerce-app-cogito-db",
     "host": "localhost",
     "dialect": "postgres"

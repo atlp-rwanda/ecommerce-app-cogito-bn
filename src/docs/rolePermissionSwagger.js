@@ -1,5 +1,9 @@
 export const createNewRole = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Role'],
   summary: 'Create a new role',
   requestBody: {
@@ -29,10 +33,10 @@ export const createNewRole = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
+              data: {
                 roleName: 'Admin',
-                description: 'Able to manage users'
-               },
+                description: 'Able to manage users',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -51,34 +55,56 @@ export const createNewRole = {
         },
       },
     },
-    400: {
-      description: 'Bad Request',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              data: { type: 'object' },
-              status: { type: 'integer' },
-              message: { type: 'string' },
+    headers: {
+      'Accept-Language': {
+        schema: {
+          type: 'string',
+        },
+        description: 'Language preference for the response',
+        example: 'en-US',
+      },
+    },
+  },
+  400: {
+    description: 'Bad Request',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            data: { type: 'object' },
+            status: { type: 'integer' },
+            message: { type: 'string' },
+          },
+          example: {
+            data: {
+              roleName: 'Admin',
+              description: 'Able to manage users',
             },
-            example: {
-              data: {
-                roleName: 'Admin',
-                description: 'Able to manage users'
-              },
-              status: 400,
-              message: 'Invalid request body',
-            },
+            status: 400,
+            message: 'Invalid request body',
           },
         },
       },
     },
   },
+  headers: {
+    'Accept-Language': {
+      schema: {
+        type: 'string',
+      },
+      description: 'Language preference for the response',
+      example: 'en-US',
+    },
+  },
 };
+
 export const getAllRole = {
-  security: [],
-  bearerAuth: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Role'],
   summary: 'Fetch all roles',
   responses: {
@@ -89,10 +115,10 @@ export const getAllRole = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
+              data: {
                 roleName: 'Admin',
                 description: 'Able to manage users',
-               },
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -144,7 +170,11 @@ export const getAllRole = {
 };
 
 export const getRoleById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Role'],
   summary: 'Fetch a role by ID',
   parameters: [
@@ -166,7 +196,7 @@ export const getRoleById = {
           schema: {
             type: 'object',
             properties: {
-              data: { },
+              data: {},
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -208,7 +238,11 @@ export const getRoleById = {
   },
 };
 export const updateRoleById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Role'],
   summary: 'Update a role by ID',
   parameters: [
@@ -249,9 +283,9 @@ export const updateRoleById = {
             type: 'object',
             properties: {
               data: {
-                roleName:"Admin",
-                description:"Manage users"
-               },
+                roleName: 'Admin',
+                description: 'Manage users',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -293,7 +327,11 @@ export const updateRoleById = {
   },
 };
 export const deleteRoleById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Role'],
   summary: 'Delete a role by ID',
   parameters: [
@@ -335,7 +373,11 @@ export const deleteRoleById = {
 };
 
 export const createNewPermission = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Permission'],
   summary: 'Create a new permission',
   requestBody: {
@@ -365,10 +407,10 @@ export const createNewPermission = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
+              data: {
                 permName: 'Admin',
-                description: 'Able to manage users'
-               },
+                description: 'Able to manage users',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -401,7 +443,7 @@ export const createNewPermission = {
             example: {
               data: {
                 permName: 'Admin',
-                description: 'Able to manage users'
+                description: 'Able to manage users',
               },
               status: 400,
               message: 'Invalid request body',
@@ -414,7 +456,11 @@ export const createNewPermission = {
 };
 
 export const getAllPermission = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Permission'],
   summary: 'Fetch all permissions',
   responses: {
@@ -425,10 +471,10 @@ export const getAllPermission = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
+              data: {
                 permName: 'Admin',
                 description: 'Able to manage users',
-               },
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -479,9 +525,12 @@ export const getAllPermission = {
   },
 };
 
-
 export const getPermissionById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Permission'],
   summary: 'Fetch a permission by ID',
   parameters: [
@@ -503,7 +552,7 @@ export const getPermissionById = {
           schema: {
             type: 'object',
             properties: {
-              data: { },
+              data: {},
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -545,7 +594,11 @@ export const getPermissionById = {
   },
 };
 export const updatePermissionById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Permission'],
   summary: 'Update a permission by ID',
   parameters: [
@@ -586,9 +639,9 @@ export const updatePermissionById = {
             type: 'object',
             properties: {
               data: {
-                permName:"Admin",
-                description:"Manage users"
-               },
+                permName: 'Admin',
+                description: 'Manage users',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -630,7 +683,11 @@ export const updatePermissionById = {
   },
 };
 export const deletePermissionById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['Permission'],
   summary: 'Delete a Permission by ID',
   parameters: [
@@ -671,7 +728,11 @@ export const deletePermissionById = {
   },
 };
 export const createNewUser = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['User'],
   summary: 'Create a new user',
   requestBody: {
@@ -687,14 +748,14 @@ export const createNewUser = {
             password: { type: 'string' },
             role: { type: 'string' },
           },
-          required: ['firstName', 'lastName','email','password','role'],
+          required: ['firstName', 'lastName', 'email', 'password', 'role'],
         },
         example: {
-          firstName: "Agnes",
-          lastName: "Kunda",
-          email: "kundaaggy4@gmail.com",
-          password: "kunda123",
-          role: "admin",
+          firstName: 'Agnes',
+          lastName: 'Kunda',
+          email: 'kundaaggy4@gmail.com',
+          password: 'kunda123',
+          role: 'admin',
         },
       },
     },
@@ -707,10 +768,10 @@ export const createNewUser = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
+              data: {
                 userName: 'Admin',
-                description: 'Able to manage users'
-               },
+                description: 'Able to manage users',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -743,7 +804,7 @@ export const createNewUser = {
             example: {
               data: {
                 userName: 'Admin',
-                description: 'Able to manage users'
+                description: 'Able to manage users',
               },
               status: 400,
               message: 'Invalid request body',
@@ -755,7 +816,11 @@ export const createNewUser = {
   },
 };
 export const getAllUser = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['User'],
   summary: 'Fetch all users',
   responses: {
@@ -766,9 +831,7 @@ export const getAllUser = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
-                
-               },
+              data: {},
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -776,15 +839,14 @@ export const getAllUser = {
               data: [
                 {
                   id: 1,
-                  firstName: "Agnes",
-                  lastName: "Kunda",
-                  email: "kundaaggy4@gmail.com",
-                  password: "kunda123",
-                  role: "admin",
+                  firstName: 'Agnes',
+                  lastName: 'Kunda',
+                  email: 'kundaaggy4@gmail.com',
+                  password: 'kunda123',
+                  role: 'admin',
                   createdAt: '2023-04-09T19:40:10.314Z',
                   updatedAt: '2023-04-11T19:40:10.314Z',
                 },
-                
               ],
               status: 200,
               message: 'users fetched successfully',
@@ -817,7 +879,11 @@ export const getAllUser = {
 };
 
 export const getUserById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['User'],
   summary: 'Fetch a user by ID',
   parameters: [
@@ -839,7 +905,7 @@ export const getUserById = {
           schema: {
             type: 'object',
             properties: {
-              data: { },
+              data: {},
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -881,7 +947,11 @@ export const getUserById = {
   },
 };
 export const updateUserById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['User'],
   summary: 'Update a user by ID',
   parameters: [
@@ -922,9 +992,9 @@ export const updateUserById = {
             type: 'object',
             properties: {
               data: {
-                userName:"Admin",
-                description:"Manage users"
-               },
+                userName: 'Admin',
+                description: 'Manage users',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -966,7 +1036,11 @@ export const updateUserById = {
   },
 };
 export const deleteUserById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['User'],
   summary: 'Delete a role by ID',
   parameters: [
@@ -1007,9 +1081,12 @@ export const deleteUserById = {
   },
 };
 
-
 export const createuserRole = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['user/Role'],
   summary: 'Assign role to user',
   requestBody: {
@@ -1025,8 +1102,8 @@ export const createuserRole = {
           required: ['userId', 'roleId'],
         },
         example: {
-          userId:"4",
-          roleId:"3"
+          userId: '4',
+          roleId: '3',
         },
       },
     },
@@ -1039,18 +1116,18 @@ export const createuserRole = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
-                userId:"4",
-                roleId:"3"
-               },
+              data: {
+                userId: '4',
+                roleId: '3',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
             example: {
               data: {
                 id: 1,
-                userId:"4",
-                roleId:"3",
+                userId: '4',
+                roleId: '3',
                 createdAt: '2023-04-17T12:00:00.000Z',
                 updatedAt: '2023-04-17T12:00:00.000Z',
               },
@@ -1074,8 +1151,8 @@ export const createuserRole = {
             },
             example: {
               data: {
-                userId:"4",
-                roleId:"3"
+                userId: '4',
+                roleId: '3',
               },
               status: 400,
               message: 'Invalid request body',
@@ -1087,7 +1164,11 @@ export const createuserRole = {
   },
 };
 export const getAlluserRole = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['user/Role'],
   summary: 'Fetch all roles with users user',
   responses: {
@@ -1098,10 +1179,10 @@ export const getAlluserRole = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
-                userId:"4",
-                roleId:"3",
-               },
+              data: {
+                userId: '4',
+                roleId: '3',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -1109,12 +1190,11 @@ export const getAlluserRole = {
               data: [
                 {
                   id: 1,
-                  userId:"4",
-                  roleId:"3",
+                  userId: '4',
+                  roleId: '3',
                   createdAt: '2023-04-09T19:40:10.314Z',
                   updatedAt: '2023-04-11T19:40:10.314Z',
                 },
-               
               ],
               status: 200,
               message: 'Roles fetched successfully',
@@ -1147,7 +1227,11 @@ export const getAlluserRole = {
 };
 
 export const getuserRoleById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['user/Role'],
   summary: 'Fetch a role with user by ID',
   parameters: [
@@ -1169,15 +1253,15 @@ export const getuserRoleById = {
           schema: {
             type: 'object',
             properties: {
-              data: { },
+              data: {},
               status: { type: 'integer' },
               message: { type: 'string' },
             },
             example: {
               data: {
                 id: 1,
-                userId:"4",
-                roleId:"3",
+                userId: '4',
+                roleId: '3',
                 createdAt: '2023-04-09T19:40:10.314Z',
                 updatedAt: '2023-04-11T19:40:10.314Z',
               },
@@ -1211,7 +1295,11 @@ export const getuserRoleById = {
   },
 };
 export const updateuserRoleById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['user/Role'],
   summary: 'Update a role with user by ID',
   parameters: [
@@ -1232,13 +1320,13 @@ export const updateuserRoleById = {
         schema: {
           type: 'object',
           properties: {
-            userId:"4",
-            roleId:"3"
+            userId: '4',
+            roleId: '3',
           },
         },
         example: {
-          userId:"4",
-          roleId:"3",
+          userId: '4',
+          roleId: '3',
         },
       },
     },
@@ -1252,17 +1340,17 @@ export const updateuserRoleById = {
             type: 'object',
             properties: {
               data: {
-                userId:"4",
-                roleId:"3"
-               },
+                userId: '4',
+                roleId: '3',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
             example: {
               data: {
                 id: 1,
-                userId:"4",
-                roleId:"3",
+                userId: '4',
+                roleId: '3',
                 createdAt: '2023-04-09T19:40:10.314Z',
                 updatedAt: '2023-04-17T10:21:33.000Z',
               },
@@ -1296,7 +1384,11 @@ export const updateuserRoleById = {
   },
 };
 export const deleteuserRoleById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['user/Role'],
   summary: 'Delete a User with role by ID',
   parameters: [
@@ -1338,7 +1430,11 @@ export const deleteuserRoleById = {
 };
 
 export const createrolePermission = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['role/Permission'],
   summary: 'Assign permission to role',
   requestBody: {
@@ -1351,11 +1447,11 @@ export const createrolePermission = {
             userId: { type: 'integer' },
             roleId: { type: 'integer' },
           },
-          required: [ 'roleId','permissionId'],
+          required: ['roleId', 'permissionId'],
         },
         example: {
-          permissionId:"4",
-          roleId:"3"
+          permissionId: '4',
+          roleId: '3',
         },
       },
     },
@@ -1368,18 +1464,18 @@ export const createrolePermission = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
-                permissionId:"4",
-                roleId:"3"
-               },
+              data: {
+                permissionId: '4',
+                roleId: '3',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
             example: {
               data: {
                 id: 1,
-                permissionId:"4",
-                roleId:"3",
+                permissionId: '4',
+                roleId: '3',
                 createdAt: '2023-04-17T12:00:00.000Z',
                 updatedAt: '2023-04-17T12:00:00.000Z',
               },
@@ -1403,8 +1499,8 @@ export const createrolePermission = {
             },
             example: {
               data: {
-                permissionId:"4",
-                roleId:"3"
+                permissionId: '4',
+                roleId: '3',
               },
               status: 400,
               message: 'Invalid request body',
@@ -1416,7 +1512,11 @@ export const createrolePermission = {
   },
 };
 export const getAllrolePermission = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['role/Permission'],
   summary: 'Fetch all roles with permission user',
   responses: {
@@ -1427,10 +1527,10 @@ export const getAllrolePermission = {
           schema: {
             type: 'object',
             properties: {
-              data: { 
-                permissionId:"4",
-                roleId:"3",
-               },
+              data: {
+                permissionId: '4',
+                roleId: '3',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
@@ -1438,12 +1538,11 @@ export const getAllrolePermission = {
               data: [
                 {
                   id: 1,
-                  permissionId:"4",
-                  roleId:"3",
+                  permissionId: '4',
+                  roleId: '3',
                   createdAt: '2023-04-09T19:40:10.314Z',
                   updatedAt: '2023-04-11T19:40:10.314Z',
                 },
-               
               ],
               status: 200,
               message: 'Role with permission fetched successfully',
@@ -1476,7 +1575,11 @@ export const getAllrolePermission = {
 };
 
 export const getrolePermissionById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['role/Permission'],
   summary: 'Fetch a role with permission by ID',
   parameters: [
@@ -1498,15 +1601,15 @@ export const getrolePermissionById = {
           schema: {
             type: 'object',
             properties: {
-              data: { },
+              data: {},
               status: { type: 'integer' },
               message: { type: 'string' },
             },
             example: {
               data: {
                 id: 1,
-                permissionId:"4",
-                roleId:"3",
+                permissionId: '4',
+                roleId: '3',
                 createdAt: '2023-04-09T19:40:10.314Z',
                 updatedAt: '2023-04-11T19:40:10.314Z',
               },
@@ -1540,7 +1643,11 @@ export const getrolePermissionById = {
   },
 };
 export const updaterolePermissionById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['role/Permission'],
   summary: 'Update a role with permission by ID',
   parameters: [
@@ -1561,13 +1668,13 @@ export const updaterolePermissionById = {
         schema: {
           type: 'object',
           properties: {
-            permissionId:"4",
-            roleId:"3"
+            permissionId: '4',
+            roleId: '3',
           },
         },
         example: {
-          permissionId:"4",
-          roleId:"3",
+          permissionId: '4',
+          roleId: '3',
         },
       },
     },
@@ -1581,17 +1688,17 @@ export const updaterolePermissionById = {
             type: 'object',
             properties: {
               data: {
-                permissionId:"4",
-                roleId:"3"
-               },
+                permissionId: '4',
+                roleId: '3',
+              },
               status: { type: 'integer' },
               message: { type: 'string' },
             },
             example: {
               data: {
                 id: 1,
-                permissionId:"4",
-                roleId:"3",
+                permissionId: '4',
+                roleId: '3',
                 createdAt: '2023-04-09T19:40:10.314Z',
                 updatedAt: '2023-04-17T10:21:33.000Z',
               },
@@ -1625,7 +1732,11 @@ export const updaterolePermissionById = {
   },
 };
 export const deleterolePermissionById = {
-  security: [],
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
   tags: ['role/Permission'],
   summary: 'Delete a Role with Permission by ID',
   parameters: [
@@ -1665,4 +1776,3 @@ export const deleterolePermissionById = {
     },
   },
 };
-        

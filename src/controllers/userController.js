@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import Bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
-import User from '../database/models/user';
+import { user } from '../database/models';
 import decodeJWT from '../utils/token';
 
 dotenv.config();
@@ -30,37 +30,37 @@ export async function loginUser(req, res) {
     });
   }
 
-  const user = await User.findOne({
+  const User = await user.findOne({
     where: {
       email,
     },
   });
 
-  if (!user) {
+  if (!User) {
     return res.status(401).json({
       status: 401,
       message: req.t('user_not_found'),
     });
   }
 
-  if (user.password === password) {
+  if (User.password === password) {
     const accessToken = jwt.sign(
       {
-        id: user.id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role,
+        id: User.id,
+        email: User.email,
+        firstName: User.firstName,
+        lastName: User.lastName,
+        role: User.role,
       },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: '1d' },
     );
 
-    delete user.dataValues.password;
+    delete User.dataValues.password;
     return res.status(200).json({
       status: 200,
       message: req.t('successful_login'),
-      data: user,
+      data: User,
       token: accessToken,
     });
   }
@@ -82,7 +82,7 @@ export async function createUser(req, res) {
     });
   }
 
-  const emailExists = await User.findOne({
+  const emailExists = await user.findOne({
     where: {
       email,
     },
@@ -124,13 +124,13 @@ export async function createUser(req, res) {
 export async function sendOtp(req, res) {
   const userDetails = decodeJWT(req.headers.authorization);
   // const { id } = req.body;
-  const user = await User.findOne({
+  const User = await user.findOne({
     where: {
       id: userDetails.id,
     },
   });
 
-  if (!user) {
+  if (!User) {
     return res.status(401).json({
       status: 401,
       message: req.t('user_not_found'),
@@ -170,12 +170,12 @@ export async function sendOtp(req, res) {
   });
   const encodedOTP = Buffer.from(hashedOTP).toString('base64');
 
-  delete user.dataValues.password;
+  delete User.dataValues.password;
   res.cookie('loginOTP', encodedOTP);
   res.status(200).json({
     status: 200,
     message: req.t('otp_sent'),
-    data: user,
+    data: User,
     cookie: encodedOTP,
   });
 }
@@ -206,7 +206,7 @@ export async function verify(req, res) {
       res.cookie('loginOTP', '');
 
       const userDetails = decodeJWT(req.headers.authorization);
-      const user = await User.findOne({
+      const User = await user.findOne({
         where: { id: userDetails.id },
       });
 
@@ -222,12 +222,12 @@ export async function verify(req, res) {
         { expiresIn: '1d' },
       );
 
-      delete user.dataValues.password;
+      delete User.dataValues.password;
 
       res.status(200).json({
         status: 200,
         message: req.t('otp_verified'),
-        data: user,
+        data: User,
         token: accessToken,
       });
     } else {
@@ -247,11 +247,11 @@ export async function deleteUser(req, res) {
       message: req.t('provide_user_email_to_delete'),
     });
   }
-  const user = await User.findOne({
+  const User = await user.findOne({
     where: { email },
   });
 
-  if (!user) {
+  if (!User) {
     return res.status(401).json({
       status: 401,
       message: req.t('user_not_found'),
@@ -259,14 +259,14 @@ export async function deleteUser(req, res) {
   }
 
   try {
-    await user.destroy();
+    await User.destroy();
 
-    delete user.dataValues.password;
+    delete User.dataValues.password;
 
     return res.status(200).json({
       status: 200,
       message: req.t('user_deleted'),
-      data: user,
+      data: User,
     });
   } catch (err) {
     return res.status(500).json({
