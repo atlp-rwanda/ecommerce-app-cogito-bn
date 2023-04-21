@@ -14,7 +14,7 @@ const isUserEnabled = async (req, res, next) => {
   if (!user) {
     res.status(404).json({
       status: 404,
-      message: req.t('failId'),
+      message: req.t('user_not_found'),
     });
   }
   const userStatus = user.status;
