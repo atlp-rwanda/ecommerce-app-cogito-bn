@@ -42,7 +42,23 @@ module.exports = {
       },
       roleId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: 'active',
+      },
+
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+     
       confirmationCode: {
         type: Sequelize.INTEGER,
       },
@@ -57,6 +73,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+
     });
   },
   async down(queryInterface) {
