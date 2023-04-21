@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "amazimeza12QW!@",
-    "database": "ecommerce-app-cogito-db",
+    "password": "123",
+    "database": "ecommerce-app-cogito-db-dev",
     "host": "localhost",
     "port": "5432",
     "dialect": "postgres"
