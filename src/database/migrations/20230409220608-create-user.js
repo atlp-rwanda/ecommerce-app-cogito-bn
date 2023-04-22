@@ -53,7 +53,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-
       confirmationCode: {
         type: Sequelize.INTEGER,
       },
