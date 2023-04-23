@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-plusplus */
 import speakeasy from 'speakeasy';
 import dotenv from 'dotenv';
 import Bcrypt from 'bcrypt';

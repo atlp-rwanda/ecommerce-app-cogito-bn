@@ -45,6 +45,10 @@
     "registerUsers_500_msg": "Impossible de créer un nouvel utilisateur.",
   
   "welcome_message": "Bienvenue dans l'API de l'application Ecommerce de Cogito",
+  "disactivated": "votre statut a été désactivé",
+  "retrieved_all": "tous les utilisateurs récupérés",
+  "retrieved": "utilisateur récupéré",
+  "update_status": "statut mis à jour avec succès",
   "not_enough_credentials_for_login": "Veuillez fournir un e-mail et un mot de passe pour vous connecter!",
   "user_not_found": "utilisateur non trouvé",
   "successful_login": "L'utilisateur s'est connecté avec succès",
