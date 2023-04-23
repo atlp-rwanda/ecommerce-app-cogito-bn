@@ -15,6 +15,7 @@ module.exports = {
           preferred_currency: 'RF',
           billing_address: ['KN 12 St, Kigali, Rwanda', 'Kicukiro', 'Kigali', 'Rwanda'],
           password: 'nelly123',
+          status: 'active',
           roleId: 1,
           created_at: new Date(),
           updated_at: new Date(),
