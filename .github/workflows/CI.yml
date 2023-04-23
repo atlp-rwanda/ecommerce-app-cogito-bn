@@ -2,17 +2,20 @@ name: CI
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - develop
   pull_request:
-    branches: 
+    branches:
       - main
       - develop
 
 jobs:
   npm-tasks:
     runs-on: ubuntu-latest
+    env:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,10 +32,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Retrieve secrets from GitHub
-        env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
 
       - name: Install dependencies
         run: npm install
@@ -42,6 +41,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-       
-       
