@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
@@ -5,15 +7,44 @@ module.exports = {
       'users',
       [
         {
+          name: 'Nelly Kawera',
+          email: 'kaweranelly123@example.com',
+          gender: 'female',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kicukiro', 'Kigali', 'Rwanda'],
+          password: 'nelly123',
+          status: 'active',
+          roleId: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
           name: 'John Doe',
-          email: 'john@example.com',
+          email: 'john456@example.com',
           gender: 'male',
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
           billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
-          role: 1,
+          roleId: 2,
+          status: 'active',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'Ange',
+          email: 'ange789@example.com',
+          gender: 'female',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kacyiru', 'Kigali', 'Rwanda'],
+          password: 'ange123',
+          roleId: 3,
+          status: 'active',
           created_at: new Date(),
           updated_at: new Date(),
         },
