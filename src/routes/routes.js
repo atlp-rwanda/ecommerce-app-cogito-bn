@@ -13,14 +13,24 @@ import express from 'express';
 import Route from './roleRoute';
 import { createUser, loginUser } from '../controllers/UserController';
 import usersRouter from './API/user';
+<<<<<<< HEAD
 import newUserValidation from '../middleware/newUser.validation';
+=======
+>>>>>>> 055bc34d9cf1b3a8295c58a0a74d1419248c0832
 
 // Login route
 
 // Create a new user route
 const router = express.Router();
+<<<<<<< HEAD
 router.post('/register', newUserValidation, createUser);
 router.post('/login', loginUser);
+=======
+router.post('/register', createUser);
+router.post('/login', loginUser);
+router.use('/users', usersRouter);
+router.use('/create', Route);
+>>>>>>> 055bc34d9cf1b3a8295c58a0a74d1419248c0832
 router.use('/users', usersRouter);
 router.use('/create', Route);
 export default router;

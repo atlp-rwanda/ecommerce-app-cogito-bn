@@ -44,6 +44,18 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+<<<<<<< HEAD
+=======
+
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+>>>>>>> 055bc34d9cf1b3a8295c58a0a74d1419248c0832
       confirmationCode: {
         type: Sequelize.INTEGER,
       },
