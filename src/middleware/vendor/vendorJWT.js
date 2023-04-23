@@ -3,8 +3,7 @@ import JWT from 'jsonwebtoken';
 
 dotenv.config();
 const secret = process.env.JWT_KEY;
-// eslint-disable-next-line import/prefer-default-export
-export const vendorSignAccessToken = async (id, fullName, status) => {
+const vendorSignAccessToken = async (id, fullName, status) => {
   const payload = {
     id,
     fullName,
@@ -18,3 +17,4 @@ export const vendorSignAccessToken = async (id, fullName, status) => {
     throw new Error(error);
   }
 };
+export default vendorSignAccessToken;
