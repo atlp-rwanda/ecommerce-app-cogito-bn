@@ -189,8 +189,6 @@
  * @swagger
  * /vendors/login:
  *   post:
- *     security:
- *       - bearerAuth: []
  *     summary: Vendor Log In
  *     tags: [Vendor]
  *     requestBody:
