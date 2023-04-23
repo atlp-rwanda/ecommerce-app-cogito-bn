@@ -44,6 +44,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+
       confirmationCode: {
         type: Sequelize.INTEGER,
       },
