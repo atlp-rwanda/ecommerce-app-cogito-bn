@@ -1,16 +1,17 @@
 name: CI
+
 on:
   push:
-    branches:
+    branches: 
       - main
       - develop
   pull_request:
-    branches:
+    branches: 
       - main
       - develop
 
 jobs:
-  build-and-test:
+  npm-tasks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,11 +30,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Retrieve secrets from GitHub
-        env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-
       - name: Install dependencies
         run: npm install
 
@@ -43,5 +39,5 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Check for errors
-        run: echo "No errors found"
+       
+       
