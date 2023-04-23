@@ -9,24 +9,6 @@ on:
       - main
       - develop
 
-jobs:
-  env:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set environment variable
-        run: echo "ENV_CONTEXT_VAR=foo" >> $GITHUB_ENV
-
-  display-variables:
-    name: ${{ vars.Env }}
-    if: ${{ vars.USE_VARIABLES == 'true' }}
-    runs-on: ${{ vars.RUNNER }}
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
-    steps:
-      - name: Use variables
-        run: |
-          echo "repository variable: ${{ vars.REPOSITORY_VAR }}"
-          echo "variable from shell environment: ${{ env.env_var }}"
-
   npm-tasks:
     runs-on: ubuntu-latest
     steps:
@@ -45,7 +27,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
+      - name: Retrieve secrets from GitHub
+      env:
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       - name: Install dependencies
         run: npm install
 
