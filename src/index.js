@@ -6,8 +6,8 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import userRouter from './routes/userrouters';
 import cookieParser from 'cookie-parser';
+import userRouter from './routes/userrouters';
 import { sequelize } from './database/models';
 import router from './routes/routes';
 import profileRouter from './routes/profileRouter';
@@ -48,6 +48,7 @@ app.use('/profile', profileRouter);
 app.use(router);
 
 app.listen(port, async () => {
+  console.log(process.env.CLIENT_ID);
   console.log(`app listening on port ${port}`, process.env.NODE_ENV);
   await sequelize.authenticate();
   console.log('Database Connected!');
