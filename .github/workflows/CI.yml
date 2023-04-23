@@ -1,30 +1,32 @@
 name: CI
 on:
   push:
-    branches: 
+    branches:
       - main
       - develop
   pull_request:
-    branches: 
+    branches:
       - main
       - develop
 
 jobs:
   env:
-  # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set environment variable
+        run: echo "ENV_CONTEXT_VAR=foo" >> $GITHUB_ENV
 
   display-variables:
     name: ${{ vars.Env }}
-    # You can use configuration variables with the `vars` context for dynamic jobs
     if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: ${{ vars.RUNNER }}
     environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
-    - name: Use variables
-      run: |
-        echo "repository variable : ${{ vars.REPOSITORY_VAR }}"
-        echo "variable from shell environment : $env_var"
+      - name: Use variables
+        run: |
+          echo "repository variable: ${{ vars.REPOSITORY_VAR }}"
+          echo "variable from shell environment: ${{ env.env_var }}"
+
   npm-tasks:
     runs-on: ubuntu-latest
     steps:
@@ -53,5 +55,5 @@ jobs:
       - name: Run tests
         run: npm test
 
-       
-       
+      - name: Check for errors
+        run: echo "No errors found"
