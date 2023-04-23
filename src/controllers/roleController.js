@@ -138,6 +138,7 @@ const usersWithRoles = async (req, res) => {
     const userWithrole = await userRole.findAll();
     res.status(200).json({
       statusCode: 200,
+      Message: req.t('fetched_message'),
       data: userWithrole,
     });
   } catch (error) {

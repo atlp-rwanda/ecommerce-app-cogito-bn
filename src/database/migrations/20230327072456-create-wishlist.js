@@ -54,10 +54,5 @@ module.exports = {
   },
   async down(queryInterface) {
     await queryInterface.dropTable('wishlists');
-<<<<<<< HEAD
-  }
-}
-=======
   },
 };
->>>>>>> dc72fdc91fae3475c41717ea92496413a9722e7b
