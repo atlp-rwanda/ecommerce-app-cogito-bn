@@ -13,14 +13,14 @@ import express from 'express';
 import Route from './roleRoute';
 import { createUser, loginUser } from '../controllers/UserController';
 import usersRouter from './API/user';
+import newUserValidation from '../middleware/newUser.validation';
 
 // Login route
 
 // Create a new user route
 const router = express.Router();
-router.post('/register', createUser);
+router.post('/register', newUserValidation, createUser);
 router.post('/login', loginUser);
 router.use('/users', usersRouter);
 router.use('/create', Route);
-router.use('/users', usersRouter);
 export default router;

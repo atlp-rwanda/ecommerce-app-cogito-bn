@@ -13,8 +13,14 @@ module.exports = {
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
+<<<<<<< HEAD
           billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
+=======
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kicukiro', 'Kigali', 'Rwanda'],
+          password: 'nelly123',
+          status: 'active',
+>>>>>>> dc72fdc91fae3475c41717ea92496413a9722e7b
           roleId: 1,
           created_at: new Date(),
           updated_at: new Date(),

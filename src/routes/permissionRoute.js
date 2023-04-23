@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import PermControlle from '../controllers/permController';
+import PermControlle from '../controllers/permissionController';
 import {
   isAdmin, isSeller, isBuyer, checkPermission,
 } from '../middleware/role';
