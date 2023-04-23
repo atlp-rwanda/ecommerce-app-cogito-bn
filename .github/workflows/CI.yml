@@ -8,8 +8,9 @@ on:
     branches:
       - main
       - develop
+
 jobs:
-  npm-tasks:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
