@@ -8,7 +8,7 @@
   "user_not_found": "utilisateur non trouvé",
   "successful_login": "L'utilisateur s'est connecté avec succès",
   "incorrect_password": "Mot de passe incorrect",
-  "provide_all_details_signup": "Veuillez fournir le prénom, le nom, l'e-mail, le mot de passe, le téléphone et le rôle pour créer un utilisateur!",
+  "provide_all_details_signup": "Veuillez fournir le nom, l'e-mail, le mot de passe, le téléphone et le rôleId pour créer un utilisateur!",
   "account_exists": "Un compte avec cet e-mail existe déjà!",
   "signup-success": "Nouvel utilisateur créé avec succès",
   "server_error": "Erreur du serveur",

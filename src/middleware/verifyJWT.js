@@ -4,8 +4,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export default async function verifVendorJWT(req, res, next) {
+const verifVendorJWT =  async (req, res, next) => {
   const authHeader = req.headers.authorization;
+  console.log("entered", authHeader);
   if (!authHeader) {
     return res.status(401).json({ message: req.t('not_logged_in') });
   }
@@ -15,10 +16,11 @@ export default async function verifVendorJWT(req, res, next) {
       return res.status(403).json({ message: req.t('invalid_token') });
     }
     req.email = decoded.email;
-    req.role = decoded.role;
-    req.firstName = decoded.firstName;
-    req.lastName = decoded.lastName;
+    req.roleId = decoded.roleId;
+    req.name = decoded.name;
     req.id = decoded.id;
     return next();
   });
-}
+};
+
+export default verifVendorJWT;

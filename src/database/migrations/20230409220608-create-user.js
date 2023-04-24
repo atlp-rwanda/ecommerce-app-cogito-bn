@@ -21,17 +21,21 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      phone: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       birthdate: {
         type: Sequelize.DATE,
         allowNull: false,
       },
       preferred_language: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       preferred_currency: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       billing_address: {
         type: Sequelize.ARRAY(Sequelize.STRING),
