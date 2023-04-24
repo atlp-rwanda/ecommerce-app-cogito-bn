@@ -6,8 +6,8 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import userRouter from './routes/userrouters';
 import cookieParser from 'cookie-parser';
+import userRouter from './routes/userrouters';
 import { sequelize } from './database/models';
 import router from './routes/routes';
 import profileRouter from './routes/profileRouter';
@@ -15,6 +15,7 @@ import options from './docs/apidoc';
 import signupRouter from './routes/user/userRoutes';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
+import searchParams from './routes/productSearch';
 
 i18next
   .use(Backend)
@@ -46,6 +47,7 @@ app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('w
 app.use(userRouter);
 app.use('/profile', profileRouter);
 app.use(router);
+app.use(searchParams);
 
 app.listen(port, async () => {
   console.log(`app listening on port ${port}`, process.env.NODE_ENV);
