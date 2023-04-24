@@ -1,11 +1,10 @@
-import speakeasy from 'speakeasy';
-import dotenv from 'dotenv';
-import Bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
-import { user } from '../database/models';
-import decodeJWT from '../utils/token';
-
+import speakeasy from "speakeasy";
+import dotenv from "dotenv";
+import Bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
+import { user } from "../database/models";
+import decodeJWT from "../utils/token";
 dotenv.config();
 // create a transporter object
 const transporter = nodemailer.createTransport({
@@ -154,7 +153,7 @@ export async function sendOtp(req, res) {
       });
     }
   });
-  const encodedOTP = Buffer.from(hashedOTP).toString('base64');
+  const encodedOTP = Buffer.from(hashedOTP).toString("base64");
   delete User.dataValues.password;
   res.cookie('loginOTP', encodedOTP);
   res.status(200).json({
@@ -187,7 +186,7 @@ export async function verify(req, res) {
     const newOtp = otp.trim();
     const isMatch = await Bcrypt.compare(newOtp, decodedOTP);
     if (isMatch) {
-      res.cookie('loginOTP', '');
+      res.cookie("loginOTP", "");
       const userDetails = decodeJWT(req.headers.authorization);
       const User = await user.findOne({
         where: { id: userDetails.id },
@@ -250,6 +249,11 @@ export async function deleteUser(req, res) {
     });
   }
 }
+
+
+
+
+
 // Logout
 export async function logoutUser(req, res) {
   try {

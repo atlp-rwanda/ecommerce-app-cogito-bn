@@ -1,4 +1,5 @@
 import { user } from "../../database/models";
+import {role} from "../../database/models";
 import { generateConfirmationCode } from "../../utils/validation/generateCode";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
@@ -26,18 +27,33 @@ const signUp = async (req, res) => {
         .status(400)
         .json({ status: 400, message: req.t("emailAlreadyExists") });
     }
+    let buyer = await role.findOne({where:{roleName:'buyer'}});
+    if(!buyer){
+      buyer = await role.create({
+        roleName:'buyer',
+      })
+    }
+    //const preferredLanguage = req.body.preferred_language || 'defaultLanguage';
 
     const newUser = await user.create({
       email,
       password: hashedPassword,
       confirmationCode,
-      firstName: "defaultFirstName",
-      lastName: "defaultLastName",
-      role: "buyer",
+      name: "defaultName",
+      gender: "defaultGender",
+      preferredLanguage: "en",
+      preferredCurrency: "defaultCurrency",
+      billingAddress: [],
+      birthdate: '2020-02-03',
+      roleId: 3,
     });
+    
+   
+    //req.body['roleId'] = buyer.id;
+    //req.body['password'] = hashedPassword
 
     const option = {
-      from: process.env.EMAIL_ADDRESS,
+      from: process.env.EMAIL_ADDRESS_98,
       to: email,
       subject: "confirmAccount",
       html: `<p>${"clickLink"} <a href="http://localhost:9999/user/confirm/${confirmationCode}">${"here"}</a> ${"toConfirmAccount"}.</p>`,
@@ -47,7 +63,7 @@ const signUp = async (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        user: process.env.EMAIL_ADDRESS,
+        user: process.env.EMAIL_ADDRESS_98,
         pass: process.env.EMAIL_PASS,
       },
     });
