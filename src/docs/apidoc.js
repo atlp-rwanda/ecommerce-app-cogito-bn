@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+
 dotenv.config();
 const options = {
   definition: {
@@ -7,7 +8,7 @@ const options = {
       title: "Cogito's ecommerce API Library",
       version: 1.0,
       description:
-        'This is an API of an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
+        'This is an API o f an ecommerce platform that will allow sellers to manage and sell their stock while facilitating buyers smooth online shopping',
     },
     components: {
       securitySchemes: {
@@ -45,6 +46,7 @@ const options = {
       description: 'Api server',
     },
   ],
-  apis: ['./src/routes/*.js','./src/docs/apiDocs/*','./src/docs/vendors(22)/*'],
+  apis: ['./src/routes/*.js','./src/docs/apiDocs/*.js','./src/docs/vendors(22)/*'],
 };
+
 export default options;

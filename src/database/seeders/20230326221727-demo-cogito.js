@@ -7,23 +7,22 @@ module.exports = {
       'users',
       [
         {
-          name: 'Nelly Kawera',
-          email: 'kaweranelly123@example.com',
-          gender: 'female',
+          name: 'Leo Messi',
+          email: 'leo@example.com',
+          gender: 'male',
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
-          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kicukiro', 'Kigali', 'Rwanda'],
-          password: 'nelly123',
-          status: 'active',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+          password: 'kunda123',
           roleId: 1,
           status: 'active',
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          name: 'John Doe',
-          email: 'john456@example.com',
+          name: 'Neymar Jr',
+          email: 'john@example.com',
           gender: 'male',
           birthdate: new Date(),
           preferred_language: 'en',
@@ -31,21 +30,19 @@ module.exports = {
           billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
           roleId: 2,
-          status: 'active',
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
-          name: 'Ange',
-          email: 'ange789@example.com',
-          gender: 'female',
+          name: 'Agnes Kunda',
+          email: 'kundaaggy@example.com',
+          gender: 'Female',
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
-          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kacyiru', 'Kigali', 'Rwanda'],
-          password: 'ange123',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+          password: 'kunda123',
           roleId: 3,
-          status: 'active',
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -121,6 +118,87 @@ module.exports = {
       {},
     );
     await queryInterface.bulkInsert(
+      'categories',
+      [
+        {
+          name: 'Laptop',
+          product_id: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'orders',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 50,
+          status: 'Picking on Site',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'roles',
+      [
+        {
+          roleName: 'Admin',
+          description: 'Managing users',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'permissions',
+      [
+        {
+          permName: 'manage roles',
+          description: 'Assigning and removing roles to the user',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'userRoles',
+      [
+        {
+          userId: 1,
+          roleId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+
+    await queryInterface.bulkInsert(
+      'RolePermissions',
+      [
+        {
+          roleId: 1,
+          permissionId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+
+    await queryInterface.bulkInsert(
       'orders',
       [
         {
@@ -186,5 +264,9 @@ module.exports = {
     await queryInterface.bulkDelete('categories', null, {});
     await queryInterface.bulkDelete('orders', null, {});
     await queryInterface.bulkDelete('vendors', null, {});
+    await queryInterface.bulkDelete('roles', null, {});
+    await queryInterface.bulkDelete('permissions', null, {});
+    await queryInterface.bulkDelete('userRoles', null, {});
+    await queryInterface.bulkDelete('RolePermissions', null, {});
   },
 };
