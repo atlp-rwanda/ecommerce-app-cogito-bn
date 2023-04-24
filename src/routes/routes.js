@@ -10,6 +10,6 @@ const router = express.Router();
 router.post('/register', createUser);
 router.post('/login', loginUser);
 
-router.use('/users', usersRouter);
+router.use('/OTP', usersRouter);
 
 export default router;
