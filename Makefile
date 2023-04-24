@@ -19,4 +19,4 @@ migrate-rollback:
 seed:
 	docker exec e_commerce-node-app-1 npm run seed
 seed-rollback:
-	docker exec e_commerce-node-app-1 nom run seed-down
+	docker exec e_commerce-node-app-1 npm run seed-down

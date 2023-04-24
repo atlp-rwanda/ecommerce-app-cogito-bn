@@ -8,8 +8,11 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/userrouters';
+<<<<<<< HEAD
 import { sequelize } from './database/models';
 import router from './routes/routes';
+import roleRoute from './routes/roleRoute';
+import permissionRoute from './routes/permissionRoute';
 import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 import signupRouter from './routes/user/userRoutes';
@@ -47,12 +50,16 @@ app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('w
 app.use(userRouter);
 app.use('/profile', profileRouter);
 app.use(router);
+<<<<<<< HEAD
 app.use(searchParams);
+=======
+app.use('/', roleRoute);
+app.use('/', permissionRoute);
+>>>>>>> a19c208b605911a333aada41c302172a3b77748b
 
 app.listen(port, async () => {
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
-  await sequelize.authenticate();
   console.log('Database Connected!');
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
 });
 
 export default app;
