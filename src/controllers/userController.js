@@ -18,7 +18,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD,
   },
 });
-
 export async function loginUser(req, res) {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -46,9 +45,8 @@ export async function loginUser(req, res) {
       {
         id: User.id,
         email: User.email,
-        firstName: User.firstName,
-        lastName: User.lastName,
-        role: User.role,
+        name: User.name,
+        roleId: User.roleId,
       },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: '1d' },
@@ -71,14 +69,16 @@ export async function loginUser(req, res) {
 
 export async function createUser(req, res) {
   const {
-    firstName, lastName, email, password, phone, role,
+    name,
+    email,
+    password,
+    roleId,
+    gender,
+    birthdate,
+    preferredLanguage,
+    preferredCurrency,
+    billingAddress,
   } = req.body;
-  if (!firstName || !lastName || !email || !password || !phone || !role) {
-    return res.status(400).json({
-      status: 400,
-      message: req.t('provide_all_details_signup'),
-    });
-  }
 
   const emailExists = await user.findOne({
     where: {
@@ -95,12 +95,15 @@ export async function createUser(req, res) {
 
   try {
     const newUser = await user.create({
-      firstName,
-      lastName,
+      name,
       email,
+      gender,
+      birthdate,
+      preferredLanguage,
+      preferredCurrency,
+      billingAddress,
+      roleId,
       password,
-      phone,
-      role,
     });
 
     delete newUser.dataValues.password;
@@ -212,9 +215,8 @@ export async function verify(req, res) {
         {
           id: userDetails.id,
           email: userDetails.email,
-          firstName: userDetails.firstName,
-          lastName: userDetails.lastName,
-          role: userDetails.role,
+          name: userDetails.name,
+          roleId: userDetails.roleId,
         },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '1d' },

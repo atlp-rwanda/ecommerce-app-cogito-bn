@@ -6,10 +6,11 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import userRouter from './routes/userrouters';
 import cookieParser from 'cookie-parser';
-import { sequelize } from './database/models';
+import userRouter from './routes/userrouters';
 import router from './routes/routes';
+import roleRoute from './routes/roleRoute';
+import permissionRoute from './routes/permissionRoute';
 import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 import signupRouter from './routes/user/userRoutes';
@@ -46,11 +47,12 @@ app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('w
 app.use(userRouter);
 app.use('/profile', profileRouter);
 app.use(router);
+app.use('/', roleRoute);
+app.use('/', permissionRoute);
 
 app.listen(port, async () => {
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
-  await sequelize.authenticate();
   console.log('Database Connected!');
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
 });
 
 export default app;
