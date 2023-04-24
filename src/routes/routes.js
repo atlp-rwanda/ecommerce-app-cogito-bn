@@ -14,6 +14,7 @@ import Route from './roleRoute';
 import { createUser, loginUser } from '../controllers/UserController';
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
+import searchProducts from '../controllers/search/productController';
 
 // Login route
 
@@ -25,5 +26,6 @@ router.post('/register', createUser);
 router.post('/login', loginUser);
 router.use('/users', usersRouter);
 router.use('/create', Route);
+router.use('/search', searchProducts);
 
 export default router;
