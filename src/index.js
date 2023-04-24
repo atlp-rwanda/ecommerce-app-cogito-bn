@@ -15,7 +15,6 @@ import options from './docs/apidoc';
 import signupRouter from './routes/user/userRoutes';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
-import searchParams from './routes/productSearch';
 
 i18next
   .use(Backend)
@@ -47,9 +46,9 @@ app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('w
 app.use(userRouter);
 app.use('/profile', profileRouter);
 app.use(router);
-app.use(searchParams);
 
 app.listen(port, async () => {
+  console.log(process.env.CLIENT_ID, process.env.FACEBOOK_APP_ID);
   console.log(`app listening on port ${port}`, process.env.NODE_ENV);
   await sequelize.authenticate();
   console.log('Database Connected!');
