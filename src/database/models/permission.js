@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         type: DataTypes.INTEGER,
       },
-      permName: {
+      permissionName: {
         type: DataTypes.STRING,
         allowNull: false,
       },

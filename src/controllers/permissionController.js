@@ -129,7 +129,11 @@ const setPermission = async (req, res) => {
 const getRoleWithPermission = async (req, res) => {
   try {
     const RoleWithPermission = await rolepermission.findAll();
-    res.status(200).json({ statusCode: 200, data: RoleWithPermission });
+    res.status(200).json({
+      statusCode: 200,
+      message: req.t('fetched_message'),
+      data: RoleWithPermission,
+    });
   } catch (error) {
     res.status(400).json({ statusCode: 400, data: error });
   }
@@ -141,7 +145,11 @@ const getoneRoleWithPermission = async (req, res) => {
       where: { id },
     });
     if (RoleWithPermission) {
-      res.status(200).json({ statusCode: 200, data: RoleWithPermission });
+      res.status(200).json({
+        statusCode: 200,
+        message: req.t('fetched_message'),
+        data: RoleWithPermission,
+      });
     } else {
       res.status(404).json({
         statusCode: 404,

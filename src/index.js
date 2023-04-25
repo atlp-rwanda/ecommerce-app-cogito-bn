@@ -10,6 +10,7 @@ import cookieParser from 'cookie-parser';
 import userRouter from './routes/userrouters';
 import router from './routes/routes';
 import roleRoute from './routes/roleRoute';
+import productRoute from './routes/productRoute';
 import permissionRoute from './routes/permissionRoute';
 import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
@@ -44,11 +45,12 @@ app.use(facebookAuth);
 
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 
+app.use(router);
 app.use(userRouter);
 app.use('/profile', profileRouter);
-app.use(router);
 app.use('/', roleRoute);
 app.use('/', permissionRoute);
+app.use('/', productRoute);
 
 app.listen(port, async () => {
   console.log('Database Connected!');

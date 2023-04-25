@@ -7,7 +7,7 @@ module.exports = {
       'users',
       [
         {
-          name: 'Leo Messi',
+          name: 'Admin Messi',
           email: 'leo@example.com',
           gender: 'male',
           birthdate: new Date(),
@@ -20,8 +20,8 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          name: 'Neymar Jr',
-          email: 'john@example.com',
+          name: 'Seller Neymar',
+          email: 'seller@example.com',
           gender: 'male',
           birthdate: new Date(),
           preferred_language: 'en',
@@ -72,6 +72,66 @@ module.exports = {
           vendor_id: '1',
           image: 'image.png',
           price: '600$',
+          quantity: '100',
+          stock: 'In Stock',
+          carts_id: 1,
+          orders_id: 2,
+          wishlists_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Laptop',
+          description: 'HP',
+          category_id: '1',
+          vendor_id: '1',
+          image: 'image.png',
+          price: '400$',
+          quantity: '50',
+          stock: 'In Stock',
+          carts_id: 1,
+          orders_id: 2,
+          wishlists_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Laptop',
+          description: 'Dell',
+          category_id: '1',
+          vendor_id: '1',
+          image: 'image.png',
+          price: '350$',
+          quantity: '40',
+          stock: 'In Stock',
+          carts_id: 1,
+          orders_id: 2,
+          wishlists_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Laptop',
+          description: 'TOSHIBA',
+          category_id: '1',
+          vendor_id: '1',
+          image: 'image.png',
+          price: '300$',
+          quantity: '10',
+          stock: 'In Stock',
+          carts_id: 1,
+          orders_id: 2,
+          wishlists_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Telephone',
+          description: 'IPHONE',
+          category_id: '1',
+          vendor_id: '1',
+          image: 'image.png',
+          price: '1000$',
           quantity: '100',
           stock: 'In Stock',
           carts_id: 1,
@@ -184,7 +244,7 @@ module.exports = {
     );
 
     await queryInterface.bulkInsert(
-      'RolePermissions',
+      'rolepermissions',
       [
         {
           roleId: 1,
@@ -226,6 +286,6 @@ module.exports = {
     await queryInterface.bulkDelete('roles', null, {});
     await queryInterface.bulkDelete('permissions', null, {});
     await queryInterface.bulkDelete('userRoles', null, {});
-    await queryInterface.bulkDelete('RolePermissions', null, {});
+    await queryInterface.bulkDelete('rolepermissions', null, {});
   },
 };

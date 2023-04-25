@@ -12,7 +12,7 @@ const isAdmin = async (req, res, next) => {
     const User = await db.user.findOne({
       where: { id },
     });
-    if (User && decodedToken && roleId == 1) {
+    if (User && decodedToken && roleId === 1) {
       next();
     } else {
       res.status(403).json({ message: req.t('unauthorised_message') });
