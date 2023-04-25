@@ -16,7 +16,6 @@ module.exports = {
           billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
           roleId: 1,
-          status: 'active',
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -185,7 +184,7 @@ module.exports = {
     );
 
     await queryInterface.bulkInsert(
-      'RolePermissions',
+      'rolepermissions',
       [
         {
           roleId: 1,
@@ -267,6 +266,6 @@ module.exports = {
     await queryInterface.bulkDelete('roles', null, {});
     await queryInterface.bulkDelete('permissions', null, {});
     await queryInterface.bulkDelete('userRoles', null, {});
-    await queryInterface.bulkDelete('RolePermissions', null, {});
+    await queryInterface.bulkDelete('rolepermissions', null, {});
   },
 };
