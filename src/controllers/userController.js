@@ -18,7 +18,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD,
   },
 });
-
 export async function loginUser(req, res) {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -110,6 +109,12 @@ export async function createUser(req, res) {
     const newUser = await user.create({
       name,
       email,
+      gender,
+      birthdate,
+      preferredLanguage,
+      preferredCurrency,
+      billingAddress,
+      roleId,
       password,
       gender,
       birthdate,
@@ -229,9 +234,8 @@ export async function verify(req, res) {
         {
           id: userDetails.id,
           email: userDetails.email,
-          firstName: userDetails.firstName,
-          lastName: userDetails.lastName,
-          role: userDetails.role,
+          name: userDetails.name,
+          roleId: userDetails.roleId,
         },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: "1d" }

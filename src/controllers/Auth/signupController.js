@@ -51,7 +51,6 @@ const signUp = async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-
     const sendEmail = (option) => {
       return new Promise((resolve, reject) => {
         transporter.sendMail(option, (error, info) => {
