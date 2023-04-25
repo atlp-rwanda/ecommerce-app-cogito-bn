@@ -180,6 +180,7 @@ export async function sendOtp (req, res) {
         Error: error,
       });
     }
+   
   });
 
   const encodedOTP = Buffer.from(hashedOTP).toString("base64");
