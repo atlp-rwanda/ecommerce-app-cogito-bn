@@ -23,7 +23,7 @@ module.exports = {
       },
       phone: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       birthdate: {
         type: Sequelize.DATE,
@@ -31,11 +31,11 @@ module.exports = {
       },
       preferred_language: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       preferred_currency: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       billing_address: {
         type: Sequelize.ARRAY(Sequelize.STRING),

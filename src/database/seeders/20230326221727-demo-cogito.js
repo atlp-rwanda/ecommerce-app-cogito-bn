@@ -7,16 +7,10 @@ module.exports = {
       'users',
       [
         {
-<<<<<<< HEAD
           name: 'Nelly Kawera',
           email: 'kaweranelly123@example.com',
           gender: 'female',
           phone: '0788719499',
-=======
-          name: 'Leo Messi',
-          email: 'leo@example.com',
-          gender: 'male',
->>>>>>> a19c208b605911a333aada41c302172a3b77748b
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
@@ -41,16 +35,10 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-<<<<<<< HEAD
           name: 'Ange',
           email: 'ange789@example.com',
           gender: 'female',
           phone: '0788719490',
-=======
-          name: 'Agnes Kunda',
-          email: 'kundaaggy@example.com',
-          gender: 'Female',
->>>>>>> a19c208b605911a333aada41c302172a3b77748b
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
@@ -87,6 +75,36 @@ module.exports = {
           vendor_id: '1',
           image: 'image.png',
           price: '600$',
+          quantity: '100',
+          stock: 'In Stock',
+          carts_id: 1,
+          orders_id: 2,
+          wishlists_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Phone',
+          description: 'Samsung note 20',
+          category_id: '2',
+          vendor_id: '3',
+          image: 'image.png',
+          price: '600$',
+          quantity: '100',
+          stock: 'In Stock',
+          carts_id: 1,
+          orders_id: 2,
+          wishlists_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Phone',
+          description: 'Iphone XR MAX',
+          category_id: '2',
+          vendor_id: '3',
+          image: 'image.png',
+          price: '400$',
           quantity: '100',
           stock: 'In Stock',
           carts_id: 1,
