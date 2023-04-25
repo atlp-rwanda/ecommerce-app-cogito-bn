@@ -16,6 +16,7 @@ import options from './docs/apidoc';
 import signupRouter from './routes/user/userRoutes';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
+import recommendedProRouter from './routes/products/productRoutes';
 
 i18next
   .use(Backend)
@@ -49,6 +50,7 @@ app.use('/profile', profileRouter);
 app.use(router);
 app.use('/', roleRoute);
 app.use('/', permissionRoute);
+app.use('/products', recommendedProRouter);
 
 app.listen(port, async () => {
   console.log('Database Connected!');
