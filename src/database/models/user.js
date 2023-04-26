@@ -18,9 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       gender: DataTypes.STRING,
       phone: DataTypes.STRING,
       birthdate: DataTypes.DATE,
-      preferredLanguage: { type: DataTypes.STRING, field: 'preferred_language' },
-      preferredCurrency: { type: DataTypes.STRING, field: 'preferred_currency' },
-      billingAddress: { type: DataTypes.ARRAY(DataTypes.STRING), field: 'billing_address' },
+      preferred_language: { type: DataTypes.STRING, field: 'preferred_language' },
+      preferred_currency: { type: DataTypes.STRING, field: 'preferred_currency' },
+      billing_address: { type: DataTypes.ARRAY(DataTypes.STRING), field: 'billing_address' },
       password: DataTypes.STRING,
       roleId: DataTypes.INTEGER,
       createdAt: { type: DataTypes.DATE, field: 'created_at' },
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'users',
+      modelName: 'user',
     },
   );
   return user;

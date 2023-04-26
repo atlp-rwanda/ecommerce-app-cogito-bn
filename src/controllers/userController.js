@@ -75,7 +75,9 @@ export async function createUser(req, res) {
     phone,
     roleId,
     gender,
-    birthdate
+    birthdate,
+    preferred_language,
+    preferred_currency,
   } = req.body;
   if (
     !name ||
@@ -84,7 +86,9 @@ export async function createUser(req, res) {
     !phone ||
     !roleId ||
     !gender ||
-    !birthdate
+    !birthdate ||
+    !preferred_language ||
+    !preferred_currency
   ) {
     return res.status(400).json({
       status: 400,
@@ -110,15 +114,11 @@ export async function createUser(req, res) {
       name,
       email,
       gender,
-      birthdate,
-      preferredLanguage,
-      preferredCurrency,
-      billingAddress,
-      roleId,
-      password,
-      gender,
-      birthdate,
       phone,
+      password,
+      birthdate,
+      preferred_language,
+      preferred_currency,
       roleId,
     });
 
