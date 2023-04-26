@@ -5,7 +5,7 @@ import {
   sendOtp,
   loginUser,
   deleteUser,
-} from '../../controllers/UserController';
+} from '../../controllers/userController';
 import verifVendorJWT from '../../middleware/verifyJWT';
 
 const usersRouter = express.Router();
