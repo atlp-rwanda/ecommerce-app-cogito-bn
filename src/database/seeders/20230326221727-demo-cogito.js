@@ -41,7 +41,6 @@ module.exports = {
         billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
         password: 'kunda123',
         roleId: 3,
-        role: 'vendor',
         created_at: new Date(),
         updated_at: new Date(),
       },

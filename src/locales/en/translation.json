@@ -103,5 +103,8 @@
   "profile_fetch_message": "Profile fetched successfully",
   "profile_updated_message": "Profile updated successfully",
   "profile_update_unthorize_message": "unauthorized request",
-  "not_logged_in_message": "You're not logged in"
+  "not_logged_in_message": "You're not logged in",
+  "wishlist_fetched": "Wishlist fetched",
+  "product_added": "Product added to the wishlist",
+  "product_already_added": "Product already added to the wishlist"
 }

@@ -102,5 +102,7 @@
   "profile_fetch_message": "Profil récupéré avec succès",
   "profile_updated_message": "Mise à jour du profil réussie",
   "profile_update_unthorize_message": "demande non autorisée",
-  "not_logged_in_message": "Vous n'êtes pas connecté"
+  "wishlist_fetched": "Liste de souhaits récupérée",
+  "product_added": "Produit ajouté à la liste de souhaits",
+  "product_already_added": "Produit déjà ajouté à la liste de souhaits"
 }
