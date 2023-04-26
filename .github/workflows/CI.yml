@@ -20,6 +20,15 @@ jobs:
       FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET}}
       EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS}}
       EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
+      NODE_ENV: ${{secrets.NODE_ENV}}
+      PORT: ${{secrets.PORT}}
+      DATABASE: ${{secrets.DATABASE}}
+      DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+      DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+      DATABASE_HOST: ${{secrets.DATABASE_HOST}}
+      DATABASE_PORT: ${{secrets.DATABASE_PORT}}
+      JWT_KEY: ${{secrets.JWT_KEY}}
+      ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}  
     steps:
       - name: Checkout
         uses: actions/checkout@v2
