@@ -4,7 +4,11 @@
     "password": "54321",
     "database": "ecommerce-app-cogito-db-dev",
     "host": "postgres",
+<<<<<<< HEAD
     "port": "5432",
+=======
+    "port": "8080",
+>>>>>>> 15d45885fcd0a7255b7af13f9e2f4acf9675b675
     "dialect": "postgres"
   },
   "test": {

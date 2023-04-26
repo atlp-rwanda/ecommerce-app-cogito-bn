@@ -11,7 +11,11 @@
 
 import express from 'express';
 import Route from './roleRoute';
+<<<<<<< HEAD
 import { createUser, loginUser } from '../controllers/userController001';
+=======
+import { createUser, loginUser } from '../controllers/userController';
+>>>>>>> 15d45885fcd0a7255b7af13f9e2f4acf9675b675
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
 
