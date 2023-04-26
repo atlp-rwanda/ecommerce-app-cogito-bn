@@ -138,7 +138,7 @@ export async function createUser(req, res) {
   }
 }
 
-export async function sendOtp (req, res) {
+export async function sendOtp(req, res) {
   const userDetails = decodeJWT(req.headers.authorization);
   // const { id } = req.body;
   console.log("userdetails", userDetails);
@@ -185,7 +185,6 @@ export async function sendOtp (req, res) {
         Error: error,
       });
     }
-   
   });
 
   const encodedOTP = Buffer.from(hashedOTP).toString("base64");
