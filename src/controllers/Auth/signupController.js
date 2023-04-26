@@ -14,8 +14,9 @@ const signUp = async (req, res) => {
       .json({ status: 400, message: req.t("invalidEmail") });
   }
   if (!password || password.length < 8) {
-   
-    return res.status(400).json({status:400,message:req.t("passwordTooShort")});
+    return res
+      .status(400)
+      .json({ status: 400, message: req.t("passwordTooShort") });
   }
   try {
     const hashedPassword = await hashPassword(password);
@@ -51,6 +52,7 @@ const signUp = async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
+
     const sendEmail = (option) => {
       return new Promise((resolve, reject) => {
         transporter.sendMail(option, (error, info) => {

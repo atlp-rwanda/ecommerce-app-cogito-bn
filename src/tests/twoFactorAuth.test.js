@@ -26,39 +26,40 @@ describe("API tests", () => {
   describe("GET /OTP/sendOTP", () => {
     it("It should create a user, log them in, send TOTP to their email, and delete the user", async () => {
       const user = {
-        name: "yr",
-        email: "oq@gmail.com",
+        name: "ru",
+        email: "hg@gmail.com",
         password: "test@123",
         phone: "078887567",
         gender: "male",
         birthdate: "2022-04-24",
+        preferred_language:"en",
+        preferred_currency: "RF",
         roleId: 3,
       };
-      const res = await chai.request(app).post("/register").send(user);
-      console.log(res);
+      const res = await chai.request(app).post("/OTP/register").send(user);
       res.should.have.status(201);
       const response = await chai
         .request(app)
-        .post("OTP/login")
+        .post("/OTP/login")
         .send({ email: user.email, password: user.password });
       response.should.have.status(200);
       const { token } = response.body;
 
       const sendOTPres = await chai
         .request(app)
-        .get("OTP/sendOTP")
+        .get("/OTP/sendOTP")
         .set({ Authorization: `Bearer ${token}` });
       sendOTPres.should.have.status(200);
 
       const deleteUserRes = await chai
         .request(app)
-        .delete("users/deleteUser")
+        .delete("/OTP/deleteUser")
         .send({ email: user.email });
       deleteUserRes.should.have.status(200);
     });
   });
 
-  describe("POST OTP/verify", () => {
+  describe("POST /OTP/verify", () => {
     it("It should create an OTP, and validate it", async () => {
       // Generate a secret key for the user
       const { base32: secret } = speakeasy.generateSecret({ length: 20 });

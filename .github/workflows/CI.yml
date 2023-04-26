@@ -18,6 +18,8 @@ jobs:
       CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID}}
       FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET}}
+      EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS}}
+      EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
