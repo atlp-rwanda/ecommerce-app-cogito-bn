@@ -21,12 +21,11 @@ jobs:
       EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS}}
       EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
       NODE_ENV: ${{secrets.NODE_ENV}}
-      PORT: ${{secrets.PORT}}
-      DATABASE: ${{secrets.DATABASE}}
-      DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
-      DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-      DATABASE_HOST: ${{secrets.DATABASE_HOST}}
-      DATABASE_PORT: ${{secrets.DATABASE_PORT}}
+      DB_TEST_NAME: ${{secrets.DB_TEST_NAME}}
+      DB_TEST_USERNAME: ${{secrets.DB_TEST_USERNAME}}
+      DB_TEST_PASSWORD: ${{secrets.DB_TEST_PASSWORD}}
+      DB_TEST_HOST: ${{secrets.DB_TEST_HOST}}
+      DB_TEST_PORT: ${{secrets.DATABASE_PORT}}
       JWT_KEY: ${{secrets.JWT_KEY}}
       ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}  
     steps:
