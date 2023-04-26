@@ -4,9 +4,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const verifVendorJWT =  async (req, res, next) => {
+const verifVendorJWT = async (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log("entered", authHeader);
   if (!authHeader) {
     return res.status(401).json({ message: req.t('not_logged_in') });
   }

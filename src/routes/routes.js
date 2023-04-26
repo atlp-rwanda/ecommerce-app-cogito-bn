@@ -11,7 +11,7 @@
 
 import express from 'express';
 import Route from './roleRoute';
-import { createUser, loginUser } from '../controllers/UserController';
+import { createUser, loginUser } from '../controllers/userController';
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
 
@@ -23,7 +23,6 @@ router.post('/register', newUserValidation, createUser);
 router.post('/login', loginUser);
 router.post('/register', createUser);
 router.post('/login', loginUser);
-
 router.use('/OTP', usersRouter);
 router.use('/create', Route);
 
