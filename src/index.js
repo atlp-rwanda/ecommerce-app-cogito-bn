@@ -6,6 +6,7 @@ import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/userrouters';
 import router from './routes/routes';
@@ -14,6 +15,7 @@ import productRoute from './routes/productRoute';
 import permissionRoute from './routes/permissionRoute';
 import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
+import vendorRouter from './routes/vendor/vendorsRoutes';
 import signupRouter from './routes/user/userRoutes';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
@@ -23,13 +25,15 @@ i18next
   .use(i18nextMiddleware.LanguageDetector)
   .init({
     backend: {
-      loadPath: './src/locales/{{lng}}/{{ns}}.json',
+      loadPath: '././././././src/locales/{{lng}}/{{ns}}.json',
     },
     fallbackLng: 'en',
     preload: ['en', 'fr'],
   });
 const app = express();
+app.use(express.urlencoded({ extended: false }));
 app.use(i18nextMiddleware.handle(i18next));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
 
@@ -51,10 +55,10 @@ app.use('/profile', profileRouter);
 app.use('/', roleRoute);
 app.use('/', permissionRoute);
 app.use('/', productRoute);
+app.use('/vendors', vendorRouter);
 
 app.listen(port, async () => {
   console.log('Database Connected!');
   console.log(`app listening on port ${port}`, process.env.NODE_ENV);
 });
-
 export default app;

@@ -269,11 +269,50 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'vendors',
+      [
+        {
+          id: '1',
+          fullName: 'NDAHAYO Bertin',
+          email: 'ndahayosibertin17@gmail.com',
+          password: 'NDABer123',
+          phoneNumber: '+250786949188',
+          businessName: 'ITH',
+          businessAddress: 'KN 48B ST',
+          businessPhoneNumber: '+250781346188',
+          businessEmail: 'ith.querries@gmail.com',
+          businessWebsite: 'https://www.ith.com',
+          businessDescription:
+            'We are the Number One Wholesale company of all IT related product in Rwanda',
+          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
+          productCategories: 'Computers, Phones, Printers, Phones, Accessories',
+          paymentMethods: 'MoMo, PayPal, VISA',
+          status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'orders',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 50,
+          status: 'Picking on Site',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
 
       {},
     );
   },
-
   async down(queryInterface) {
     // Add commands to revert seed here.
 
@@ -283,6 +322,7 @@ module.exports = {
     await queryInterface.bulkDelete('wishlists', null, {});
     await queryInterface.bulkDelete('categories', null, {});
     await queryInterface.bulkDelete('orders', null, {});
+    await queryInterface.bulkDelete('vendors', null, {});
     await queryInterface.bulkDelete('roles', null, {});
     await queryInterface.bulkDelete('permissions', null, {});
     await queryInterface.bulkDelete('userRoles', null, {});
