@@ -11,7 +11,7 @@
 
 import express from 'express';
 import Route from './roleRoute';
-import { createUser, loginUser } from '../controllers/userController';
+import { createUser, loginUser } from '../controllers/UserController';
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
 
