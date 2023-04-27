@@ -3,14 +3,17 @@ import { product } from "../../database/models";
 
 const searchProducts = async (req, res) => {
   const { name, description, price, id } = req.query;
-
   try {
     let products;
     if (id && !Number.isNaN(id)) {
       products = await product.findByPk(id, {
         attributes: ["name", "price", "category_id", "description"],
       });
-      res.json(products);
+      if (products) {
+        res.json(products);
+      } else {
+        res.json({ message: "Product not found" });
+      }
     } else if (name) {
       products = await product.findAll({
         where: {
@@ -18,7 +21,11 @@ const searchProducts = async (req, res) => {
         },
         attributes: ["name", "price", "category_id", "description"],
       });
-      res.json(products);
+      if (products.length > 0) {
+        res.json(products);
+      } else {
+        res.json({ message: "Product not found" });
+      }
     } else if (description) {
       products = await product.findAll({
         where: {
@@ -26,7 +33,11 @@ const searchProducts = async (req, res) => {
         },
         attributes: ["name", "price", "category_id", "description"],
       });
-      res.json(products);
+      if (products.length > 0) {
+        res.json(products);
+      } else {
+        res.json({ message: "Product not found" });
+      }
     } else if (price) {
       products = await product.findAll({
         where: {
@@ -34,7 +45,13 @@ const searchProducts = async (req, res) => {
         },
         attributes: ["name", "price", "category_id", "description"],
       });
-      res.json(products);
+      if (products.length > 0) {
+        res.json(products);
+      } else {
+        res.json({ message: "Product not found" });
+      }
+    } else {
+      res.json({ message: "Product not found"});
     }
   } catch (err) {
     console.error(err);

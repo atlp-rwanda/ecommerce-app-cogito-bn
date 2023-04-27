@@ -80,12 +80,12 @@ describe("searchProducts function", () => {
     expect(res.body.error).to.equal("Internal Server Error");
   });
 
-  it("should return an empty array for non-matching name", async () => {
+  it("should return a message 'Product not found' for non-matching name", async () => {
     const res = await chai
       .request(app)
       .get("/search?name=Non-existent");
     expect(res).to.have.status(200);
-    expect(res.body).to.be.an("array");
-    expect(res.body.length).to.equal(0);
+    expect(res.body).to.be.an("object");
+    expect(res.body.message).to.equal("Product not found");
   });
 });
