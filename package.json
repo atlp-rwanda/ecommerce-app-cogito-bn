@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint",
     "make-model": "npx sequelize-cli model:generate --name",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
@@ -11,9 +12,9 @@
     "make-seed": "npx sequelize-cli seed:generate --name ",
     "down": "npx sequelize-cli db:migrate:undo",
     "downall": "npx sequelize-cli db:migrate:undo:all",
-    "dev": "cross-env NODE_ENV=development nodemon -r @babel/register src/index",
-    "start": "node -r @babel/register src/index",
-    "test": "mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000",
+    "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
+    "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000",
     "coverage": "nyc --reporter=html --reporter=text npm run test"
   },
   "keywords": [],

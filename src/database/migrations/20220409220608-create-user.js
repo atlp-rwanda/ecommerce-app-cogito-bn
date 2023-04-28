@@ -48,7 +48,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'active',
+      },
       confirmationCode: {
         type: Sequelize.INTEGER,
       },
