@@ -1,35 +1,49 @@
+/* eslint-disable indent */
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  // eslint-disable-next-line no-unused-vars
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.bulkInsert(
       'users',
       [
         {
-          orders_id: 1,
-          wishlists_id: 1,
-          carts_id: 1,
-          firstName: 'Agnes',
-          lastName: 'Kunda',
-          email: 'kundaaggy@gmail.com',
+          name: 'Leo Messi',
+          email: 'leo@example.com',
+          gender: 'male',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
-          role: 'admin',
-          status: 'active',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          roleId: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
         },
         {
-          orders_id: 2,
-          wishlists_id: 2,
-          carts_id: 2,
-          firstName: 'ntwari',
-          lastName: 'charles',
-          email: 'ntwarichar@gmail.com',
-          password: '12345',
-          role: 'user',
-          status: 'active',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          name: 'Neymar Jr',
+          email: 'john@example.com',
+          gender: 'male',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+          password: 'kunda123',
+          roleId: 2,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          name: 'Agnes Kunda',
+          email: 'kundaaggy@example.com',
+          gender: 'Female',
+          birthdate: new Date(),
+          preferred_language: 'en',
+          preferred_currency: 'RF',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+          password: 'kunda123',
+          roleId: 3,
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
 
@@ -103,6 +117,87 @@ module.exports = {
       {},
     );
     await queryInterface.bulkInsert(
+      'categories',
+      [
+        {
+          name: 'Laptop',
+          product_id: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'orders',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 50,
+          status: 'Picking on Site',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'roles',
+      [
+        {
+          roleName: 'Admin',
+          description: 'Managing users',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'permissions',
+      [
+        {
+          permName: 'manage roles',
+          description: 'Assigning and removing roles to the user',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'userRoles',
+      [
+        {
+          userId: 1,
+          roleId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+
+    await queryInterface.bulkInsert(
+      'RolePermissions',
+      [
+        {
+          roleId: 1,
+          permissionId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+
+      {},
+    );
+
+    await queryInterface.bulkInsert(
       'orders',
       [
         {
@@ -119,8 +214,7 @@ module.exports = {
     );
   },
 
-  // eslint-disable-next-line no-unused-vars
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     // Add commands to revert seed here.
 
     await queryInterface.bulkDelete('users', null, {});
@@ -129,5 +223,9 @@ module.exports = {
     await queryInterface.bulkDelete('wishlists', null, {});
     await queryInterface.bulkDelete('categories', null, {});
     await queryInterface.bulkDelete('orders', null, {});
+    await queryInterface.bulkDelete('roles', null, {});
+    await queryInterface.bulkDelete('permissions', null, {});
+    await queryInterface.bulkDelete('userRoles', null, {});
+    await queryInterface.bulkDelete('RolePermissions', null, {});
   },
 };

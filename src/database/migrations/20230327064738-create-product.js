@@ -45,6 +45,10 @@ module.exports = {
         type: Sequelize.ENUM('In Stock', 'Out of Stock'),
         defaultValue: 'In Stock',
       },
+      cloudinary_id: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -56,10 +60,6 @@ module.exports = {
       expiredAt: {
         type: Sequelize.DATE,
         allowNull: true,
-      },
-      cloudinaryId: {
-        allowNull: false,
-        type: Sequelize.STRING,
       },
     });
   },
