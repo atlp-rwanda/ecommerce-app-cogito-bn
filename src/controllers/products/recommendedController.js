@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
-import { product } from '../../database/models';
+import { Op } from 'sequelize';
+import { product, productViews, user } from '../../database/models';
 
 dotenv.config();
 
@@ -26,6 +27,13 @@ app.use(express.urlencoded({ extended: false }));
 // function to get all products registered in cogito ecommerce.
 export const getAllproducts = async (req, res) => {
   try {
+    const { authenticatedBuyer } = req;
+    if (!authenticatedBuyer) {
+      return res.status(403).json({
+        success: false,
+        message: req.t('unauthorized_msg'),
+      });
+    }
     const products = await product.findAll();
     res.status(200).json({
       success: true,
@@ -42,13 +50,22 @@ export const getAllproducts = async (req, res) => {
 };
 export const registerProduct = async (req, res) => {
   try {
+    const { authenticatedUser } = req;
+    if (!authenticatedUser) {
+      return res.status(403).json({
+        success: false,
+        message: req.t('unauthorized_msg'),
+      });
+    }
     const productCheck = await product.findOne({
       where: {
         name: req.body.name,
       },
     });
     if (productCheck) {
-      return res.status(409).json({ success: false, message: req.t('Product was already registered') });
+      return res
+        .status(409)
+        .json({ success: false, message: req.t('Product was already registered') });
     }
     const newProduct = await product.create(req.body);
     res.status(201).json({
@@ -58,18 +75,32 @@ export const registerProduct = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, message: req.t('Product Registration failed'), Error: error });
+    res
+      .status(500)
+      .json({ success: false, message: req.t('Product Registration failed'), Error: error });
   }
 };
 // function to get product by ID.
 export const findproductByID = async (req, res) => {
   try {
+    const { authenticatedBuyer } = req;
+    if (!authenticatedBuyer) {
+      return res.status(403).json({
+        success: false,
+        message: req.t('unauthorized_msg'),
+      });
+    }
     const products = await product.findByPk(req.params.id);
     if (products === null) {
       res
         .status(404)
         .json({ success: false, message: `${req.t('Product Not Found')} ${req.params.id}` });
     }
+    // Saving the viewed products id and the id of the user who viewed it
+    await productViews.create({
+      productId: req.params.id,
+      buyerId: authenticatedBuyer.id,
+    });
     res.status(200).json({
       success: true,
       message: `${req.t('Product Was Found with ID: ')} ${req.params.id} `,
@@ -86,6 +117,13 @@ export const findproductByID = async (req, res) => {
 // function to update product information.
 export const updateproduct = async (req, res) => {
   try {
+    const { authenticatedUser } = req;
+    if (!authenticatedUser) {
+      return res.status(403).json({
+        success: false,
+        message: req.t('unauthorized_msg'),
+      });
+    }
     const products = await product.findByPk(req.params.id);
 
     await product.update(req.body, {
@@ -114,6 +152,13 @@ export const updateproduct = async (req, res) => {
 // function to delete product by their ID.
 export const deleteproduct = async (req, res) => {
   try {
+    const { authenticatedUser } = req;
+    if (!authenticatedUser) {
+      return res.status(403).json({
+        success: false,
+        message: req.t('unauthorized_msg'),
+      });
+    }
     const products = await product.findByPk(req.params.id);
     await product.destroy({
       where: {
@@ -132,6 +177,86 @@ export const deleteproduct = async (req, res) => {
     res.status(500).json({
       success: false,
       message: `${req.t('Delete product Error ')} ${req.params.id}`,
+      Error: error.message,
+    });
+  }
+};
+
+async function getRecommendedProducts(userID) {
+  try {
+    // Get the list of products that the buyer has viewed
+    const viewedProducts = await productViews.findAll({
+      where: {
+        buyerId: userID,
+      },
+      attributes: ['productId'],
+      raw: true,
+    });
+    const viewedProductIds = viewedProducts.map((viewedProduct) => viewedProduct.productId);
+    // Find other buyers who have viewed the same products
+    const similarBuyers = await productViews.findAll({
+      where: {
+        productId: viewedProductIds,
+        buyerId: { [Op.not]: userID },
+      },
+      attributes: ['buyerId'],
+      group: ['buyerId'],
+      raw: true,
+    });
+    const similarBuyerIds = similarBuyers.map((similarBuyer) => similarBuyer.buyerId);
+    // Find the products that these similar buyers have viewed
+    const recommendedProducts = await productViews.findAll({
+      where: {
+        buyerId: similarBuyerIds,
+        productId: { [Op.notIn]: viewedProductIds },
+      },
+      attributes: ['productId'],
+      group: ['productId'],
+      raw: true,
+    });
+    const recommendedProductIds = recommendedProducts.map(
+      (recommendedProduct) => recommendedProduct.productId,
+    );
+    // Get the details of the recommended products
+    const finalRecommendedProducts = await product.findAll({
+      where: { id: recommendedProductIds },
+      raw: true,
+    });
+    return finalRecommendedProducts;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+// function to get recommended product
+export const RecommendedProduct = async (req, res) => {
+  try {
+    const { authenticatedBuyer } = req;
+    if (!authenticatedBuyer) {
+      return res.status(403).json({
+        success: false,
+        message: req.t('unauthorized_msg'),
+      });
+    }
+    const checkUserId = await user.findByPk(req.params.id);
+    if (checkUserId === null) {
+      return res
+        .status(404)
+        .json({ success: false, message: `${req.t('User was  Not Found ')}` });
+    }
+    const buyerId = req.params.id;
+    const recommendedProducts = await getRecommendedProducts(buyerId);
+    const countNumber = recommendedProducts.length;
+    res.status(200).json({
+      success: true,
+      message: `${req.t('Recommended products were retrieved successfully!!')}`,
+      count: `Number of Recommended Products: ${countNumber}`,
+      response: recommendedProducts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: `${req.t(' Error in retrieving the recommended products ')}`,
       Error: error.message,
     });
   }
