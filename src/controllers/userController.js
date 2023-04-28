@@ -71,13 +71,13 @@ export async function createUser(req, res) {
   const {
     name,
     email,
-    password,
-    roleId,
     gender,
     birthdate,
     preferredLanguage,
     preferredCurrency,
     billingAddress,
+    password,
+    roleId,
   } = req.body;
 
   const emailExists = await user.findOne({
@@ -102,8 +102,8 @@ export async function createUser(req, res) {
       preferredLanguage,
       preferredCurrency,
       billingAddress,
-      roleId,
       password,
+      roleId,
     });
 
     delete newUser.dataValues.password;

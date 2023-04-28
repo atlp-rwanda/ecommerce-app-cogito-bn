@@ -8,7 +8,7 @@ module.exports = {
       [
         {
           name: 'Leo Messi',
-          email: 'leo@example.com',
+          email: 'leo124@example.com',
           gender: 'male',
           birthdate: new Date(),
           preferred_language: 'en',
@@ -21,7 +21,7 @@ module.exports = {
         },
         {
           name: 'Neymar Jr',
-          email: 'john@example.com',
+          email: 'john124@example.com',
           gender: 'male',
           birthdate: new Date(),
           preferred_language: 'en',
@@ -34,7 +34,7 @@ module.exports = {
         },
         {
           name: 'Agnes Kunda',
-          email: 'kundaaggy@example.com',
+          email: 'kundaaggy234@example.com',
           gender: 'Female',
           birthdate: new Date(),
           preferred_language: 'en',
@@ -67,16 +67,15 @@ module.exports = {
       [
         {
           name: 'Laptop',
+          vendor_id: 2,
           description: 'MacBook Pro',
-          category_id: '1',
-          vendor_id: '1',
-          image: 'image.png',
-          price: '600$',
-          quantity: '100',
+          category_id: 1,
+          image: ['image.png'],
+          price: 600,
+          quantity: 100,
           stock: 'In Stock',
-          carts_id: 1,
-          orders_id: 2,
-          wishlists_id: 2,
+          expiryDate: '2035-03-27',
+          available: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -88,8 +87,6 @@ module.exports = {
       [
         {
           name: 'Laptop',
-          seller_id: 1,
-          user_id: 2,
           product_id: 3,
           description: 'MacBook Pro',
           image: 'image.png',
@@ -97,7 +94,6 @@ module.exports = {
           quantity: '100',
           totalPrice: '60000$',
           stock: 'In Stock',
-          Expire_Date: '2035-03-27 ',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -183,35 +179,35 @@ module.exports = {
       {},
     );
 
-    await queryInterface.bulkInsert(
-      'RolePermissions',
-      [
-        {
-          roleId: 1,
-          permissionId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
+    // await queryInterface.bulkInsert(
+    //   'RolePermissions',
+    //   [
+    //     {
+    //       roleId: 1,
+    //       permissionId: 1,
+    //       createdAt: new Date(),
+    //       updatedAt: new Date(),
+    //     },
+    //   ],
 
-      {},
-    );
+    //   {},
+    // );
 
-    await queryInterface.bulkInsert(
-      'orders',
-      [
-        {
-          user_id: 1,
-          product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
+    // await queryInterface.bulkInsert(
+    //   'orders',
+    //   [
+    //     {
+    //       user_id: 1,
+    //       product_id: 1,
+    //       quantity: 50,
+    //       status: 'Picking on Site',
+    //       createdAt: new Date(),
+    //       updatedAt: new Date(),
+    //     },
+    //   ],
 
-      {},
-    );
+    //   {},
+    // );
   },
 
   async down(queryInterface) {

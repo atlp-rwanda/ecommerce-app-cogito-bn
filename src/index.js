@@ -8,12 +8,14 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/userrouters';
+import usersRouter from './routes/API/user';
 import router from './routes/routes';
 import roleRoute from './routes/roleRoute';
 import permissionRoute from './routes/permissionRoute';
 import profileRouter from './routes/profileRouter';
 import options from './docs/apidoc';
 import signupRouter from './routes/user/userRoutes';
+import productRouter from './routes/product/productRouter';
 import googleAuth from './routes/user/googleAuthRoutes';
 import facebookAuth from './routes/user/facebookAuthRoutes';
 
@@ -39,6 +41,7 @@ app.use(express.json());
 const specs = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/user', signupRouter);
+app.use('/OTP', usersRouter);
 app.use(googleAuth);
 app.use(facebookAuth);
 
@@ -46,6 +49,7 @@ app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('w
 
 app.use(userRouter);
 app.use('/profile', profileRouter);
+app.use('/product', productRouter);
 app.use(router);
 app.use('/', roleRoute);
 app.use('/', permissionRoute);

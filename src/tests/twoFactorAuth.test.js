@@ -23,42 +23,45 @@ describe('API tests', () => {
     });
   });
 
-  describe('GET /users/sendOtp', () => {
+  describe('GET /OTP/sendOtp', () => {
     it('It should create a user, log them in, send TOTP to their email, and delete the user', async () => {
       const user = {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'e.umubyeyi@alustudent.com',
+        name: 'John',
+        email: 'test182390@gmail.com',
+        gender: 'Female',
+        birthdate: '2023-04-07',
+        preferredLanguage: 'en',
+        preferredCurrency: 'RF',
+        billingAddress: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
         password: '123',
-        phone: '0789876523',
-        role: 'vendor',
+        roleId: 2,
       };
 
-      const res = await chai.request(app).post('/users/register').send(user);
+      const res = await chai.request(app).post('/OTP/register').send(user);
       res.should.have.status(201);
 
       const response = await chai
         .request(app)
-        .post('/users/login')
+        .post('/OTP/login')
         .send({ email: user.email, password: user.password });
       response.should.have.status(200);
       const { token } = response.body;
 
       const sendOTPres = await chai
         .request(app)
-        .get('/users/sendOtp')
+        .get('/OTP/sendOtp')
         .set({ Authorization: `Bearer ${token}` });
       sendOTPres.should.have.status(200);
 
       const deleteUserRes = await chai
         .request(app)
-        .delete('/users/deleteUser')
+        .delete('/OTP/deleteUser')
         .send({ email: user.email });
       deleteUserRes.should.have.status(200);
     });
   });
 
-  describe('POST /users/verify', () => {
+  describe('POST /OTP/verify', () => {
     it('It should create an OTP, and validate it', async () => {
       // Generate a secret key for the user
       const { base32: secret } = speakeasy.generateSecret({ length: 20 });

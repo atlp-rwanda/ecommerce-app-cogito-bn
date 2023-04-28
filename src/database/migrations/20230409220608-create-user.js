@@ -51,6 +51,10 @@ module.exports = {
       confirmed: {
         type: Sequelize.BOOLEAN,
       },
+      status: {
+        type: Sequelize.STRING,
+        defaultValue: 'active',
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

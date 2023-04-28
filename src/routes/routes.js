@@ -23,7 +23,7 @@ router.post('/register', newUserValidation, createUser);
 router.post('/login', loginUser);
 router.post('/register', createUser);
 router.post('/login', loginUser);
-router.use('/users', usersRouter);
+// router.use('/users', usersRouter);
 router.use('/create', Route);
 
 export default router;

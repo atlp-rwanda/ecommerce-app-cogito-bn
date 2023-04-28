@@ -59,5 +59,12 @@
   "profile_fetch_message": "Profile fetched successfully",
   "profile_updated_message": "Profile updated successfully",
   "profile_update_unthorize_message": "unauthorized request",
-  "not_logged_in_message": "You're not logged in"
+  "not_logged_in_message": "You're not logged in",
+  "provide_details_product_availability": "You need to provide seller id and product Id to change product status",
+  "product_not_found": "product not found",
+  "product_availability_updated": "product availability status changed successfully",
+  "product_exists": "The product already exists",
+  "product_created": "created product successfully",
+  "provide_product_id": "provide product id",
+  "product_deleted": "product deleted successfully"
 }

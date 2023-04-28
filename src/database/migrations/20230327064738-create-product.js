@@ -16,15 +16,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      orders_id: {
-        type: Sequelize.INTEGER,
-      },
-      wishlists_id: {
-        type: Sequelize.INTEGER,
-      },
-      carts_id: {
-        type: Sequelize.INTEGER,
-      },
       vendor_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -33,17 +24,26 @@ module.exports = {
         type: Sequelize.STRING,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: false,
       },
       price: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
+        allowNull: false,
       },
       quantity: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
       },
       stock: {
         type: Sequelize.ENUM('In Stock', 'Out of Stock', 'Expired'),
         defaultValue: 'In Stock',
+      },
+      expiryDate: {
+        type: Sequelize.DATE,
+      },
+      available: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
       },
       createdAt: {
         allowNull: false,

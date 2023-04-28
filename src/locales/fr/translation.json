@@ -58,5 +58,12 @@
   "disactivated": "votre statut a été désactivé",
   "retrieved_all": "tous les utilisateurs récupérés",
   "retrieved": "utilisateur récupéré",
-  "update_status": "statut mis à jour avec succès"
+  "update_status": "statut mis à jour avec succès",
+  "provide_details_product_availability": "Vous devez fournir l'identifiant du vendeur et l'identifiant du produit pour modifier l'état du produit",
+  "product_not_found": "Produit non trouvé",
+  "product_availability_updated": "le statut de disponibilité du produit a été modifié avec succès",
+  "product_exists": "Le produit existe déjà",
+  "product_created": "Le produit créé avec succès",
+  "provide_product_id": "fournir l'identifiant du produit",
+  "product_deleted": "produit supprimé avec succès"
 }

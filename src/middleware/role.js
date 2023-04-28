@@ -70,6 +70,7 @@ const checkPermission = (permission) => async (req, res, next) => {
   try {
     const token = getToken(req);
     const decodedToken = decodeToken(token);
+    console.log(decodedToken);
     const User = await findUser(decodedToken.value.id);
     checkAuthorization(User, decodedToken.value.roleId, permission);
     next();
@@ -104,9 +105,9 @@ const findUser = async (id) => {
 
 const checkAuthorization = (userId, roleId, permissionId) => {
   const permissions = {
-    6: ['manage users'],
-    3: ['manage products'],
-    2: ['view products'],
+    1: ['manage users'],
+    2: ['manage products'],
+    3: ['view products'],
   };
   if (!permissions[roleId]?.includes(permissionId)) {
     throw new Error('You are not authorized to perform this action');
