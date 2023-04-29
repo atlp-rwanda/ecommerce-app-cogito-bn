@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint",
     "make-model": "npx sequelize-cli model:generate --name",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
@@ -11,12 +12,10 @@
     "make-seed": "npx sequelize-cli seed:generate --name ",
     "down": "npx sequelize-cli db:migrate:undo",
     "downall": "npx sequelize-cli db:migrate:undo:all",
-    "dev": "nodemon -r @babel/register src/index",
-    "start": "node -r @babel/register src/index",
-    "test": "mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000",
-    "coverage": "nyc --reporter=html --reporter=text npm run test",
-    "format": "prettier --write",
-    "lint": "prettier --check"
+    "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
+    "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000",
+    "coverage": "nyc --reporter=html --reporter=text npm run test"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +24,7 @@
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.36.2",
+    "body-parser": "^1.20.2",
     "connect-pg-simple": "^8.0.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.3",
+    "@babel/core": "^7.21.4",
     "@babel/node": "^7.20.7",
     "@babel/plugin-transform-runtime": "^7.21.0",
     "@babel/preset-env": "^7.20.2",

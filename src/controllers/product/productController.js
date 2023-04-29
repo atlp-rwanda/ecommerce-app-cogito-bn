@@ -1,15 +1,13 @@
 /* eslint-disable camelcase */
-import cloudinary from 'cloudinary';
+import cloudinary.v2 from '../../utils/cloudinary/cloudinary';
 import { product } from '../../database/models';
 import catchAsync from '../../utils/catchAsync';
-import imageUpload from '../../middleware/imageUpload';
+import upload from '../../utils/cloudinary/multer'
+// import imageUpload from '../../middleware/imageUpload';
 
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
 const createNewProduct = catchAsync(async (req, res) => {
+  const result = await cloudinary.uploader.upload(req.file.path);
+
   const {
     name,
     description,
@@ -21,15 +19,8 @@ const createNewProduct = catchAsync(async (req, res) => {
     wishlist_id,
     category_id,
     vendor_id,
-    // image,
+    image,
   } = req.body;
-  // Upload the image to Cloudinary
-  const reqData = req.body;
-  let imageUrl = '';
-  if (req.files) {
-    const image = await imageUpload(req);
-    imageUrl = image.url;
-    reqData.image = imageUrl;
 
     const newItem = await product.create({
       name,
@@ -51,6 +42,6 @@ const createNewProduct = catchAsync(async (req, res) => {
       data: newItem,
       message: `${newItem.name} ${req.t('is_added')}`,
     });
-  }
+  // }
 });
 export default { createNewProduct };
