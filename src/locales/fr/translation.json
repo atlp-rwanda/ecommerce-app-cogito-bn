@@ -43,13 +43,6 @@
     "registerUsers_409_msg": "Des utilisateurs avec cet e-mail existent déjà.",
     "registerUsers_201_msg": "Un nouvel utilisateur a été créé avec succès.",
     "registerUsers_500_msg": "Impossible de créer un nouvel utilisateur.",
-  
-  "welcome_message": "Bienvenue dans l'API de l'application Ecommerce de Cogito",
-  "disactivated": "votre statut a été désactivé",
-  "retrieved_all": "tous les utilisateurs récupérés",
-  "retrieved": "utilisateur récupéré",
-  "update_status": "statut mis à jour avec succès",
-  "welcome_message": "Bienvenue sur l'API d'application de commerce électronique de Cogito",
   "key": "traduction",
   "defaultFirstName": "Jean",
   "defaultLastName": "Dupont",

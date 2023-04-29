@@ -45,16 +45,16 @@
 /**
  * @swagger
  * tags:
- *   name: Users
+ *   name: OTP
  *   description: The user operations API
  */
 
 /**
  * @swagger
- * /users/login:
+ * /OTP/login:
  *   post:
  *     summary: Authenticate user email and password
- *     tags: [Users]
+ *     tags: [OTP]
  *     parameters:
  *       - in: header
  *         name: accept-language
@@ -113,10 +113,10 @@
 
 /**
  * @swagger
- * /users/sendOtp:
+ * /OTP/sendOTP:
  *   get:
  *     summary: Send OTP message to the user email after logging in
- *     tags: [Users]
+ *     tags: [OTP]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -173,10 +173,10 @@
 
 /**
  * @swagger
- * /users/verify:
+ * /OTP/verify:
  *   post:
  *     summary: verify if the OTP provided by the user matches the one that was sent to their email
- *     tags: [Users]
+ *     tags: [OTP]
  *     security:
  *       - bearerAuth: []
  *     parameters:

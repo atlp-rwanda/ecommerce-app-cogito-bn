@@ -43,8 +43,6 @@
     "registerUsers_409_msg": "Users with this email already exists.",
     "registerUsers_201_msg": "Succesfully created a new Users.",
     "registerUsers_500_msg": "Failed to create a new Users.",
-  
-  "welcome_message": "Welcome to Cogito's Ecommerce app API",
   "key": "translation",
   "defaultFirstName": "John",
   "defaultLastName": "Doe",
