@@ -10,6 +10,7 @@ module.exports = {
           name: 'Leo Messi',
           email: 'leo@example.com',
           gender: 'male',
+          phone: '0788719400',
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
@@ -23,6 +24,7 @@ module.exports = {
           name: 'Neymar Jr',
           email: 'john@example.com',
           gender: 'male',
+          phone: '0788719892',
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
@@ -36,6 +38,7 @@ module.exports = {
           name: 'Agnes Kunda',
           email: 'kundaaggy@example.com',
           gender: 'Female',
+          phone: '0788719892',
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
@@ -46,8 +49,6 @@ module.exports = {
           updated_at: new Date(),
         },
       ],
-
-      {},
     );
 
     await queryInterface.bulkInsert(
