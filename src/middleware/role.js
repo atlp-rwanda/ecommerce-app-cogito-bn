@@ -23,12 +23,13 @@ const isAdmin = async (req, res, next) => {
   }
 };
 const isSeller = async (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.headers.authorization;
   if (!token) {
     return res.status(401).json({ message: req.t('token_unexist_message') });
   }
   try {
-    const decodedToken = JwtUtility.verifyToken(token);
+    const decodedToken = JwtUtility.verifyToken(token.split(' ')[1]);
+    console.log(decodedToken.value);
     const { id, roleId } = decodedToken.value;
     const User = await db.user.findOne({
       where: { id },

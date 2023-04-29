@@ -15,15 +15,13 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       description: DataTypes.STRING,
-      image: DataTypes.STRING,
+      image: DataTypes.ARRAY(DataTypes.STRING),
       price: DataTypes.STRING,
       quantity: DataTypes.STRING,
       stock: DataTypes.STRING,
-      carts_id: DataTypes.INTEGER,
-      orders_id: DataTypes.INTEGER,
-      wishlists_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
       vendor_id: DataTypes.INTEGER,
+      expiredAt: DataTypes.DATE,
     },
     {
       sequelize,

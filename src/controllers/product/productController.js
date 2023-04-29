@@ -1,48 +1,25 @@
 /* eslint-disable camelcase */
-import cloudinary from 'cloudinary';
 import { product } from '../../database/models';
 import catchAsync from '../../utils/catchAsync';
-import imageUpload from '../../middleware/imageUpload';
+import CloudUpload from '../../utils/cloudinary/cloudinary';
 
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
 const createNewProduct = catchAsync(async (req, res) => {
   const {
-    name,
-    description,
-    price,
-    quantity,
-    stock,
-    carts_id,
-    orders_id,
-    wishlist_id,
-    category_id,
-    vendor_id,
-    // image,
+    name, description, price, quantity, stock, category_id, id,
   } = req.body;
-  // Upload the image to Cloudinary
-  const reqData = req.body;
-  let imageUrl = '';
-  if (req.files) {
-    const image = await imageUpload(req);
-    imageUrl = image.url;
-    reqData.image = imageUrl;
+  try {
+    const images = await CloudUpload.multi(req.files);
+    // console.log(images);
 
     const newItem = await product.create({
       name,
       description,
       price,
+      image: images,
       quantity,
       stock,
-      carts_id,
-      orders_id,
-      wishlist_id,
       category_id,
-      vendor_id,
-      image,
+      vendor_id: id,
     });
 
     // Return a success response to the client
@@ -51,6 +28,8 @@ const createNewProduct = catchAsync(async (req, res) => {
       data: newItem,
       message: `${newItem.name} ${req.t('is_added')}`,
     });
+  } catch (err) {
+    console.log(err.message);
   }
 });
-export default { createNewProduct };
+export default createNewProduct;

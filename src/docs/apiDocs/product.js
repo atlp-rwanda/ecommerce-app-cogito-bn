@@ -18,7 +18,7 @@
  *   requestBody:
  *     required: true
  *     content:
- *       application/json:
+ *       multipart/form-data:
  *         schema:
  *           type: object
  *           properties:
@@ -26,7 +26,25 @@
  *               type: string
  *             description:
  *               type: string
+ *             image1:
+ *               type: string
+ *               format: binary
+ *               Description: image 1
+ *             image2:
+ *               type: string
+ *               format: binary
+ *               Description: image 2
+ *             image3:
+ *               type: string
+ *               format: binary
+ *               Description: image 3
+ *             image4:
+ *               type: string
+ *               format: binary
+ *               Description: image 4
  *             price:
+ *               type: string
+ *             quantity:
  *               type: string
  *             stock:
  *               type: string
@@ -41,9 +59,6 @@
  *             price: 600$
  *             quantity: 1
  *             stock: In Stock
- *             carts_id: 1
- *             orders_id: 1
- *             wishlists_id: 1
  *             category_id: 1
  *             vendor_id: 1
  *             expiryDate: '2030-04-22T10:30:00.000Z'
@@ -75,7 +90,7 @@
  *                         createdAt: '2023-04-22T10:30:00.000Z',
  *                         updatedAt: '2023-04-22T10:30:00.000Z'
  *                    }
- *                 message: Product created successfully
+ *                 message: Product added successfully
  *    400:
  *      description: Bad request
  *      content:

@@ -3,52 +3,50 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
-    await queryInterface.bulkInsert(
-      'users',
-      [
-        {
-          name: 'Leo Messi',
-          email: 'leo@example.com',
-          gender: 'male',
-          birthdate: new Date(),
-          preferred_language: 'en',
-          preferred_currency: 'RF',
-          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
-          password: 'kunda123',
-          roleId: 1,
-          created_at: new Date(),
-          updated_at: new Date(),
-        },
-        {
-          name: 'Neymar Jr',
-          email: 'john@example.com',
-          gender: 'male',
-          birthdate: new Date(),
-          preferred_language: 'en',
-          preferred_currency: 'RF',
-          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
-          password: 'kunda123',
-          roleId: 2,
-          created_at: new Date(),
-          updated_at: new Date(),
-        },
-        {
-          name: 'Agnes Kunda',
-          email: 'kundaaggy@example.com',
-          gender: 'Female',
-          birthdate: new Date(),
-          preferred_language: 'en',
-          preferred_currency: 'RF',
-          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
-          password: 'kunda123',
-          roleId: 3,
-          created_at: new Date(),
-          updated_at: new Date(),
-        },
-      ],
-
-      {},
-    );
+    await queryInterface.bulkInsert('users', [
+      {
+        name: 'Leo Messi',
+        email: 'leo@example.com',
+        gender: 'male',
+        phone: '0788719400',
+        birthdate: new Date(),
+        preferred_language: 'en',
+        preferred_currency: 'RF',
+        billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+        password: 'kunda123',
+        roleId: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'Neymar Jr',
+        email: 'john@example.com',
+        gender: 'male',
+        phone: '0788719892',
+        birthdate: new Date(),
+        preferred_language: 'en',
+        preferred_currency: 'RF',
+        billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+        password: 'kunda123',
+        roleId: 2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'Agnes Kunda',
+        email: 'kundaaggy@example.com',
+        gender: 'Female',
+        phone: '0788719892',
+        birthdate: new Date(),
+        preferred_language: 'en',
+        preferred_currency: 'RF',
+        billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+        password: 'kunda123',
+        roleId: 3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ]);
 
     await queryInterface.bulkInsert(
       'carts',
@@ -74,9 +72,7 @@ module.exports = {
           price: '600$',
           quantity: '100',
           stock: 'In Stock',
-          carts_id: 1,
-          orders_id: 2,
-          wishlists_id: 2,
+          expiredAt: new Date(),
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -184,7 +180,7 @@ module.exports = {
     );
 
     await queryInterface.bulkInsert(
-      'RolePermissions',
+      'rolepermissions',
       [
         {
           roleId: 1,
@@ -209,11 +205,50 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'vendors',
+      [
+        {
+          id: '1',
+          fullName: 'NDAHAYO Bertin',
+          email: 'ndahayosibertin17@gmail.com',
+          password: 'NDABer123',
+          phoneNumber: '+250786949188',
+          businessName: 'ITH',
+          businessAddress: 'KN 48B ST',
+          businessPhoneNumber: '+250781346188',
+          businessEmail: 'ith.querries@gmail.com',
+          businessWebsite: 'https://www.ith.com',
+          businessDescription:
+            'We are the Number One Wholesale company of all IT related product in Rwanda',
+          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
+          productCategories: 'Computers, Phones, Printers, Phones, Accessories',
+          paymentMethods: 'MoMo, PayPal, VISA',
+          status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'orders',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 50,
+          status: 'Picking on Site',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
 
       {},
     );
   },
-
   async down(queryInterface) {
     // Add commands to revert seed here.
 
@@ -223,9 +258,10 @@ module.exports = {
     await queryInterface.bulkDelete('wishlists', null, {});
     await queryInterface.bulkDelete('categories', null, {});
     await queryInterface.bulkDelete('orders', null, {});
+    await queryInterface.bulkDelete('vendors', null, {});
     await queryInterface.bulkDelete('roles', null, {});
     await queryInterface.bulkDelete('permissions', null, {});
     await queryInterface.bulkDelete('userRoles', null, {});
-    await queryInterface.bulkDelete('RolePermissions', null, {});
+    await queryInterface.bulkDelete('rolepermissions', null, {});
   },
 };

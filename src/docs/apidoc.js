@@ -16,6 +16,7 @@ const options = {
           type: 'http',
           scheme: 'bearer',
           bearerFormat: 'JWT',
+          in: 'header',
         },
         cookieAuth: {
           type: 'apiKey',
@@ -45,8 +46,7 @@ const options = {
       description: 'Api server',
     },
   ],
-
-  apis: ['./src/docs/apiDocs/*.js'],
+  apis: ['./src/routes/*.js','./src/docs/apiDocs/*.js','./src/docs/vendors(22)/*'],
 };
 
 export default options;

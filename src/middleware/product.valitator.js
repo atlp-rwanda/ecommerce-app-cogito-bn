@@ -8,9 +8,7 @@ const validation = Joi.object({
   quantity: Joi.string(),
   stock: Joi.string(),
   category_id: Joi.number().integer(),
-  cart_id: Joi.number().integer(),
   vendor_id: Joi.number().integer(),
-  wishlists_id: Joi.number().integer(),
 });
 
 const productValidation = async (req, res, next) => {

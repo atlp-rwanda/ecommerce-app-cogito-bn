@@ -16,15 +16,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      orders_id: {
-        type: Sequelize.INTEGER,
-      },
-      wishlists_id: {
-        type: Sequelize.INTEGER,
-      },
-      carts_id: {
-        type: Sequelize.INTEGER,
-      },
       vendor_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -33,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       price: {
         type: Sequelize.STRING,
@@ -44,10 +35,6 @@ module.exports = {
       stock: {
         type: Sequelize.ENUM('In Stock', 'Out of Stock'),
         defaultValue: 'In Stock',
-      },
-      cloudinary_id: {
-        allowNull: true,
-        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
