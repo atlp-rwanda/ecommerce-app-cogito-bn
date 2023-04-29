@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      phone: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       birthdate: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -44,7 +48,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'active',
+      },
       confirmationCode: {
         type: Sequelize.INTEGER,
       },
