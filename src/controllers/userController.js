@@ -45,7 +45,7 @@ export async function loginUser(req, res) {
     message: 'Incorrect password',
   });
 }
-export async function createNewUser(req, res) {
+export async function createUser(req, res) {
   const {
  firstName, lastName, email, password, phone, role,
 } = req.body;
@@ -68,7 +68,7 @@ export async function createNewUser(req, res) {
     });
   }
   try {
-    const NewUser = await user.create({
+    const newUser = await user.create({
       firstName,
       lastName,
       email,
@@ -79,7 +79,7 @@ export async function createNewUser(req, res) {
     return res.status(201).json({
       status: 201,
       message: 'New user created successfully',
-      data: NewUser,
+      data: newUser,
     });
   } catch (err) {
     return res.status(500).json({

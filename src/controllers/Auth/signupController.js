@@ -12,16 +12,11 @@ const signUp = async (req, res) => {
   const confirmationCode = generateConfirmationCode();
   const emailRegex = /\S+@\S+\.\S+/;
   if (!emailRegex.test(email)) {
-    return Response.errorMessage(res, 'Invalid email address', httpStatus.BAD_REQUEST);
+    return res.status(400).json({ status: 400, message: req.t('invalidEmail') });
   }
   if (!password || password.length < 8) {
-    return Response.errorMessage(
-      res,
-      'Password must be at least 8 characters long',
-      httpStatus.BAD_REQUEST,
-    );
+    return res.status(400).json({ status: 400, message: req.t('passwordTooShort') });
   }
-
   try {
     const hashedPassword = await hashPassword(password);
     const existingUser = await user.findOne({ where: { email } });
@@ -54,7 +49,6 @@ const signUp = async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-
     const sendEmail = (option) => new Promise((resolve, reject) => {
       transporter.sendMail(option, (error, info) => {
         if (error) {
@@ -64,6 +58,21 @@ const signUp = async (req, res) => {
         }
       });
     });
+
+    (async () => {
+      try {
+        const info = await sendEmail(option);
+        console.log(`Email sent: ${email}`);
+        res.json({ status: 200, message: req.t('confirmEmailSent') });
+      } catch (error) {
+        console.error(error);
+
+        res.json({
+          status: 500,
+          message: req.t('failedToSendConfirmationEmail'),
+        });
+      }
+    })();
   } catch (error) {
     console.log(error);
     return res.status(500).json({ status: 500, message: req.t('failedToCreateUser') });

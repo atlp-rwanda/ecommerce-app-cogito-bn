@@ -13,9 +13,10 @@ module.exports = {
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
-          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kicukiro', 'Kigali', 'Rwanda'],
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
           password: 'kunda123',
           roleId: 1,
+          status: 'active',
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -34,14 +35,14 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          name: 'Leo',
-          email: 'leo@example.com',
-          gender: 'male',
+          name: 'Agnes Kunda',
+          email: 'kundaaggy@example.com',
+          gender: 'Female',
           birthdate: new Date(),
           preferred_language: 'en',
           preferred_currency: 'RF',
-          billing_address: ['KN 12 St, Kigali, Rwanda', 'Kacyiru', 'Kigali', 'Rwanda'],
-          password: 'leo123',
+          billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+          password: 'kunda123',
           roleId: 3,
           status: 'active',
           created_at: new Date(),
@@ -57,7 +58,7 @@ module.exports = {
       [
         {
           user_id: '1',
-          product_id: '5',
+          product_id: '1',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -226,7 +227,7 @@ module.exports = {
       [
         {
           name: 'Laptop',
-          product_id: 4,
+          product_id: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -254,6 +255,18 @@ module.exports = {
         {
           roleName: 'Admin',
           description: 'Managing users',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          roleName: 'Seller',
+          description: 'Managing Products',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          roleName: 'Buyer',
+          description: 'Able to buy',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -312,10 +325,10 @@ module.exports = {
     await queryInterface.bulkDelete('wishlists', null, {});
     await queryInterface.bulkDelete('categories', null, {});
     await queryInterface.bulkDelete('orders', null, {});
+    await queryInterface.bulkDelete('vendors', null, {});
     await queryInterface.bulkDelete('roles', null, {});
     await queryInterface.bulkDelete('permissions', null, {});
     await queryInterface.bulkDelete('userRoles', null, {});
-    await queryInterface.bulkDelete('vendors', null, {});
     await queryInterface.bulkDelete('rolepermissions', null, {});
   },
 };

@@ -1,12 +1,14 @@
 import express from 'express';
-import { createNewUser, loginUser } from '../controllers/userController';
+import { createUser, loginUser } from '../controllers/userController';
 import usersRouter from './API/user';
+import newUserValidation from '../middleware/newUser.validation';
 
+// Login route
+
+// Create a new user route
 const router = express.Router();
-
-router.use('/users', usersRouter);
-
-router.post('/register', createNewUser);
+router.post('/register', newUserValidation, createUser);
 router.post('/login', loginUser);
+router.use('/users', usersRouter);
 
 export default router;

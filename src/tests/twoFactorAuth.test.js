@@ -8,6 +8,7 @@ import app from '../index';
 
 const { expect } = chai;
 const should = chai.should();
+chai.should();
 chai.use(chaiHttp);
 dotenv.config({ path: '.env' });
 

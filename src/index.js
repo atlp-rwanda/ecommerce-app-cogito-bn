@@ -9,6 +9,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import userRouter from './routes/userrouters';
 import router from './routes/routes';
 import roleRoute from './routes/roleRoute';
 import productRoute from './routes/productRoute';
@@ -40,16 +41,6 @@ app.use(cookieParser());
 dotenv.config();
 const port = process.env.PORT;
 
-// const sequelize = new Sequelize(
-//   process.env.DATABASE,
-//   process.env.DATABASE_USERNAME,
-//   process.env.DATABASE_PASSWORD,
-//   {
-//     host: 'postgres',
-//     dialect: 'postgres',
-//   },
-// );
-
 app.use(express.json());
 const specs = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
@@ -59,21 +50,15 @@ app.use(facebookAuth);
 app.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 app.use('/profile', profileRouter);
 app.use(router);
-app.use('/', userRoute);
-app.use('/vendors', vendorRouter);
-app.use('/', roleRoute);
-app.use('/vendors', vendorRouter);
-app.use(router);
 app.use(userRouter);
 app.use('/profile', profileRouter);
 app.use('/', roleRoute);
 app.use('/', permissionRoute);
 app.use('/', productRoute);
+app.use('/vendors', vendorRouter);
 
 app.listen(port, async () => {
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
-  await sequelize.authenticate();
   console.log('Database Connected!');
+  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
 });
-
 export default app;

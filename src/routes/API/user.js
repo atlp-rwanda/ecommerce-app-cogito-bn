@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  createNewUser,
+  createUser,
   verify,
   sendOtp,
   loginUser,
@@ -9,10 +9,10 @@ import {
 import verifVendorJWT from '../../middleware/verifyJWT';
 
 const usersRouter = express.Router();
-usersRouter.post('/register', createNewUser);
+usersRouter.post('/register', createUser);
 usersRouter.post('/login', loginUser);
 // usersRouter.post('/verify', verifVendorJWT, verify);
 // usersRouter.get('/sendOtp', verifVendorJWT, sendOtp);
-// usersRouter.delete('/deleteUser', verifVendorJWT, deleteUser);
+// usersRouter.delete('/deleteUser', deleteUser);
 
 export default usersRouter;

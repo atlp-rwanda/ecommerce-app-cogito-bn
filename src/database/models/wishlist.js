@@ -13,17 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   wishlist.init(
     {
-      name: DataTypes.STRING,
       seller_id: DataTypes.INTEGER,
       user_id: DataTypes.STRING,
       product_id: DataTypes.STRING,
-      description: DataTypes.STRING,
-      image: DataTypes.STRING,
-      price: DataTypes.STRING,
-      quantity: DataTypes.STRING,
-      totalPrice: DataTypes.STRING,
-      stock: DataTypes.STRING,
-      Expire_Date: DataTypes.DATE,
+      date_added: DataTypes.STRING,
     },
     {
       sequelize,

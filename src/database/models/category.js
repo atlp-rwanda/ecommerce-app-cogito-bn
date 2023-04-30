@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-
   category.init(
     {
       name: DataTypes.STRING,
@@ -22,17 +21,5 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'category',
     },
   );
-
-  category.init(
-    {
-      name: DataTypes.STRING,
-      product_id: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: 'category',
-    },
-  );
-
   return category;
 };

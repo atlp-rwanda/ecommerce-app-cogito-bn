@@ -8,8 +8,9 @@ const isAdmin = async (req, res, next) => {
   }
   try {
     const decodedToken = JwtUtility.verifyToken(token);
+    const { id, roleId } = decodedToken.value;
     const User = await db.user.findOne({
-      where: { id: decodedToken.value.id },
+      where: { id },
     });
     if (User && decodedToken && roleId === 1) {
       next();
@@ -18,7 +19,7 @@ const isAdmin = async (req, res, next) => {
     }
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: req.t('unauthorised_message') });
+    res.status(500).json({ message: req.t('server_error_message') });
   }
 };
 const isSeller = async (req, res, next) => {
@@ -26,11 +27,13 @@ const isSeller = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: req.t('token_unexist_message') });
   }
-  const { id } = req.params;
   try {
     const decodedToken = JwtUtility.verifyToken(token);
-    const user = await db.user.findOne({ where: { id: decodedToken.va.id } });
-    if (user && decodedToken && decodedToken.roleId === 2) {
+    const { id, roleId } = decodedToken.value;
+    const User = await db.user.findOne({
+      where: { id },
+    });
+    if (User && decodedToken && roleId === 2) {
       next();
     } else {
       res.status(403).json({ message: req.t('unauthorised_message') });
@@ -45,11 +48,15 @@ const isBuyer = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: req.t('token_unexist_message') });
   }
-  const { id } = req.params;
+
   try {
     const decodedToken = JwtUtility.verifyToken(token);
-    const user = await db.user.findOne({ where: { id: decodedToken.value.id } });
-    if (user && decodedToken && decodedToken.roleId === 3) {
+    const { id, roleId } = decodedToken.value;
+    console.log(decodedToken);
+    const user = await db.user.findOne({
+      where: { id },
+    });
+    if (user && decodedToken && roleId === 3) {
       next();
     } else {
       res.status(403).json({ message: req.t('unauthorised_message') });
