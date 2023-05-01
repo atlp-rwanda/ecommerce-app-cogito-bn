@@ -72,13 +72,29 @@ export async function createUser(req, res) {
     name,
     email,
     password,
+    phone,
     roleId,
     gender,
     birthdate,
-    preferredLanguage,
-    preferredCurrency,
-    billingAddress,
+    preferred_language,
+    preferred_currency,
   } = req.body;
+  if (
+    !name
+    || !email
+    || !password
+    || !phone
+    || !roleId
+    || !gender
+    || !birthdate
+    || !preferred_language
+    || !preferred_currency
+  ) {
+    return res.status(400).json({
+      status: 400,
+      message: req.t('provide_all_details_signup'),
+    });
+  }
 
   const emailExists = await user.findOne({
     where: {
@@ -98,12 +114,12 @@ export async function createUser(req, res) {
       name,
       email,
       gender,
-      birthdate,
-      preferredLanguage,
-      preferredCurrency,
-      billingAddress,
-      roleId,
+      phone,
       password,
+      birthdate,
+      preferred_language,
+      preferred_currency,
+      roleId,
     });
 
     delete newUser.dataValues.password;
@@ -125,6 +141,7 @@ export async function createUser(req, res) {
 export async function sendOtp(req, res) {
   const userDetails = decodeJWT(req.headers.authorization);
   // const { id } = req.body;
+  console.log('userdetails', userDetails);
   const User = await user.findOne({
     where: {
       id: userDetails.id,
@@ -169,6 +186,7 @@ export async function sendOtp(req, res) {
       });
     }
   });
+
   const encodedOTP = Buffer.from(hashedOTP).toString('base64');
 
   delete User.dataValues.password;

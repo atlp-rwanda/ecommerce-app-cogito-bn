@@ -120,6 +120,7 @@ module.exports = {
         name: 'Jean Bertin',
         email: emailOne,
         gender,
+        phone: '0781345255',
         birthdate,
         preferred_language: 'en',
         preferred_currency: 'RF',
