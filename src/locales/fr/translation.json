@@ -1,55 +1,49 @@
 {
-    "welcome_message": "Bienvenue dans l'API de l'application Ecommerce de Cogito",
-
-    "unauthorized_msg": "Interdit",
-
-    "getAllVendors_200_msg": "Tous les fournisseurs ont été récupérés avec succès de la base de données.",
-    "getAllVendors_500_msg": "Erreur lors de la récupération du fournisseur à partir de la base de données.",
-
-    "registerVendor_400_msg": "Erreur de validation de saisie.",
-    "registerVendor_409_msg": "Le fournisseur avec cet e-mail existe déjà.",
-    "registerVendor_validation_001_msg": "Veuillez entrer tous les détails.",
-    "registerVendor_500_001_msg": "Erreur lors de l'envoi d'un e-mail au fournisseur nouvellement enregistré.",
-    "registerVendor_201_msg": "Un nouveau fournisseur a été créé avec succès.",
-    "registerVendor_500_002_msg": "Impossible de créer un nouveau fournisseur.",
-
-    "findVendorByID_404_msg": "Fournisseur introuvable !! ID: ",
-    "findVendorByID_200_msg": "Fournisseur récupéré avec succès avec l'ID : ",
-    "findVendorByID_500_msg": "Impossible de récupérer le fournisseur avec l'ID : ",
-
-    "updateVendor_404_msg": "Fournisseur introuvable !! ID: ",
-    "updateVendor_200_msg": "Fournisseur mis à jour avec succès avec l'ID : ",
-    "updateVendor_500_msg": "Impossible de mettre à jour le fournisseur avec l'ID : ",
-
-    "deleteVendor_404_msg": "Fournisseur introuvable !! ID: ",
-    "deleteVendor_200_msg": "Fournisseur supprimé avec succès avec l'ID : ",
-    "deleteVendor_500_msg": "Impossible de supprimer le fournisseur avec l'ID : ",
-
-    "vendorLogin_400_msg": "Erreur de validation de saisie",
-    "vendorLogin_401_001_msg": "E-mail invalide, enregistrez-vous d'abord auprès de l'équipe Cogito",
-    "vendorLogin_401_002_msg": "E-mail ou mot de passe invalide",
-    "vendorLogin_200_msg": "Vous êtes connecté avec succès !!",
-    "vendorLogin_500_msg": "Erreur du serveur - Échec de la connexion du fournisseur.",
-
-    "getAllUsers_200_msg": "Tous les utilisateurs ont été récupérés avec succès de la base de données.",
-    "getAllUsers_500_msg": "Erreur lors de la récupération de l'utilisateur à partir de la base de données.",
-
-    "UserLogin_400_msg": "Erreur de validation de saisie",
-    "UserLogin_401_001_msg": "E-mail invalide, enregistrez-vous d'abord auprès de l'équipe Cogito",
-    "UserLogin_401_002_msg": "E-mail ou mot de passe invalide",
-    "UserLogin_200_msg": "Vous êtes connecté avec succès !!",
-    "UserLogin_500_msg": "Erreur du serveur - Échec de la connexion de l'utilisateur.",
-    
-    "registerUsers_409_msg": "Des utilisateurs avec cet e-mail existent déjà.",
-    "registerUsers_201_msg": "Un nouvel utilisateur a été créé avec succès.",
-    "registerUsers_500_msg": "Impossible de créer un nouvel utilisateur.",
-  
   "welcome_message": "Bienvenue dans l'API de l'application Ecommerce de Cogito",
-  "disactivated": "votre statut a été désactivé",
-  "retrieved_all": "tous les utilisateurs récupérés",
-  "retrieved": "utilisateur récupéré",
-  "update_status": "statut mis à jour avec succès",
-  "welcome_message": "Bienvenue sur l'API d'application de commerce électronique de Cogito",
+
+  "unauthorized_msg": "Interdit",
+
+  "getAllVendors_200_msg": "Tous les fournisseurs ont été récupérés avec succès de la base de données.",
+  "getAllVendors_500_msg": "Erreur lors de la récupération du fournisseur à partir de la base de données.",
+
+  "registerVendor_400_msg": "Erreur de validation de saisie.",
+  "registerVendor_409_msg": "Le fournisseur avec cet e-mail existe déjà.",
+  "registerVendor_validation_001_msg": "Veuillez entrer tous les détails.",
+  "registerVendor_500_001_msg": "Erreur lors de l'envoi d'un e-mail au fournisseur nouvellement enregistré.",
+  "registerVendor_201_msg": "Un nouveau fournisseur a été créé avec succès.",
+  "registerVendor_500_002_msg": "Impossible de créer un nouveau fournisseur.",
+
+  "findVendorByID_404_msg": "Fournisseur introuvable !! ID: ",
+  "findVendorByID_200_msg": "Fournisseur récupéré avec succès avec l'ID : ",
+  "findVendorByID_500_msg": "Impossible de récupérer le fournisseur avec l'ID : ",
+
+  "updateVendor_404_msg": "Fournisseur introuvable !! ID: ",
+  "updateVendor_200_msg": "Fournisseur mis à jour avec succès avec l'ID : ",
+  "updateVendor_500_msg": "Impossible de mettre à jour le fournisseur avec l'ID : ",
+
+  "deleteVendor_404_msg": "Fournisseur introuvable !! ID: ",
+  "deleteVendor_200_msg": "Fournisseur supprimé avec succès avec l'ID : ",
+  "deleteVendor_500_msg": "Impossible de supprimer le fournisseur avec l'ID : ",
+
+  "vendorLogin_400_msg": "Erreur de validation de saisie",
+  "vendorLogin_401_001_msg": "E-mail invalide, enregistrez-vous d'abord auprès de l'équipe Cogito",
+  "vendorLogin_401_002_msg": "E-mail ou mot de passe invalide",
+  "vendorLogin_200_msg": "Vous êtes connecté avec succès !!",
+  "vendorLogin_500_msg": "Erreur du serveur - Échec de la connexion du fournisseur.",
+
+  "getAllUsers_200_msg": "Tous les utilisateurs ont été récupérés avec succès de la base de données.",
+  "getAllUsers_500_msg": "Erreur lors de la récupération de l'utilisateur à partir de la base de données.",
+
+  "UserLogin_400_msg": "Erreur de validation de saisie",
+  "UserLogin_401_001_msg": "E-mail invalide, enregistrez-vous d'abord auprès de l'équipe Cogito",
+  "UserLogin_401_002_msg": "E-mail ou mot de passe invalide",
+  "UserLogin_200_msg": "Vous êtes connecté avec succès !!",
+  "UserLogin_500_msg": "Erreur du serveur - Échec de la connexion de l'utilisateur.",
+  
+  "registerUsers_409_msg": "Des utilisateurs avec cet e-mail existent déjà.",
+  "registerUsers_201_msg": "Un nouvel utilisateur a été créé avec succès.",
+  "registerUsers_500_msg": "Impossible de créer un nouvel utilisateur.",
+
   "key": "traduction",
   "defaultFirstName": "Jean",
   "defaultLastName": "Dupont",
@@ -108,5 +102,29 @@
   "disactivated": "votre statut a été désactivé",
   "retrieved_all": "tous les utilisateurs récupérés",
   "retrieved": "utilisateur récupéré",
-  "update_status": "statut mis à jour avec succès"
+  "update_status": "statut mis à jour avec succès",
+
+  "getAllproducts_403_msg": "Interdit",
+  "getAllproducts_200_msg": "Tous les produits ont été récupérés avec succès depuis la base de données",
+  "getAllproducts_500_msg": "Erreur lors de la récupération des produits depuis la base de données",
+  "registerProduct_403_msg": "Interdit",
+  "registerProduct_409_msg": "Le produit a déjà été enregistré",
+  "registerProduct_201_msg": "Produit enregistré avec succès",
+  "registerProduct_500_msg": "Échec de l'enregistrement du produit",
+  "findproductByID_403_msg": "Interdit",
+  "findproductByID_404_msg": "Produit non trouvé",
+  "findproductByID_200_msg": "Produit trouvé avec l'identifiant: ",
+  "findproductByID_500_msg": "Erreur lors de la recherche d'un produit",
+  "updateproduct_403_msg": "Interdit",
+  "updateproduct_404_msg": "Le produit n'a pas été trouvé",
+  "updateproduct_200_msg": "Produit mis à jour avec succès",
+  "updateproduct_500_msg": "Échec de la mise à jour du produit",
+  "deleteproduct_403_msg": "Interdit",
+  "deleteproduct_404_msg": "Produit non trouvé!!",
+  "deleteproduct_200_msg": "Produit supprimé avec succès!",
+  "deleteproduct_500_msg": "Échec de la suppression du produit",
+  "getRecommendedProducts_403_msg": "Interdit",
+  "getRecommendedProducts_404_msg": "L'utilisateur n'a pas été trouvé",
+  "getRecommendedProducts_200_msg": "Les produits recommandés ont été récupérés avec succès!!",
+  "getRecommendedProducts_500_msg": "Erreur lors de la récupération des produits recommandés"
 }

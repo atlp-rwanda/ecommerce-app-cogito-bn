@@ -1,27 +1,8 @@
-import express from 'express';
 import dotenv from 'dotenv';
-import i18next from 'i18next';
-import Backend from 'i18next-fs-backend';
-import i18nextMiddleware from 'i18next-http-middleware';
 import { Op } from 'sequelize';
 import { product, productViews, user } from '../../database/models';
 
 dotenv.config();
-
-const app = express();
-app.use(express.urlencoded({ extended: false }));
-app.use(i18nextMiddleware.handle(i18next));
-i18next
-  .use(Backend)
-  .use(i18nextMiddleware.LanguageDetector)
-  .init({
-    backend: {
-      loadPath: '././src/locales/{{lng}}/{{ns}}.json',
-    },
-    fallbackLng: 'en',
-    preload: ['en', 'fr'],
-  });
-app.use(express.urlencoded({ extended: false }));
 
 // all products endpoint are to be acccessed by only admin users.
 // function to get all products registered in cogito ecommerce.
@@ -35,15 +16,15 @@ export const getAllproducts = async (req, res) => {
       });
     }
     const products = await product.findAll();
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
-      message: req.t('Successfully retrieved all the products from the database'),
+      message: req.t('getAllproducts_200_msg'),
       response: products,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      message: req.t('Error in retrieving products form the database'),
+      message: req.t('getAllproducts_500_msg'),
       Error: error.message,
     });
   }
@@ -65,19 +46,19 @@ export const registerProduct = async (req, res) => {
     if (productCheck) {
       return res
         .status(409)
-        .json({ success: false, message: req.t('Product was already registered') });
+        .json({ success: false, message: req.t('registerProduct_409_msg') });
     }
     const newProduct = await product.create(req.body);
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
-      message: req.t('Product Registerd Successfully'),
+      message: req.t('registerProduct_201_msg'),
       response: newProduct,
     });
   } catch (error) {
     console.log(error);
-    res
+    return res
       .status(500)
-      .json({ success: false, message: req.t('Product Registration failed'), Error: error });
+      .json({ success: false, message: req.t('registerProduct_500_msg'), Error: error });
   }
 };
 // function to get product by ID.
@@ -92,24 +73,24 @@ export const findproductByID = async (req, res) => {
     }
     const products = await product.findByPk(req.params.id);
     if (products === null) {
-      res
+      return res
         .status(404)
-        .json({ success: false, message: `${req.t('Product Not Found')} ${req.params.id}` });
+        .json({ success: false, message: `${req.t('findproductByID_404_msg')} ${req.params.id}` });
     }
     // Saving the viewed products id and the id of the user who viewed it
     await productViews.create({
       productId: req.params.id,
       buyerId: authenticatedBuyer.id,
     });
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
-      message: `${req.t('Product Was Found with ID: ')} ${req.params.id} `,
+      message: `${req.t('findproductByID_200_msg')} ${req.params.id} `,
       response: products,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      message: `${req.t('Error in finding a product')} ${req.params.id}.`,
+      message: `${req.t('findproductByID_500_msg')} ${req.params.id}.`,
       Error: error.message,
     });
   }
@@ -132,19 +113,19 @@ export const updateproduct = async (req, res) => {
       },
     });
     if (products === null) {
-      res
+      return res
         .status(404)
-        .json({ success: false, message: `${req.t('Product was not found ')} ${req.params.id} ` });
+        .json({ success: false, message: `${req.t('updateproduct_404_msg')}` });
     }
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
-      message: `${req.t('Updated product succesfully ')} ${req.params.id}`,
+      message: `${req.t('updateproduct_200_msg')}`,
       response: products,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      message: `${req.t('Update product Error')} ${req.params.id}`,
+      message: `${req.t('updateproduct_500_msg')}`,
       Error: error.message,
     });
   }
@@ -166,17 +147,17 @@ export const deleteproduct = async (req, res) => {
       },
     });
     if (products === null) {
-      res.status(404).json({ success: false, message: req.t('Not Found!! ') });
+      return res.status(404).json({ success: false, message: req.t('deleteproduct_404_msg') });
     }
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
-      message: `${req.t('Deleted Successfully! ')} ${req.params.id}`,
+      message: `${req.t('deleteproduct_200_msg')}`,
       response: products,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      message: `${req.t('Delete product Error ')} ${req.params.id}`,
+      message: `${req.t('deleteproduct_500_msg')} ${req.params.id}`,
       Error: error.message,
     });
   }
@@ -242,21 +223,21 @@ export const RecommendedProduct = async (req, res) => {
     if (checkUserId === null) {
       return res
         .status(404)
-        .json({ success: false, message: `${req.t('User was  Not Found ')}` });
+        .json({ success: false, message: `${req.t('getRecommendedProducts_404_msg')}` });
     }
     const buyerId = req.params.id;
     const recommendedProducts = await getRecommendedProducts(buyerId);
     const countNumber = recommendedProducts.length;
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
-      message: `${req.t('Recommended products were retrieved successfully!!')}`,
+      message: `${req.t('getRecommendedProducts_200_msg')}`,
       count: `Number of Recommended Products: ${countNumber}`,
       response: recommendedProducts,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      message: `${req.t(' Error in retrieving the recommended products ')}`,
+      message: `${req.t('getRecommendedProducts_500_msg')}`,
       Error: error.message,
     });
   }

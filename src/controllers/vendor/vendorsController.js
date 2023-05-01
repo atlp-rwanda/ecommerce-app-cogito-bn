@@ -1,9 +1,5 @@
-import express from 'express';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
-import i18next from 'i18next';
-import Backend from 'i18next-fs-backend';
-import i18nextMiddleware from 'i18next-http-middleware';
 import { vendors } from '../../database/models';
 import {
   validateVendorRegistration,
@@ -13,20 +9,6 @@ import vendorSignAccessToken from '../../middleware/vendor/vendorJWT';
 import sendEmail from '../../middleware/vendor/vendorSendMail';
 
 dotenv.config();
-
-const app = express();
-app.use(express.urlencoded({ extended: false }));
-app.use(i18nextMiddleware.handle(i18next));
-i18next
-  .use(Backend)
-  .use(i18nextMiddleware.LanguageDetector)
-  .init({
-    backend: {
-      loadPath: '././src/locales/{{lng}}/{{ns}}.json',
-    },
-    fallbackLng: 'en',
-    preload: ['en', 'fr'],
-  });
 // all vendors endpoint are to be acccessed by only admin users.
 // function to get all vendors registered in cogito ecommerce.
 export const getAllVendors = async (req, res) => {
@@ -39,13 +21,13 @@ export const getAllVendors = async (req, res) => {
       });
     }
     const vendor = await vendors.findAll();
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: req.t('getAllVendors_200_msg'),
       response: vendor,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: req.t('getAllVendors_500_msg'),
       Error: error.message,
@@ -85,11 +67,6 @@ export const registerVendor = async (req, res) => {
     const emailMessage = `Dear ${req.body.fullName},\n\nWelcome to Cogito! We are excited to have you as a new vendor. Your business information has been successfully saved in our system.\n\nHere is the information you provided:\n\nFull Name: ${req.body.fullName}\nBusiness Name: ${req.body.businessName}\nBusiness Address: ${req.body.businessAddress}\nBusiness Phone Number: ${req.body.businessPhoneNumber}\nBusiness Email: ${req.body.businessEmail}\nBusiness Website: ${req.body.businessWebsite}\nBusiness Description: ${req.body.businessDescription}\nProduct Categories: ${req.body.productCategories}\nPayment Methods: ${req.body.paymentMethods}\nRandom Password: ${req.body.password}, You can change this password only after login to our site.\n Login Here:\t http://localhost:9090/vendors/login \n\nThank you for choosing Cogito!\n\nBest regards,\nThe Cogito Team`;
     const emailResult = await sendEmail(recipientEmail, emailSubject, emailMessage);
     if (emailResult.success) {
-      res.status(201).json({
-        success: true,
-        message: req.t('registerVendor_201_msg'),
-        response: req.body,
-      });
       // Storing the vendors info only after the email was sent too the newly registered vendors.
       await vendors.create({
         fullName: req.body.fullName,
@@ -107,13 +84,17 @@ export const registerVendor = async (req, res) => {
         paymentMethods: req.body.paymentMethods,
         status: req.body.status,
       });
-    } else {
-      res.status(500).json({
-        success: false,
-        message: req.t('registerVendor_500_001_msg'),
-        Error: emailResult.error,
+      return res.status(201).json({
+        success: true,
+        message: req.t('registerVendor_201_msg'),
+        response: req.body,
       });
     }
+    return res.status(500).json({
+      success: false,
+      message: req.t('registerVendor_500_001_msg'),
+      Error: emailResult.error,
+    });
   } catch (error) {
     res
       .status(500)
@@ -136,13 +117,13 @@ export const findVendorByID = async (req, res) => {
         .status(404)
         .json({ success: false, message: `${req.t('findVendorByID_404_msg')} ${req.params.id}` });
     }
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: `${req.t('findVendorByID_200_msg')} ${req.params.id} `,
       response: vendor,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: `${req.t('findVendorByID_500_msg')} ${req.params.id}.`,
       Error: error.message,
@@ -172,13 +153,13 @@ export const updateVendor = async (req, res) => {
         .status(404)
         .json({ success: false, message: `${req.t('updateVendor_404_msg')} ${req.params.id} ` });
     }
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: `${req.t('updateVendor_200_msg')} ${req.params.id}`,
       response: vendor,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: `${req.t('updateVendor_500_msg')} ${req.params.id}`,
       Error: error.message,
@@ -202,9 +183,9 @@ export const deleteVendor = async (req, res) => {
       },
     });
     if (vendor === null) {
-      res.status(404).json({ success: false, message: req.t('deleteVendor_404_msg') });
+      return res.status(404).json({ success: false, message: req.t('deleteVendor_404_msg') });
     }
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: `${req.t('deleteVendor_200_msg')} ${req.params.id}`,
       response: vendor,
@@ -248,6 +229,8 @@ export const vendorLogin = async (req, res) => {
         token: vendorLoginToken,
       });
   } catch (error) {
-    res.status(500).json({ success: false, message: req.t('vendorLogin_500_msg'), Error: error });
+    return res
+      .status(500)
+      .json({ success: false, message: req.t('vendorLogin_500_msg'), Error: error });
   }
 };
