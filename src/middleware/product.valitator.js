@@ -1,14 +1,14 @@
 import Joi from 'joi';
 
 const validation = Joi.object({
-  name: Joi.string(),
-  description: Joi.string(),
-  price: Joi.string(),
-  image: Joi.string(),
+  name: Joi.string().required(),
+  description: Joi.string().required(),
+  price: Joi.string().required(),
+  image: Joi.array().items(Joi.string()).min(4).max(8),
   quantity: Joi.string(),
   stock: Joi.string(),
   category_id: Joi.number().integer(),
-  vendor_id: Joi.number().integer(),
+  expiredAt: Joi.date(),
 });
 
 const productValidation = async (req, res, next) => {

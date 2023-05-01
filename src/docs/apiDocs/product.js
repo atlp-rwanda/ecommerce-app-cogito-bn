@@ -2,7 +2,7 @@
  * @swagger
  * tags:
  *  name: Product
- *  description: seller adding product
+ *  description: Seller adding product
  * /products/add:
  *  post:
  *   security:
@@ -26,71 +26,60 @@
  *               type: string
  *             description:
  *               type: string
- *             image1:
- *               type: string
- *               format: binary
- *               Description: image 1
- *             image2:
- *               type: string
- *               format: binary
- *               Description: image 2
- *             image3:
- *               type: string
- *               format: binary
- *               Description: image 3
- *             image4:
- *               type: string
- *               format: binary
- *               Description: image 4
+ *             image:
+ *               type: array
+ *               items:
+ *                 type: string
+ *                 format: binary
  *             price:
  *               type: string
  *             quantity:
  *               type: string
  *             stock:
  *               type: string
- *             categoryId:
+ *             category_id:
  *               type: integer
- *             expiryDate:
- *               type: date
+ *             expiredAt:
+ *               type: string
+ *               format: date-time
  *           example:
  *             name: Laptop
  *             description: MacBook Pro
- *             image: imge
+ *             images:
+ *               - binary_image_data_1
+ *               - binary_image_data_2
  *             price: 600$
  *             quantity: 1
  *             stock: In Stock
  *             category_id: 1
- *             vendor_id: 1
  *             expiryDate: '2030-04-22T10:30:00.000Z'
  *   responses:
  *    201:
- *      description: product created successfully
+ *      description: Product created successfully
  *      content:
  *        application/json:
  *          schema:
  *            type: object
  *            properties:
- *                status:
- *                  type: integer
- *                data:
- *                  type: object
- *                message:
- *                  type: string
+ *              status:
+ *                type: integer
+ *              data:
+ *                type: object
+ *              message:
+ *                type: string
  *            example:
- *                 status: 201
- *                 data:
- *                    {
- *                         id: 1,
- *                         name: Laptop,
- *                         description: MacBook Pro,
- *                         image: image,
- *                         price: 600$,
- *                         stock: In Stock,
- *                         expiredAt: '2030-04-22T10:30:00.000Z',
- *                         createdAt: '2023-04-22T10:30:00.000Z',
- *                         updatedAt: '2023-04-22T10:30:00.000Z'
- *                    }
- *                 message: Product added successfully
+ *              status: 201
+ *              data:
+ *                id: 1
+ *                name: Laptop
+ *                description: MacBook Pro
+ *                image: image
+ *                price: 600$
+ *                stock: In Stock
+ *                expiredAt: '2030-04-22T10:30:00.000Z'
+ *                createdAt: '2023-04-22T10:30:00.000Z'
+ *                updatedAt: '2023-04-22T10:30:00.000Z'
+ *              message: Product added successfully
  *    400:
  *      description: Bad request
  *      content:
@@ -98,14 +87,14 @@
  *          schema:
  *            type: object
  *            properties:
- *                data:
- *                  type: object
- *                status:
- *                  type: integer
- *                message:
- *                  type: string
+ *              data:
+ *                type: object
+ *              status:
+ *                type: integer
+ *              message:
+ *                type: string
  *            example:
- *                 data: {}
- *                 status: 400
- *                 message: Bad request
+ *              data: {}
+ *              status: 400
+ *              message: Bad request
  */

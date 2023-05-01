@@ -1,15 +1,14 @@
 /* eslint-disable camelcase */
 import { product } from '../../database/models';
-import catchAsync from '../../utils/catchAsync';
 import CloudUpload from '../../utils/cloudinary/cloudinary';
 
-const createNewProduct = catchAsync(async (req, res) => {
+const createNewProduct = async (req, res) => {
   const {
-    name, description, price, quantity, stock, category_id, id,
+    name, description, price, quantity, stock, category_id, expiryDate,
   } = req.body;
+  const id = req.vendor;
   try {
     const images = await CloudUpload.multi(req.files);
-    // console.log(images);
 
     const newItem = await product.create({
       name,
@@ -20,10 +19,11 @@ const createNewProduct = catchAsync(async (req, res) => {
       stock,
       category_id,
       vendor_id: id,
+      expiredAt: expiryDate,
     });
 
     // Return a success response to the client
-    return res.status(201).json({
+    res.status(201).json({
       status: 201,
       data: newItem,
       message: `${newItem.name} ${req.t('is_added')}`,
@@ -31,5 +31,5 @@ const createNewProduct = catchAsync(async (req, res) => {
   } catch (err) {
     console.log(err.message);
   }
-});
+};
 export default createNewProduct;

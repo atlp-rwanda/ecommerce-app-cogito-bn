@@ -21,7 +21,7 @@ export default class CloudUpload {
     const results = [];
     for (const file of files) {
       const newPath = await this.single(file);
-      results.push(newPath);
+      results.push(newPath.secure_url);
     }
     return results;
   }

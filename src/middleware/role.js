@@ -35,6 +35,7 @@ const isSeller = async (req, res, next) => {
       where: { id },
     });
     if (User && decodedToken && roleId === 2) {
+      req.vendor = id;
       next();
     } else {
       res.status(403).json({ message: req.t('unauthorised_message') });
