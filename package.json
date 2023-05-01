@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "make-model": "npx sequelize-cli model:generate --name users --attributes firstName:string,lastName:string,email:string, password:string, role:string",
+    "lint": "eslint",
+    "make-model": "npx sequelize-cli model:generate --name",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
     "seed-down": "npx sequelize-cli db:seed:undo:all",
