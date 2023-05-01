@@ -75,10 +75,27 @@ export async function createUser(req, res) {
     roleId,
     gender,
     birthdate,
-    preferredLanguage,
-    preferredCurrency,
     billingAddress,
+    phone,
+    preferred_language,
+    preferred_currency,
   } = req.body;
+  if (
+    !name
+    || !email
+    || !password
+    || !phone
+    || !roleId
+    || !gender
+    || !birthdate
+    || !preferred_language
+    || !preferred_currency
+  ) {
+    return res.status(400).json({
+      status: 400,
+      message: req.t('provide_all_details_signup'),
+    });
+  }
 
   const emailExists = await user.findOne({
     where: {
@@ -99,11 +116,12 @@ export async function createUser(req, res) {
       email,
       gender,
       birthdate,
-      preferredLanguage,
-      preferredCurrency,
       billingAddress,
       roleId,
       password,
+      phone,
+      preferred_language,
+      preferred_currency,
     });
 
     delete newUser.dataValues.password;
@@ -169,6 +187,7 @@ export async function sendOtp(req, res) {
       });
     }
   });
+
   const encodedOTP = Buffer.from(hashedOTP).toString('base64');
 
   delete User.dataValues.password;
