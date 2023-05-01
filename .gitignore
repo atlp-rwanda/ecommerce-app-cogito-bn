@@ -1,3 +1,4 @@
 .env
 node_modules
 src/routes/vendor/userRoutesV.js
+src/tests/twoFactorAuth.test.js

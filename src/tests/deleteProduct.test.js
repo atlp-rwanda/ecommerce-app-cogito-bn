@@ -16,7 +16,7 @@ describe('Product API', function () {
 
   describe('DELETE /product/{id}', () => {
     it('should delete a specific product', (done) => {
-      const productId = '12';
+      const productId = '5';
       chai
         .request(app)
         .delete(`/product/${productId}`)
