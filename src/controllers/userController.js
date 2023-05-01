@@ -72,10 +72,11 @@ export async function createUser(req, res) {
     name,
     email,
     password,
-    phone,
     roleId,
     gender,
     birthdate,
+    billingAddress,
+    phone,
     preferred_language,
     preferred_currency,
   } = req.body;
@@ -114,12 +115,13 @@ export async function createUser(req, res) {
       name,
       email,
       gender,
-      phone,
-      password,
       birthdate,
+      billingAddress,
+      roleId,
+      password,
+      phone,
       preferred_language,
       preferred_currency,
-      roleId,
     });
 
     delete newUser.dataValues.password;
@@ -141,7 +143,6 @@ export async function createUser(req, res) {
 export async function sendOtp(req, res) {
   const userDetails = decodeJWT(req.headers.authorization);
   // const { id } = req.body;
-  console.log('userdetails', userDetails);
   const User = await user.findOne({
     where: {
       id: userDetails.id,

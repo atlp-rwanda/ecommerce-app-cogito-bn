@@ -11,19 +11,19 @@ export const getAllproducts = async (req, res) => {
     const { authenticatedBuyer } = req;
     if (!authenticatedBuyer) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
     const products = await product.findAll();
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: req.t('getAllproducts_200_msg'),
       response: products,
     });
   } catch (error) {
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: req.t('getAllproducts_500_msg'),
       Error: error.message,
     });
@@ -34,7 +34,7 @@ export const registerProduct = async (req, res) => {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
@@ -46,11 +46,11 @@ export const registerProduct = async (req, res) => {
     if (productCheck) {
       return res
         .status(409)
-        .json({ success: false, message: req.t('registerProduct_409_msg') });
+        .json({ status: 409, message: req.t('registerProduct_409_msg') });
     }
     const newProduct = await product.create(req.body);
     return res.status(201).json({
-      success: true,
+      status: 201,
       message: req.t('registerProduct_201_msg'),
       response: newProduct,
     });
@@ -58,7 +58,7 @@ export const registerProduct = async (req, res) => {
     console.log(error);
     return res
       .status(500)
-      .json({ success: false, message: req.t('registerProduct_500_msg'), Error: error });
+      .json({ status: 500, message: req.t('registerProduct_500_msg'), Error: error });
   }
 };
 // function to get product by ID.
@@ -67,7 +67,7 @@ export const findproductByID = async (req, res) => {
     const { authenticatedBuyer } = req;
     if (!authenticatedBuyer) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
@@ -75,7 +75,7 @@ export const findproductByID = async (req, res) => {
     if (products === null) {
       return res
         .status(404)
-        .json({ success: false, message: `${req.t('findproductByID_404_msg')} ${req.params.id}` });
+        .json({ status: 404, message: `${req.t('findproductByID_404_msg')} ${req.params.id}` });
     }
     // Saving the viewed products id and the id of the user who viewed it
     await productViews.create({
@@ -83,13 +83,13 @@ export const findproductByID = async (req, res) => {
       buyerId: authenticatedBuyer.id,
     });
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: `${req.t('findproductByID_200_msg')} ${req.params.id} `,
       response: products,
     });
   } catch (error) {
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: `${req.t('findproductByID_500_msg')} ${req.params.id}.`,
       Error: error.message,
     });
@@ -101,7 +101,7 @@ export const updateproduct = async (req, res) => {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
@@ -115,16 +115,16 @@ export const updateproduct = async (req, res) => {
     if (products === null) {
       return res
         .status(404)
-        .json({ success: false, message: `${req.t('updateproduct_404_msg')}` });
+        .json({ status: 404, message: `${req.t('updateproduct_404_msg')}` });
     }
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: `${req.t('updateproduct_200_msg')}`,
       response: products,
     });
   } catch (error) {
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: `${req.t('updateproduct_500_msg')}`,
       Error: error.message,
     });
@@ -136,7 +136,7 @@ export const deleteproduct = async (req, res) => {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
@@ -147,16 +147,16 @@ export const deleteproduct = async (req, res) => {
       },
     });
     if (products === null) {
-      return res.status(404).json({ success: false, message: req.t('deleteproduct_404_msg') });
+      return res.status(404).json({ status: 404, message: req.t('deleteproduct_404_msg') });
     }
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: `${req.t('deleteproduct_200_msg')}`,
       response: products,
     });
   } catch (error) {
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: `${req.t('deleteproduct_500_msg')} ${req.params.id}`,
       Error: error.message,
     });
@@ -215,7 +215,7 @@ export const RecommendedProduct = async (req, res) => {
     const { authenticatedBuyer } = req;
     if (!authenticatedBuyer) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
@@ -223,20 +223,20 @@ export const RecommendedProduct = async (req, res) => {
     if (checkUserId === null) {
       return res
         .status(404)
-        .json({ success: false, message: `${req.t('getRecommendedProducts_404_msg')}` });
+        .json({ status: 404, message: `${req.t('getRecommendedProducts_404_msg')}` });
     }
     const buyerId = req.params.id;
     const recommendedProducts = await getRecommendedProducts(buyerId);
     const countNumber = recommendedProducts.length;
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: `${req.t('getRecommendedProducts_200_msg')}`,
       count: `Number of Recommended Products: ${countNumber}`,
       response: recommendedProducts,
     });
   } catch (error) {
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: `${req.t('getRecommendedProducts_500_msg')}`,
       Error: error.message,
     });

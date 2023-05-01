@@ -16,19 +16,19 @@ export const getAllVendors = async (req, res) => {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
     const vendor = await vendors.findAll();
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: req.t('getAllVendors_200_msg'),
       response: vendor,
     });
   } catch (error) {
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: req.t('getAllVendors_500_msg'),
       Error: error.message,
     });
@@ -40,14 +40,14 @@ export const registerVendor = async (req, res) => {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
     const { error } = validateVendorRegistration(req.body);
     if (error) {
       return res.status(400).json({
-        success: false,
+        status: 400,
         message: req.t('registerVendor_400_msg'),
         Error: error.details[0].message,
       });
@@ -58,7 +58,7 @@ export const registerVendor = async (req, res) => {
       },
     });
     if (vendorEmail) {
-      return res.status(409).json({ success: false, message: req.t('registerVendor_409_msg') });
+      return res.status(409).json({ status: 409, message: req.t('registerVendor_409_msg') });
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     // function that sends welcome email to the newly registered vendors
@@ -85,20 +85,20 @@ export const registerVendor = async (req, res) => {
         status: req.body.status,
       });
       return res.status(201).json({
-        success: true,
+        status: 201,
         message: req.t('registerVendor_201_msg'),
         response: req.body,
       });
     }
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: req.t('registerVendor_500_001_msg'),
       Error: emailResult.error,
     });
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: req.t('registerVendor_500_002_msg'), Error: error });
+      .json({ status: 500, message: req.t('registerVendor_500_002_msg'), Error: error });
   }
 };
 // function to get vendor by ID.
@@ -107,7 +107,7 @@ export const findVendorByID = async (req, res) => {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
@@ -115,16 +115,16 @@ export const findVendorByID = async (req, res) => {
     if (vendor === null) {
       res
         .status(404)
-        .json({ success: false, message: `${req.t('findVendorByID_404_msg')} ${req.params.id}` });
+        .json({ status: 404, message: `${req.t('findVendorByID_404_msg')} ${req.params.id}` });
     }
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: `${req.t('findVendorByID_200_msg')} ${req.params.id} `,
       response: vendor,
     });
   } catch (error) {
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: `${req.t('findVendorByID_500_msg')} ${req.params.id}.`,
       Error: error.message,
     });
@@ -136,7 +136,7 @@ export const updateVendor = async (req, res) => {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
@@ -151,16 +151,16 @@ export const updateVendor = async (req, res) => {
     if (vendor === null) {
       res
         .status(404)
-        .json({ success: false, message: `${req.t('updateVendor_404_msg')} ${req.params.id} ` });
+        .json({ status: 404, message: `${req.t('updateVendor_404_msg')} ${req.params.id} ` });
     }
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: `${req.t('updateVendor_200_msg')} ${req.params.id}`,
       response: vendor,
     });
   } catch (error) {
     return res.status(500).json({
-      success: false,
+      status: 500,
       message: `${req.t('updateVendor_500_msg')} ${req.params.id}`,
       Error: error.message,
     });
@@ -172,7 +172,7 @@ export const deleteVendor = async (req, res) => {
     const { authenticatedUser } = req;
     if (!authenticatedUser) {
       return res.status(403).json({
-        success: false,
+        status: 403,
         message: req.t('unauthorized_msg'),
       });
     }
@@ -183,16 +183,16 @@ export const deleteVendor = async (req, res) => {
       },
     });
     if (vendor === null) {
-      return res.status(404).json({ success: false, message: req.t('deleteVendor_404_msg') });
+      return res.status(404).json({ status: 404, message: req.t('deleteVendor_404_msg') });
     }
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: `${req.t('deleteVendor_200_msg')} ${req.params.id}`,
       response: vendor,
     });
   } catch (error) {
     res.status(500).json({
-      success: false,
+      status: 500,
       message: `${req.t('deleteVendor_500_msg')} ${req.params.id}`,
       Error: error.message,
     });
@@ -206,31 +206,31 @@ export const vendorLogin = async (req, res) => {
     const { error } = validateVendorLogin(req.body);
     if (error) {
       return res.status(400).json({
-        success: false,
+        status: 400,
         message: req.t('vendorLogin_400_msg'),
         Error: error.details[0].message,
       });
     }
     const vendor = await vendors.findOne({ where: { email } });
     if (!vendor) {
-      return res.status(401).json({ success: false, message: req.t('vendorLogin_401_001_msg') });
+      return res.status(401).json({ status: 401, message: req.t('vendorLogin_401_001_msg') });
     }
     const isMatch = await bcrypt.compare(password, vendor.password);
     if (!isMatch) {
-      return res.status(401).json({ success: false, message: req.t('vendorLogin_401_002_msg') });
+      return res.status(401).json({ status: 401, message: req.t('vendorLogin_401_002_msg') });
     }
     const vendorLoginToken = await vendorSignAccessToken(vendor.id, vendor.fullName, vendor.status);
     res
       .cookie('token', vendorLoginToken, { httpOnly: true, secure: true })
       .status(200)
       .json({
-        success: true,
+        status: 200,
         message: `${vendor.fullName} ${req.t('vendorLogin_200_msg')}`,
         token: vendorLoginToken,
       });
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, message: req.t('vendorLogin_500_msg'), Error: error });
+      .json({ status: 500, message: req.t('vendorLogin_500_msg'), Error: error });
   }
 };
