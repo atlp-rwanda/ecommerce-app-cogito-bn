@@ -51,9 +51,9 @@ router.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t
 router.use(userRouter);
 router.use('/profile', profileRouter);
 router.use('/vendors', vendorRouter);
-router.use('/', roleRoute);
-router.use('/', permissionRoute);
-router.use('/', productRoute);
+router.use(roleRoute);
+router.use(permissionRoute);
+router.use(productRoute);
 router.post('/register', newUserValidation, createUser);
 router.post('/login', loginUser);
 router.use('/users', usersRouter);

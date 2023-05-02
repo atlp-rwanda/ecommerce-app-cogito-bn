@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       preferred_currency: { type: DataTypes.STRING, field: 'preferred_currency' },
       billingAddress: { type: DataTypes.ARRAY(DataTypes.STRING), field: 'billing_address' },
       password: DataTypes.STRING,
+      phone: DataTypes.STRING,
       roleId: DataTypes.INTEGER,
       status: DataTypes.STRING,
       createdAt: { type: DataTypes.DATE, field: 'created_at' },

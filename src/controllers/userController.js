@@ -1,16 +1,16 @@
-import speakeasy from "speakeasy";
-import dotenv from "dotenv";
-import Bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import nodemailer from "nodemailer";
-import { user } from "../database/models";
-import decodeJWT from "../utils/token";
+import speakeasy from 'speakeasy';
+import dotenv from 'dotenv';
+import Bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+import { user } from '../database/models';
+import decodeJWT from '../utils/token';
 
 dotenv.config();
 
 // create a transporter object
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: 'smtp.gmail.com',
   port: 587,
   secure: false, // use SSL/TLS
   auth: {
@@ -23,7 +23,7 @@ export async function loginUser(req, res) {
   if (!email || !password) {
     return res.status(400).json({
       status: 400,
-      message: req.t("not_enough_credentials_for_login"),
+      message: req.t('not_enough_credentials_for_login'),
     });
   }
 
@@ -36,7 +36,7 @@ export async function loginUser(req, res) {
   if (!User) {
     return res.status(401).json({
       status: 401,
-      message: req.t("user_not_found"),
+      message: req.t('user_not_found'),
     });
   }
 
@@ -49,13 +49,13 @@ export async function loginUser(req, res) {
         roleId: User.roleId,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: '1d' },
     );
 
     delete User.dataValues.password;
     return res.status(200).json({
       status: 200,
-      message: req.t("successful_login"),
+      message: req.t('successful_login'),
       data: User,
       token: accessToken,
     });
@@ -63,7 +63,7 @@ export async function loginUser(req, res) {
 
   return res.status(401).json({
     status: 401,
-    message: req.t("incorrect_password"),
+    message: req.t('incorrect_password'),
   });
 }
 
@@ -80,19 +80,19 @@ export async function createUser(req, res) {
     preferred_currency,
   } = req.body;
   if (
-    !name ||
-    !email ||
-    !password ||
-    !phone ||
-    !roleId ||
-    !gender ||
-    !birthdate ||
-    !preferred_language ||
-    !preferred_currency
+    !name
+    || !email
+    || !password
+    || !phone
+    || !roleId
+    || !gender
+    || !birthdate
+    || !preferred_language
+    || !preferred_currency
   ) {
     return res.status(400).json({
       status: 400,
-      message: req.t("provide_all_details_signup"),
+      message: req.t('provide_all_details_signup'),
     });
   }
 
@@ -105,7 +105,7 @@ export async function createUser(req, res) {
   if (emailExists) {
     return res.status(409).json({
       status: 400,
-      message: req.t("account_exists"),
+      message: req.t('account_exists'),
     });
   }
 
@@ -126,13 +126,13 @@ export async function createUser(req, res) {
 
     return res.status(201).json({
       status: 201,
-      message: req.t("signup-success"),
+      message: req.t('signup-success'),
       data: newUser,
     });
   } catch (err) {
     return res.status(500).json({
       status: 500,
-      message: req.t("server_error"),
+      message: req.t('server_error'),
       Error: err.message,
     });
   }
@@ -141,7 +141,7 @@ export async function createUser(req, res) {
 export async function sendOtp(req, res) {
   const userDetails = decodeJWT(req.headers.authorization);
   // const { id } = req.body;
-  console.log("userdetails", userDetails);
+  console.log('userdetails', userDetails);
   const User = await user.findOne({
     where: {
       id: userDetails.id,
@@ -151,7 +151,7 @@ export async function sendOtp(req, res) {
   if (!User) {
     return res.status(401).json({
       status: 401,
-      message: req.t("user_not_found"),
+      message: req.t('user_not_found'),
     });
   }
 
@@ -161,7 +161,7 @@ export async function sendOtp(req, res) {
   // Generate an OTP for the user
   const token = speakeasy.totp({
     secret,
-    encoding: "base32",
+    encoding: 'base32',
     time: Math.floor(Date.now() / 1000 / 90),
     step: 90,
   });
@@ -171,7 +171,7 @@ export async function sendOtp(req, res) {
   const mailOptions = {
     from: process.env.EMAIL_ADDRESS,
     to: userDetails.email,
-    subject: "Cogito ecommerce app otp",
+    subject: 'Cogito ecommerce app otp',
     text: `Your OTP is ${token}`,
   };
 
@@ -181,19 +181,19 @@ export async function sendOtp(req, res) {
     if (error) {
       return res.status(500).json({
         status: 500,
-        message: req.t("email_not_sent"),
+        message: req.t('email_not_sent'),
         Error: error,
       });
     }
   });
 
-  const encodedOTP = Buffer.from(hashedOTP).toString("base64");
+  const encodedOTP = Buffer.from(hashedOTP).toString('base64');
 
   delete User.dataValues.password;
-  res.cookie("loginOTP", encodedOTP);
+  res.cookie('loginOTP', encodedOTP);
   res.status(200).json({
     status: 200,
-    message: req.t("otp_sent"),
+    message: req.t('otp_sent'),
     data: User,
     cookie: encodedOTP,
   });
@@ -204,25 +204,25 @@ export async function verify(req, res) {
   if (!otp) {
     return res.status(400).json({
       status: 400,
-      message: req.t("enter_otp"),
+      message: req.t('enter_otp'),
     });
   }
   if (req.headers.cookie) {
-    const Cookiearray = req.headers.cookie.trim().split(";");
+    const Cookiearray = req.headers.cookie.trim().split(';');
     const cookiesObj = {};
     for (let i = 0; i < Cookiearray.length; i++) {
-      const parts = Cookiearray[i].split("=");
+      const parts = Cookiearray[i].split('=');
       const key = parts[0].trim(); // Trim the key
-      const value = parts[1].trim().replace(/=/g, ":");
+      const value = parts[1].trim().replace(/=/g, ':');
       cookiesObj[key] = value;
     }
     const hashedOTP = cookiesObj.loginOTP;
     // compare incoming OTP with OTP sent in a cookie
-    const decodedOTP = Buffer.from(hashedOTP, "base64").toString("utf-8");
+    const decodedOTP = Buffer.from(hashedOTP, 'base64').toString('utf-8');
     const newOtp = otp.trim();
     const isMatch = await Bcrypt.compare(newOtp, decodedOTP);
     if (isMatch) {
-      res.cookie("loginOTP", "");
+      res.cookie('loginOTP', '');
 
       const userDetails = decodeJWT(req.headers.authorization);
       const User = await user.findOne({
@@ -237,21 +237,21 @@ export async function verify(req, res) {
           roleId: userDetails.roleId,
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1d" }
+        { expiresIn: '1d' },
       );
 
       delete User.dataValues.password;
 
       res.status(200).json({
         status: 200,
-        message: req.t("otp_verified"),
+        message: req.t('otp_verified'),
         data: User,
         token: accessToken,
       });
     } else {
       return res.status(401).json({
         status: 401,
-        message: req.t("otp_invalid"),
+        message: req.t('otp_invalid'),
       });
     }
   }
@@ -262,7 +262,7 @@ export async function deleteUser(req, res) {
   if (!email) {
     return res.status(400).json({
       status: 400,
-      message: req.t("provide_user_email_to_delete"),
+      message: req.t('provide_user_email_to_delete'),
     });
   }
   const User = await user.findOne({
@@ -272,7 +272,7 @@ export async function deleteUser(req, res) {
   if (!User) {
     return res.status(401).json({
       status: 401,
-      message: req.t("user_not_found"),
+      message: req.t('user_not_found'),
     });
   }
 
@@ -283,13 +283,13 @@ export async function deleteUser(req, res) {
 
     return res.status(200).json({
       status: 200,
-      message: req.t("user_deleted"),
+      message: req.t('user_deleted'),
       data: User,
     });
   } catch (err) {
     return res.status(500).json({
       status: 500,
-      message: req.t("server_error"),
+      message: req.t('server_error'),
       Error: err.message,
     });
   }
