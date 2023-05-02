@@ -8,59 +8,6 @@ import removeDuplicates from '../../utils/products/handlingRemoveProducts';
 dotenv.config();
 
 // all products endpoint are to be acccessed by only admin users.
-// function to get all products registered in cogito ecommerce.
-export const getAllproducts = async (req, res) => {
-  try {
-    const { authenticatedBuyer } = req;
-    if (!authenticatedBuyer) {
-      return res.status(403).json({
-        status: 403,
-        message: req.t('unauthorized_msg'),
-      });
-    }
-    const products = await product.findAll();
-    return res.status(200).json({
-      status: 200,
-      message: req.t('getAllproducts_200_msg'),
-      response: products,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      status: 500,
-      message: req.t('getAllproducts_500_msg'),
-      Error: error.message,
-    });
-  }
-};
-export const registerProduct = async (req, res) => {
-  try {
-    const { authenticatedUser } = req;
-    if (!authenticatedUser) {
-      return res.status(403).json({
-        status: 403,
-        message: req.t('unauthorized_msg'),
-      });
-    }
-    const productCheck = await product.findOne({
-      where: {
-        name: req.body.name,
-      },
-    });
-    if (productCheck) {
-      return res.status(409).json({ status: 409, message: req.t('registerProduct_409_msg') });
-    }
-    const newProduct = await product.create(req.body);
-    return res.status(201).json({
-      status: 201,
-      message: req.t('registerProduct_201_msg'),
-      response: newProduct,
-    });
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ status: 500, message: req.t('registerProduct_500_msg'), Error: error });
-  }
-};
 // function to get product by ID.
 export const findproductByID = async (req, res) => {
   try {
@@ -95,72 +42,6 @@ export const findproductByID = async (req, res) => {
     });
   }
 };
-// function to update product information.
-export const updateproduct = async (req, res) => {
-  try {
-    const { authenticatedUser } = req;
-    if (!authenticatedUser) {
-      return res.status(403).json({
-        status: 403,
-        message: req.t('unauthorized_msg'),
-      });
-    }
-    const products = await product.findByPk(req.params.id);
-
-    await product.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (products === null) {
-      return res.status(404).json({ status: 404, message: `${req.t('updateproduct_404_msg')}` });
-    }
-    return res.status(200).json({
-      status: 200,
-      message: `${req.t('updateproduct_200_msg')}`,
-      response: products,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      status: 500,
-      message: `${req.t('updateproduct_500_msg')}`,
-      Error: error.message,
-    });
-  }
-};
-// function to delete product by their ID.
-export const deleteproduct = async (req, res) => {
-  try {
-    const { authenticatedUser } = req;
-    if (!authenticatedUser) {
-      return res.status(403).json({
-        status: 403,
-        message: req.t('unauthorized_msg'),
-      });
-    }
-    const products = await product.findByPk(req.params.id);
-    await product.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (products === null) {
-      return res.status(404).json({ status: 404, message: req.t('deleteproduct_404_msg') });
-    }
-    return res.status(200).json({
-      status: 200,
-      message: `${req.t('deleteproduct_200_msg')}`,
-      response: products,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      status: 500,
-      message: `${req.t('deleteproduct_500_msg')} ${req.params.id}`,
-      Error: error.message,
-    });
-  }
-};
-
 async function getRecommendedProducts(userID) {
   try {
     // Get the list of all products from the wishlist of the buyer
