@@ -1,6 +1,9 @@
 import dotenv from 'dotenv';
 import { Op } from 'sequelize';
-import { product, productViews, user } from '../../database/models';
+import {
+  product, productViews, user, wishlist,
+} from '../../database/models';
+import removeDuplicates from '../../utils/products/handlingRemoveProducts';
 
 dotenv.config();
 
@@ -44,9 +47,7 @@ export const registerProduct = async (req, res) => {
       },
     });
     if (productCheck) {
-      return res
-        .status(409)
-        .json({ status: 409, message: req.t('registerProduct_409_msg') });
+      return res.status(409).json({ status: 409, message: req.t('registerProduct_409_msg') });
     }
     const newProduct = await product.create(req.body);
     return res.status(201).json({
@@ -55,7 +56,6 @@ export const registerProduct = async (req, res) => {
       response: newProduct,
     });
   } catch (error) {
-    console.log(error);
     return res
       .status(500)
       .json({ status: 500, message: req.t('registerProduct_500_msg'), Error: error });
@@ -113,9 +113,7 @@ export const updateproduct = async (req, res) => {
       },
     });
     if (products === null) {
-      return res
-        .status(404)
-        .json({ status: 404, message: `${req.t('updateproduct_404_msg')}` });
+      return res.status(404).json({ status: 404, message: `${req.t('updateproduct_404_msg')}` });
     }
     return res.status(200).json({
       status: 200,
@@ -165,6 +163,15 @@ export const deleteproduct = async (req, res) => {
 
 async function getRecommendedProducts(userID) {
   try {
+    // Get the list of all products from the wishlist of the buyer
+    const wishlistProducts = await wishlist.findAll({
+      where: {
+        user_id: userID,
+      },
+      attributes: ['product_id'],
+      raw: true,
+    });
+    const wishedProductsIds = wishlistProducts.map((wishedProduct) => wishedProduct.product_id);
     // Get the list of products that the buyer has viewed
     const viewedProducts = await productViews.findAll({
       where: {
@@ -174,6 +181,36 @@ async function getRecommendedProducts(userID) {
       raw: true,
     });
     const viewedProductIds = viewedProducts.map((viewedProduct) => viewedProduct.productId);
+    // Combine both lists of product IDs and remove duplicates
+    const allProducts = [...wishedProductsIds, ...viewedProductIds];
+    const allProductIds = removeDuplicates(allProducts);
+    // Returning the all products if the allProductsIds is null
+    // For the user with no wishlist and product viewed product.
+    if (allProductIds.length === 0) {
+      const finalRecommendedProducts = await product.findAll({
+        order: [['updatedAt', 'DESC']],
+      });
+      return finalRecommendedProducts;
+    }
+    // Getting all the categories of products from the buyer wishlist and product viewed
+    const categories = await product.findAll({
+      where: {
+        id: allProductIds,
+      },
+      attributes: ['category_id'],
+      raw: true,
+    });
+    const categoryIds = categories.map((category) => category.category_id);
+    const categoryIdsNew = removeDuplicates(categoryIds);
+    // Get products that are in the same category as the wishlist and the product viewed products.
+    const productsInCategory = await product.findAll({
+      where: {
+        category_id: categoryIdsNew,
+      },
+      attributes: ['id'],
+      raw: true,
+    });
+    const productsInCategoryIds = productsInCategory.map((cat) => cat.id);
     // Find other buyers who have viewed the same products
     const similarBuyers = await productViews.findAll({
       where: {
@@ -186,7 +223,7 @@ async function getRecommendedProducts(userID) {
     });
     const similarBuyerIds = similarBuyers.map((similarBuyer) => similarBuyer.buyerId);
     // Find the products that these similar buyers have viewed
-    const recommendedProducts = await productViews.findAll({
+    const similarProducts = await productViews.findAll({
       where: {
         buyerId: similarBuyerIds,
         productId: { [Op.notIn]: viewedProductIds },
@@ -195,17 +232,23 @@ async function getRecommendedProducts(userID) {
       group: ['productId'],
       raw: true,
     });
-    const recommendedProductIds = recommendedProducts.map(
+    const similarProductsId = similarProducts.map(
       (recommendedProduct) => recommendedProduct.productId,
     );
+    const recommendedProduct = [
+      ...wishedProductsIds,
+      ...productsInCategoryIds,
+      ...similarProductsId,
+    ];
+    const recommendedProductIds = removeDuplicates(recommendedProduct);
     // Get the details of the recommended products
     const finalRecommendedProducts = await product.findAll({
       where: { id: recommendedProductIds },
+      order: [['updatedAt', 'DESC']],
       raw: true,
     });
     return finalRecommendedProducts;
   } catch (error) {
-    console.log(error);
     return error;
   }
 }
