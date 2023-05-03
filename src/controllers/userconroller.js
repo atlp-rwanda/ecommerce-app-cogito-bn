@@ -8,8 +8,8 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.STATUS_EMAIL_ADDRESS,
-    pass: process.env.STATUS_EMAIL_PASSWORD,
+    user: process.env.EMAIL_ADDRESS_STATUS,
+    pass: process.env.EMAIL_PASSWORD_STATUS,
   },
 });
 
@@ -77,7 +77,7 @@ export const updateStatus = catchAsync(async (req, res) => {
     );
     if (user.status !== 'inactive') {
       await transporter.sendMail({
-        from: process.env.EMAIL_ADDRESS,
+        from: process.env.EMAIL_ADDRESS_STATUS,
         to: user.email,
         subject: `Your status has been updated to ${status}`,
         text: `Dear ${user.name}, due to violation of our policies, we regret to inform you that your account has been disactivated.`,

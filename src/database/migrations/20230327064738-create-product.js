@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       image: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.ARRAY(Sequelize.STRING(10000)),
       },
       price: {
         type: Sequelize.STRING,
