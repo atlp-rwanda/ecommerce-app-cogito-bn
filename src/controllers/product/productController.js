@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { product } from '../../database/models';
 import CloudUpload from '../../utils/cloudinary/cloudinary';
 

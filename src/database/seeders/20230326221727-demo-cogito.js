@@ -51,7 +51,7 @@ module.exports = {
       [
         {
           user_id: '1',
-          product_id: '5',
+          product_id: '1',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

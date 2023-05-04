@@ -79,7 +79,7 @@ export async function createUser(req, res) {
   });
   if (emailExists) {
     return res.status(409).json({
-      status: 400,
+      status: 409,
       message: req.t('account_exists'),
     });
   }
