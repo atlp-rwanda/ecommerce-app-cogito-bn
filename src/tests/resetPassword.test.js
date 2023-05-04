@@ -23,7 +23,7 @@ describe('Password reset API', () => {
       email: 'test@example.com',
       password: 'password',
       phone: '0000000000',
-      roleId: '2',
+      roleId: '3',
       gender: 'male',
       birthdate: '1/1/2000',
       preferred_language: 'en',

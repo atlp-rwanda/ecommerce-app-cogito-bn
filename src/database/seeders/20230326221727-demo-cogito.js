@@ -177,19 +177,6 @@ module.exports = {
     );
 
     await queryInterface.bulkInsert(
-      'orders',
-      [
-        {
-          user_id: 3,
-          product_id: 1,
-          status: 'ACTIVE',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
-    await queryInterface.bulkInsert(
       'roles',
       [
         {
@@ -262,20 +249,6 @@ module.exports = {
       {},
     );
     await queryInterface.bulkInsert(
-      'orders',
-      [
-        {
-          user_id: 1,
-          product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
-    await queryInterface.bulkInsert(
       'vendors',
       [
         {
@@ -313,79 +286,6 @@ module.exports = {
       ],
       {},
     );
-    await queryInterface.bulkInsert(
-      'orders',
-      [
-        {
-          user_id: 1,
-          product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
-    await queryInterface.bulkInsert(
-      'orders',
-      [
-        {
-          user_id: 1,
-          product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
-    await queryInterface.bulkInsert(
-      'payment',
-      [
-        {
-          name: 'Momo',
-          description: 'The most used payment mode in Rwanda',
-          logo: 'image.png',
-          is_active: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          name: 'Paypal',
-          description: 'The most used payment mode in Rwanda',
-          logo: 'image.png',
-          is_active: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          name: 'Stripe',
-          description: 'The most used payment mode in Rwanda',
-          logo: 'image.png',
-          is_active: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
-    await queryInterface.bulkInsert('coupons', [
-      {
-        coupon_code: 'cogito101',
-        discount_type: 'Percentage',
-        discount_percentage: 10,
-        minimum_purchase_amount: 1,
-        vendor_id: 2,
-        associated_products: [2],
-        start_date: new Date(),
-        end_date: nextYear,
-        usage_limit: 20,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ]);
   },
   async down(queryInterface) {
     // Add commands to revert seed here.

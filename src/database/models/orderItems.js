@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     // eslint-disable-next-line no-unused-vars
-    static associate(models) {
-      // define association here
-    }
+    static associate(models) {}
+    // define association here
   }
+
   orderItems.init(
     {
       order_id: DataTypes.INTEGER,

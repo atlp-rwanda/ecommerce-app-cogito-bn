@@ -1,17 +1,13 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('payment', {
-      id: {
+    await queryInterface.createTable('payments', {
+      paymentId: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
       },
-      amount: {
-        type: Sequelize.DOUBLE,
-        allowNull: false,
-      },
-      order_id: {
+      orderId: {
         allowNull: false,
         type: Sequelize.UUID,
         reference: {
@@ -19,28 +15,28 @@ module.exports = {
           key: 'id',
         },
       },
-      method: {
+      paymentMethod: {
         type: Sequelize.STRING,
-      },
-      discount: {
-        type: Sequelize.DOUBLE,
-        defaultValue: 0,
       },
       stripeId: {
         type: Sequelize.STRING,
       },
+      transactionId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
     });
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('payment');
+    await queryInterface.dropTable('payments');
   },
 };

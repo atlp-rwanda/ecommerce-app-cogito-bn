@@ -4,10 +4,10 @@ import CloudUpload from '../utils/cloudinary/cloudinary';
 const validation = Joi.object({
   name: Joi.string().required(),
   description: Joi.string().required(),
-  price: Joi.string().required(),
+  price: Joi.number().required(),
   image: Joi.array().items(Joi.string()).min(4).max(8)
     .required(),
-  quantity: Joi.string(),
+  quantity: Joi.number(),
   stock: Joi.string(),
   category_id: Joi.number().integer(),
   expiredAt: Joi.date(),

@@ -1,6 +1,7 @@
 import { cart, product } from '../database/models';
 
 const index = (req, res) => {
+  console.log(req.body);
   const { userId } = req.body;
   cart
     .findAll({ include: product, where: { userId } })
