@@ -14,7 +14,6 @@ module.exports = {
       },
       category_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       orders_id: {
         type: Sequelize.INTEGER,
@@ -27,7 +26,6 @@ module.exports = {
       },
       vendor_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       description: {
         type: Sequelize.STRING,
