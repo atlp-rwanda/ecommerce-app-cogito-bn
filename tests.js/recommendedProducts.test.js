@@ -2,7 +2,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { describe, it } from 'mocha';
 import dotenv from 'dotenv';
-import app from '../index';
+import app from '../src/index';
 
 const { expect } = chai;
 chai.should();
