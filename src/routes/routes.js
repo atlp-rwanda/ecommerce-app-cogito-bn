@@ -32,7 +32,7 @@ import { createUser, loginUser } from '../controllers/userController';
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
 import searchProducts from '../controllers/search/productController';
-
+import wishListRouter from './wishListRouter';
 // Login route
 
 // Create a new user route
@@ -70,6 +70,7 @@ router.post('/register', newUserValidation, createUser);
 router.post('/login', loginUser);
 router.post('/register', createUser);
 router.post('/login', loginUser);
+router.use('/wishlist', wishListRouter);
 router.use('/create', Route);
 router.use('/OTP', usersRouter);
 router.use('/create', Route);

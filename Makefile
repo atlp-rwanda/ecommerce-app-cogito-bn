@@ -16,7 +16,11 @@ migrate:
 	docker exec e_commerce-node-app-1 npm run migrate
 migrate-rollback:
 	docker exec e_commerce-node-app-1 npm run down
+migrate-rollback-all:
+	docker exec e_commerce-node-app-1 npm run downall
 seed:
 	docker exec e_commerce-node-app-1 npm run seed
 seed-rollback:
 	docker exec e_commerce-node-app-1 npm run seed-down
+test:
+	docker exec e_commerce-node-app-1 npm run test
