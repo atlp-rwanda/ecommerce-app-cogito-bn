@@ -2,7 +2,7 @@ import axios from 'axios';
 import chai from 'chai';
 import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
-import app from '../index';
+import app from '../src/index';
 
 const should = chai.should();
 

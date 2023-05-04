@@ -4,7 +4,7 @@ import { describe, it } from 'mocha';
 import speakeasy from 'speakeasy';
 import Bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import app from '../index';
+import app from '../src/index';
 
 const { expect } = chai;
 const should = chai.should();
