@@ -8,8 +8,8 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.EMAIL_PASSWORD,
+    user: process.env.EMAIL_ADDRESS_STATUS,
+    pass: process.env.EMAIL_PASSWORD_STATUS,
   },
 });
 
@@ -76,10 +76,10 @@ export const updateStatus = catchAsync(async (req, res) => {
       { where: { id } },
     );
     await transporter.sendMail({
-      from: 'charlesntwari2@gmail.com',
+      from: process.env.EMAIL_ADDRESS_STATUS,
       to: user.email,
       subject: `Your status has been updated to ${status}`,
-      text: `Dear ${user.firstName}, your status has been updated to ${status}.`,
+      text: `Dear ${user.name}, your status has been updated to ${status}.`,
     });
     res.status(200).json({
       status: 200,

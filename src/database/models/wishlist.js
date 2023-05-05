@@ -8,20 +8,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // models.product.hasOne(wishlist, { foreignKey: 'product_id', as: 'product' });
+      wishlist.belongsTo(models.product);
     }
   }
   wishlist.init(
     {
-      seller_id: DataTypes.INTEGER,
-      user_id: DataTypes.STRING,
-      product_id: DataTypes.STRING,
-      date_added: DataTypes.STRING,
+      userId: { type: DataTypes.INTEGER, field: 'user_id' },
+      productId: { type: DataTypes.INTEGER, field: 'product_id' },
+      createdAt: { type: DataTypes.DATE, field: 'created_at' },
+      updatedAt: { type: DataTypes.DATE, field: 'updated_at' },
     },
     {
       sequelize,
       modelName: 'wishlist',
     },
   );
+
   return wishlist;
 };

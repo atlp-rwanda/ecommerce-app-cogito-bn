@@ -10,43 +10,25 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        allowNull: false,
       },
       product_id: {
         type: Sequelize.INTEGER,
-      },
-      name: {
-        type: Sequelize.STRING,
+        references: {
+          model: 'products',
+          key: 'id',
+        },
         allowNull: false,
       },
-      seller_id: {
-        type: Sequelize.INTEGER,
-      },
-      description: {
-        type: Sequelize.STRING,
-      },
-      image: {
-        type: Sequelize.STRING,
-      },
-      price: {
-        type: Sequelize.STRING,
-      },
-      quantity: {
-        type: Sequelize.STRING,
-      },
-      totalPrice: {
-        type: Sequelize.STRING,
-      },
-      stock: {
-        type: Sequelize.STRING,
-      },
-      Expire_Date: {
-        type: Sequelize.DATE,
-      },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
