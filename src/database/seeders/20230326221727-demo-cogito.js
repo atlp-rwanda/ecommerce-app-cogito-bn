@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         name: 'Seller Neymar',
-        email: 'seller@example.com',
+        email: 'john@example.com',
         gender: 'male',
         phone: '0788719892',
         birthdate: new Date(),
