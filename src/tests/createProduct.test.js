@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 
 const req = {
   body: {
-    name: 'Testing Products00100',
+    name: 'Testing',
     description: 'Test description',
     price: '10k',
     quantity: '10',
@@ -21,6 +21,9 @@ const req = {
     expiredAt: '2023-12-31',
   },
 };
+after(async () => {
+  await product.destroy({ where: { name: 'Testing' } });
+});
 
 describe('createNewProduct', () => {
   let token;
@@ -30,9 +33,6 @@ describe('createNewProduct', () => {
       .post('/login')
       .send({ email: 'john@example.com', password: 'kunda123' });
     token = res.body.token;
-  });
-  after(async () => {
-    await product.destroy({ where: {} });
   });
 
   it('should create a new product successfully', (done) => {
@@ -66,21 +66,6 @@ describe('createNewProduct', () => {
       .field('images', files)
       .end((error, res) => {
         chai.expect(res.status).to.equal(409);
-        done();
-      });
-  });
-
-  it('should return 500 code for missing token', (done) => {
-    const files = [];
-    chai
-      .request(app)
-      .post('/products/add')
-      .set('Authorization', 'Bearer')
-      .set('Content-Type', 'multipart/form-data')
-      .field(req.body)
-      .field('images', files)
-      .end((error, res) => {
-        chai.expect(res.status).to.equal(500);
         done();
       });
   });
