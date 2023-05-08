@@ -104,5 +104,9 @@
   "profile_update_unthorize_message": "demande non autorisée",
   "wishlist_fetched": "Liste de souhaits récupérée",
   "product_added": "Produit ajouté à la liste de souhaits",
-  "product_already_added": "Produit déjà ajouté à la liste de souhaits"
+  "product_already_added": "Produit déjà ajouté à la liste de souhaits",
+  "not_logged_in_message": "Vous n'êtes pas connecté",
+  "loginUser_message": "Veuillez fournir un e-mail et un mot de passe pour vous connecter!",
+  "createUser_message": "Veuillez fournir le prénom, le nom, l'e-mail, le mot de passe, le téléphone et le rôle pour créer un utilisateur!",
+  "logoutUser_message": "L'utilisateur s'est déconnecté avec succès"
 }
