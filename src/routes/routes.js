@@ -88,3 +88,5 @@ router.use('/auth', authRoutes);
 router.get('/user/products/:id', getProductById);
 
 export default router;
+router.use('/users', usersRouter);
+router.use('/auth', authRoutes);

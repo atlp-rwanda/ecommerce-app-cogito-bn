@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint",
     "make-model": "npx sequelize-cli model:generate --name",
     "seed": "cross-env NODE_ENV=development npx sequelize-cli db:seed:all --config=./src/database/config/config.js",
     "seed-down": "cross-env NODE_ENV=development npx sequelize-cli db:seed:undo:all",
@@ -85,6 +84,11 @@
     "mocha": "^10.2.0",
     "prettier": "^2.8.7",
     "nodemon": "^2.0.22",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    
+    "prettier": "^2.8.7",
+    "sequelize-cli": "^6.6.0",
+    "webpack": "^5.77.0"
+
   }
 }
