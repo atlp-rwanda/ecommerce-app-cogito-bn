@@ -19,6 +19,7 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRouter from './userrouters';
+import productRoute from './deleteProductRoute';
 import permissionRoute from './permissionRoute';
 import profileRouter from './profileRouter';
 import options from '../docs/apidoc';
