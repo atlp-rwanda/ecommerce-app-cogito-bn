@@ -93,6 +93,8 @@
   "delete_message": "deleted Successfully!",
   "fetched_message": "data Fetched Successfully",
   "id_unexist_message": "the id doesn't exist",
+  "productid_unexist_message": "Product id doesn't exist!",
+  "product_delete_message": "Product deleted successfully",
   "token_unexist_message": "Token not provided",
   "token_invalid_message": "Invalid Token",
   "user_unexist_message": "User not found",

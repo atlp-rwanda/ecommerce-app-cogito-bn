@@ -27,6 +27,7 @@ import signupRouter from './user/userRoutes';
 import googleAuth from './user/googleAuthRoutes';
 import facebookAuth from './user/facebookAuthRoutes';
 import Route from './roleRoute';
+import roleRoute from './roleRoute';
 import { createUser, loginUser, logoutUser } from '../controllers/userController';
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
@@ -64,6 +65,8 @@ router.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t
 router.use(userRouter);
 router.use('/profile', profileRouter);
 router.use('/vendors', vendorRouter);
+router.use(productRoute);
+router.use('/', roleRoute);
 router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/register', newUserValidation);
@@ -74,4 +77,6 @@ router.use('/wishlist', wishListRouter);
 router.use('/OTP', usersRouter);
 router.use('/create', Route);
 router.use('/products', recommendedProduct);
+router.post('/logout', logoutUser);
+
 export default router;
