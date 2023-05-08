@@ -26,11 +26,13 @@ import vendorRouter from './vendor/vendorsRoutes';
 import signupRouter from './user/userRoutes';
 import googleAuth from './user/googleAuthRoutes';
 import facebookAuth from './user/facebookAuthRoutes';
-import roleRoute from './roleRoute';
+import Route from './roleRoute';
 import { createUser, loginUser, logoutUser } from '../controllers/userController';
 import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
 import wishListRouter from './wishListRouter';
+import recommendedProduct from './recommendedProductRoute';
+
 // Login route
 
 // Create a new user route
@@ -62,13 +64,14 @@ router.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t
 router.use(userRouter);
 router.use('/profile', profileRouter);
 router.use('/vendors', vendorRouter);
-router.use('/', roleRoute);
+router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/register', newUserValidation);
 router.post('/login', loginUser);
+router.post('/logout', logoutUser);
 router.post('/register', createUser);
 router.use('/wishlist', wishListRouter);
 router.use('/OTP', usersRouter);
-router.post('/logout', logoutUser);
-
+router.use('/create', Route);
+router.use('/products', recommendedProduct);
 export default router;
