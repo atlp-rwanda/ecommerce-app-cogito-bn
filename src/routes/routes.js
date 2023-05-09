@@ -17,6 +17,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRouter from './userrouters';
 import productRoute from './deleteProductRoute';
+import cartRoute from './cart/updatecartRoute';
 import permissionRoute from './permissionRoute';
 import profileRouter from './profileRouter';
 import options from '../docs/apidoc';
@@ -37,6 +38,10 @@ import recommendedProduct from './recommendedProductRoute';
 import authRoutes from './API/SendResetEmail';
 import getProductById from '../controllers/productController';
 import productUpdate from './updateProduct'
+
+
+// Login route
+// Create a new user route
 
 const router = express.Router();
 i18next
@@ -67,6 +72,7 @@ router.use(userRouter);
 router.use('/profile', profileRouter);
 router.use('/vendors', vendorRouter);
 router.use(productRoute);
+router.use(cartRoute);
 router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/login', loginUser);
@@ -82,6 +88,12 @@ router.use('/create', Route);
 router.use('/search', searchProducts);
 router.use('/products', productRouter);
 router.use(productItem);
+router.post('/logout', logoutUser);
+
+router.use(productItem)
+ router.use('/users', usersRouter);
+router.use('/auth', authRoutes);
+router.use('/create', Route);
 router.use('/products', productRouter);
 router.use('/Otp', usersRouter);
 router.use('/create', Route);

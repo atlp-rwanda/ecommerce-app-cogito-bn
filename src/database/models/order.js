@@ -19,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       order_date: DataTypes.STRING,
       total_price: DataTypes.FLOAT,
       status: DataTypes.STRING,
+      createdAt: { type: DataTypes.DATE, field: 'created_at' },
+      updatedAt: { type: DataTypes.DATE, field: 'updated_at' },
     },
     {
       sequelize,

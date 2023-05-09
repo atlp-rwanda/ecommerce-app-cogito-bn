@@ -149,5 +149,8 @@
   "Product not found_message": "Produit non trouvé",
   "Product not available for sale_message": "Produit non disponible à la vente",
   "You are not allowed to perform this operation_message": "Vous n'êtes pas autorisé à effectuer cette opération",
-  "cart_fetched": "Articles du panier récupérés"
+  "cart_fetched": "Articles du panier récupérés",
+  "cart-not_found": "Article du panier introuvable",
+  "cart_updated": " Article du panier mis à jour avec succès",
+  "cart_update_failed": " Échec de la mise à jour de l'élément du panier"
 }
