@@ -1,6 +1,5 @@
 import db from '../database/models';
 import JwtUtility from '../utils/jwt';
-
 const isAdmin = async (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
   if (!token) {
@@ -23,17 +22,19 @@ const isAdmin = async (req, res, next) => {
   }
 };
 const isSeller = async (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.headers.authorization;
   if (!token) {
     return res.status(401).json({ message: req.t('token_unexist_message') });
   }
   try {
-    const decodedToken = JwtUtility.verifyToken(token);
+    const decodedToken = JwtUtility.verifyToken(token.split(' ')[1]);
+    console.log(decodedToken.value);
     const { id, roleId } = decodedToken.value;
     const User = await db.user.findOne({
       where: { id },
     });
     if (User && decodedToken && roleId === 2) {
+      req.vendor = id;
       next();
     } else {
       res.status(403).json({ message: req.t('unauthorised_message') });
@@ -54,6 +55,8 @@ const isBuyer = async (req, res, next) => {
     const user = await db.user.findOne({
       where: { id },
     });
+   
+
     if (user && decodedToken && roleId === 3) {
       req.body.userId = id;
       next();
@@ -76,7 +79,6 @@ const checkPermission = (permission) => async (req, res, next) => {
     handleError(res, error);
   }
 };
-
 const getToken = (req) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -84,7 +86,6 @@ const getToken = (req) => {
   }
   return authHeader.split(' ')[1];
 };
-
 const decodeToken = (token) => {
   try {
     return JwtUtility.verifyToken(token);
@@ -92,7 +93,6 @@ const decodeToken = (token) => {
     throw new Error('Invalid token');
   }
 };
-
 const findUser = async (id) => {
   const User = await db.user.findOne({ where: { id } });
   if (!User) {
@@ -100,7 +100,6 @@ const findUser = async (id) => {
   }
   return User;
 };
-
 const checkAuthorization = (userId, roleId, permissionId) => {
   const permissions = {
     6: ['manage users'],
@@ -111,13 +110,11 @@ const checkAuthorization = (userId, roleId, permissionId) => {
     throw new Error('You are not authorized to perform this action');
   }
 };
-
 const handleError = (res, error) => {
   console.error(error);
   const status = error.status || 500;
   res.status(status).json({ message: error.message });
 };
-
 export {
   isAdmin, isSeller, isBuyer, checkPermission,
 };

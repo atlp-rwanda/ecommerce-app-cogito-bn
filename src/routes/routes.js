@@ -28,15 +28,15 @@ import signupRouter from './user/userRoutes';
 import googleAuth from './user/googleAuthRoutes';
 import facebookAuth from './user/facebookAuthRoutes';
 import Route from './roleRoute';
-import roleRoute from './roleRoute';
 import { createUser, loginUser, logoutUser } from '../controllers/userController';
 import usersRouter from './API/user';
+
 import newUserValidation from '../middleware/newUser.validation';
+import productItem from "./product/itemsRoutes"
 import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
 
 // Login route
-
 // Create a new user route
 const router = express.Router();
 i18next
@@ -67,17 +67,23 @@ router.use(userRouter);
 router.use('/profile', profileRouter);
 router.use('/vendors', vendorRouter);
 router.use(productRoute);
-router.use('/', roleRoute);
 router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/register', newUserValidation);
 router.post('/login', loginUser);
 router.post('/logout', logoutUser);
 router.post('/register', createUser);
+router.post('/logout', logoutUser);
+router.post('/register', newUserValidation, createUser);
+router.post('/login', loginUser);
+router.post('/register', createUser);
+router.post('/login', loginUser);
 router.use('/wishlist', wishListRouter);
+router.use('/create', Route);
 router.use('/OTP', usersRouter);
 router.use('/create', Route);
 router.use('/products', recommendedProduct);
 router.post('/logout', logoutUser);
 
+router.use(productItem)
 export default router;

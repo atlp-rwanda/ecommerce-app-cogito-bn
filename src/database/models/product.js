@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.STRING,
       vendor_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
+      vendor_id:DataTypes.INTEGER,
+      stock:DataTypes.ENUM('In Stock', 'Out of Stock', 'Expired')
+      
     },
     {
       sequelize,

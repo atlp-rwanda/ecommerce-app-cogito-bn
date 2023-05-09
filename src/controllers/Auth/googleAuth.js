@@ -14,11 +14,9 @@ passport.use(
         const [newUser, created] = await user.findOrCreate({
           where: { email: profile.emails[0].value },
           defaults: {
-            firstName: profile.name.givenName,
-            lastName: profile.name.familyName,
+            name: profile.name.givenName,
             email: profile.emails[0].value,
             password: null,
-            role: "buyer",
             confirmationCode: null,
             confirmed: true,
           },

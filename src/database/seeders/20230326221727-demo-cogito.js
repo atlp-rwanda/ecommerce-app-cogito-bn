@@ -143,26 +143,26 @@ module.exports = {
       'roles',
       [
         {
-          roleName: 'Admin',
-          description: 'Managing users',
+          id: '1',
+          fullName: 'NDAHAYO Bertin',
+          email: 'ndahayosibertin17@gmail.com',
+          password: 'NDABer123',
+          phoneNumber: '+250786949188',
+          businessName: 'ITH',
+          businessAddress: 'KN 48B ST',
+          businessPhoneNumber: '+250781346188',
+          businessEmail: 'ith.querries@gmail.com',
+          businessWebsite: 'https://www.ith.com',
+          businessDescription:
+            'We are the Number One Wholesale company of all IT related product in Rwanda',
+          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
+          productCategories: 'Computers, Phones, Printers, Phones, Accessories',
+          paymentMethods: 'MoMo, PayPal, VISA',
+          status: 'ACTIVE',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
-
-      {},
-    );
-    await queryInterface.bulkInsert(
-      'permissions',
-      [
-        {
-          permName: 'manage roles',
-          description: 'Assigning and removing roles to the user',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-
       {},
     );
     await queryInterface.bulkInsert(
