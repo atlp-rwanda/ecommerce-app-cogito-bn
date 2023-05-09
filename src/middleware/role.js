@@ -48,7 +48,6 @@ const isBuyer = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: req.t('token_unexist_message') });
   }
-
   try {
     const decodedToken = JwtUtility.verifyToken(token.split(' ')[1]);
     const { id, roleId } = decodedToken.value;
