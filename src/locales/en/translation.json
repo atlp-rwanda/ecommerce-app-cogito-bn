@@ -144,5 +144,9 @@
   "retrievedAll": "all users retrieved",
   "updateStatus": "status updated successfully",
   "set-role-message":"Role Assined to specific user Successfully!",
-  "set-permission-message":"Permission Assined to specific role Successfully!"
+  "set-permission-message":"Permission Assined to specific role Successfully!",
+  "Missing id parameter in request_message": "Missing id parameter in request",
+  "Product not found_message": "Product not foundt",
+  "Product not available for sale_message": "Product not available for sale",
+  "You are not allowed to perform this operation_message": "You are not allowed to perform this operation" 
 }

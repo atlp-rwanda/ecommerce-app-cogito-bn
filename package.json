@@ -6,13 +6,13 @@
   "scripts": {
     "lint": "eslint",
     "make-model": "npx sequelize-cli model:generate --name",
-    "migrate": "cross-env NODE_ENV=development npx sequelize-cli db:migrate --config=./src/database/config/config.js",
     "seed": "cross-env NODE_ENV=development npx sequelize-cli db:seed:all --config=./src/database/config/config.js",
     "seed-down": "cross-env NODE_ENV=test npx sequelize-cli db:seed:undo:all",
     "make-seed": "cross-env NODE_ENV=test  npx sequelize-cli seed:generate --name ",
-    "down": "NODE_ENV=$NODE_ENV npx sequelize-cli db:migrate:undo  --config=./src/database/config/config.js",
+    "dev": " cross-env NODE_ENV=test nodemon -r @babel/register src/index",
+    "migrate": "cross-env NODE_ENV=development npx sequelize-cli db:migrate --config=./src/database/config/config.js",
+    "down": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo  --config=./src/database/config/config.js",
     "downall": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo:all",
-    "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
     "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000 ",
     "coverage": "nyc --reporter=html --reporter=text npm run test"

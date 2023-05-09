@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import { user } from '../database/models';
 
 dotenv.config();
-
 export async function loginUser(req, res) {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -90,7 +89,6 @@ export async function createUser(req, res) {
   }
   try {
     const newUser = await user.create(req.body);
-
     delete newUser.dataValues.password;
     return res.status(201).json({
       status: 201,
@@ -105,7 +103,6 @@ export async function createUser(req, res) {
     });
   }
 }
-
 // Logout
 export async function logoutUser(req, res) {
   try {

@@ -247,7 +247,6 @@ module.exports = {
       ],
       {},
     );
-    
     await queryInterface.bulkInsert(
       'orders',
       [
