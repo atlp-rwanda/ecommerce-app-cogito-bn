@@ -7,7 +7,6 @@ const app = express();
 dotenv.config();
 
 const port = process.env.PORT;
-
 app.use(router);
 
 app.listen(port, async () => {
@@ -18,3 +17,10 @@ app.listen(port, async () => {
   console.log(`app listening on port ${port}`, process.env.NODE_ENV);
 });
 export default app;
+
+
+
+
+
+
+

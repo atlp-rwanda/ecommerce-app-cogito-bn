@@ -22,6 +22,13 @@ module.exports = (sequelize, DataTypes) => {
       preferred_currency: { type: DataTypes.STRING, field: 'preferred_currency' },
       billingAddress: { type: DataTypes.ARRAY(DataTypes.STRING), field: 'billing_address' },
       password: DataTypes.STRING,
+      resetToken: {
+        type: DataTypes.STRING
+       } ,
+     
+       resetTokenExpiry: {
+      type:    DataTypes.STRING
+       } ,
       roleId: DataTypes.INTEGER,
       confirmationCode:DataTypes.INTEGER,
       confirmed:DataTypes.BOOLEAN,
