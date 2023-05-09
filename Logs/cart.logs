@@ -1,0 +1,108 @@
+2023-05-11T08:48:23.076Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T08:53:15.436Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T08:56:20.884Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T08:56:27.418Z [INFO]: /PUT statusCode: 500 : Updating cart failed : WHERE parameter "userId" has invalid "undefined" value
+2023-05-11T08:56:47.037Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T08:57:01.889Z [INFO]: /PUT statusCode: 500 : Updating cart failed : WHERE parameter "userId" has invalid "undefined" value
+2023-05-11T09:20:36.562Z [INFO]: /PUT statusCode: 500 : Updating cart failed : WHERE parameter "userId" has invalid "undefined" value
+2023-05-11T09:20:47.882Z [INFO]: /PUT statusCode: 500 : Updating cart failed : WHERE parameter "userId" has invalid "undefined" value
+2023-05-11T09:20:51.215Z [INFO]: /PUT statusCode: 500 : Updating cart failed : WHERE parameter "userId" has invalid "undefined" value
+2023-05-11T09:24:07.518Z [INFO]: /PUT statusCode: 500 : Updating cart failed : operator does not exist: character varying = integer
+2023-05-11T09:30:57.085Z [INFO]: /PUT statusCode: 500 : Updating cart failed : operator does not exist: character varying = integer
+2023-05-11T09:31:18.395Z [INFO]: /PUT statusCode: 500 : Updating cart failed : operator does not exist: character varying = integer
+2023-05-11T09:33:26.558Z [INFO]: /PUT statusCode: 500 : Updating cart failed : operator does not exist: character varying = integer
+2023-05-11T09:33:38.502Z [INFO]: /PUT statusCode: 500 : Updating cart failed : operator does not exist: character varying = integer
+2023-05-11T09:33:44.133Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T09:33:57.386Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T09:34:03.738Z [INFO]: /PUT statusCode: 500 : Updating cart failed : operator does not exist: character varying = integer
+2023-05-11T09:41:19.382Z [INFO]: /PUT statusCode: 500 : Updating cart failed : operator does not exist: character varying = integer
+2023-05-11T09:43:03.661Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:43:23.754Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T09:43:34.575Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T09:43:40.731Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:45:07.166Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:46:09.231Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:46:16.230Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:47:34.474Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:48:09.454Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:48:11.135Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:49:17.672Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:49:49.627Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:52:44.832Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:54:05.586Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T09:58:47.026Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T10:00:25.553Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T10:00:45.125Z [ERROR]: /PUT statusCode: 404 : Cart item not found
+2023-05-11T10:03:33.656Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:05:03.868Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:05:15.157Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:05:17.853Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:05:41.568Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:07:25.983Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:07:35.697Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T10:07:41.773Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:08:43.892Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:08:51.808Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:09:24.470Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:09:25.980Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:17:51.003Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T10:19:31.469Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:20:13.941Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:20:52.337Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T10:21:07.450Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:45:59.364Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:53:04.653Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T11:53:23.509Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:53:35.922Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:53:43.311Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:53:48.528Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:54:14.561Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:55:19.466Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:58:30.070Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T11:59:23.028Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T12:00:48.983Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:01:44.733Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:14:44.883Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:21:46.976Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:23:56.966Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T12:24:17.944Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:26:43.794Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T12:26:59.293Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:28:12.715Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T12:28:32.598Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T12:28:42.583Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:29:08.047Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:29:14.560Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:29:21.752Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:31:04.694Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T12:31:19.614Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:34:52.577Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T12:35:06.027Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:36:12.139Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:36:18.357Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:36:45.668Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:39:03.576Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:39:36.930Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T12:42:30.614Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T12:42:35.238Z [INFO]: /PUT statusCode: 500 : Updating cart failed : Cannot read properties of null (reading 'quantity')
+2023-05-11T12:43:50.830Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:44:17.666Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:44:56.191Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T12:45:07.386Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T12:45:11.637Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T13:55:14.520Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T13:55:53.926Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T14:22:53.977Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T14:23:14.334Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T16:28:14.516Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "{id}"
+2023-05-11T16:28:32.418Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "{id}"
+2023-05-11T16:29:16.758Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T16:29:26.665Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T16:29:58.795Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "{id}"
+2023-05-11T16:30:47.585Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "{id}"
+2023-05-11T16:38:04.649Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "NaN"
+2023-05-11T16:38:24.970Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "kundaaggy@example.com"
+2023-05-11T16:38:34.081Z [INFO]: /PUT  :User required more quantity than in stock
+2023-05-11T16:38:58.169Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T16:39:35.346Z [INFO]: /PUT statusCode: 200 : Cart item updated succesfully
+2023-05-11T16:41:30.266Z [INFO]: /PUT statusCode: 500 : Updating cart failed : invalid input syntax for type integer: "{id}"

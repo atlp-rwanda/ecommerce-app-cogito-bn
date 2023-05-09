@@ -16,12 +16,17 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       description: DataTypes.STRING,
       image: DataTypes.ARRAY(DataTypes.STRING),
-      price: DataTypes.STRING,
+      price: DataTypes.INTEGER,
+      quantity: DataTypes.INTEGER,
       vendor_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
+<<<<<<< HEAD
       vendor_id:DataTypes.INTEGER,
       stock:DataTypes.ENUM('In Stock', 'Out of Stock', 'Expired')
       
+=======
+      stock: DataTypes.ENUM('In Stock', 'Out of Stock', 'Expired'),
+>>>>>>> e67a42d (* feat(profile) create profile feature (#37))
     },
     {
       sequelize,

@@ -1,5 +1,6 @@
 import db from '../database/models';
 import JwtUtility from '../utils/jwt';
+
 const isAdmin = async (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
   if (!token) {
@@ -55,7 +56,6 @@ const isBuyer = async (req, res, next) => {
     const user = await db.user.findOne({
       where: { id },
     });
-   
 
     if (user && decodedToken && roleId === 3) {
       req.body.userId = id;

@@ -17,6 +17,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRouter from './userrouters';
 import productRoute from './deleteProductRoute';
+import cartRoute from './cart/updatecartRoute';
 import permissionRoute from './permissionRoute';
 import profileRouter from './profileRouter';
 import options from '../docs/apidoc';
@@ -29,12 +30,21 @@ import { createUser, loginUser, logoutUser } from '../controllers/userController
 import usersRouter from './API/user';
 
 import newUserValidation from '../middleware/newUser.validation';
+<<<<<<< HEAD
 import productItem from "./product/itemsRoutes"
+=======
+import productItem from './product/itemsRoutes';
+>>>>>>> e67a42d (* feat(profile) create profile feature (#37))
 import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
 import authRoutes from './API/SendResetEmail'
 
+<<<<<<< HEAD
 
+=======
+// Login route
+// Create a new user route
+>>>>>>> e67a42d (* feat(profile) create profile feature (#37))
 const router = express.Router();
 i18next
   .use(Backend)
@@ -64,6 +74,10 @@ router.use(userRouter);
 router.use('/profile', profileRouter);
 router.use('/vendors', vendorRouter);
 router.use(productRoute);
+<<<<<<< HEAD
+=======
+router.use(cartRoute);
+>>>>>>> e67a42d (* feat(profile) create profile feature (#37))
 router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/register', newUserValidation);
@@ -82,8 +96,12 @@ router.use('/create', Route);
 router.use('/products', recommendedProduct);
 router.post('/logout', logoutUser);
 
+<<<<<<< HEAD
 router.use(productItem)
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 
+=======
+router.use(productItem);
+>>>>>>> e67a42d (* feat(profile) create profile feature (#37))
 export default router;

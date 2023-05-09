@@ -2,26 +2,52 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class cart extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
+      cart.belongsTo(models.user, {
+        foreignKey: 'userId',
+        as: 'user',
+        onDelete: 'CASCADE',
+      });
+      cart.belongsTo(models.product, {
+        foreignKey: 'productId',
+        as: 'product',
+        onDelete: 'CASCADE',
+      });
     }
   }
   cart.init(
     {
-      user_id: DataTypes.STRING,
-      product_id: DataTypes.STRING,
-      quantity: DataTypes.INTEGER,
-      date_added: DataTypes.STRING,
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        unique: true,
+        autoIncrement: true,
+      },
+      productId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      totalPrice: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
     },
     {
       sequelize,
       modelName: 'cart',
+      tableName: 'carts',
     },
   );
+
   return cart;
 };

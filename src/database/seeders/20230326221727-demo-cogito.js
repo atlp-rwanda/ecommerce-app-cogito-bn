@@ -50,8 +50,18 @@ module.exports = {
       'carts',
       [
         {
-          user_id: '1',
-          product_id: '5',
+          userId: 1,
+          productId: 1,
+          quantity: 5,
+          totalPrice: 10000,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 3,
+          productId: 2,
+          quantity: 2,
+          totalPrice: 100000,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -67,12 +77,9 @@ module.exports = {
           category_id: '1',
           vendor_id: '1',
           image: 'image.png',
-          price: '600$',
+          price: '600',
           quantity: '100',
           stock: 'In Stock',
-          carts_id: 1,
-          orders_id: 2,
-          wishlists_id: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -83,6 +90,7 @@ module.exports = {
       'wishlists',
       [
         {
+<<<<<<< HEAD
           user_id: 2,
           product_id: 1,
          
@@ -121,20 +129,21 @@ module.exports = {
       [
         {
           user_id: 1,
+=======
+          user_id: 3,
+>>>>>>> e67a42d (* feat(profile) create profile feature (#37))
           product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
-
       {},
     );
     await queryInterface.bulkInsert(
-      'roles',
+      'categories',
       [
         {
+<<<<<<< HEAD
           id: '1',
           fullName: 'NDAHAYO Bertin',
           email: 'ndahayosibertin17@gmail.com',
@@ -151,6 +160,10 @@ module.exports = {
           productCategories: 'Computers, Phones, Printers, Phones, Accessories',
           paymentMethods: 'MoMo, PayPal, VISA',
           status: 'ACTIVE',
+=======
+          name: 'Laptop',
+          product_id: 4,
+>>>>>>> e67a42d (* feat(profile) create profile feature (#37))
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -185,20 +198,6 @@ module.exports = {
       {},
     );
 
-    await queryInterface.bulkInsert(
-      'orders',
-      [
-        {
-          user_id: 1,
-          product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
     await queryInterface.bulkInsert(
       'vendors',
       [

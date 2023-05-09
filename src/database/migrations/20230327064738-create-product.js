@@ -16,15 +16,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      orders_id: {
-        type: Sequelize.INTEGER,
-      },
-      wishlists_id: {
-        type: Sequelize.INTEGER,
-      },
-      carts_id: {
-        type: Sequelize.INTEGER,
-      },
+
       vendor_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -36,10 +28,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       price: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       quantity: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       stock: {
         type: Sequelize.ENUM('In Stock', 'Out of Stock', 'Expired'),
