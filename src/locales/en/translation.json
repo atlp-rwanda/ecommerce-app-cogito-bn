@@ -185,9 +185,9 @@
   "clear_cart_successfuly": "Cart cleared successfully",
   "cart_empty": "Cart is empty",
   "buyer_id_missing": "Buyer id is missing",
-  "Order is not paid":"Order is not paid",
-  "Thank you for your order!":"Thank you for your order!",
-  "Order updated with tracking number":"Order updated with tracking number",
+  "Order is not paid": "Order is not paid",
+  "Thank you for your order!": "Thank you for your order!",
+  "Order updated with tracking number": "Order updated with tracking number",
   "Error sending confirmation email": "Error sending confirmation email",
   "messages_retrieved": "all messages retrieved succesfully",
   "no_message_found": "no message found",
@@ -206,4 +206,3 @@
   "no_categories": "No categories found",
   "all_categories": "All categories retrieved succesfully"
 }
-  
