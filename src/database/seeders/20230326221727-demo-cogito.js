@@ -83,19 +83,11 @@ module.exports = {
       'wishlists',
       [
         {
-          name: 'Laptop',
-          seller_id: 1,
           user_id: 2,
-          product_id: 3,
-          description: 'MacBook Pro',
-          image: 'image.png',
-          price: '600$',
-          quantity: '100',
-          totalPrice: '60000$',
-          stock: 'In Stock',
-          Expire_Date: '2035-03-27 ',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          product_id: 1,
+         
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
       {},

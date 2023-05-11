@@ -32,6 +32,7 @@ describe('DELETE /product/:id', () => {
         carts_id: 1,
         orders_id: 2,
         wishlists_id: 2,
+        // expiredAt:'2/2/2000'
       });
     });
 

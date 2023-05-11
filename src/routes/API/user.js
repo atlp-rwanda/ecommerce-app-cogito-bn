@@ -15,4 +15,9 @@ usersRouter.post('/verify', verifVendorJWT, verify);
 usersRouter.get('/sendOtp', verifVendorJWT, sendOtp);
 usersRouter.delete('/deleteUser', deleteUser);
 
+
+
+usersRouter.post('/register', createUser);
+usersRouter.post('/login', loginUser);
+
 export default usersRouter;

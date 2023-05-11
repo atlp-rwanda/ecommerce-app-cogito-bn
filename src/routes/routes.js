@@ -1,5 +1,3 @@
-// This is where routers will be
-
 // tip:
 /**
  *
@@ -8,7 +6,6 @@
  * a URL path/pattern, and a function that is called to handle that pattern
  *
  */
-
 import express from 'express';
 import cors from 'cors';
 import i18next from 'i18next';
@@ -35,9 +32,9 @@ import newUserValidation from '../middleware/newUser.validation';
 import productItem from "./product/itemsRoutes"
 import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
+import authRoutes from './API/SendResetEmail'
 
-// Login route
-// Create a new user route
+
 const router = express.Router();
 i18next
   .use(Backend)
@@ -86,4 +83,7 @@ router.use('/products', recommendedProduct);
 router.post('/logout', logoutUser);
 
 router.use(productItem)
+router.use('/users', usersRouter);
+router.use('/auth', authRoutes);
+
 export default router;
