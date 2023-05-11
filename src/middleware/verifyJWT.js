@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export default async function verifVendorJWT(req, res, next) {
+export default async function verifyJWT(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     return res.status(401).json({ message: req.t('not_logged_in') });

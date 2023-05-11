@@ -4,7 +4,7 @@ module.exports = {
     await queryInterface.bulkInsert('users', [
       {
         name: 'Leo Messi',
-        email: 'leo@example.com',
+        email: 'leo2@example.com',
         gender: 'male',
         phone: '0788719400',
         birthdate: new Date(),
@@ -17,8 +17,8 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        name: 'Neymar Jr',
-        email: 'john@example.com',
+        name: 'John Doe',
+        email: 'john2@example.com',
         gender: 'male',
         phone: '0788719892',
         birthdate: new Date(),
@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         name: 'Agnes Kunda',
-        email: 'kundaaggy@example.com',
+        email: 'kundaaggy2@example.com',
         gender: 'Female',
         phone: '0788719892',
         birthdate: new Date(),
@@ -72,6 +72,7 @@ module.exports = {
           stock: 'In Stock',
           category_id: 1,
           vendor_id: 2,
+          expiredAt: '2025-04-23',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -86,6 +87,7 @@ module.exports = {
           stock: 'In Stock',
           category_id: 1,
           vendor_id: 2,
+          expiredAt: '2025-04-23',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -96,7 +98,7 @@ module.exports = {
       'wishlists',
       [
         {
-          user_id: 2,
+          user_id: 3,
           product_id: 1,
           created_at: new Date(),
           updated_at: new Date(),
@@ -147,22 +149,8 @@ module.exports = {
       'roles',
       [
         {
-          id: '1',
-          fullName: 'NDAHAYO Bertin',
-          email: 'ndahayosibertin17@gmail.com',
-          password: 'NDABer123',
-          phoneNumber: '+250786949188',
-          businessName: 'ITH',
-          businessAddress: 'KN 48B ST',
-          businessPhoneNumber: '+250781346188',
-          businessEmail: 'ith.querries@gmail.com',
-          businessWebsite: 'https://www.ith.com',
-          businessDescription:
-            'We are the Number One Wholesale company of all IT related product in Rwanda',
-          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
-          productCategories: 'Computers, Phones, Printers, Phones, Accessories',
-          paymentMethods: 'MoMo, PayPal, VISA',
-          status: 'ACTIVE',
+          roleName: 'Admin',
+          description: 'manages users',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -184,6 +172,19 @@ module.exports = {
     );
 
     await queryInterface.bulkInsert(
+      'permissions',
+      [
+        {
+          permName: 'Admin',
+          description: 'Manages users',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+
+    await queryInterface.bulkInsert(
       'rolepermissions',
       [
         {
@@ -193,7 +194,6 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-
       {},
     );
 
@@ -215,21 +215,17 @@ module.exports = {
       'vendors',
       [
         {
-          id: '1',
-          fullName: 'NDAHAYO Bertin',
-          email: 'ndahayosibertin17@gmail.com',
-          password: 'NDABer123',
-          phoneNumber: '+250786949188',
+          userId: 1,
           businessName: 'ITH',
-          businessAddress: 'KN 48B ST',
+          businessAddress: ['KN 48B ST'],
           businessPhoneNumber: '+250781346188',
           businessEmail: 'ith.querries@gmail.com',
           businessWebsite: 'https://www.ith.com',
           businessDescription:
             'We are the Number One Wholesale company of all IT related product in Rwanda',
           businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
-          productCategories: 'Computers, Phones, Printers, Phones, Accessories',
-          paymentMethods: 'MoMo, PayPal, VISA',
+          productCategories: [1],
+          paymentMethods: [1, 2, 3],
           status: 'ACTIVE',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -251,32 +247,7 @@ module.exports = {
       ],
       {},
     );
-    await queryInterface.bulkInsert(
-      'vendors',
-      [
-        {
-          id: '1',
-          fullName: 'NDAHAYO Bertin',
-          email: 'ndahayosibertin17@gmail.com',
-          password: 'NDABer123',
-          phoneNumber: '+250786949188',
-          businessName: 'ITH',
-          businessAddress: 'KN 48B ST',
-          businessPhoneNumber: '+250781346188',
-          businessEmail: 'ith.querries@gmail.com',
-          businessWebsite: 'https://www.ith.com',
-          businessDescription:
-            'We are the Number One Wholesale company of all IT related product in Rwanda',
-          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
-          productCategories: 'Computers, Phones, Printers, Phones, Accessories',
-          paymentMethods: 'MoMo, PayPal, VISA',
-          status: 'ACTIVE',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
+    
     await queryInterface.bulkInsert(
       'orders',
       [
@@ -290,6 +261,37 @@ module.exports = {
         },
       ],
 
+      {},
+    );
+
+    await queryInterface.bulkInsert(
+      'payment',
+      [
+        {
+          name: 'Momo',
+          description: 'The most used payment mode in Rwanda',
+          logo: 'image.png',
+          is_active: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Paypal',
+          description: 'The most used payment mode in Rwanda',
+          logo: 'image.png',
+          is_active: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Stripe',
+          description: 'The most used payment mode in Rwanda',
+          logo: 'image.png',
+          is_active: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
       {},
     );
   },

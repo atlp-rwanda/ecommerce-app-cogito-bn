@@ -3,20 +3,16 @@ import Joi from 'joi';
 const validator = (schema) => (payload) => schema.validate(payload, { abortEarly: false });
 
 const registerVendor = Joi.object({
-  fullName: Joi.string().required(),
-  email: Joi.string().email().required(),
-  password: Joi.string().pattern(/^[a-zA-Z0-9]{3,30}$/).min(8).max(16)
-    .required(),
-  phoneNumber: Joi.string().pattern(/^\+?[0-9]{6,}$/).required(),
+  userId: Joi.number().required(),
   businessName: Joi.string().required(),
-  businessAddress: Joi.string().required(),
+  businessAddress: Joi.array().required(),
   businessPhoneNumber: Joi.string().pattern(/^\+?[0-9]{6,}$/).required(),
   businessEmail: Joi.string().email().required(),
   businessWebsite: Joi.string().uri(),
   businessDescription: Joi.string().required(),
   businessLogo: Joi.any(),
-  productCategories: Joi.string().required(),
-  paymentMethods: Joi.string().required(),
+  productCategories: Joi.array().required(),
+  paymentMethods: Joi.array().required(),
   status: Joi.string().required(),
 });
 

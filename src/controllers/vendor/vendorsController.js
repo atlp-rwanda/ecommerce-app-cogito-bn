@@ -4,13 +4,14 @@ import bcrypt from 'bcrypt';
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import i18nextMiddleware from 'i18next-http-middleware';
-import { vendors } from '../../database/models';
+import { vendors, user } from '../../database/models';
 import {
   validateVendorRegistration,
   validateVendorLogin,
 } from '../../middleware/vendor/registerVendorValidator';
 import vendorSignAccessToken from '../../middleware/vendor/vendorJWT';
 import sendEmail from '../../middleware/vendor/vendorSendMail';
+import vendorConfirmationEmail from '../../helpers/email';
 
 dotenv.config();
 
@@ -70,35 +71,49 @@ export const registerVendor = async (req, res) => {
         Error: error.details[0].message,
       });
     }
-    const vendorEmail = await vendors.findOne({
+    const vendorId = await vendors.findOne({
       where: {
-        email: req.body.email,
+        userId: req.body.userId,
       },
     });
-    if (vendorEmail) {
+    if (vendorId) {
       return res.status(409).json({ success: false, message: req.t('registerVendor_409_msg') });
     }
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
     // function that sends welcome email to the newly registered vendors
-    const recipientEmail = req.body.email;
+    const User = await user.findOne({
+      where: {
+        id: req.body.userId,
+      },
+    });
+    if (!User) {
+      return res.status(401).json({
+        status: 401,
+        message: req.t('user_not_found'),
+      });
+    }
+    const updatedUser = await user.update(
+      {
+        roleId: 2,
+      },
+      {
+        where: {
+          id: req.body.userId,
+        },
+        returning: true,
+      },
+    );
+
+    const recipientEmail = User.dataValues.email;
     const emailSubject = 'Welcome to Cogito Ecommerce';
-    const emailMessage = `Dear ${req.body.fullName},\n\nWelcome to Cogito! We are excited to have you as a new vendor. Your business information has been successfully saved in our system.\n\nHere is the information you provided:\n\nFull Name: ${req.body.fullName}\nBusiness Name: ${req.body.businessName}\nBusiness Address: ${req.body.businessAddress}\nBusiness Phone Number: ${req.body.businessPhoneNumber}\nBusiness Email: ${req.body.businessEmail}\nBusiness Website: ${req.body.businessWebsite}\nBusiness Description: ${req.body.businessDescription}\nProduct Categories: ${req.body.productCategories}\nPayment Methods: ${req.body.paymentMethods}\nRandom Password: ${req.body.password}, You can change this password only after login to our site.\n Login Here:\t http://localhost:9090/vendors/login \n\nThank you for choosing Cogito!\n\nBest regards,\nThe Cogito Team`;
+    const emailMessage = vendorConfirmationEmail(User.dataValues, req.body);
     const emailResult = await sendEmail(recipientEmail, emailSubject, emailMessage);
     if (emailResult.success) {
-      res.status(201).json({
-        success: true,
-        message: req.t('registerVendor_201_msg'),
-        response: req.body,
-      });
       // Storing the vendors info only after the email was sent too the newly registered vendors.
-      await vendors.create({
-        fullName: req.body.fullName,
-        email: req.body.email,
-        password: hashedPassword,
-        phoneNumber: req.body.phone,
+      const newVendor = await vendors.create({
+        userId: req.body.userId,
         businessName: req.body.businessName,
         businessAddress: req.body.businessAddress,
-        businessPhoneNumber: req.body.businessPhone,
+        businessPhoneNumber: req.body.businessPhoneNumber,
         businessEmail: req.body.businessEmail,
         businessWebsite: req.body.businessWebsite,
         businessDescription: req.body.businessDescription,
@@ -106,6 +121,13 @@ export const registerVendor = async (req, res) => {
         productCategories: req.body.productCategories,
         paymentMethods: req.body.paymentMethods,
         status: req.body.status,
+      });
+
+      res.status(201).json({
+        success: true,
+        message: req.t('registerVendor_201_msg'),
+        user: updatedUser,
+        response: newVendor,
       });
     } else {
       res.status(500).json({
