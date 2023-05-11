@@ -46,6 +46,9 @@ import chatRouter from './chatRouter';
 import orderNotify from './orderNotiRoute';
 import orderRouter from './order/orderRouter';
 
+import authRoutes from './API/SendResetEmail'
+
+
 const router = express.Router();
 i18next
   .use(Backend)
@@ -97,6 +100,7 @@ router.use('/review', reviewRouter);
 router.use('/auth', authRoutes);
 router.use(productItem);
 router.use('/', productUpdate);
+router.use(productItem)
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.use('/coupon', couponRouter);

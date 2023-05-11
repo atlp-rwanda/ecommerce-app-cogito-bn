@@ -113,8 +113,6 @@
  *                   example: Invalid request parameters
  */
 
-
-
 /**
  * @swagger
  * /users/login:
@@ -151,7 +149,7 @@
  *                   type: number
  *                   description: Response status code
  *                   example: 200
- *                
+ *
  *                 token:
  *                   type: string
  *                   description: Access token
