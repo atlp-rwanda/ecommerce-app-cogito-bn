@@ -13,19 +13,16 @@ module.exports = (sequelize, DataTypes) => {
   }
   vendors.init(
     {
-      fullName: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
-      phoneNumber: DataTypes.STRING,
+      userId: DataTypes.INTEGER,
       businessName: DataTypes.STRING,
-      businessAddress: DataTypes.STRING,
+      businessAddress: DataTypes.ARRAY(DataTypes.STRING),
       businessPhoneNumber: DataTypes.STRING,
       businessEmail: DataTypes.STRING,
       businessWebsite: DataTypes.STRING,
       businessDescription: DataTypes.STRING,
       businessLogo: DataTypes.STRING,
-      productCategories: DataTypes.STRING,
-      paymentMethods: DataTypes.STRING,
+      productCategories: DataTypes.ARRAY(DataTypes.INTEGER),
+      paymentMethods: DataTypes.ARRAY(DataTypes.INTEGER),
       status: DataTypes.STRING,
     },
     {

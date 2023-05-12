@@ -1,14 +1,14 @@
 /**
  * @swagger
  * tags:
- *  name: Products
+ *  name: Product
  *  description: Seller adding product
  * /products/add:
  *  post:
  *   security:
  *     - bearerAuth: []
  *   summary: Create a new Product
- *   tags: [Products]
+ *   tags: [Product]
  *   parameters:
  *     - name: Accept-Language
  *       in: header

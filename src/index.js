@@ -5,13 +5,11 @@ import router from './routes/routes';
 
 const app = express();
 dotenv.config();
-
 const port = process.env.PORT;
 app.use(router);
-
 app.listen(port, async () => {
+  console.log(`app  on port ${port}`, process.env.NODE_ENV);
   await sequelize.authenticate();
-  console.log(`app listening on port ${port}`, process.env.NODE_ENV);
   console.log('Database Connected!');
 });
 export default app;

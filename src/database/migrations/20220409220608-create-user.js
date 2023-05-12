@@ -46,7 +46,7 @@ module.exports = {
       },
       roleId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        defaultValue: 3,
       },
       status: {
         type: Sequelize.STRING,

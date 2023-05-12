@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import RolesControlle from '../controllers/roleController.js';
+import RolesControlle from '../controllers/roleController';
 import {
   isAdmin, isSeller, isBuyer, checkPermission,
 } from '../middleware/role';

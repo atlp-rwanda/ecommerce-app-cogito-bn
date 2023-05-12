@@ -17,7 +17,7 @@ describe('GET /products/:id', () => {
     };
     const response = await chai
       .request(app)
-      .post('/OTP/login')
+      .post('/login')
       .send({ email: user.email, password: user.password });
     expect(response.status).to.equal(200);
     const { token } = response.body;
@@ -39,7 +39,7 @@ describe('GET /products/recommended/:id', () => {
     };
     const userLogin = await chai
       .request(app)
-      .post('/OTP/login')
+      .post('/login')
       .send({ email: user.email, password: user.password });
     expect(userLogin.status).to.equal(200);
     const { token } = userLogin.body;

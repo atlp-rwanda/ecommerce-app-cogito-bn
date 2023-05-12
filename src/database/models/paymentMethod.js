@@ -1,32 +1,29 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class product extends Model {
+  class payment extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate() {
       // define association here
     }
   }
-  product.init(
+  payment.init(
     {
       name: DataTypes.STRING,
       description: DataTypes.STRING,
-      image: DataTypes.ARRAY(DataTypes.STRING),
-      price: DataTypes.STRING,
-      quantity: DataTypes.STRING,
-      category_id: DataTypes.INTEGER,
-      vendor_id: DataTypes.INTEGER,
-      stock: DataTypes.ENUM('In Stock', 'Out of Stock', 'Expired'),
-      expiredAt: DataTypes.DATE,
+      logo: DataTypes.STRING,
+      is_active: DataTypes.BOOLEAN,
+      createdAt: { type: DataTypes.DATE, field: 'created_at' },
+      updatedAt: { type: DataTypes.DATE, field: 'updated_at' },
     },
     {
       sequelize,
-      modelName: 'product',
+      modelName: 'payment',
     },
   );
-  return product;
+  return payment;
 };

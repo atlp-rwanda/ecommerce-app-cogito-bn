@@ -9,23 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      fullName: {
-        type: Sequelize.STRING,
-      },
-      email: {
-        type: Sequelize.STRING,
-      },
-      password: {
-        type: Sequelize.STRING,
-      },
-      phoneNumber: {
-        type: Sequelize.STRING,
+      userId: {
+        type: Sequelize.INTEGER,
       },
       businessName: {
         type: Sequelize.STRING,
       },
       businessAddress: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       businessPhoneNumber: {
         type: Sequelize.STRING,
@@ -43,10 +34,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       productCategories: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
       },
       paymentMethods: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
       },
       status: {
         type: Sequelize.STRING,

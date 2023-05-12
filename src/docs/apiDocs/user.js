@@ -51,69 +51,7 @@
 
 /**
  * @swagger
- * /OTP/login:
- *   post:
- *     summary: Authenticate user email and password
- *     tags: [OTP]
- *     parameters:
- *       - in: header
- *         name: accept-language
- *         required: false
- *         type: string
- *         enum: [de, en, es]
- *         description: Language preference for the response
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             example:
- *               email: john@gmail.com
- *               password: $2b$10$2wf.EnA8/taKGcG3O/DxqefTFhRzqSXzWv.gr5kB672xAMb46dP4m
- *     responses:
- *       200:
- *         description: The user logged in successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: integer
- *                 message:
- *                   type: string
- *                 data:
- *                   type: object
- *                 token:
- *                   type: string
- *       400:
- *         description: The user did not provide their email or password
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: integer
- *                 message:
- *                   type: string
- *       401:
- *         description: The user provided incorrect password or they are not registered
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: integer
- *                 message:
- *                   type: string
- */
-
-/**
- * @swagger
- * /OTP/sendOTP:
+ * /Otp/sendOtp:
  *   get:
  *     summary: Send OTP message to the user email after logging in
  *     tags: [OTP]
@@ -173,7 +111,7 @@
 
 /**
  * @swagger
- * /OTP/verify:
+ * /Otp/verify:
  *   post:
  *     summary: verify if the OTP provided by the user matches the one that was sent to their email
  *     tags: [OTP]
