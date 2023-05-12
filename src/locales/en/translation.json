@@ -1,49 +1,38 @@
 {
   "welcome_message": "Welcome to Cogito's Ecommerce app API",
-
   "unauthorized_msg": "Forbidden",
-
   "getAllVendors_200_msg": "Succesfully Retrieved all Vendors from the database.",
   "getAllVendors_500_msg": "Error in retrieving Vendor from the database.",
-
   "registerVendor_400_msg": "Input Validation Error.",
   "registerVendor_409_msg": "Vendor with this email already exists.",
   "registerVendor_validation_001_msg": "Please enter all the details.",
   "registerVendor_500_001_msg": "Error sending email to the newly registerd vendor.",
   "registerVendor_201_msg": "Succesfully created a new Vendor.",
   "registerVendor_500_002_msg": "Failed to create a new Vendor.",
-
   "findVendorByID_404_msg": "Vendor Not Found!! ID: ",
   "findVendorByID_200_msg": "Succesfully retrieved vendor with ID: ",
   "findVendorByID_500_msg": "Failed to retrieve vendor with ID: ",
-
   "updateVendor_404_msg": "Vendor Not Found!! ID: ",
   "updateVendor_200_msg": "Sucessfully Updated the Vendor with ID: ",
   "updateVendor_500_msg": "Failed to Update the Vendor with ID: ",
-
   "deleteVendor_404_msg": "Vendor Not Found!! ID: ",
   "deleteVendor_200_msg": "Sucessfully Deleted the Vendor with ID: ",
   "deleteVendor_500_msg": "Failed to Delete the Vendor with ID: ",
-
   "vendorLogin_400_msg": "Input Validation Error",
   "vendorLogin_401_001_msg": "Invalid email, First Register with Cogito Team",
   "vendorLogin_401_002_msg": "Invalid email or password",
   "vendorLogin_200_msg": "You Have LoggedIn Successfully!!",
   "vendorLogin_500_msg": "Server error - Vendor Login Failed.",
-
   "getAllUsers_200_msg": "Succesfully Retrieved all users from the database.",
   "getAllUsers_500_msg": "Error in retrieving User from the database.",
-
   "UserLogin_400_msg": "Input Validation Error",
   "UserLogin_401_001_msg": "Invalid email, First Register with Cogito Team",
   "UserLogin_401_002_msg": "Invalid email or password",
   "UserLogin_200_msg": "You Have LoggedIn Successfully!!",
   "UserLogin_500_msg": "Server error - User Login Failed.",
-
   "registerUsers_409_msg": "Users with this email already exists.",
   "registerUsers_201_msg": "Succesfully created a new Users.",
   "registerUsers_500_msg": "Failed to create a new Users.",
-
   "key": "translation",
   "defaultFirstName": "John",
   "defaultLastName": "Doe",
@@ -106,13 +95,42 @@
   "profile_updated_message": "Profile updated successfully",
   "profile_update_unthorize_message": "unauthorized request",
   "not_logged_in_message": "You're not logged in",
+  "product_category_not_found": "product category not found",
+  "is_added": "successfully added",
+  "product_duplicate_error": "this product already exist in stock",
   "wishlist_fetched": "Wishlist fetched",
   "product_added": "Product added to the wishlist",
   "product_already_added": "Product already added to the wishlist",
   "createUser_message": "Please provide firstName, lastName, email, password, phone, and role to create a user!",
-  "logoutUser_message": "User logged out successfully"
-
-
+  "logoutUser_message": "User logged out successfully",
+  "getAllproducts_403_msg": "Forbidden",
+  "getAllproducts_200_msg": "Successfully retrieved all the products from the database",
+  "getAllproducts_500_msg": "Error in retrieving products form the database",
+  "registerProduct_403_msg": "Forbidden",
+  "registerProduct_409_msg": "Product was already registered",
+  "registerProduct_201_msg": "Product Registerd Successfully",
+  "registerProduct_500_msg": "Product Registration failed",
+  "findproductByID_403_msg": "Forbidden",
+  "findproductByID_404_msg": "Product Not Found",
+  "findproductByID_200_msg": "Product Was Found with ID: ",
+  "findproductByID_500_msg": "Error in finding a product",
+  "updateproduct_403_msg": "Forbidden",
+  "updateproduct_404_msg": "Product was not found ",
+  "updateproduct_200_msg": "Updated product succesfully ",
+  "updateproduct_500_msg": "Product Update Failed",
+  "deleteproduct_403_msg": "Forbidden",
+  "deleteproduct_404_msg": "Product Not Found!! ",
+  "deleteproduct_200_msg": "Product Deleted Successfully! ",
+  "deleteproduct_500_msg": "Product Deletion Failed",
+  "getRecommendedProducts_403_msg": "Forbidden",
+  "getRecommendedProducts_404_msg": "User was  Not Found ",
+  "getRecommendedProducts_200_msg": "Recommended products were retrieved successfully!!",
+  "getRecommendedProducts_500_msg": " Error in retrieving the recommended products ",
+  "disactvated": "your status has been disactivated",
+  "fail": "user not found",
+  "failId": "no user found with that ID",
+  "retrievedAll": "all users retrieved",
+  "updateStatus": "status updated successfully",
+  "set-role-message":"Role Assined to specific user Successfully!",
+  "set-permission-message":"Permission Assined to specific role Successfully!"
 }
-
-

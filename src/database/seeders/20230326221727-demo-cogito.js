@@ -17,7 +17,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        name: 'John Doe',
+        name: 'Neymar Jr',
         email: 'john@example.com',
         gender: 'male',
         phone: '0788719892',
@@ -62,17 +62,30 @@ module.exports = {
       'products',
       [
         {
-          name: 'Laptop',
-          description: 'MacBook Pro',
-          category_id: '1',
-          vendor_id: '1',
-          image: 'image.png',
-          price: '600$',
-          quantity: '100',
+          name: 'tablet',
+          description: 'electonic device',
+          price: '8k',
+          image: [
+            'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
+          ],
+          quantity: '1k',
           stock: 'In Stock',
-          carts_id: 1,
-          orders_id: 2,
-          wishlists_id: 2,
+          category_id: 1,
+          vendor_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'laptop',
+          description: 'electronic device',
+          price: '8k',
+          image: [
+            'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
+          ],
+          quantity: '1k',
+          stock: 'In Stock',
+          category_id: 1,
+          vendor_id: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -85,7 +98,6 @@ module.exports = {
         {
           user_id: 2,
           product_id: 1,
-         
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -185,6 +197,46 @@ module.exports = {
       {},
     );
 
+    await queryInterface.bulkInsert(
+      'orders',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 50,
+          status: 'Picking on Site',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'vendors',
+      [
+        {
+          id: '1',
+          fullName: 'NDAHAYO Bertin',
+          email: 'ndahayosibertin17@gmail.com',
+          password: 'NDABer123',
+          phoneNumber: '+250786949188',
+          businessName: 'ITH',
+          businessAddress: 'KN 48B ST',
+          businessPhoneNumber: '+250781346188',
+          businessEmail: 'ith.querries@gmail.com',
+          businessWebsite: 'https://www.ith.com',
+          businessDescription:
+            'We are the Number One Wholesale company of all IT related product in Rwanda',
+          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
+          productCategories: 'Computers, Phones, Printers, Phones, Accessories',
+          paymentMethods: 'MoMo, PayPal, VISA',
+          status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
     await queryInterface.bulkInsert(
       'orders',
       [

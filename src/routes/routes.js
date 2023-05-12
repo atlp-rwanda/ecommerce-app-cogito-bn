@@ -27,13 +27,13 @@ import facebookAuth from './user/facebookAuthRoutes';
 import Route from './roleRoute';
 import { createUser, loginUser, logoutUser } from '../controllers/userController';
 import usersRouter from './API/user';
-
 import newUserValidation from '../middleware/newUser.validation';
-import productItem from "./product/itemsRoutes"
+import productItem from './product/itemsRoutes';
+import searchProducts from '../controllers/search/productController';
+import productRouter from './product/productsRoutes';
 import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
-import authRoutes from './API/SendResetEmail'
-
+import authRoutes from './API/SendResetEmail';
 
 const router = express.Router();
 i18next
@@ -81,9 +81,12 @@ router.use('/OTP', usersRouter);
 router.use('/create', Route);
 router.use('/products', recommendedProduct);
 router.post('/logout', logoutUser);
-
-router.use(productItem)
+router.use('/create', Route);
+router.use('/search', searchProducts);
+router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
+router.use('/create', Route);
+router.use('/products', productRouter);
 
 export default router;
