@@ -4,7 +4,7 @@ module.exports = {
     await queryInterface.bulkInsert('users', [
       {
         name: 'Leo Messi',
-        email: 'leo2@example.com',
+        email: 'leo@example.com',
         gender: 'male',
         phone: '0788719400',
         birthdate: new Date(),
@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         name: 'John Doe',
-        email: 'john2@example.com',
+        email: 'john@example.com',
         gender: 'male',
         phone: '0788719892',
         birthdate: new Date(),
@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         name: 'Agnes Kunda',
-        email: 'kundaaggy2@example.com',
+        email: 'kundaaggy@example.com',
         gender: 'Female',
         phone: '0788719892',
         birthdate: new Date(),
@@ -45,30 +45,43 @@ module.exports = {
         updated_at: new Date(),
       },
     ]);
-
-    await queryInterface.bulkInsert(
-      'carts',
-      [
-        {
-          user_id: '1',
-          product_id: '1',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
     await queryInterface.bulkInsert(
       'products',
       [
         {
           name: 'tablet',
-          description: 'electonic device',
-          price: '8k',
-          image: [
-            'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
-          ],
-          quantity: '1k',
+          description: 'MacBook Pro',
+          category_id: '1',
+          vendor_id: '1',
+          image: ['image.png'],
+          price: 600,
+          quantity: 100,
+          stock: 'In Stock',
+          expiredAt: '2025-04-23',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Laptop',
+          description: 'MacBook Pro',
+          category_id: '1',
+          vendor_id: '1',
+          image: ['image.png'],
+          price: 600,
+          quantity: 100,
+          stock: 'In Stock',
+          expiredAt: '2025-04-23',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Mouse',
+          description: 'Great mouse for laptop',
+          category_id: '1',
+          vendor_id: '1',
+          image: ['image.png'],
+          price: 600,
+          quantity: 100,
           stock: 'In Stock',
           category_id: 1,
           vendor_id: 2,
@@ -79,15 +92,29 @@ module.exports = {
         {
           name: 'laptop',
           description: 'electronic device',
-          price: '8k',
+          price: 8000,
           image: [
             'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
           ],
-          quantity: '1k',
+          quantity: 1000,
           stock: 'In Stock',
           category_id: 1,
           vendor_id: 2,
           expiredAt: '2025-04-23',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+
+    await queryInterface.bulkInsert(
+      'carts',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

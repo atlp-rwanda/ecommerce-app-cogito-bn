@@ -14,8 +14,8 @@ const req = {
   body: {
     name: 'Testing',
     description: 'Test description',
-    price: '10k',
-    quantity: '10',
+    price: 10000,
+    quantity: 10,
     stock: 'In Stock',
     category_id: 1,
     expiredAt: '2023-12-31',
