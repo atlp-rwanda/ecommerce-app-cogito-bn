@@ -1,17 +1,9 @@
-import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import sendEmail from '../utils/sendEmail';
 import db from '../database/models';
 import catchAsync from '../utils/catchAsync';
 
 dotenv.config();
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_ADDRESS_STATUS,
-    pass: process.env.EMAIL_PASSWORD_STATUS,
-  },
-});
 
 const User = db.user;
 export const getAllUsers = catchAsync(async (req, res) => {
@@ -19,12 +11,12 @@ export const getAllUsers = catchAsync(async (req, res) => {
     const users = await User.findAll({
       attributes: {
         exclude: [
-          "password",
-          "createdAt",
-          "updatedAt",
-          "carts_id",
-          "orders_id",
-          "wishlists_id",
+          'password',
+          'createdAt',
+          'updatedAt',
+          'carts_id',
+          'orders_id',
+          'wishlists_id',
         ],
       },
     });
@@ -34,7 +26,7 @@ export const getAllUsers = catchAsync(async (req, res) => {
 
       data: users,
 
-      message: req.t("retrieved_all"),
+      message: req.t('retrieved_all'),
     });
   } catch (error) {
     return res.status(500).json(error.message);
@@ -45,12 +37,12 @@ export const getUserData = catchAsync(async (req, res, next) => {
     const user = await User.findOne({
       attributes: {
         exclude: [
-          "password",
-          "createdAt",
-          "updatedAt",
-          "carts_id",
-          "orders_id",
-          "wishlists_id",
+          'password',
+          'createdAt',
+          'updatedAt',
+          'carts_id',
+          'orders_id',
+          'wishlists_id',
         ],
       },
 
@@ -58,7 +50,7 @@ export const getUserData = catchAsync(async (req, res, next) => {
     });
 
     if (!user) {
-      return next(req.t("user_not_found"), 404);
+      return next(req.t('user_not_found'), 404);
     }
 
     return res.status(200).json({
@@ -66,7 +58,7 @@ export const getUserData = catchAsync(async (req, res, next) => {
 
       data: user,
 
-      message: req.t("retrieved"),
+      message: req.t('retrieved'),
     });
   } catch (error) {
     return res.status(500).json(error.message);
@@ -80,24 +72,33 @@ export const updateStatus = catchAsync(async (req, res) => {
     if (!user) {
       res.status(404).json({
         status: 404,
-        message: req.t("user_not_found"),
+        message: req.t('user_not_found'),
       });
     }
     await user.update(
       {
         status,
       },
-      { where: { id } }
+      { where: { id } },
     );
-    await transporter.sendMail({
-      from: process.env.EMAIL_ADDRESS_STATUS,
-      to: user.email,
-      subject: `Your status has been updated to ${status}`,
-      text: `Dear ${user.name}, your status has been updated to ${status}.`,
-    });
+    if (user.status !== 'inactive') {
+      await sendEmail(
+        user.email,
+        `Your status has been updated to ${status}`,
+        `Dear ${user.name}, due to violation of our policies, we regret to inform you that your account has been disactivated.`,
+      );
+    }
+    if (user.status === 'active') {
+      await sendEmail(
+        user.email,
+        `Your status has been updated to ${status}`,
+        `Hello ${user.name} hope this email finds you well, our team is pleased to inform you that your accout has been reactivated, your can now access all services we provide to you.`,
+      );
+    }
+
     res.status(200).json({
       status: 200,
-      message: req.t("update_status"),
+      message: req.t('update_status'),
     });
   } catch (err) {
     res.send(err);

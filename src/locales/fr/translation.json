@@ -1,39 +1,30 @@
 {
   "welcome_message": "Bienvenue dans l'API de l'application Ecommerce de Cogito",
-
   "unauthorized_msg": "Interdit",
-
   "getAllVendors_200_msg": "Tous les fournisseurs ont été récupérés avec succès de la base de données.",
   "getAllVendors_500_msg": "Erreur lors de la récupération du fournisseur à partir de la base de données.",
-
   "registerVendor_400_msg": "Erreur de validation de saisie.",
   "registerVendor_409_msg": "Le fournisseur avec cet e-mail existe déjà.",
   "registerVendor_validation_001_msg": "Veuillez entrer tous les détails.",
   "registerVendor_500_001_msg": "Erreur lors de l'envoi d'un e-mail au fournisseur nouvellement enregistré.",
   "registerVendor_201_msg": "Un nouveau fournisseur a été créé avec succès.",
   "registerVendor_500_002_msg": "Impossible de créer un nouveau fournisseur.",
-
   "findVendorByID_404_msg": "Fournisseur introuvable !! ID: ",
   "findVendorByID_200_msg": "Fournisseur récupéré avec succès avec l'ID : ",
   "findVendorByID_500_msg": "Impossible de récupérer le fournisseur avec l'ID : ",
-
   "updateVendor_404_msg": "Fournisseur introuvable !! ID: ",
   "updateVendor_200_msg": "Fournisseur mis à jour avec succès avec l'ID : ",
   "updateVendor_500_msg": "Impossible de mettre à jour le fournisseur avec l'ID : ",
-
   "deleteVendor_404_msg": "Fournisseur introuvable !! ID: ",
   "deleteVendor_200_msg": "Fournisseur supprimé avec succès avec l'ID : ",
   "deleteVendor_500_msg": "Impossible de supprimer le fournisseur avec l'ID : ",
-
   "vendorLogin_400_msg": "Erreur de validation de saisie",
   "vendorLogin_401_001_msg": "E-mail invalide, enregistrez-vous d'abord auprès de l'équipe Cogito",
   "vendorLogin_401_002_msg": "E-mail ou mot de passe invalide",
   "vendorLogin_200_msg": "Vous êtes connecté avec succès !!",
   "vendorLogin_500_msg": "Erreur du serveur - Échec de la connexion du fournisseur.",
-
   "getAllUsers_200_msg": "Tous les utilisateurs ont été récupérés avec succès de la base de données.",
   "getAllUsers_500_msg": "Erreur lors de la récupération de l'utilisateur à partir de la base de données.",
-
   "key": "traduction",
   "defaultFirstName": "Jean",
   "defaultLastName": "Dupont",
@@ -88,6 +79,7 @@
   "profile_fetch_message": "Profil récupéré avec succès",
   "profile_updated_message": "Mise à jour du profil réussie",
   "profile_update_unthorize_message": "demande non autorisée",
+  "not_logged_in_message": "Vous n'êtes pas connecté",
   "disactivated": "votre statut a été désactivé",
   "retrieved_all": "tous les utilisateurs récupérés",
   "retrieved": "utilisateur récupéré",
@@ -98,7 +90,6 @@
   "wishlist_fetched": "Liste de souhaits récupérée",
   "product_added": "Produit ajouté à la liste de souhaits",
   "product_already_added": "Produit déjà ajouté à la liste de souhaits",
-  "not_logged_in_message": "Vous n'êtes pas connecté",
   "loginUser_message": "Veuillez fournir un e-mail et un mot de passe pour vous connecter!",
   "createUser_message": "Veuillez fournir le prénom, le nom, l'e-mail, le mot de passe, le téléphone et le rôle pour créer un utilisateur!",
   "logoutUser_message": "L'utilisateur s'est déconnecté avec succès",

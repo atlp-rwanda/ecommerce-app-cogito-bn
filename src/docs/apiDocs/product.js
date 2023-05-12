@@ -1,14 +1,14 @@
 /**
  * @swagger
  * tags:
- *  name: Product
+ *  name: Products
  *  description: Seller adding product
  * /products/add:
  *  post:
  *   security:
  *     - bearerAuth: []
  *   summary: Create a new Product
- *   tags: [Product]
+ *   tags: [Products]
  *   parameters:
  *     - name: Accept-Language
  *       in: header
@@ -46,13 +46,17 @@
  *             name: Laptop
  *             description: MacBook Pro
  *             images:
+ *              [
  *               - binary_image_data_1
- *               - binary_image_data_2
+ *               -binary_image_data_2;
+ *               -binary_image_data_3;
+ *               -binary_image_data_4;
+ *              ]
  *             price: 600$
  *             quantity: 1
  *             stock: In Stock
  *             category_id: 1
- *             expiryDate: '2030-04-22T10:30:00.000Z'
+ *             expiredAt: '2030-04-22T10:30:00.000Z'
  *   responses:
  *    201:
  *      description: Product created successfully

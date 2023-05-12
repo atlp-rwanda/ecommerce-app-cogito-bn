@@ -83,6 +83,7 @@ router.use('/products', recommendedProduct);
 router.post('/logout', logoutUser);
 router.use('/create', Route);
 router.use('/search', searchProducts);
+router.use('/products', productRouter);
 router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
