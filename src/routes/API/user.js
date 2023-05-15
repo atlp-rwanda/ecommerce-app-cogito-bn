@@ -1,14 +1,10 @@
 import express from 'express';
-import {
-  verify,
-  sendOtp,
-  deleteUser,
-} from '../../controllers/vendor/OTPController';
-import verifyJWT from '../../middleware/verifyJWT';
+import { verify, sendOtp, deleteUser } from '../../controllers/vendor/OTPController';
+import verifVendorJWT from '../../middleware/verifyJWT';
 
-const otpRouter = express.Router();
-otpRouter.post('/verify', verifyJWT, verify);
-otpRouter.get('/sendOtp', verifyJWT, sendOtp);
-otpRouter.delete('/deleteUser', deleteUser);
+const usersRouter = express.Router();
+usersRouter.post('/verify', verifVendorJWT, verify);
+usersRouter.get('/sendOtp', verifVendorJWT, sendOtp);
+usersRouter.delete('/deleteUser', deleteUser);
 
-export default otpRouter;
+export default usersRouter;

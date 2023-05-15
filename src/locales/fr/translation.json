@@ -23,8 +23,19 @@
   "vendorLogin_401_002_msg": "E-mail ou mot de passe invalide",
   "vendorLogin_200_msg": "Vous êtes connecté avec succès !!",
   "vendorLogin_500_msg": "Erreur du serveur - Échec de la connexion du fournisseur.",
+
   "getAllUsers_200_msg": "Tous les utilisateurs ont été récupérés avec succès de la base de données.",
   "getAllUsers_500_msg": "Erreur lors de la récupération de l'utilisateur à partir de la base de données.",
+
+  "UserLogin_400_msg": "Erreur de validation de saisie",
+  "UserLogin_401_001_msg": "E-mail invalide, enregistrez-vous d'abord auprès de l'équipe Cogito",
+  "UserLogin_401_002_msg": "E-mail ou mot de passe invalide",
+  "UserLogin_200_msg": "Vous êtes connecté avec succès !!",
+  "UserLogin_500_msg": "Erreur du serveur - Échec de la connexion de l'utilisateur.",
+
+  "registerUsers_409_msg": "Des utilisateurs avec cet e-mail existent déjà.",
+  "registerUsers_201_msg": "Un nouvel utilisateur a été créé avec succès.",
+  "registerUsers_500_msg": "Impossible de créer un nouvel utilisateur.",
   "key": "traduction",
   "defaultFirstName": "Jean",
   "defaultLastName": "Dupont",
@@ -132,6 +143,10 @@
   "fail": "utilisateur non trouvé",
   "failId": "aucun utilisateur trouvé avec cet ID",
   "retrievedAll": "tous les utilisateurs récupérés",
-    "set-role-message":"Rôle attribué à un utilisateur spécifique avec succès!",
-    "set-permission-message":"Autorisation attribuée à un rôle spécifique avec succès!"
+  "set-role-message":"Rôle attribué à un utilisateur spécifique avec succès!",
+  "set-permission-message":"Autorisation attribuée à un rôle spécifique avec succès!",
+  "Missing id parameter in request_message": "Paramètre ID manquant dans la requête",
+  "Product not found_message": "Produit non trouvé",
+  "Product not available for sale_message": "Produit non disponible à la vente",
+  "You are not allowed to perform this operation_message": "Vous n'êtes pas autorisé à effectuer cette opération"
 }

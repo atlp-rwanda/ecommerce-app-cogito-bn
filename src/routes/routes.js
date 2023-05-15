@@ -27,13 +27,14 @@ import facebookAuth from './user/facebookAuthRoutes';
 import Route from './roleRoute';
 import { createUser, loginUser, logoutUser } from '../controllers/userController';
 import searchProducts from '../controllers/search/productController';
-import otpRouter from './API/user';
+import usersRouter from './API/user';
 import newUserValidation from '../middleware/newUser.validation';
 import productItem from './product/itemsRoutes';
 import productRouter from './product/productsRoutes';
 import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
 import authRoutes from './API/SendResetEmail';
+import getProductById from '../controllers/productController';
 
 const router = express.Router();
 i18next
@@ -66,24 +67,22 @@ router.use('/vendors', vendorRouter);
 router.use(productRoute);
 router.use('/', Route);
 router.use('/', permissionRoute);
-router.post('/register', newUserValidation);
 router.post('/login', loginUser);
-router.post('/logout', logoutUser);
-router.post('/register', createUser);
 router.post('/logout', logoutUser);
 router.post('/register', newUserValidation, createUser);
-router.post('/login', loginUser);
-router.post('/register', createUser);
-router.post('/login', loginUser);
 router.use('/wishlist', wishListRouter);
 router.use('/create', Route);
-router.use('/products', recommendedProduct);
 router.use('/search', searchProducts);
-router.use('/Otp', otpRouter);
 router.use('/products', productRouter);
 router.use(productItem);
-router.use('/auth', authRoutes);
-router.use('/create', Route);
 router.use('/products', productRouter);
+router.use('/Otp', usersRouter);
+router.use('/create', Route);
+router.use('/products', recommendedProduct);
+
+router.use(productItem);
+router.use('/users', usersRouter);
+router.use('/auth', authRoutes);
+router.get('/user/products/:id', getProductById);
 
 export default router;

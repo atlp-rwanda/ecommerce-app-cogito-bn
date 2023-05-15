@@ -40,7 +40,7 @@
  *         $ref: '#/components/responses/UnauthorizedError'
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
- * 
+ *
  * components:
  *   schemas:
  *     Product:
@@ -70,7 +70,7 @@
  *         email:
  *           type: string
  *           example: john.doe@example.com
- * 
+ *
  *   responses:
  *     UnauthorizedError:
  *       description: Unauthorized access error
@@ -93,7 +93,6 @@
  *                 type: string
  *                 example: Internal server error
  */
-
 /**
  * @swagger
  * tags:
@@ -136,7 +135,7 @@
  *         $ref: '#/components/responses/UnauthorizedError'
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
- * 
+ *
  * components:
  *   schemas:
  *     Product:
@@ -166,7 +165,7 @@
  *         email:
  *           type: string
  *           example: john.doe@example.com
- * 
+ *
  *   responses:
  *     UnauthorizedError:
  *       description: Unauthorized access error
