@@ -53,4 +53,5 @@ server.listen(port, async () => {
   console.log('Database Connected!');
 });
 
+export { io };
 export default app;

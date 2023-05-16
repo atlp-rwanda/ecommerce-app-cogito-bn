@@ -43,6 +43,7 @@ import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
 import clearCartRouter from './product/cartRoutes';
 import chatRouter from './chatRouter';
+import orderRouter from './order/orderRouter';
 
 const router = express.Router();
 i18next
@@ -101,5 +102,6 @@ router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
 router.use('/chat', chatRouter);
+router.use('/order', orderRouter);
 
 export default router;

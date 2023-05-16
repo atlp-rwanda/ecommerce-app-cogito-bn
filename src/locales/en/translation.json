@@ -186,5 +186,10 @@
   "buyer_id_missing": "Buyer id is missing",
   "messages_retrieved": "all messages retrieved succesfully",
   "no_message_found": "no message found",
-  "message_sent": "message sent succesfully"
+  "message_sent": "message sent succesfully",
+  "not_view_order": "You are not authorized to view this order.",
+  "order_not_found": "Order not found",
+  "get_order_status_successful": "Order status retrieved successfully",
+  "unauthorized_order_update": "You are not authorized to update this order.",
+  "order_update_successful": "Order updated successfully"
 }

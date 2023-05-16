@@ -20,7 +20,7 @@ const tomorrow = new Date(today);
 tomorrow.setDate(today.getDate() + 1);
 
 const couponData = {
-  coupon_code: 'cogito220',
+  coupon_code: 'cogito198',
   discount_type: 'Percentage',
   discount_percentage: 10,
   minimum_purchase_amount: 1,
@@ -32,7 +32,7 @@ const couponData = {
 
 const sellerUser = {
   name: 'Jane smith',
-  email: 'janesmith24@gmail.com',
+  email: 'janesmith44@gmail.com',
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -44,7 +44,7 @@ const sellerUser = {
 
 const buyerUser = {
   name: 'Jack smith',
-  email: 'jacksmith24@gmail.com',
+  email: 'jacksmith44@gmail.com',
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -56,7 +56,7 @@ const buyerUser = {
 
 const adminUser = {
   name: 'Mrs. Admin',
-  email: 'administrator24@gmail.com',
+  email: 'administrator44@gmail.com',
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -68,7 +68,7 @@ const adminUser = {
 };
 
 const vendorData = {
-  businessName: 'test business109',
+  businessName: 'test business204',
   businessAddress: ['KN 48B ST'],
   businessPhoneNumber: '+250781346188',
   businessEmail: 'ith.querries@gmail.com',
@@ -159,7 +159,7 @@ before(async () => {
 });
 
 after(async () => {
-  await coupon.destroy({ where: { coupon_code: 'cogito220' } });
+  await coupon.destroy({ where: { coupon_code: 'cogito198' } });
   await cart.destroy({ where: { id: firstCartItemId } });
   await cart.destroy({ where: { id: secondCartItemId } });
   await user.destroy({ where: { id: sellerUserId } });
@@ -223,13 +223,6 @@ describe('Apply coupon in checkout tests', () => {
     secondCartItemId = secondCartItem.id;
   });
   it('should use a coupon in checkout', async () => {
-    // const couponRes = await chai
-    //   .request(app)
-    //   .post('/coupon/create')
-    //   .send(couponData)
-    //   .set({ Authorization: `Bearer ${sellerToken}` });
-    // chai.expect(couponRes.status).to.equal(201);
-    // firstCoupon = JSON.parse(couponRes.text).data;
     const applyCouponRes = await chai
       .request(app)
       .post('/coupon/checkout')
@@ -246,12 +239,12 @@ describe('update coupon tests', () => {
     const updateCouponRes = await chai
       .request(app)
       .put('/coupon/update')
-      .send({ id: firstCoupon.id, coupon_code: 'new8', vendorId: couponData.vendorId })
+      .send({ id: firstCoupon.id, coupon_code: 'new17', vendorId: couponData.vendorId })
       .set({ Authorization: `Bearer ${sellerToken}` });
     expect(updateCouponRes.status).to.equal(200);
     const updateCouponJson = JSON.parse(updateCouponRes.text);
     const updatedCoupon = updateCouponJson.data;
-    expect(updatedCoupon.coupon_code).to.be.equal('new8');
-    await coupon.destroy({ where: { coupon_code: 'new8' } });
+    expect(updatedCoupon.coupon_code).to.be.equal('new17');
+    await coupon.destroy({ where: { coupon_code: 'new17' } });
   });
 });
