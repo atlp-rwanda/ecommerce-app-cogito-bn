@@ -39,6 +39,7 @@ import authRoutes from './API/SendResetEmail';
 import productCartRoute from './productCartRoute';
 import getProductById from '../controllers/productController';
 import productUpdate from './updateProduct';
+<<<<<<< HEAD
 import couponRouter from './coupon/couponRouter';
 import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
@@ -46,6 +47,8 @@ import payment from './product/paymentRoute';
 // Login route
 // Create a new user route
 import clearCartRouter from './product/cartRoutes';
+=======
+>>>>>>> d28c709 ( feat(buyer should receive an order notification))
 import OrderConfirmationController from '../controllers/orderConfirmationController';
 
 const router = express.Router();
