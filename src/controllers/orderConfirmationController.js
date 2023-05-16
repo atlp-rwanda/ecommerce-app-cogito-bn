@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { getOrderById } from '../services/orderServices';
 import sendEmail from '../services/emailServices';
 import urlUtils from '../services/urlUtils';
@@ -70,6 +71,31 @@ function generateTrackingNumber() {
 
   return trackingNumber;
 }
+=======
+import nodemailer from 'nodemailer';
+import cron from 'node-cron';
+import { orders, product, user } from '../database/models';
+
+const emailSender = process.env.PASSWORD_RESET_EMAIL;
+const emailPassword = 'hznvdgnuhsalrroy';
+const websiteUrl = process.env.WEB_BASE_URL; // Fetch the website URL from environment variables
+
+// Configure nodemailer with SMTP settings
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: emailSender,
+    pass: emailPassword,
+  },
+});
+
+function generateTrackingNumber() {
+  // Generate a unique tracking number for the order
+  const trackingNumber = Math.random().toString(36).substring(7).toUpperCase();
+
+  return trackingNumber;
+}
+>>>>>>> 540a45e ( feat(buyer should receive an order notification))
 
 async function sendConfirmationEmail(orderId) {
   try {
@@ -86,6 +112,7 @@ async function sendConfirmationEmail(orderId) {
     const buyerEmail = users.email;
     // Generate the tracking number
     const trackingNumber = generateTrackingNumber();
+<<<<<<< HEAD
     // Retrieve order details from the database
     console.log(order.order_id);
     const orderDetails = await orders.findOne({
@@ -95,6 +122,21 @@ async function sendConfirmationEmail(orderId) {
     console.log('----', orderDetails);
 
     // Compose the email
+=======
+    // Update the order with the tracking number
+    await orders.update({ Tracking: trackingNumber }, { where: { order_id: orderId } });
+    // Retrieve order details from the database
+    const orderDetails = await orders.findOne({
+      where: { order_id: order.order_id },
+    });
+    // Fetch the associated product data for each product ID in the array
+    const productDataArray = await Promise.all(
+      orderDetails.productId.map((productIds) => product.findOne({
+        where: { id: productIds },
+      })),
+    );
+    // Compose the email and include the product information
+>>>>>>> 540a45e ( feat(buyer should receive an order notification))
     const mailOptions = {
       from: emailSender,
       to: buyerEmail,
@@ -105,8 +147,19 @@ async function sendConfirmationEmail(orderId) {
         <ul>
           <li>Order Number: ${orderDetails.orderNumber}</li>
           <li>Tracking Number: ${trackingNumber}</li>
+<<<<<<< HEAD
         </ul>
         <p>You can track your order by visiting the <a href="${websiteUrl}/order-status/${orderDetails.orderNumber}">order status page</a> on our website.</p>
+=======
+          ${productDataArray
+    .map((productData) => `<li>Product Name: ${productData.name}</li>`)
+    .join('')}
+          <!-- Include other product details -->
+        </ul>
+        <p>You can track your order by visiting the <a href="${websiteUrl}/order-status/${
+  orderDetails.orderNumber
+}">order status page</a> on our website.</p>
+>>>>>>> 540a45e ( feat(buyer should receive an order notification))
       `,
     };
 
@@ -124,7 +177,11 @@ async function sendConfirmationEmail(orderId) {
 
 function startCronJob() {
   // Schedule the cron job to run every five minutes
+<<<<<<< HEAD
   cron.schedule('*/1 * * * *', async () => {
+=======
+  cron.schedule('*/5 * * * *', async () => {
+>>>>>>> 540a45e ( feat(buyer should receive an order notification))
     try {
       // Retrieve paid orders from the database
       const paidOrders = await orders.findAll({ where: { paymentStatus: 'paid' } });
@@ -132,9 +189,19 @@ function startCronJob() {
       // Process each paid order
       for (const order of paidOrders) {
         const orderId = order.order_id;
+<<<<<<< HEAD
 
         // Send confirmation email for the paid order
         await sendConfirmationEmail(orderId);
+=======
+        if (order.Confirmation) {
+          continue;
+        }
+        // Send confirmation email for the paid order
+        await sendConfirmationEmail(orderId);
+
+        await orders.update({ Confirmation: true }, { where: { order_id: orderId } });
+>>>>>>> 540a45e ( feat(buyer should receive an order notification))
       }
     } catch (error) {
       console.log('Error in cron job:', error);
@@ -146,4 +213,7 @@ function startCronJob() {
 startCronJob();
 
 export { generateTrackingNumber, sendConfirmationEmail };
+<<<<<<< HEAD
 >>>>>>> 3646ba9 ( feat(buyer should receive an order notification))
+=======
+>>>>>>> 540a45e ( feat(buyer should receive an order notification))

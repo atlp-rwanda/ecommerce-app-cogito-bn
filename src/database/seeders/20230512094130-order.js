@@ -20,7 +20,11 @@ module.exports = {
       {
         order_id: 'ab9ef26b-27bf-4878-b0bb-049e84e2a1f1',
         buyerId: 2,
+<<<<<<< HEAD
         productId: ['9', '90'],
+=======
+        productId: ["9", "8"],
+>>>>>>> 540a45e ( feat(buyer should receive an order notification))
         shippingAddress: ['456 Oak St', 'Suite 200', 'San Francisco, CA 94107'],
         totalCost: 3000,
         paymentStatus: 'paid',
