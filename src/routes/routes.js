@@ -38,6 +38,11 @@ import recommendedProduct from './recommendedProductRoute';
 import authRoutes from './API/SendResetEmail';
 import productCartRoute from './productCartRoute';
 import productUpdate from './updateProduct';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> ab92d03 ( feat(buyer should receive an order notification))
 import couponRouter from './coupon/couponRouter';
 import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
@@ -47,7 +52,7 @@ import orderRouter from './order/orderRouter';
 
 // Login route
 // Create a new user route
-
+import clearCartRouter from './product/cartRoutes';
 import OrderConfirmationController from '../controllers/orderConfirmationController';
 
 const router = express.Router();
@@ -108,5 +113,8 @@ router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
 router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
+
+router.use('/coupon', couponRouter);
+router.use(clearCartRouter);
 
 export default router;
