@@ -95,11 +95,20 @@ router.use('/auth', authRoutes);
 router.use(productItem);
 
 router.use('/', productUpdate);
+
+router.use('/users', usersRouter);
+router.use('/auth', authRoutes);
+
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
 
 router.use(orderNotify);
+router.use(clearCartRouter);
+
+router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
+
+router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 
 export default router;
