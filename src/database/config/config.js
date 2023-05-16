@@ -18,13 +18,13 @@ module.exports = {
     host: process.env.DB_TEST_HOST,
     port: process.env.DB_TEST_PORT,
     dialect: 'postgres',
-    sslmode: require,
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    // sslmode: require,
+    // dialectOptions: {
+    //   ssl: {
+    //     require: true,
+    //     rejectUnauthorized: false,
+    //   },
+    // },
   },
   production: {
     username: process.env.DB_PROD_USERNAME,

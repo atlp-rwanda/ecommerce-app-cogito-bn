@@ -1,6 +1,11 @@
 import db from '../database/models';
 import JwtUtility from '../utils/jwt';
 
+const getUserRoleName = async (userId) => {
+  const { roleName } = await db.role.findOne({ where: { id: userId } });
+  return roleName;
+};
+
 const isAdmin = async (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1];
   if (!token) {
@@ -8,11 +13,15 @@ const isAdmin = async (req, res, next) => {
   }
   try {
     const decodedToken = JwtUtility.verifyToken(token);
+
     const { id, roleId } = decodedToken.value;
+
+    const roleName = await getUserRoleName(roleId);
+
     const User = await db.user.findOne({
       where: { id },
     });
-    if (User && decodedToken && roleId == 1) {
+    if (User && decodedToken && roleName === 'Admin') {
       next();
     } else {
       res.status(403).json({ message: req.t('unauthorised_message') });
@@ -29,13 +38,14 @@ const isSeller = async (req, res, next) => {
   }
   try {
     const decodedToken = JwtUtility.verifyToken(token.split(' ')[1]);
-    console.log(decodedToken)
+    console.log(decodedToken);
 
     const { id, roleId } = decodedToken.value;
+    const roleName = await getUserRoleName(roleId);
     const User = await db.user.findOne({
       where: { id },
     });
-    if (User && decodedToken && roleId === 2) {
+    if (User && decodedToken && roleName === 'Vendor') {
       req.vendor = id;
       next();
     } else {
@@ -54,11 +64,12 @@ const isBuyer = async (req, res, next) => {
   try {
     const decodedToken = JwtUtility.verifyToken(token.split(' ')[1]);
     const { id, roleId } = decodedToken.value;
+    const roleName = await getUserRoleName(roleId);
     const user = await db.user.findOne({
       where: { id },
     });
 
-    if (user && decodedToken && roleId === 3) {
+    if (user && decodedToken && roleName === 'User') {
       req.body.userId = id;
       next();
     } else {
@@ -117,6 +128,4 @@ const handleError = (res, error) => {
   const status = error.status || 500;
   res.status(status).json({ message: error.message });
 };
-export {
-  isAdmin, isSeller, isBuyer, checkPermission,
-};
+export { isAdmin, isSeller, isBuyer, checkPermission };
