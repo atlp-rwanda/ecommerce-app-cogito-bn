@@ -106,7 +106,7 @@
   "provide_product_id": "fournir l'identifiant du produit",
   "product_deleted": "produit supprimé avec succès",
   "provide_vendor_id": "fournir l'identifiant du vendeur",
-  "no_available_products":"Aucun produit disponible pour ce vendeur",
+  "no_available_products": "Aucun produit disponible pour ce vendeur",
   "all_available_products": "tous les produits disponibles",
   "no_unavailable_products": "Aucun produit indisponible",
   "all_unavailable_products": "Tous les produits indisponibles",
@@ -143,10 +143,11 @@
   "fail": "utilisateur non trouvé",
   "failId": "aucun utilisateur trouvé avec cet ID",
   "retrievedAll": "tous les utilisateurs récupérés",
-  "set-role-message":"Rôle attribué à un utilisateur spécifique avec succès!",
-  "set-permission-message":"Autorisation attribuée à un rôle spécifique avec succès!",
+  "set-role-message": "Rôle attribué à un utilisateur spécifique avec succès!",
+  "set-permission-message": "Autorisation attribuée à un rôle spécifique avec succès!",
   "Missing id parameter in request_message": "Paramètre ID manquant dans la requête",
   "Product not found_message": "Produit non trouvé",
   "Product not available for sale_message": "Produit non disponible à la vente",
-  "You are not allowed to perform this operation_message": "Vous n'êtes pas autorisé à effectuer cette opération"
+  "You are not allowed to perform this operation_message": "Vous n'êtes pas autorisé à effectuer cette opération",
+  "cart_fetched": "Articles du panier récupérés"
 }

@@ -27,10 +27,10 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.STRING(10000)),
       },
       price: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       quantity: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       stock: {
         type: Sequelize.ENUM('In Stock', 'Out of Stock'),

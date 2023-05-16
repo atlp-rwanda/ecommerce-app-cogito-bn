@@ -1,8 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import {
-  describe, it,
-} from 'mocha';
+import { describe, it } from 'mocha';
 import app from '../index';
 
 chai.use(chaiHttp);
@@ -31,10 +29,10 @@ describe('Search Products', () => {
   });
 
   it('should return products by price', async () => {
-    const res = await chai.request(app).get('/search?price=8k');
+    const res = await chai.request(app).get('/search?price=8000');
     expect(res).to.have.status(200);
     expect(res.body).to.be.an('array');
-    expect(res.body[0].price).to.equal('8k');
+    expect(res.body[0].price).to.equal(8000);
   });
 
   it('should return an error for invalid ID', async () => {

@@ -5,7 +5,7 @@ module.exports = {
     const productNames = [
       'Laptop',
       'Smartphone',
-      'Tablet',
+      'tablet',
       'Smartwatch',
       'Headphones',
       'TV',
@@ -80,8 +80,8 @@ module.exports = {
         image: [
           'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
         ],
-        price: '500$',
-        quantity: '50',
+        price: 500,
+        quantity: 50,
         stock: 'In Stock',
         expiredAt: '2025-04-23',
         createdAt: new Date(),

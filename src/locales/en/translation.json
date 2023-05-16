@@ -106,7 +106,7 @@
   "provide_product_id": "provide product id",
   "product_deleted": "product deleted successfully",
   "provide_vendor_id": "provide vendor id",
-  "no_available_products":"No available products for that seller",
+  "no_available_products": "No available products for that seller",
   "all_available_products": "all available products",
   "no_unavailable_products": "No unavailable products",
   "all_unavailable_products": "All unavailable products",
@@ -114,7 +114,6 @@
   "product_added": "Product added to the wishlist",
   "product_already_added": "Product already added to the wishlist",
   "createUser_message": "Please provide firstName, lastName, email, password, phone, and role to create a user!",
-  "logoutUser_message": "User logged out successfully",
   "getAllproducts_403_msg": "Forbidden",
   "getAllproducts_200_msg": "Successfully retrieved all the products from the database",
   "getAllproducts_500_msg": "Error in retrieving products form the database",
@@ -143,10 +142,12 @@
   "failId": "no user found with that ID",
   "retrievedAll": "all users retrieved",
   "updateStatus": "status updated successfully",
-  "set-role-message":"Role Assined to specific user Successfully!",
-  "set-permission-message":"Permission Assined to specific role Successfully!",
+  "set-role-message": "Role Assined to specific user Successfully!",
+  "set-permission-message": "Permission Assined to specific role Successfully!",
   "Missing id parameter in request_message": "Missing id parameter in request",
   "Product not found_message": "Product not foundt",
   "Product not available for sale_message": "Product not available for sale",
-  "You are not allowed to perform this operation_message": "You are not allowed to perform this operation" 
+  "You are not allowed to perform this operation_message": "You are not allowed to perform this operation",
+  "logoutUser_message": "User logged out successfully",
+  "cart_fetched": "Cart items fetched"
 }

@@ -19,8 +19,8 @@ const req = {
   body: {
     name: 'Testing product 106',
     description: 'Test description',
-    price: '10k',
-    quantity: '10',
+    price: 10000,
+    quantity: 10,
     stock: 'In Stock',
     category_id: 1,
     expiredAt: '2023-12-31',
@@ -40,10 +40,10 @@ const user = {
 };
 const files = [];
 const fakeImage = [
-    'https://example.com/image.jpg',
-    'https://example.com/image.jpg',
-    'https://example.com/image.jpg',
-    'https://example.com/image.jpg',
+  'https://example.com/image.jpg',
+  'https://example.com/image.jpg',
+  'https://example.com/image.jpg',
+  'https://example.com/image.jpg',
 ];
 const CloudUploadMock = {
   multi: () => fakeImage,
