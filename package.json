@@ -6,11 +6,11 @@
   "scripts": {
     "lint": "eslint",
     "make-model": "npx sequelize-cli model:generate --name",
-    "seed": "cross-env NODE_ENV=test npx sequelize-cli db:seed:all --config=./src/database/config/config.js",
+    "seed": "cross-env NODE_ENV=development npx sequelize-cli db:seed:all --config=./src/database/config/config.js",
     "seed-down": "cross-env NODE_ENV=development npx sequelize-cli db:seed:undo:all",
     "make-seed": "cross-env NODE_ENV=development  npx sequelize-cli seed:generate --name ",
     "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
-    "migrate": "cross-env NODE_ENV=test npx sequelize-cli db:migrate --config=./src/database/config/config.js",
+    "migrate": "cross-env NODE_ENV=development npx sequelize-cli db:migrate --config=./src/database/config/config.js",
     "down": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo  --config=./src/database/config/config.js",
     "downall": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo:all",
     "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
@@ -48,6 +48,7 @@
     "knex": "^2.4.2",
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
+    "node-cron": "^3.0.2",
     "nodemailer": "^6.9.1",
     "passport": "^0.6.0",
     "passport-facebook": "^3.0.0",
@@ -89,9 +90,9 @@
     "nyc": "^15.1.0",
     "prettier": "^2.8.7",
     "sequelize-cli": "^6.6.0",
-    "webpack": "^5.77.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",
+    "webpack": "^5.77.0",
     "yaml": "^2.2.1"
   }
 }
