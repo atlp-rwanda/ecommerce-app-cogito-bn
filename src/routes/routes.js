@@ -42,12 +42,8 @@ import productUpdate from './updateProduct';
 import couponRouter from './coupon/couponRouter';
 import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
-
-// Login route
-// Create a new user route
 import clearCartRouter from './product/cartRoutes';
-
-import OrderConfirmationController from '../controllers/orderConfirmationController';
+import orderNotify from './orderNotiRoute';
 
 const router = express.Router();
 i18next
@@ -114,7 +110,7 @@ router.use('/auth', authRoutes);
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
-router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
-router.use('/coupon', couponRouter);
+router.use(orderNotify);
+router.use(clearCartRouter);
 
 export default router;
