@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     // eslint-disable-next-line no-unused-vars
     static associate(models) {
-      // define association here
+      orders.belongsTo(models.product, { foreignKey: 'productId' });
     }
   }
   orders.init(
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       productId: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
         allowNull: false,
       },
       shippingAddress: {

@@ -43,12 +43,16 @@ import couponRouter from './coupon/couponRouter';
 import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
 import clearCartRouter from './product/cartRoutes';
+<<<<<<< HEAD
 import chatRouter from './chatRouter';
 import orderRouter from './order/orderRouter';
 
 // Login route
 // Create a new user route
 import OrderConfirmationController from '../controllers/orderConfirmationController';
+=======
+import orderNotify from './orderNotiRoute';
+>>>>>>> 3646ba9 ( feat(buyer should receive an order notification))
 
 const router = express.Router();
 i18next
@@ -102,14 +106,11 @@ router.use('/auth', authRoutes);
 router.use(productItem);
 
 router.use('/', productUpdate);
-router.use('/users', usersRouter);
-router.use('/auth', authRoutes);
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
 router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
 
-router.use('/coupon', couponRouter);
-router.use(clearCartRouter);
+router.use(orderNotify);
 
 export default router;

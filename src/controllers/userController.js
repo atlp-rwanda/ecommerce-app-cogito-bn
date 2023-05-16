@@ -7,16 +7,7 @@ import { user } from '../database/models';
 import decodeJWT from '../utils/token';
 
 dotenv.config();
-// create a transporter object
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false, // use SSL/TLS
-  auth: {
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
+
 export async function loginUser(req, res) {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -60,6 +51,7 @@ export async function loginUser(req, res) {
     message: req.t('incorrect_password'),
   });
 }
+
 export async function createUser(req, res) {
   const {
     name,
@@ -73,6 +65,22 @@ export async function createUser(req, res) {
     preferred_currency,
     billingAddress,
   } = req.body;
+  if (
+    !name
+    || !email
+    || !password
+    || !phone
+    || !preferred_language
+    || !gender
+    || !birthdate
+    || !billingAddress
+    || !preferred_currency
+  ) {
+    return res.status(400).json({
+      status: 400,
+      message: req.t('provide_all_details_signup'),
+    });
+  }
   const emailExists = await user.findOne({
     where: {
       email,
@@ -85,18 +93,7 @@ export async function createUser(req, res) {
     });
   }
   try {
-    const newUser = await user.create({
-      name,
-      email,
-      gender,
-      phone,
-      birthdate,
-      preferred_language,
-      preferred_currency,
-      billingAddress,
-      roleId,
-      password,
-    });
+    const newUser = await user.create(req.body);
     delete newUser.dataValues.password;
     return res.status(201).json({
       status: 201,
@@ -111,6 +108,7 @@ export async function createUser(req, res) {
     });
   }
 }
+
 export async function sendOtp(req, res) {
   const userDetails = decodeJWT(req.headers.authorization);
   // const { id } = req.body;
