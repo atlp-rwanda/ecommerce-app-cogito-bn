@@ -1,12 +1,13 @@
-import Order from '../database/models/order';
+import orders from '../database/models/order';
 
 async function getOrdersByUser(userId) {
-  const orders = await Order.findAll({ where: { userId } });
+  const Orders = await Order.findAll({ where: { userId } });
   return orders;
 }
 
 async function getOrderById(id) {
-  const order = await Order.findOne({ where: { id } });
+  const order = await orders.findOne({ where: { order_id: id } });
+  console.log(order);
   return order;
 }
 
@@ -26,7 +27,7 @@ async function paymentOrderStatus(status, id) {
 async function getOrders() {
   const data = await Order.findAll();
   return data;
-}S
+}
 
 export default {
   updateOrderStatus,

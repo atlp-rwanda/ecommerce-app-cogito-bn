@@ -115,6 +115,6 @@ router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
 router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
-router.use('/coupon', couponRouter);
+router.use(clearCartRouter);
 
 export default router;
