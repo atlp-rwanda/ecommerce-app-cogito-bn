@@ -39,8 +39,6 @@ import authRoutes from './API/SendResetEmail';
 import productCartRoute from './productCartRoute';
 import getProductById from '../controllers/productController';
 import productUpdate from './updateProduct';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import couponRouter from './coupon/couponRouter';
 import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
@@ -48,10 +46,7 @@ import payment from './product/paymentRoute';
 // Login route
 // Create a new user route
 import clearCartRouter from './product/cartRoutes';
-=======
->>>>>>> d28c709 ( feat(buyer should receive an order notification))
-=======
->>>>>>> b88270c ( feat(buyer should receive an order notification))
+
 import OrderConfirmationController from '../controllers/orderConfirmationController';
 
 const router = express.Router();
@@ -116,19 +111,10 @@ router.use(productItem);
 router.use('/', productUpdate);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
-<<<<<<< HEAD
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
 router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
-
-=======
-router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
-
-<<<<<<< HEAD
 router.use('/coupon', couponRouter);
-router.use(clearCartRouter);
-=======
->>>>>>> b88270c ( feat(buyer should receive an order notification))
->>>>>>> e5d22d5 ( feat(buyer should receive an order notification))
+
 export default router;
