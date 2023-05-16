@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.STRING(10000)),
       },
       price: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       quantity: {
         type: Sequelize.INTEGER,

@@ -7,6 +7,7 @@ import {
 import app from '../index';
 import CloudUpload from '../utils/cloudinary/cloudinary';
 import { product } from '../database/models';
+
 chai.use(chaiHttp);
 const req = {
   body: {
@@ -70,15 +71,3 @@ describe('createNewProduct', () => {
       });
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
