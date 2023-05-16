@@ -29,19 +29,13 @@ import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
 import authRoutes from './API/SendResetEmail';
 import productCartRoute from './productCartRoute';
+import getProductById from '../controllers/productController';
 import productUpdate from './updateProduct';
-
 import couponRouter from './coupon/couponRouter';
 import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
 import clearCartRouter from './product/cartRoutes';
-import chatRouter from './chatRouter';
-import orderRouter from './order/orderRouter';
-
-// Login route
-// Create a new user route
 import orderNotify from './orderNotiRoute';
-import clearCartRouter from './product/cartRoutes';
 
 const router = express.Router();
 i18next
@@ -76,6 +70,8 @@ router.use(cartRoute);
 router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/login', loginUser);
+router.post('/register', newUserValidation);
+router.post('/register', createUser);
 router.post('/logout', logoutUser);
 router.post('/register', newUserValidation, createUser);
 router.use('/wishlist', wishListRouter);
@@ -84,31 +80,29 @@ router.use('/search', searchProducts);
 router.use('/Otp', usersRouter);
 router.use('/products', productRouter);
 router.use(productItem);
+router.post('/logout', logoutUser);
+router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.use('/create', Route);
 router.use('/products', productCartRoute);
+router.use('/Otp', usersRouter);
 router.use('/create', Route);
 router.use('/products', recommendedProduct);
 router.use('/review', reviewRouter);
+router.use(productItem);
+router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
+router.get('/user/products/:id', getProductById);
 router.use(productItem);
 
 router.use('/', productUpdate);
-
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
-
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
-
 router.use(orderNotify);
-router.use(clearCartRouter);
-
-router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
-
-router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 
 export default router;
