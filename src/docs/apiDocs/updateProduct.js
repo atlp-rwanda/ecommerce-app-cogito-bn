@@ -2,12 +2,12 @@
  * @swagger
  * tags:
  *  name: Product
- *  description: Seller adding product
- * /products/add:
- *  post:
+ *  description: Seller updating product
+* /product/{id}:
+ *  put:
  *   security:
  *     - bearerAuth: []
- *   summary: Create a new Product
+ *   summary: Update a Product
  *   tags: [Product]
  *   parameters:
  *     - name: Accept-Language
@@ -15,6 +15,12 @@
  *       description: Preferred language
  *       default: en
  *       required: true
+ *     - name: id
+ *       in: path
+ *       description: ID of the product to update
+ *       required: true
+ *       schema:
+ *       type: integer
  *   requestBody:
  *     required: true
  *     content:
@@ -39,9 +45,9 @@
  *               type: string
  *             category_id:
  *               type: integer
- *             expiredAt:
- *               type: string
- *               format: date-time
+ *             vendor_id:
+ *               type: integer
+ *             
  *           example:
  *             name: Laptop
  *             description: MacBook Pro
@@ -102,6 +108,3 @@
  *              status: 400
  *              message: Bad request
  */
-
-
-

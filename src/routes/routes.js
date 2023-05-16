@@ -36,6 +36,7 @@ import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
 import authRoutes from './API/SendResetEmail';
 import getProductById from '../controllers/productController';
+import productUpdate from './updateProduct'
 
 const router = express.Router();
 i18next
@@ -69,6 +70,10 @@ router.use(productRoute);
 router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/login', loginUser);
+router.post('/register', newUserValidation);
+// router.post('/login', loginUser);
+// router.post('/logout', logoutUser);
+router.post('/register', createUser);
 router.post('/logout', logoutUser);
 router.post('/register', newUserValidation, createUser);
 router.use('/wishlist', wishListRouter);
@@ -86,5 +91,11 @@ router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.get('/user/products/:id', getProductById);
+router.use(productItem)
+
+router.use('/', productUpdate)
+router.use('/users', usersRouter);
+router.use('/auth', authRoutes);
+
 
 export default router;
