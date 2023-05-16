@@ -34,7 +34,6 @@ describe('Search Products', () => {
     expect(res.body).to.be.an('array');
     expect(res.body[0].price).to.equal(500);
   });
-
   it('should return an error for invalid ID', async () => {
     const res = await chai.request(app).get('/search?id=invalid');
     expect(res).to.have.status(500);

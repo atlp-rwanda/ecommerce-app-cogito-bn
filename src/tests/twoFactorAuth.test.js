@@ -14,7 +14,7 @@ describe('API tests', () => {
     it('It should create a user, log them in, send TOTP to their email, and delete the user', async () => {
       const user = {
         name: 'me',
-        email: 'hello@gmail.com',
+        email: 'hello2@gmail.com',
         gender: 'male',
         birthdate: '2022-04-24',
         phone: '078887567',

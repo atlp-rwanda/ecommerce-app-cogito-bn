@@ -152,5 +152,10 @@
   "cart_fetched": "Cart items fetched",
   "cart-not_found": "Cart item not found",
   "cart_updated": "Cart item updated successfully",
-  "cart_update_failed": "Failed to update cart item"
+  "cart_update_failed": "Failed to update cart item",
+
+  "addtocart_403_msg": "Oops, Kindly Login!!!",
+  "addtocart_404_msg": "Oops Product Not Available At The Moment!!!",
+  "addtocart_200_msg": "Product Added to Your Cart Successfully",
+  "addtocart_500_msg": "Error In Adding The Product To Cart"
 }
