@@ -85,11 +85,8 @@ async function sendConfirmationEmail(orderId) {
 
 function startCronJob() {
   // Schedule the cron job to run every five minutes
-<<<<<<< HEAD
+
   cron.schedule('*/5 * * * *', async () => {
-=======
-  cron.schedule('*/1 * * * *', async () => {
->>>>>>> 3646ba9 ( feat(buyer should receive an order notification))
     try {
       // Retrieve paid orders from the database
       const paidOrders = await orders.findAll({ where: { paymentStatus: 'paid' } });

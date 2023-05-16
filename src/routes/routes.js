@@ -56,7 +56,6 @@ router.use(cookieParser());
 router.use(express.json());
 
 const specs = swaggerJSDoc(options);
-
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 router.use('/user', signupRouter);
 router.use(googleAuth);
