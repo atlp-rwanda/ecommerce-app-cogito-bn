@@ -36,9 +36,9 @@ import productRouter from './product/productsRoutes';
 import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
 import authRoutes from './API/SendResetEmail';
+import productCartRoute from './productCartRoute';
 import getProductById from '../controllers/productController';
-import productUpdate from './updateProduct'
-
+import productUpdate from './updateProduct';
 
 // Login route
 // Create a new user route
@@ -89,12 +89,12 @@ router.use('/search', searchProducts);
 router.use('/products', productRouter);
 router.use(productItem);
 router.post('/logout', logoutUser);
-
-router.use(productItem)
- router.use('/users', usersRouter);
+router.use(productItem);
+router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.use('/create', Route);
 router.use('/products', productRouter);
+router.use('/products', productCartRoute);
 router.use('/Otp', usersRouter);
 router.use('/create', Route);
 router.use('/products', recommendedProduct);
@@ -103,11 +103,9 @@ router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.get('/user/products/:id', getProductById);
-router.use(productItem)
-
-router.use('/', productUpdate)
+router.use(productItem);
+router.use('/', productUpdate);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
-
 
 export default router;

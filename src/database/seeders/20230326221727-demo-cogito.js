@@ -1,6 +1,4 @@
-[
-  /** @type {import('sequelize-cli').Migration} */
-];
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert('users', [
@@ -135,7 +133,6 @@ module.exports = {
       [
         {
           user_id: 1,
-          user_id: 3,
           product_id: 1,
           status: 'ACTIVE',
           createdAt: new Date(),
@@ -181,6 +178,20 @@ module.exports = {
       {},
     );
     await queryInterface.bulkInsert(
+      'orders',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 50,
+          status: 'Picking on Site',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+    await queryInterface.bulkInsert(
       'vendors',
       [
         {
@@ -216,7 +227,20 @@ module.exports = {
       ],
       {},
     );
-
+    await queryInterface.bulkInsert(
+      'orders',
+      [
+        {
+          user_id: 1,
+          product_id: 1,
+          quantity: 50,
+          status: 'Picking on Site',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
     await queryInterface.bulkInsert(
       'payment',
       [
