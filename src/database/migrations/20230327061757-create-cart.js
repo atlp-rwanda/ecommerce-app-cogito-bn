@@ -9,11 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       user_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       product_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

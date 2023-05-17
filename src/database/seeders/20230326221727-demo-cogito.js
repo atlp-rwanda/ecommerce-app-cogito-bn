@@ -1,4 +1,6 @@
-[/** @type {import('sequelize-cli').Migration} */]
+[
+  /** @type {import('sequelize-cli').Migration} */
+];
 module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert('users', [
@@ -45,43 +47,18 @@ module.exports = {
         updated_at: new Date(),
       },
     ]);
+
     await queryInterface.bulkInsert(
       'products',
       [
         {
           name: 'tablet',
-          description: 'MacBook Pro',
-          category_id: '1',
-          vendor_id: '1',
-          image: ['image.png'],
-          price: 600,
-          quantity: 100,
-          stock: 'In Stock',
-          expiredAt: '2025-04-23',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          name: 'Laptop',
-          description: 'MacBook Pro',
-          category_id: '1',
-          vendor_id: '1',
-          image: ['image.png'],
-          price: 600,
-          quantity: 100,
-          stock: 'In Stock',
-          expiredAt: '2025-04-23',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          name: 'Mouse',
-          description: 'Great mouse for laptop',
-          category_id: '1',
-          vendor_id: '1',
-          image: ['image.png'],
-          price: 600,
-          quantity: 100,
+          description: 'electonic device',
+          price: 8000,
+          image: [
+            'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
+          ],
+          quantity: 1000,
           stock: 'In Stock',
           category_id: 1,
           vendor_id: 2,
@@ -111,20 +88,28 @@ module.exports = {
       'carts',
       [
         {
-          user_id: 1,
-          product_id: 1,
-          quantity: 1,
+          user_id: 3,
+          product_id: 2,
+          quantity: 50,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          user_id: 3,
+          product_id: 2,
+          quantity: 20,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
       {},
     );
+
     await queryInterface.bulkInsert(
       'wishlists',
       [
         {
-          user_id: 3,
+          user_id: 2,
           product_id: 1,
           created_at: new Date(),
           updated_at: new Date(),
@@ -144,26 +129,15 @@ module.exports = {
       ],
       {},
     );
-    await queryInterface.bulkInsert(
-      'categories',
-      [
-        {
-          name: 'Laptop',
-          product_id: 4,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
+
     await queryInterface.bulkInsert(
       'orders',
       [
         {
           user_id: 1,
+          user_id: 3,
           product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
+          status: 'ACTIVE',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -175,19 +149,7 @@ module.exports = {
       [
         {
           roleName: 'Admin',
-          description: 'manages users',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
-    await queryInterface.bulkInsert(
-      'userRoles',
-      [
-        {
-          userId: 1,
-          roleId: 1,
+          description: 'Manages users',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -198,8 +160,8 @@ module.exports = {
       'permissions',
       [
         {
-          permName: 'Admin',
-          description: 'Manages users',
+          permissionName: 'Manages users',
+          description: 'Admin can Manage users',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -212,20 +174,6 @@ module.exports = {
         {
           roleId: 1,
           permissionId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
-    await queryInterface.bulkInsert(
-      'orders',
-      [
-        {
-          user_id: 1,
-          product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -268,20 +216,7 @@ module.exports = {
       ],
       {},
     );
-    await queryInterface.bulkInsert(
-      'orders',
-      [
-        {
-          user_id: 1,
-          product_id: 1,
-          quantity: 50,
-          status: 'Picking on Site',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
+
     await queryInterface.bulkInsert(
       'payment',
       [

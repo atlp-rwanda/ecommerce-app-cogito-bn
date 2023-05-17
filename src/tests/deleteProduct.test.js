@@ -29,10 +29,9 @@ describe('DELETE /product/:id', () => {
         price: 1000,
         quantity: 100,
         stock: 'In Stock',
-        carts_id: 1,
-        orders_id: 2,
-        wishlists_id: 2,
-        // expiredAt:'2/2/2000'
+        category_id: 1,
+        vendor_id:2,
+        expiredAt: '2023-12-31',
       });
     });
 
