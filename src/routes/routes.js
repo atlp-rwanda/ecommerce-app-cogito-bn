@@ -40,6 +40,7 @@ import productCartRoute from './productCartRoute';
 import getProductById from '../controllers/productController';
 import productUpdate from './updateProduct';
 import couponRouter from './coupon/couponRouter';
+import reviewRouter from './reviewRouter';
 
 // Login route
 // Create a new user route
@@ -99,7 +100,7 @@ router.use('/products', productCartRoute);
 router.use('/Otp', usersRouter);
 router.use('/create', Route);
 router.use('/products', recommendedProduct);
-
+router.use('/review', reviewRouter);
 router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
