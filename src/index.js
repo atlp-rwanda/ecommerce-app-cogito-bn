@@ -6,9 +6,10 @@ import { sequelize } from './database/models';
 import router from './routes/routes';
 import { passwordUpdated } from './services/nodeCron';
 
+
+
 const app = express();
 dotenv.config();
-
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: true,
@@ -44,10 +45,14 @@ io.on('connection', (socket) => {
     socket.name = name;
     io.emit('user joined', name);
   });
+  io.on("connection", (socket) => {
+    console.log("A client has connected");
+    socket.on("notification", (data) => {
+      io.emit("notification", data);
+    });
+  });
 });
-
 app.use(router);
-
 const port = process.env.PORT || 4000;
 server.listen(port, async () => {
   console.log(`App listening on port ${port}`);

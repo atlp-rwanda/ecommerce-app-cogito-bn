@@ -23,3 +23,5 @@ const sendPasswordResetEmail = (to, resetToken) => {
 };
 
 export default sendPasswordResetEmail;
+
+
