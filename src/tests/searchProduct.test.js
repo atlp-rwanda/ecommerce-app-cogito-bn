@@ -40,6 +40,19 @@ describe('Search Products', () => {
     expect(res.body).to.be.an('object');
     expect(res.body.error).to.equal('Internal Server Error');
   });
+  it('should return products by price', async () => {
+    const res = await chai.request(app).get('/search?price=500');
+    expect(res).to.have.status(200);
+    expect(res.body).to.be.an('array');
+    expect(res.body[0].price).to.equal(500);
+  });
+
+  it('should return an error for invalid ID', async () => {
+    const res = await chai.request(app).get('/search?id=invalid');
+    expect(res).to.have.status(500);
+    expect(res.body).to.be.an('object');
+    expect(res.body.error).to.equal('Internal Server Error');
+  });
 
   it("should return a message 'Product not found' for non-matching name", async () => {
     const res = await chai.request(app).get('/search?name=Non-existent');

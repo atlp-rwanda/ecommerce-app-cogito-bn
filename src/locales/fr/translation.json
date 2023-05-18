@@ -143,8 +143,6 @@
   "fail": "utilisateur non trouvé",
   "failId": "aucun utilisateur trouvé avec cet ID",
   "retrievedAll": "tous les utilisateurs récupérés",
-  "set-role-message": "Rôle attribué à un utilisateur spécifique avec succès!",
-  "set-permission-message": "Autorisation attribuée à un rôle spécifique avec succès!",
   "Missing id parameter in request_message": "Paramètre ID manquant dans la requête",
   "Product not found_message": "Produit non trouvé",
   "Product not available for sale_message": "Produit non disponible à la vente",
@@ -160,5 +158,9 @@
   "addtocart_200_msg": "Produit ajouté à votre panier avec succès",
   "addtocart_500_msg": "Erreur lors de l'ajout du produit au panier",
   "review_added": "Avis ajouté",
-  "review_exists": "Avis déjà ajouté"
+  "review_exists": "Avis déjà ajouté",
+    "set-role-message":"Rôle attribué à un utilisateur spécifique avec succès!",
+    "set-permission-message":"Autorisation attribuée à un rôle spécifique avec succès!",
+  "clear_cart_successfuly":"Panier effacé avec succès",
+  "cart_empty":"Le panier est vide."
 }
