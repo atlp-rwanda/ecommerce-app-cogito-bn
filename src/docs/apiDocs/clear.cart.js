@@ -1,61 +1,95 @@
 /**
  * @swagger
  * tags:
- *  name: Products
- *  description: Manage Product APIs
+ *   name: Cart
+ *   description: Manage product APIs
  * /cart/clear:
- *  delete:
- *   security:
- *     - bearerAuth: []
- *   summary: Delete Product information by ID as Seller
- *   tags: [Products]
- *   parameters:
- *     - name: Accept-Language
- *       in: header
- *       description: Preferred language
- *       default: en
- *       required: true
- *     - name: id
- *       in: path
- *       description: ID of the product
- *       required: true
- *       schema:
- *         type: integer
+ *   delete:
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Clear cart
+ *     tags: [Cart]
+ *     parameters:
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status_code:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Success
+ *                 items:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Product'
+ *                 seller_info:
+ *                   $ref: '#/components/schemas/SellerInfo'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       500:
+ *         $ref: '#/components/responses/InternalServerError'
+ * 
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           example: 1
+ *         name:
+ *           type: string
+ *           example: Product A
+ *         price:
+ *           type: number
+ *           example: 10.99
+ *         vendor_id:
+ *           type: integer
+ *           example: 1
+ *     SellerInfo:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           example: 1
+ *         name:
+ *           type: string
+ *           example: John Doe
+ *         email:
+ *           type: string
+ *           example: john.doe@example.com
+ * 
  *   responses:
- *    204:
- *      description: product deleted successfully
- *    404:
- *      description: product id not found
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:
- *                data:
- *                  type: object
- *                status:
- *                  type: integer
- *                message:
- *                  type: string
- *            example:
- *                 "data": {}
- *                 status: 404
- *                 message: "product id not found"
- *    400:
- *      description: Bad request
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:
- *                data:
- *                  type: object
- *                status:
- *                  type: integer
- *                message:
- *                  type: string
- *            example:
- *                 "data": {}
- *                 status: 400
- *                 message: "Bad request"
+ *     UnauthorizedError:
+ *       description: Unauthorized access error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 example: Unauthorized
+ *     InternalServerError:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 example: Internal server error
  */

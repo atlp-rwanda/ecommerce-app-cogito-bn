@@ -4,8 +4,7 @@ const clearCart = async (req, res) => {
   try {
   
     const buyerId = req.body.userId  
-   
-  
+
     if (!buyerId) {
       return res.json({
         status: 400,

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { isBuyer } from "../../middleware/role"; 
+import { isEnable } from "../../middleware/Isenable"; 
 import emptyCart from "../../controllers/cart/clearCartController"
 const shoppingCart = Router()
-shoppingCart.delete('/cart/clear',isBuyer, emptyCart.clearCart)
+shoppingCart.delete('/cart/clear',isEnable, emptyCart.clearCart)
 
 export default shoppingCart
