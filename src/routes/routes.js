@@ -39,6 +39,7 @@ import authRoutes from './API/SendResetEmail';
 import productCartRoute from './productCartRoute';
 import getProductById from '../controllers/productController';
 import productUpdate from './updateProduct';
+import couponRouter from './coupon/couponRouter';
 
 // Login route
 // Create a new user route
@@ -84,8 +85,8 @@ router.post('/logout', logoutUser);
 router.post('/register', newUserValidation, createUser);
 router.use('/wishlist', wishListRouter);
 router.use('/cart', cartRouter);
-router.use('/create', Route);
 router.use('/search', searchProducts);
+router.use('/Otp', usersRouter);
 router.use('/products', productRouter);
 router.use(productItem);
 router.post('/logout', logoutUser);
@@ -107,5 +108,7 @@ router.use(productItem);
 router.use('/', productUpdate);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
+
+router.use('/coupon', couponRouter);
 
 export default router;

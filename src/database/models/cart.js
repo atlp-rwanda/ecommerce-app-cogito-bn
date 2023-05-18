@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       userId: { type: DataTypes.INTEGER, field: 'user_id' },
       productId: { type: DataTypes.INTEGER, field: 'product_id' },
+      quantity: DataTypes.INTEGER,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },

@@ -1,6 +1,9 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
+    const today = new Date();
+    const nextYear = new Date(today);
+    nextYear.setYear(today.getFullYear() + 1);
     await queryInterface.bulkInsert('users', [
       {
         name: 'Leo Messi',
@@ -51,12 +54,36 @@ module.exports = {
       [
         {
           name: 'tablet',
-          description: 'electonic device',
-          price: 8000,
-          image: [
-            'https://res.cloudinary.com/dvdmnpf99/image/upload/v1683400177/dbouimuxxvdbquzc9ptr.jpg',
-          ],
-          quantity: 1000,
+          description: 'MacBook Pro',
+          category_id: 1,
+          vendor_id: 1,
+          image: ['image.png'],
+          price: 600,
+          quantity: 100,
+          stock: 'In Stock',
+          expiredAt: '2025-04-23',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Laptop',
+          description: 'MacBook Pro',
+          category_id: 1,
+          vendor_id: 2,
+          image: ['image.png'],
+          price: 600,
+          quantity: 100,
+          stock: 'In Stock',
+          expiredAt: '2025-04-23',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Mouse',
+          description: 'Great mouse for laptop',
+          image: ['image.png'],
+          price: 600,
+          quantity: 100,
           stock: 'In Stock',
           category_id: 1,
           vendor_id: 2,
@@ -99,6 +126,27 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          user_id: 3,
+          product_id: 1,
+          quantity: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          user_id: 3,
+          product_id: 2,
+          quantity: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          user_id: 3,
+          product_id: 3,
+          quantity: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {},
     );
@@ -132,7 +180,7 @@ module.exports = {
       'orders',
       [
         {
-          user_id: 1,
+          user_id: 3,
           product_id: 1,
           status: 'ACTIVE',
           createdAt: new Date(),
@@ -146,7 +194,43 @@ module.exports = {
       [
         {
           roleName: 'Admin',
-          description: 'Manages users',
+          description: 'manages users',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          roleName: 'Vendor',
+          description: 'manages products',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          roleName: 'User',
+          description: 'buys products',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'userRoles',
+      [
+        {
+          userId: 1,
+          roleId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    );
+    await queryInterface.bulkInsert(
+      'permissions',
+      [
+        {
+          permissionName: 'Manages users',
+          description: 'Admin can Manage users',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -196,6 +280,22 @@ module.exports = {
       [
         {
           userId: 1,
+          businessName: 'ITH',
+          businessAddress: ['KN 48B ST'],
+          businessPhoneNumber: '+250781346188',
+          businessEmail: 'ith.querries@gmail.com',
+          businessWebsite: 'https://www.ith.com',
+          businessDescription:
+            'We are the Number One Wholesale company of all IT related product in Rwanda',
+          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
+          productCategories: [1],
+          paymentMethods: [1, 2, 3],
+          status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 2,
           businessName: 'ITH',
           businessAddress: ['KN 48B ST'],
           businessPhoneNumber: '+250781346188',
@@ -271,6 +371,21 @@ module.exports = {
       ],
       {},
     );
+    await queryInterface.bulkInsert('coupons', [
+      {
+        coupon_code: 'cogito101',
+        discount_type: 'Percentage',
+        discount_percentage: 10,
+        minimum_purchase_amount: 1,
+        vendor_id: 2,
+        associated_products: [2],
+        start_date: new Date(),
+        end_date: nextYear,
+        usage_limit: 20,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
   },
   async down(queryInterface) {
     // Add commands to revert seed here.
@@ -285,5 +400,6 @@ module.exports = {
     await queryInterface.bulkDelete('permissions', null, {});
     await queryInterface.bulkDelete('userRoles', null, {});
     await queryInterface.bulkDelete('rolepermissions', null, {});
+    await queryInterface.bulkDelete('coupons', null, {});
   },
 };

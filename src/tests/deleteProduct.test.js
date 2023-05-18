@@ -23,14 +23,12 @@ describe('DELETE /product/:id', () => {
       itemToDelete = await product.create({
         name: 'Telephone',
         description: 'IPHONE',
-        category_id: '1',
-        vendor_id: '1',
         image: ['images.png', 'images.png'],
         price: 1000,
         quantity: 100,
         stock: 'In Stock',
         category_id: 1,
-        vendor_id:2,
+        vendor_id: 2,
         expiredAt: '2023-12-31',
       });
     });
