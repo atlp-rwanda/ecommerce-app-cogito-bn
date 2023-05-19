@@ -54,11 +54,6 @@ describe('API tests', () => {
   describe('GET /product/availability', () => {
     it("It should create a product, change it's availability, and delete it", async () => {
       const userRes = await chai.request(app).post('/register').send(user);
-      console.log("==========================================");
-
-      console.log(userRes);
-
-      console.log("==========================================");
       userRes.should.have.status(201);
       const response = await chai
         .request(app)
