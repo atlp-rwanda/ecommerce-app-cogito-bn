@@ -45,6 +45,10 @@ import clearCartRouter from './product/cartRoutes';
 import chatRouter from './chatRouter';
 import orderRouter from './order/orderRouter';
 
+// Login route
+// Create a new user route
+import OrderConfirmationController from '../controllers/orderConfirmationController';
+
 const router = express.Router();
 i18next
   .use(Backend)
@@ -95,13 +99,13 @@ router.use('/products', recommendedProduct);
 router.use('/review', reviewRouter);
 router.use('/auth', authRoutes);
 router.use(productItem);
+
 router.use('/', productUpdate);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
-router.use('/chat', chatRouter);
-router.use('/order', orderRouter);
+router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
 
 export default router;
