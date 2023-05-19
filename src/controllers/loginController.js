@@ -16,7 +16,6 @@ export const checkUser = async (req, res, next) => {
   }
   return res.status(400).json({ status: 400, message: req.t('User does not exist Message') });
 };
-
 const LoginUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({

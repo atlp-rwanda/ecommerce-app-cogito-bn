@@ -16,7 +16,7 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRouter from './userrouters';
-import productRoute from './deleteProductRoute';
+ import productRoute from './deleteProductRoute';
 import cartRoute from './cart/updatecartRoute';
 import permissionRoute from './permissionRoute';
 import profileRouter from './profileRouter';
@@ -44,6 +44,7 @@ import reviewRouter from './reviewRouter';
 
 // Login route
 // Create a new user route
+import clearCartRouter from "./product/cartRoutes";
 
 const router = express.Router();
 i18next
@@ -79,8 +80,6 @@ router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/login', loginUser);
 router.post('/register', newUserValidation);
-// router.post('/login', loginUser);
-// router.post('/logout', logoutUser);
 router.post('/register', createUser);
 router.post('/logout', logoutUser);
 router.post('/register', newUserValidation, createUser);
@@ -95,7 +94,6 @@ router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.use('/create', Route);
-router.use('/products', productRouter);
 router.use('/products', productCartRoute);
 router.use('/Otp', usersRouter);
 router.use('/create', Route);
@@ -111,5 +109,5 @@ router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 
 router.use('/coupon', couponRouter);
-
+router.use(clearCartRouter)
 export default router;
