@@ -30,45 +30,60 @@ module.exports = {
     );
     await queryInterface.bulkInsert('users', [
       {
-        name: 'Leo Messi',
-        email: 'leo@example.com',
-        gender: 'male',
-        phone: '0788719400',
+        name: "Leo Messi",
+        email: "leo@example.com",
+        gender: "male",
+        phone: "0788719400",
         birthdate: new Date(),
-        preferred_language: 'en',
-        preferred_currency: 'RF',
-        billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
-        password: 'kunda123',
+        preferred_language: "en",
+        preferred_currency: "RF",
+        billing_address: [
+          "KN 12 St, Kigali, Rwanda",
+          "Nyarugenge",
+          "Kigali",
+          "Rwanda",
+        ],
+        password: "kunda123",
         roleId: 1,
         lastPasswordUpdate: '2023-04-10',
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
-        name: 'John Doe',
-        email: 'john@example.com',
-        gender: 'male',
-        phone: '0788719892',
+        name: "John Doe",
+        email: "john@example.com",
+        gender: "male",
+        phone: "0788719892",
         birthdate: new Date(),
-        preferred_language: 'en',
-        preferred_currency: 'RF',
-        billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
-        password: 'kunda123',
+        preferred_language: "en",
+        preferred_currency: "RF",
+        billing_address: [
+          "KN 12 St, Kigali, Rwanda",
+          "Nyarugenge",
+          "Kigali",
+          "Rwanda",
+        ],
+        password: "kunda123",
         roleId: 2,
         lastPasswordUpdate: '2023-05-10',
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
-        name: 'Agnes Kunda',
-        email: 'kundaaggy@example.com',
-        gender: 'Female',
-        phone: '0788719892',
+        name: "Agnes Kunda",
+        email: "kundaaggy@example.com",
+        gender: "Female",
+        phone: "0788719892",
         birthdate: new Date(),
-        preferred_language: 'en',
-        preferred_currency: 'RF',
-        billing_address: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
-        password: 'kunda123',
+        preferred_language: "en",
+        preferred_currency: "RF",
+        billing_address: [
+          "KN 12 St, Kigali, Rwanda",
+          "Nyarugenge",
+          "Kigali",
+          "Rwanda",
+        ],
+        password: "kunda123",
         roleId: 3,
         lastPasswordUpdate: '2023-05-10',
         created_at: new Date(),
@@ -92,7 +107,7 @@ module.exports = {
     ]);
 
     await queryInterface.bulkInsert(
-      'products',
+      "products",
       [
         {
           name: 'Tablet',
@@ -102,8 +117,8 @@ module.exports = {
           image: ['https://images.unsplash.com/photo-1623126908029-58cb08a2b272?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fFRhYmxldHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60, https://images.unsplash.com/photo-1625864667534-aa5208d45a87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fFRhYmxldHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60'],
           price: 500,
           quantity: 100,
-          stock: 'In Stock',
-          expiredAt: '2025-04-23',
+          stock: "In Stock",
+          expiredAt: "2025-04-23",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -115,8 +130,8 @@ module.exports = {
           image: ['https://images.unsplash.com/photo-1569770218135-bea267ed7e84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TWFjQm9vayUyMFByb3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60'],
           price: 2000,
           quantity: 100,
-          stock: 'In Stock',
-          expiredAt: '2025-04-23',
+          stock: "In Stock",
+          expiredAt: "2025-04-23",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -129,7 +144,7 @@ module.exports = {
           stock: 'In Stock',
           category_id: 9,
           vendor_id: 2,
-          expiredAt: '2025-04-23',
+          expiredAt: "2025-04-23",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -142,15 +157,15 @@ module.exports = {
           stock: 'In Stock',
           category_id: 9,
           vendor_id: 2,
-          expiredAt: '2025-04-23',
+          expiredAt: "2025-04-23",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
-      {},
+      {}
     );
     await queryInterface.bulkInsert(
-      'carts',
+      "carts",
       [
         {
           user_id: 3,
@@ -188,11 +203,11 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-      {},
+      {}
     );
 
     await queryInterface.bulkInsert(
-      'wishlists',
+      "wishlists",
       [
         {
           user_id: 2,
@@ -214,19 +229,19 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-      {},
+      {}
     );
     await queryInterface.bulkInsert(
-      'permissions',
+      "permissions",
       [
         {
-          permissionName: 'Manages users',
-          description: 'Admin can Manage users',
+          permissionName: "Manages users",
+          description: "Admin can Manage users",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
-      {},
+      {}
     );
 
     await queryInterface.bulkInsert(
@@ -239,7 +254,7 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-      {},
+      {}
     );
     await queryInterface.bulkInsert(
       'vendors',
@@ -256,7 +271,7 @@ module.exports = {
           businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
           productCategories: [2, 9],
           paymentMethods: [1, 2, 3],
-          status: 'ACTIVE',
+          status: "ACTIVE",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -336,13 +351,13 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-      {},
+      {}
     );
 
     await queryInterface.bulkInsert('coupons', [
       {
-        coupon_code: 'cogito101',
-        discount_type: 'Percentage',
+        coupon_code: "cogito101",
+        discount_type: "Percentage",
         discount_percentage: 10,
         minimum_purchase_amount: 1,
         vendor_id: 2,
