@@ -47,7 +47,7 @@
  *               type: integer
  *             vendor_id:
  *               type: integer
- *             
+ *
  *           example:
  *             name: Laptop
  *             description: MacBook Pro

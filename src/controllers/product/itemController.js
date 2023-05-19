@@ -1,10 +1,11 @@
 import { product } from '../../database/models';
 
-const getAllItems = async (req, res) => {
+export const getAllItems = async (req, res) => {
   const { page = 1, page_size = 20 } = req.query;
-
+  const id = req.vendor;
   try {
     const items = await product.findAndCountAll({
+      where: { vendor_id: id },
       limit: page_size,
       offset: (page - 1) * page_size,
     });
@@ -21,7 +22,7 @@ const getAllItems = async (req, res) => {
   }
 };
 
-const getAllItemsBuyer = async (req, res, next) => {
+export const getAllItemsBuyer = async (req, res, next) => {
   try {
     // Find all products that are available
     const availableProducts = await product.findAll({
@@ -39,5 +40,3 @@ const getAllItemsBuyer = async (req, res, next) => {
     return res.status(500).json({ status: 500, error: req.t('items_error_message') });
   }
 };
-
-export default { getAllItems, getAllItemsBuyer };
