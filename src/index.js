@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { Server } from 'socket.io';
 import { sequelize } from './database/models';
 import router from './routes/routes';
+import { passwordUpdated } from './services/nodeCron';
 
 const app = express();
 dotenv.config();
@@ -12,7 +13,8 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: true,
 });
-
+// nodecron restart
+passwordUpdated.start();
 // Listening events using socket.io instance
 io.on('connection', (socket) => {
   console.log('A client has connected');
@@ -55,10 +57,3 @@ server.listen(port, async () => {
 
 export { io };
 export default app;
-
-
-
-
-
-
-

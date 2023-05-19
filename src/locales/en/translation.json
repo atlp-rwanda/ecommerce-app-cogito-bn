@@ -196,6 +196,12 @@
   "order_not_found": "Order not found",
   "get_order_status_successful": "Order status retrieved successfully",
   "unauthorized_order_update": "You are not authorized to update this order.",
-  "order_update_successful": "Order updated successfully"
+  "order_update_successful": "Order updated successfully",
+  "Please_fill_Password": "Please fill in the old password, new password and confirm password",
+  "old_password": "Your old password is not correct",
+  "password_validation": "Your password must contain at least 1 uppercase, 1 lowercase, 1 digit, and one case character",
+  "new_password": "your new password does not match",
+  "password_updated": "your password was updated sucessfully",
+  "update_expired_password": "your password needs to be updated. Please change your password for enhanced security."
 }
   

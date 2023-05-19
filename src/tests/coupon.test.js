@@ -20,7 +20,7 @@ const tomorrow = new Date(today);
 tomorrow.setDate(today.getDate() + 1);
 
 const couponData = {
-  coupon_code: 'cogito198',
+  coupon_code: 'cogito174',
   discount_type: 'Percentage',
   discount_percentage: 10,
   minimum_purchase_amount: 1,
@@ -32,7 +32,7 @@ const couponData = {
 
 const sellerUser = {
   name: 'Jane smith',
-  email: 'janesmith44@gmail.com',
+  email: 'janesmith213@gmail.com',
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -44,7 +44,7 @@ const sellerUser = {
 
 const buyerUser = {
   name: 'Jack smith',
-  email: 'jacksmith44@gmail.com',
+  email: 'jacksmith213@gmail.com',
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -56,7 +56,7 @@ const buyerUser = {
 
 const adminUser = {
   name: 'Mrs. Admin',
-  email: 'administrator44@gmail.com',
+  email: 'administrator213@gmail.com',
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -159,7 +159,7 @@ before(async () => {
 });
 
 after(async () => {
-  await coupon.destroy({ where: { coupon_code: 'cogito198' } });
+  await coupon.destroy({ where: { coupon_code: 'cogito174' } });
   await cart.destroy({ where: { id: firstCartItemId } });
   await cart.destroy({ where: { id: secondCartItemId } });
   await user.destroy({ where: { id: sellerUserId } });
@@ -239,12 +239,12 @@ describe('update coupon tests', () => {
     const updateCouponRes = await chai
       .request(app)
       .put('/coupon/update')
-      .send({ id: firstCoupon.id, coupon_code: 'new17', vendorId: couponData.vendorId })
+      .send({ id: firstCoupon.id, coupon_code: 'new117', vendorId: couponData.vendorId })
       .set({ Authorization: `Bearer ${sellerToken}` });
     expect(updateCouponRes.status).to.equal(200);
     const updateCouponJson = JSON.parse(updateCouponRes.text);
     const updatedCoupon = updateCouponJson.data;
-    expect(updatedCoupon.coupon_code).to.be.equal('new17');
-    await coupon.destroy({ where: { coupon_code: 'new17' } });
+    expect(updatedCoupon.coupon_code).to.be.equal('new117');
+    await coupon.destroy({ where: { coupon_code: 'new117' } });
   });
 });

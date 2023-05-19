@@ -35,7 +35,6 @@ import productItem from './product/itemsRoutes';
 import productRouter from './product/productsRoutes';
 import wishListRouter from './wishListRouter';
 import recommendedProduct from './recommendedProductRoute';
-import authRoutes from './API/SendResetEmail';
 import productCartRoute from './productCartRoute';
 import productUpdate from './updateProduct';
 import couponRouter from './coupon/couponRouter';
@@ -45,9 +44,9 @@ import clearCartRouter from './product/cartRoutes';
 import chatRouter from './chatRouter';
 import orderNotify from './orderNotiRoute';
 import orderRouter from './order/orderRouter';
-
-import authRoutes from './API/SendResetEmail'
-
+import authRoutes from './API/SendResetEmail';
+import passwordUpdate from './passwordUpdateRoute';
+import passwordPromptt from '../middleware/passwordPrompt';
 
 const router = express.Router();
 i18next
@@ -68,7 +67,6 @@ router.use(cookieParser());
 router.use(express.json());
 
 const specs = swaggerJSDoc(options);
-
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 router.use('/user', signupRouter);
 router.use(googleAuth);
@@ -81,7 +79,9 @@ router.use(productRoute);
 router.use(cartRoute);
 router.use('/', Route);
 router.use('/', permissionRoute);
-router.post('/login', loginUser);
+router.post('/login', passwordPromptt.passwordPrompt, loginUser);
+router.post('/register', newUserValidation);
+router.post('/register', createUser);
 router.post('/logout', logoutUser);
 router.post('/register', newUserValidation, createUser);
 router.use('/wishlist', wishListRouter);
@@ -100,9 +100,11 @@ router.use('/review', reviewRouter);
 router.use('/auth', authRoutes);
 router.use(productItem);
 router.use('/', productUpdate);
-router.use(productItem)
+router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
+router.use('/', passwordUpdate);
+
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);

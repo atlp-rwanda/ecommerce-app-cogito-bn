@@ -12,7 +12,7 @@
     "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
     "migrate": "cross-env NODE_ENV=development npx sequelize-cli db:migrate --config=./src/database/config/config.js",
     "down": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo  --config=./src/database/config/config.js",
-    "downall": "cross-env NODE_ENV=production npx sequelize-cli db:migrate:undo:all",
+    "downall": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo:all",
     "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register src/tests --recursive --exit --timeout 120000",
     "coverage": "nyc --reporter=html --reporter=text npm run test"
@@ -31,6 +31,7 @@
     "connect-pg-simple": "^8.0.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "cron": "^2.3.0",
     "deep-email-validator": "^0.1.21",
     "dotenv": "^16.0.3",
     "events": "^3.3.0",
@@ -70,7 +71,8 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",
     "uuid": "^9.0.0",
-    "winston": "^3.8.2"
+    "winston": "^3.8.2",
+    "z-schema": "^6.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
