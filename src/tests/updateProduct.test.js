@@ -15,8 +15,8 @@ const req = {
   body: {
     name: 'product',
     description: 'Test description',
-    price: '10',
-    quantity: '10',
+    price: 10,
+    quantity: 10,
     stock: 'In Stock',
     category_id: 1,
     expiredAt: '2023-12-31',
@@ -62,10 +62,10 @@ describe('createNewProduct', () => {
     const updateData = {
       name: 'Updated Product',
       description: 'Updated Test description',
-      price: '20',
-      quantity: '5',
+      price: 20,
+      quantity: 5,
       stock: 'Out of Stock',
-      category_id: '2',
+      category_id: 2,
     };
     const files = [];
 
