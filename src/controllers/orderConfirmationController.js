@@ -1,53 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { getOrderById } from '../services/orderServices';
-import sendEmail from '../services/emailServices';
-import urlUtils from '../services/urlUtils';
-
-const OrderConfirmationController = {
-  sendConfirmationEmail: async (req, res) => {
-    try {
-      console.log(req.body);
-      const { orderId, buyerEmail } = req.body;
-      // Get order details and tracking number
-      const order = await getOrderById(orderId); // Remove "orderServices."
-      const trackingNumber = generateTrackingNumber(); // Remove "orderServices."
-      // Update the order with the tracking number
-      await updateOrderTrackingNumber(orderId, trackingNumber); // Remove "orderServices."
-      // Construct the confirmation email content
-      const emailContent = constructConfirmationEmail(order, trackingNumber);
-      // Send the confirmation email to the buyer's email address
-      await sendEmail(buyerEmail, 'Order Confirmation', emailContent);
-      return res.status(200).json({
-        code: 200,
-        message: 'Confirmation email sent successfully',
-      });
-    } catch (error) {
-      return res.status(500).json({
-        code: 500,
-        message: 'Failed to send confirmation email',
-        error: error.message,
-      });
-    }
-  },
-};
-// Helper function to construct the confirmation email content
-function constructConfirmationEmail(order, trackingNumber) {
-  const orderStatusUrl = urlUtils.getOrderStatusUrl(order.id);
-  return `
-    <h1>Order Confirmation</h1>
-    <p>Thank you for your order!</p>
-    <p>Order Details:</p>
-    <ul>
-      <li>Order ID: ${order.id}</li>
-      <li>Tracking Number: ${trackingNumber}</li>
-      <!-- Include other order details -->
-    </ul>
-    <p>You can track the status of your order and view updates on the <a href="${orderStatusUrl}">Order Status Page</a>.</p>
-  `;
-}
-export default OrderConfirmationController;
-=======
 import nodemailer from 'nodemailer';
 import cron from 'node-cron';
 import { orders, product, user } from '../database/models';
@@ -71,31 +21,6 @@ function generateTrackingNumber() {
 
   return trackingNumber;
 }
-=======
-import nodemailer from 'nodemailer';
-import cron from 'node-cron';
-import { orders, product, user } from '../database/models';
-
-const emailSender = process.env.PASSWORD_RESET_EMAIL;
-const emailPassword = 'hznvdgnuhsalrroy';
-const websiteUrl = process.env.WEB_BASE_URL; // Fetch the website URL from environment variables
-
-// Configure nodemailer with SMTP settings
-const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: emailSender,
-    pass: emailPassword,
-  },
-});
-
-function generateTrackingNumber() {
-  // Generate a unique tracking number for the order
-  const trackingNumber = Math.random().toString(36).substring(7).toUpperCase();
-
-  return trackingNumber;
-}
->>>>>>> 540a45e ( feat(buyer should receive an order notification))
 
 async function sendConfirmationEmail(orderId) {
   try {
@@ -112,17 +37,6 @@ async function sendConfirmationEmail(orderId) {
     const buyerEmail = users.email;
     // Generate the tracking number
     const trackingNumber = generateTrackingNumber();
-<<<<<<< HEAD
-    // Retrieve order details from the database
-    console.log(order.order_id);
-    const orderDetails = await orders.findOne({
-      where: { order_id: order.order_id }, // Use orderId instead of order.order_id
-      include: [product],
-    });
-    console.log('----', orderDetails);
-
-    // Compose the email
-=======
     // Update the order with the tracking number
     await orders.update({ Tracking: trackingNumber }, { where: { order_id: orderId } });
     // Retrieve order details from the database
@@ -136,7 +50,6 @@ async function sendConfirmationEmail(orderId) {
       })),
     );
     // Compose the email and include the product information
->>>>>>> 540a45e ( feat(buyer should receive an order notification))
     const mailOptions = {
       from: emailSender,
       to: buyerEmail,
@@ -147,10 +60,6 @@ async function sendConfirmationEmail(orderId) {
         <ul>
           <li>Order Number: ${orderDetails.orderNumber}</li>
           <li>Tracking Number: ${trackingNumber}</li>
-<<<<<<< HEAD
-        </ul>
-        <p>You can track your order by visiting the <a href="${websiteUrl}/order-status/${orderDetails.orderNumber}">order status page</a> on our website.</p>
-=======
           ${productDataArray
     .map((productData) => `<li>Product Name: ${productData.name}</li>`)
     .join('')}
@@ -159,7 +68,6 @@ async function sendConfirmationEmail(orderId) {
         <p>You can track your order by visiting the <a href="${websiteUrl}/order-status/${
   orderDetails.orderNumber
 }">order status page</a> on our website.</p>
->>>>>>> 540a45e ( feat(buyer should receive an order notification))
       `,
     };
 
@@ -177,11 +85,7 @@ async function sendConfirmationEmail(orderId) {
 
 function startCronJob() {
   // Schedule the cron job to run every five minutes
-<<<<<<< HEAD
-  cron.schedule('*/1 * * * *', async () => {
-=======
   cron.schedule('*/5 * * * *', async () => {
->>>>>>> 540a45e ( feat(buyer should receive an order notification))
     try {
       // Retrieve paid orders from the database
       const paidOrders = await orders.findAll({ where: { paymentStatus: 'paid' } });
@@ -189,11 +93,6 @@ function startCronJob() {
       // Process each paid order
       for (const order of paidOrders) {
         const orderId = order.order_id;
-<<<<<<< HEAD
-
-        // Send confirmation email for the paid order
-        await sendConfirmationEmail(orderId);
-=======
         if (order.Confirmation) {
           continue;
         }
@@ -201,7 +100,6 @@ function startCronJob() {
         await sendConfirmationEmail(orderId);
 
         await orders.update({ Confirmation: true }, { where: { order_id: orderId } });
->>>>>>> 540a45e ( feat(buyer should receive an order notification))
       }
     } catch (error) {
       console.log('Error in cron job:', error);
@@ -213,7 +111,3 @@ function startCronJob() {
 startCronJob();
 
 export { generateTrackingNumber, sendConfirmationEmail };
-<<<<<<< HEAD
->>>>>>> 3646ba9 ( feat(buyer should receive an order notification))
-=======
->>>>>>> 540a45e ( feat(buyer should receive an order notification))

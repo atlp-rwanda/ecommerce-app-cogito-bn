@@ -48,10 +48,8 @@ import orderRouter from './order/orderRouter';
 
 // Login route
 // Create a new user route
-import OrderConfirmationController from '../controllers/orderConfirmationController';
 import orderNotify from './orderNotiRoute';
-
-import orderNotify from './orderNotiRoute';
+import clearCartRouter from './product/cartRoutes';
 
 const router = express.Router();
 i18next
@@ -108,7 +106,6 @@ router.use('/', productUpdate);
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
-router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
 
 router.use(orderNotify);
 router.use(clearCartRouter);
