@@ -16,7 +16,7 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRouter from './userrouters';
- import productRoute from './deleteProductRoute';
+import productRoute from './deleteProductRoute';
 import cartRoute from './cart/updatecartRoute';
 import permissionRoute from './permissionRoute';
 import profileRouter from './profileRouter';
@@ -45,7 +45,8 @@ import payment from './product/paymentRoute';
 
 // Login route
 // Create a new user route
-import clearCartRouter from "./product/cartRoutes";
+import clearCartRouter from './product/cartRoutes';
+import OrderConfirmationController from '../controllers/orderConfirmationController';
 
 const router = express.Router();
 i18next
@@ -105,11 +106,13 @@ router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.get('/user/products/:id', getProductById);
 router.use(productItem);
+
 router.use('/', productUpdate);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
+router.post('/order/confirmation', OrderConfirmationController.sendConfirmationEmail);
 
 export default router;
