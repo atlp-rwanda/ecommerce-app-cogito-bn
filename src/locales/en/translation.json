@@ -167,5 +167,7 @@
   "coupon_applied": "coupon applied successfully",
   "coupon_not_apply": "coupon can not be applied",
   "product_not_eligible": "product is not eligible for this coupon",
-  "product_not_yours": "The product you are trying to add a discount to is not yours"
+  "product_not_yours": "The product you are trying to add a discount to is not yours",
+  "review_added": "Review added",
+  "review_exists": "Review already added"
 }

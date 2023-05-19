@@ -158,5 +158,7 @@
   "addtocart_403_msg": "Oups, veuillez vous connecter!!!",
   "addtocart_404_msg": "Oops! Le produit n'est pas disponible pour le moment !!!",
   "addtocart_200_msg": "Produit ajouté à votre panier avec succès",
-  "addtocart_500_msg": "Erreur lors de l'ajout du produit au panier"
+  "addtocart_500_msg": "Erreur lors de l'ajout du produit au panier",
+  "review_added": "Avis ajouté",
+  "review_exists": "Avis déjà ajouté"
 }

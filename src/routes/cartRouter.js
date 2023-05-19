@@ -4,8 +4,6 @@ import { isBuyer } from '../middleware/role';
 
 const cartRouter = express.Router();
 
-cartRouter
-  .route('/')
-  .get(isBuyer, cartController.index);
+cartRouter.route('/').get(isBuyer, cartController.index);
 
 export default cartRouter;
