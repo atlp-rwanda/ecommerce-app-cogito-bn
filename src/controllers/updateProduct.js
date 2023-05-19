@@ -3,7 +3,6 @@ import CloudUpload from '../utils/cloudinary/cloudinary';
 
 const getProduct = async (req, res) => {
   const { id } = req.params;
-
   try {
     const item = await product.findByPk(id);
     if (!item) {

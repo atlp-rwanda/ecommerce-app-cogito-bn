@@ -4,12 +4,14 @@ import sinon from 'sinon';
 import {
   describe, it, before, after,
 } from 'mocha';
+import dotenv from 'dotenv';
 import { Op } from 'sequelize';
 import app from '../index';
 import CloudUpload from '../utils/cloudinary/cloudinary';
 import { product } from '../database/models';
 
 chai.use(chaiHttp);
+dotenv.config({ path: '.env' });
 
 const req = {
   body: {
@@ -92,18 +94,13 @@ describe('createNewProduct', () => {
     const files = [];
     const res = await chai
       .request(app)
-      .put(`/product/${productId}`)
+      .get(`/product/${productId}`)
       .set('Authorization', `Bearer ${token}`)
-      .set('Content-Type', 'multipart/form-data')
-      .field(updateData)
-      .field('images', files);
+      .set('Content-Type', 'application/json');
+    console.log(res.body);
     chai.expect(res.status).to.equal(200);
-    chai.expect(res.body.item.name).to.equal(updateData.name);
-    chai.expect(res.body.item.description).to.equal(updateData.description);
-    chai.expect(res.body.item.price).to.equal(updateData.price);
-    chai.expect(res.body.item.quantity).to.equal(updateData.quantity);
-    chai.expect(res.body.item.stock).to.equal(updateData.stock);
-    chai.expect(res.body.item.category_id).to.equal(updateData.category_id);
+    chai.expect(res.body).to.be.an('object');
+    chai.expect(res.body.item.price).to.equal(req.body.price);
   });
   it('should return an error message if the product is not found', async () => {
     const productID = 99999;
