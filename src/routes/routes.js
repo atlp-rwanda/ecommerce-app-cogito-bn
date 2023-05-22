@@ -41,6 +41,7 @@ import getProductById from '../controllers/productController';
 import productUpdate from './updateProduct';
 import couponRouter from './coupon/couponRouter';
 import reviewRouter from './reviewRouter';
+import payment from './product/paymentRoute';
 
 // Login route
 // Create a new user route
@@ -107,7 +108,8 @@ router.use(productItem);
 router.use('/', productUpdate);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
-
 router.use('/coupon', couponRouter);
-router.use(clearCartRouter)
+router.use(clearCartRouter);
+router.use('/checkout', payment);
+
 export default router;

@@ -9,7 +9,8 @@ import {
 } from '../middleware/role';
 
 const Route = Router();
-Route.post('/role', isAdmin, checkPermission('manage roles'), RolesControlle.createNewRole),
+
+Route.post('/role', isAdmin, RolesControlle.createNewRole),
 Route.get('/role', isAdmin, RolesControlle.getAllRoles),
 Route.get('/role/:id', isAdmin, RolesControlle.getOneRole),
 Route.put('/role/:id', isAdmin, RolesControlle.updateOneRole),

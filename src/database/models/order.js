@@ -1,7 +1,7 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class order extends Model {
+  class orders extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,20 +12,58 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  order.init(
+  orders.init(
     {
-      order_id: DataTypes.INTEGER,
-      user_id: DataTypes.INTEGER,
-      order_date: DataTypes.STRING,
-      total_price: DataTypes.FLOAT,
-      status: DataTypes.STRING,
-      createdAt: { type: DataTypes.DATE, field: 'created_at' },
-      updatedAt: { type: DataTypes.DATE, field: 'updated_at' },
+      order_id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
+      buyerId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+        },
+      },
+      productId: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
+      shippingAddress: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
+      totalCost: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      paymentStatus: {
+        type: DataTypes.ENUM('pending', 'paid', 'failed'),
+        allowNull: false,
+        defaultValue: 'pending',
+      },
+      shippingStatus: {
+        type: DataTypes.ENUM('pending', 'shipped', 'delivered'),
+        allowNull: false,
+        defaultValue: 'pending',
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
-      modelName: 'order',
+      modelName: 'orders',
     },
   );
-  return order;
+  return orders;
 };

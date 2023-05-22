@@ -32,9 +32,9 @@
  *                 type: string
  *                 format: binary
  *             price:
- *               type: string
+ *               type: integer
  *             quantity:
- *               type: string
+ *               type: integer
  *             stock:
  *               type: string
  *             category_id:
@@ -52,7 +52,7 @@
  *               -binary_image_data_3;
  *               -binary_image_data_4;
  *              ]
- *             price: 600$
+ *             price: 600
  *             quantity: 1
  *             stock: In Stock
  *             category_id: 1
@@ -78,7 +78,7 @@
  *                name: Laptop
  *                description: MacBook Pro
  *                image: image
- *                price: 600$
+ *                price: 600
  *                stock: In Stock
  *                expiredAt: '2030-04-22T10:30:00.000Z'
  *                createdAt: '2023-04-22T10:30:00.000Z'

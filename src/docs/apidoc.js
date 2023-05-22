@@ -34,8 +34,5 @@ const options = {
     },
   ],
   apis: ['./src/routes/*.js', './src/docs/apiDocs/*.js', './src/docs/vendors(22)/*'],
- 
-
 };
-
 export default options;

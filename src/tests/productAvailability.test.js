@@ -28,7 +28,7 @@ const req = {
 };
 const user = {
   name: 'Jack smith',
-  email: 'janesmithdoe@gmail.com',
+  email: 'janesmithdoe2@gmail.com',
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -55,7 +55,6 @@ describe('API tests', () => {
     it("It should create a product, change it's availability, and delete it", async () => {
       const userRes = await chai.request(app).post('/register').send(user);
       userRes.should.have.status(201);
-
       const response = await chai
         .request(app)
         .post('/login')
