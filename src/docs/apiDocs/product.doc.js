@@ -188,3 +188,102 @@
  *                 type: string
  *                 example: Internal server error
  */
+
+/**
+ * @swagger
+ * /products/buyer/{id}:
+ *  get:
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Get Product Information by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Enter Product Id
+ *         schema:
+ *           type: string
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Succesfully Retrieved the Product from the database.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Products'
+ *       403:
+ *         description: Forbidden.
+ *       500:
+ *         description: Error in retrieving Product with ID from the database
+ *       404:
+ *         description: Product with the specified ID was not found
+ */
+
+/**
+ * @swagger
+ * /products/buyer2/{id}:
+ *  get:
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Get Product Information by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Enter Product Id
+ *         schema:
+ *           type: string
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Succesfully Retrieved the Product from the database.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Products'
+ *       403:
+ *         description: Forbidden.
+ *       500:
+ *         description: Error in retrieving Product with ID from the database
+ *       404:
+ *         description: Product with the specified ID was not found
+ */
+
+/**
+ * @swagger
+ * /products/buyer:
+ *  get:
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Get All Product Information
+ *     tags: [Products]
+ *     parameters:
+ *       - name: Accept-Language
+ *         in: header
+ *         description: Preferred language
+ *         default: en
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Succesfully Retrieved the Product from the database.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Products'
+ *       403:
+ *         description: Forbidden.
+ *       500:
+ *         description: Error in retrieving Product with ID from the database
+ *       404:
+ *         description: Product with the specified ID was not found
+ */

@@ -8,40 +8,6 @@ import removeDuplicates from '../utils/handlingRemoveDuplicates';
 dotenv.config();
 
 // all products endpoint are to be acccessed by only admin users.
-// function to get product by ID.
-export const findproductByID = async (req, res) => {
-  try {
-    const { authenticatedBuyer } = req;
-    if (!authenticatedBuyer) {
-      return res.status(403).json({
-        status: 403,
-        message: req.t('unauthorized_msg'),
-      });
-    }
-    const products = await product.findByPk(req.params.id);
-    if (products === null) {
-      return res
-        .status(404)
-        .json({ status: 404, message: `${req.t('findproductByID_404_msg')} ${req.params.id}` });
-    }
-    // Saving the viewed products id and the id of the user who viewed it
-    await productViews.create({
-      productId: req.params.id,
-      buyerId: authenticatedBuyer.id,
-    });
-    return res.status(200).json({
-      status: 200,
-      message: `${req.t('findproductByID_200_msg')} ${req.params.id} `,
-      response: products,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      status: 500,
-      message: `${req.t('findproductByID_500_msg')} ${req.params.id}.`,
-      Error: error.message,
-    });
-  }
-};
 async function getRecommendedProducts(userID) {
   try {
     // Get the list of all products from the wishlist of the buyer
@@ -134,7 +100,7 @@ async function getRecommendedProducts(userID) {
   }
 }
 // function to get recommended product
-export const RecommendedProduct = async (req, res) => {
+const RecommendedProduct = async (req, res) => {
   try {
     const { authenticatedBuyer } = req;
     if (!authenticatedBuyer) {
@@ -166,3 +132,4 @@ export const RecommendedProduct = async (req, res) => {
     });
   }
 };
+export default RecommendedProduct;
