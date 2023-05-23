@@ -44,6 +44,10 @@
   "registerUsers_201_msg": "Un nouvel utilisateur a été créé avec succès.",
   "registerUsers_500_msg": "Impossible de créer un nouvel utilisateur.",
 
+  "disactivated": "votre statut a été désactivé",
+  "retrieved_all": "tous les utilisateurs récupérés",
+  "retrieved": "utilisateur récupéré",
+  "update_status": "statut mis à jour avec succès",
   "key": "traduction",
   "defaultFirstName": "Jean",
   "defaultLastName": "Dupont",
@@ -99,10 +103,6 @@
   "profile_updated_message": "Mise à jour du profil réussie",
   "profile_update_unthorize_message": "demande non autorisée",
   "not_logged_in_message": "Vous n'êtes pas connecté",
-  "disactivated": "votre statut a été désactivé",
-  "retrieved_all": "tous les utilisateurs récupérés",
-  "retrieved": "utilisateur récupéré",
-  "update_status": "statut mis à jour avec succès",
   "product_category_not_found": "product category not found",
   "is_added": "ajouté avec succès",
   "product_duplicate_error": "ce produit existe déjà en stock",
@@ -167,8 +167,11 @@
   "addtocart_500_msg": "Erreur lors de l'ajout du produit au panier",
   "review_added": "Avis ajouté",
   "review_exists": "Avis déjà ajouté",
-    "set-role-message":"Rôle attribué à un utilisateur spécifique avec succès!",
-    "set-permission-message":"Autorisation attribuée à un rôle spécifique avec succès!",
-  "clear_cart_successfuly":"Panier effacé avec succès",
-  "cart_empty":"Le panier est vide."
+  "set-role-message": "Rôle attribué à un utilisateur spécifique avec succès!",
+  "set-permission-message": "Autorisation attribuée à un rôle spécifique avec succès!",
+  "clear_cart_successfuly": "Panier effacé avec succès",
+  "cart_empty": "Le panier est vide.",
+  "messages_retrieved": "tous les messages récupérés avec succès",
+  "no_message_found": "no message found",
+  "message_sent": "message envoyé avec succès"
 }

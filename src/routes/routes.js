@@ -16,7 +16,7 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import userRouter from './userrouters';
- import productRoute from './deleteProductRoute';
+import productRoute from './deleteProductRoute';
 import cartRoute from './cart/updatecartRoute';
 import permissionRoute from './permissionRoute';
 import profileRouter from './profileRouter';
@@ -42,10 +42,8 @@ import productUpdate from './updateProduct';
 import couponRouter from './coupon/couponRouter';
 import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
-
-// Login route
-// Create a new user route
-import clearCartRouter from "./product/cartRoutes";
+import clearCartRouter from './product/cartRoutes';
+import chatRouter from './chatRouter';
 
 const router = express.Router();
 i18next
@@ -80,8 +78,6 @@ router.use(cartRoute);
 router.use('/', Route);
 router.use('/', permissionRoute);
 router.post('/login', loginUser);
-router.post('/register', newUserValidation);
-router.post('/register', createUser);
 router.post('/logout', logoutUser);
 router.post('/register', newUserValidation, createUser);
 router.use('/wishlist', wishListRouter);
@@ -90,26 +86,21 @@ router.use('/search', searchProducts);
 router.use('/Otp', usersRouter);
 router.use('/products', productRouter);
 router.use(productItem);
-router.post('/logout', logoutUser);
-router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.use('/create', Route);
 router.use('/products', productCartRoute);
-router.use('/Otp', usersRouter);
 router.use('/create', Route);
 router.use('/products', recommendedProduct);
 router.use('/review', reviewRouter);
-router.use(productItem);
-router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.get('/user/products/:id', getProductById);
-router.use(productItem);
 router.use('/', productUpdate);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);
 router.use('/checkout', payment);
+router.use('/chat', chatRouter);
 
 export default router;

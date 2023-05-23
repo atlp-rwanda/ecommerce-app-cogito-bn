@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Socket.IO Notifications Test</title>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <style>
+      body {
+        background-color: #f1f1f1;
+        font-family: Arial, sans-serif;
+      }
+
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .chat-box {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        width: 500px;
+      }
+
+      .message-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .message-list li {
+        margin-bottom: 10px;
+      }
+
+      .chat-form {
+        display: flex;
+      }
+
+      .chat-form input[type="text"] {
+        flex: 1;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+      }
+
+      .chat-form button {
+        margin-left: 10px;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        background-color: #4caf50;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-box">
+        <ul class="message-list" id="messages"></ul>
+        <form class="chat-form" action="">
+          <input
+            type="text"
+            id="message-input"
+            autocomplete="off"
+            placeholder="Enter your message..."
+          />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+      const socket = io("http://localhost:9090");
+      let name = prompt("Enter your name:");
+      while (!name.trim()) {
+        name = prompt("Please enter a valid name:");
+      }
+      socket.emit("user joined", name);
+      console.log(name + " has joined the chat");
+      socket.on("user joined", (name) => {
+        console.log("user joined event received:", name);
+        const li = document.createElement("li");
+        li.textContent = `${name} has joined the chat`;
+        messages.appendChild(li);
+      });
+      const messages = document.getElementById("messages");
+      const chatForm = document.querySelector(".chat-form");
+      const messageInput = document.getElementById("message-input");
+      messages.innerHTML = "";
+
+      axios
+        .get("http://localhost:9090/chat/messages/all")
+        .then((response) => {
+          // Loop through the messages and append them to the chat log
+          console.log("Messages received:", response.data.data);
+          response.data.data.forEach((message) => {
+            const now = moment();
+            // assume that the action happened on this date
+            const actionDate = moment(message.createdAt);
+            console.log(actionDate);
+            let time;
+            // check if the action happened today or not
+            if (now.diff(actionDate, "days") === 0) {
+              // if it happened today, show the time in the format "10:00 am"
+              time = actionDate.format("h:mm a");
+              console.log(`The action happened today at ${time}`);
+            } else {
+              // if it happened more than a day ago, show the date in the format "Last week, Thursday"
+              time = actionDate.calendar();
+              console.log(`The action happened ${time}`);
+            }
+            const li = document.createElement("li");
+            li.innerHTML = `<small>${actionDate.fromNow()}</small> <br> <b>${
+              message.sender
+            }</b>: ${message.message}`;
+            messages.appendChild(li);
+          });
+        })
+        .catch((error) => {
+          console.error("Failed to fetch messages:", error);
+        });
+
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const message = messageInput.value;
+        if (!message.trim()) {
+          return; // Do not send empty messages
+        }
+        socket.emit("chat message", message);
+        const postMessageEndpoint = "http://localhost:9090/chat/messages/send";
+        // The data to post (replace with actual message and sender)
+        const postData = {
+          message: message,
+          sender: name,
+        };
+
+        axios
+          .post(postMessageEndpoint, postData)
+          .then((response) => {
+            console.log("Message posted:", response.data);
+            messageInput.value = "";
+          })
+          .catch((error) => {
+            console.error("Error posting message:", error);
+          });
+      });
+
+      socket.on("chat message", (data) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<b>${data.name}</b>: ${data.message}`;
+        messages.appendChild(li);
+      });
+    </script>
+  </body>
+</html>

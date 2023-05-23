@@ -181,7 +181,10 @@
   "product_not_yours": "The product you are trying to add a discount to is not yours",
   "review_added": "Review added",
   "review_exists": "Review already added",
-  "clear_cart_successfuly":"Cart cleared successfully",
-  "cart_empty":"Cart is empty",
-  "buyer_id_missing":"Buyer id is missing"
+  "clear_cart_successfuly": "Cart cleared successfully",
+  "cart_empty": "Cart is empty",
+  "buyer_id_missing": "Buyer id is missing",
+  "messages_retrieved": "all messages retrieved succesfully",
+  "no_message_found": "no message found",
+  "message_sent": "message sent succesfully"
 }
