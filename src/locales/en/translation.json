@@ -183,5 +183,9 @@
   "review_exists": "Review already added",
   "clear_cart_successfuly":"Cart cleared successfully",
   "cart_empty":"Cart is empty",
-  "buyer_id_missing":"Buyer id is missing"
+  "buyer_id_missing":"Buyer id is missing",
+  "Order is not paid":"Order is not paid",
+  "Thank you for your order!":"Thank you for your order!",
+  "Order updated with tracking number":"Order updated with tracking number",
+  "Error sending confirmation email": "Error sending confirmation email"
 }

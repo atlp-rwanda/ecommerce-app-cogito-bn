@@ -37,6 +37,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
+      Tracking: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      Confirmation: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: true,
+      },
       totalCost: {
         type: DataTypes.INTEGER,
         allowNull: false,
