@@ -1,10 +1,11 @@
 import EventEmitter from 'events';
-import sendEmail from '../middleware/vendor/vendorSendMail';
+import sendEmail from './sendEmail';
 import { product, vendors } from '../database/models';
 
 const cron = require('node-cron');
 
 const testingEnvironment = process.env.NODE_ENV === 'test';
+const developmentEnvironment = process.env.NODE_ENV === 'development';
 
 const emitter = new EventEmitter();
 // Expired Product Email Notification Sending
@@ -30,10 +31,7 @@ emitter.on('FoundExpiredProduct', (products) => {
     const emailSubject = 'Expired Product Notification';
     const emailMessage = `Dear ${recipientBusinessName},\n\nThrough our regular checkup, we would like to tell you that following products have been expired.\n\n\tProduct ID: ${productID}\n\n\tProduct Name: ${productName}\n\n\tProduct Was Expired On: ${productExpirationDate}\n\n\tEstimated Damaged Product: ${productRemained}\n\n\tProduct Price on one Item: ${productPrice}\n\n\tEstimated Loss: ${EstimatedLoss} \n\n\nYou can Login Here for follow up:\t http://localhost:9090/vendors/login \n\nThank you for choosing Cogito!\n\nBest regards,\nThe Cogito Team`;
 
-    const emailResult = await sendEmail(recipientEmail, emailSubject, emailMessage);
-    if (emailResult.success) {
-      console.log('Email Sent Succeccfully!!!!!');
-    }
+    await sendEmail(recipientEmail, emailSubject, emailMessage);
     vendorIDs.push(vendorID);
   });
 });
@@ -55,11 +53,7 @@ emitter.on('ProductOutOfStock', (products) => {
     const recipientEmail = VendorInfo.businessEmail;
     const emailSubject = 'Product Out of Stock Notification';
     const emailMessage = `Dear ${recipientBusinessName},\n\nThrough our regular checkup, we would like to tell you that following products have run out of stock.\n\n\tProduct ID: ${productID}\n\n\tProduct Name: ${productName}.\n\nYou can Login Here for follow up: http://localhost:9090/vendors/login \n\nThank you for choosing Cogito!\n\nBest regards,\nThe Cogito Team`;
-
-    const emailResult = await sendEmail(recipientEmail, emailSubject, emailMessage);
-    if (emailResult.success) {
-      console.log('Email Sent Succeccfully!!!!!');
-    }
+    await sendEmail(recipientEmail, emailSubject, emailMessage);
     vendorIDs.push(vendorID);
   });
 });
@@ -101,6 +95,7 @@ async function checkAvailableProducts() {
   }
 }
 // Set up cron job to run once at the running time on the current date in the testing environment
+// Cron job to run once at the running time on the current date in the development environment
 if (testingEnvironment) {
   const currentDate = new Date();
   let currentSecond = currentDate.getSeconds() + 5;
@@ -123,6 +118,7 @@ if (testingEnvironment) {
   });
 } else {
   // Set up cron job to run every midnight (00:00)
+  // In production environment
   cron.schedule(' 0 0 * * *', () => {
     checkAvailableProducts();
   });

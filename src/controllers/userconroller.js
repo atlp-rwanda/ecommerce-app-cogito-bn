@@ -67,7 +67,7 @@ export const updateStatus = catchAsync(async (req, res) => {
       },
       { where: { id } },
     );
-    if (user.status !== 'inactive') {
+    if (user.status === 'inactive') {
       await sendEmail(
         user.email,
         `Your status has been updated to ${status}`,

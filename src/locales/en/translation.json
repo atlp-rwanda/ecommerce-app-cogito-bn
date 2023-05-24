@@ -66,6 +66,7 @@
   "user_not_found": "User not found",
   "successful_login": "User logged in successfully",
   "incorrect_password": "Incorrect password",
+  "inactivestatusmsg": "Your account have been disactivated",
   "provide_all_details_signup": "Please provide firstName, lastName, email, password, phone, and role to create a user!",
   "account_exists": "An account with that email already exists!",
   "signup-success": "New user created successfully",
