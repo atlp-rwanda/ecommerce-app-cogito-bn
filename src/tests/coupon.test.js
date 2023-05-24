@@ -32,11 +32,7 @@ const couponData = {
 
 const sellerUser = {
   name: 'Jane smith',
-<<<<<<< HEAD
   email: 'janesmith44@gmail.com',
-=======
-  email: 'janesmith30@gmail.com',
->>>>>>> 2ce0c4b (#BN-23:Buyer should be able to clear their cart (#59))
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -48,11 +44,7 @@ const sellerUser = {
 
 const buyerUser = {
   name: 'Jack smith',
-<<<<<<< HEAD
   email: 'jacksmith44@gmail.com',
-=======
-  email: 'jacksmith25@gmail.com',
->>>>>>> 2ce0c4b (#BN-23:Buyer should be able to clear their cart (#59))
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',
@@ -64,11 +56,7 @@ const buyerUser = {
 
 const adminUser = {
   name: 'Mrs. Admin',
-<<<<<<< HEAD
   email: 'administrator44@gmail.com',
-=======
-  email: 'administrator40@gmail.com',
->>>>>>> 2ce0c4b (#BN-23:Buyer should be able to clear their cart (#59))
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     // eslint-disable-next-line no-unused-vars
     static associate(models) {
-      // define association here
+      orders.belongsTo(models.product, { foreignKey: 'productId' });
     }
   }
   orders.init(
@@ -30,12 +30,21 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       productId: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
         allowNull: false,
       },
       shippingAddress: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
+      },
+      Tracking: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      Confirmation: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: true,
       },
       totalCost: {
         type: DataTypes.INTEGER,
@@ -62,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       deliveryDate: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {

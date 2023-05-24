@@ -43,6 +43,7 @@ import reviewRouter from './reviewRouter';
 import payment from './product/paymentRoute';
 import clearCartRouter from './product/cartRoutes';
 import chatRouter from './chatRouter';
+import orderNotify from './orderNotiRoute';
 import orderRouter from './order/orderRouter';
 
 const router = express.Router();
@@ -103,5 +104,6 @@ router.use(clearCartRouter);
 router.use('/checkout', payment);
 router.use('/chat', chatRouter);
 router.use('/order', orderRouter);
+router.use(orderNotify);
 
 export default router;
