@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import { updateProfile, getProfile } from './profile';
 
 dotenv.config();
 const options = {

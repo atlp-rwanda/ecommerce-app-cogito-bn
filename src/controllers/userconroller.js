@@ -10,14 +10,7 @@ export const getAllUsers = catchAsync(async (req, res) => {
   try {
     const users = await User.findAll({
       attributes: {
-        exclude: [
-          'password',
-          'createdAt',
-          'updatedAt',
-          'carts_id',
-          'orders_id',
-          'wishlists_id',
-        ],
+        exclude: ['password', 'createdAt', 'updatedAt', 'carts_id', 'orders_id', 'wishlists_id'],
       },
     });
 
@@ -36,14 +29,7 @@ export const getUserData = catchAsync(async (req, res, next) => {
   try {
     const user = await User.findOne({
       attributes: {
-        exclude: [
-          'password',
-          'createdAt',
-          'updatedAt',
-          'carts_id',
-          'orders_id',
-          'wishlists_id',
-        ],
+        exclude: ['password', 'createdAt', 'updatedAt', 'carts_id', 'orders_id', 'wishlists_id'],
       },
 
       where: { id: req.params.id },

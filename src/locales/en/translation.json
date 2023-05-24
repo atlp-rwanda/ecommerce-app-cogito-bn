@@ -187,5 +187,14 @@
   "Order is not paid":"Order is not paid",
   "Thank you for your order!":"Thank you for your order!",
   "Order updated with tracking number":"Order updated with tracking number",
-  "Error sending confirmation email": "Error sending confirmation email"
+  "Error sending confirmation email": "Error sending confirmation email",
+  "messages_retrieved": "all messages retrieved succesfully",
+  "no_message_found": "no message found",
+  "message_sent": "message sent succesfully",
+  "not_view_order": "You are not authorized to view this order.",
+  "order_not_found": "Order not found",
+  "get_order_status_successful": "Order status retrieved successfully",
+  "unauthorized_order_update": "You are not authorized to update this order.",
+  "order_update_successful": "Order updated successfully"
 }
+  

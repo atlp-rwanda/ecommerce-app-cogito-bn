@@ -102,6 +102,3 @@
  *              status: 400
  *              message: Bad request
  */
-
-
-

@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import { user } from '../database/models';
 import decodeJWT from '../utils/token';
+
 dotenv.config();
 
 export async function loginUser(req, res) {

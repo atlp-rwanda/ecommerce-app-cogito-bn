@@ -175,7 +175,6 @@ module.exports = {
       ],
       {},
     );
-
     await queryInterface.bulkInsert(
       'roles',
       [
@@ -269,16 +268,75 @@ module.exports = {
         },
         {
           userId: 2,
-          businessName: 'ITH',
-          businessAddress: ['KN 48B ST'],
-          businessPhoneNumber: '+250781346188',
-          businessEmail: 'ith.querries@gmail.com',
-          businessWebsite: 'https://www.ith.com',
-          businessDescription:
-            'We are the Number One Wholesale company of all IT related product in Rwanda',
-          businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
-          productCategories: [1],
-          paymentMethods: [1, 2, 3],
+          businessName: 'ABC Electronics',
+          businessAddress: ['Main Street'],
+          businessPhoneNumber: '+250788888888',
+          businessEmail: 'info@abcelectronics.com',
+          businessWebsite: 'https://www.abcelectronics.com',
+          businessDescription: 'We offer a wide range of electronic products and accessories',
+          businessLogo: 'https://www.example.com/logo.png',
+          productCategories: [2, 3],
+          paymentMethods: [1, 3],
+          status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 3,
+          businessName: 'Fashion World',
+          businessAddress: ['Fashion Avenue'],
+          businessPhoneNumber: '+250777777777',
+          businessEmail: 'contact@fashionworld.com',
+          businessWebsite: 'https://www.fashionworld.com',
+          businessDescription: 'Your one-stop destination for the latest fashion trends',
+          businessLogo: 'https://www.example.com/logo.png',
+          productCategories: [4, 5],
+          paymentMethods: [2, 3],
+          status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 4,
+          businessName: 'Home Decor',
+          businessAddress: ['Decor Street'],
+          businessPhoneNumber: '+250766666666',
+          businessEmail: 'info@homedecor.com',
+          businessWebsite: 'https://www.homedecor.com',
+          businessDescription: 'Transform your home with our exquisite decor items',
+          businessLogo: 'https://www.example.com/logo.png',
+          productCategories: [6],
+          paymentMethods: [1, 2],
+          status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 5,
+          businessName: 'Gourmet Delights',
+          businessAddress: ['Food Street'],
+          businessPhoneNumber: '+250755555555',
+          businessEmail: 'info@gourmetdelights.com',
+          businessWebsite: 'https://www.gourmetdelights.com',
+          businessDescription: 'Indulge in the finest gourmet food and beverages',
+          businessLogo: 'https://www.example.com/logo.png',
+          productCategories: [7, 8],
+          paymentMethods: [2, 3],
+          status: 'ACTIVE',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 6,
+          businessName: 'Sports Haven',
+          businessAddress: ['Sports Avenue'],
+          businessPhoneNumber: '+250744444444',
+          businessEmail: 'contact@sportshaven.com',
+          businessWebsite: 'https://www.sportshaven.com',
+          businessDescription: 'Your ultimate destination for sports equipment and accessories',
+          businessLogo: 'https://www.example.com/logo.png',
+          productCategories: [9, 10],
+          paymentMethods: [1, 3],
           status: 'ACTIVE',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -286,6 +344,22 @@ module.exports = {
       ],
       {},
     );
+
+    await queryInterface.bulkInsert('coupons', [
+      {
+        coupon_code: 'cogito101',
+        discount_type: 'Percentage',
+        discount_percentage: 10,
+        minimum_purchase_amount: 1,
+        vendor_id: 2,
+        associated_products: [2],
+        start_date: new Date(),
+        end_date: nextYear,
+        usage_limit: 20,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
   },
   async down(queryInterface) {
     // Add commands to revert seed here.
@@ -294,6 +368,7 @@ module.exports = {
     await queryInterface.bulkDelete('products', null, {});
     await queryInterface.bulkDelete('wishlists', null, {});
     await queryInterface.bulkDelete('categories', null, {});
+    await queryInterface.bulkDelete('payments', null, {});
     await queryInterface.bulkDelete('orders', null, {});
     await queryInterface.bulkDelete('vendors', null, {});
     await queryInterface.bulkDelete('roles', null, {});

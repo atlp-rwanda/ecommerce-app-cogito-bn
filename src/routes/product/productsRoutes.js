@@ -9,8 +9,13 @@ import {
   getAvailableProducts,
   getUnavailableProducts,
 } from '../../controllers/product/productAvailabilityController';
+import {
+  getAllProducts,
+  findproductByID,
+} from '../../controllers/productController';
 import verifyJWT from '../../middleware/verifyJWT';
 import isVendorEnabled from '../../middleware/enableUser';
+import buyerAuth from '../../middleware/buyerAuth';
 
 const upload = multer();
 
@@ -51,5 +56,6 @@ productRouter.post(
   isVendorEnabled,
   getUnavailableProducts,
 );
-
+productRouter.get('/buyer', buyerAuth, getAllProducts);
+productRouter.get('/buyer/:id', buyerAuth, findproductByID);
 export default productRouter;
