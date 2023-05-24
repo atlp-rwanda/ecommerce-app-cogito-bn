@@ -175,7 +175,6 @@ module.exports = {
       ],
       {},
     );
-
     await queryInterface.bulkInsert(
       'roles',
       [
@@ -345,6 +344,22 @@ module.exports = {
       ],
       {},
     );
+
+    await queryInterface.bulkInsert('coupons', [
+      {
+        coupon_code: 'cogito101',
+        discount_type: 'Percentage',
+        discount_percentage: 10,
+        minimum_purchase_amount: 1,
+        vendor_id: 2,
+        associated_products: [2],
+        start_date: new Date(),
+        end_date: nextYear,
+        usage_limit: 20,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
   },
   async down(queryInterface) {
     // Add commands to revert seed here.
@@ -353,6 +368,7 @@ module.exports = {
     await queryInterface.bulkDelete('products', null, {});
     await queryInterface.bulkDelete('wishlists', null, {});
     await queryInterface.bulkDelete('categories', null, {});
+    await queryInterface.bulkDelete('payments', null, {});
     await queryInterface.bulkDelete('orders', null, {});
     await queryInterface.bulkDelete('vendors', null, {});
     await queryInterface.bulkDelete('roles', null, {});

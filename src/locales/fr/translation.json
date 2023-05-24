@@ -173,5 +173,10 @@
   "cart_empty": "Le panier est vide.",
   "messages_retrieved": "tous les messages récupérés avec succès",
   "no_message_found": "no message found",
-  "message_sent": "message envoyé avec succès"
+  "message_sent": "message envoyé avec succès",
+  "not_view_order": "Vous n'êtes pas autorisé à consulter cette commande.",
+  "order_not_found": "Commande introuvable",
+  "get_order_status_successful": "Statut de la commande récupéré avec succès",
+  "unauthorized_order_update": "Vous n'êtes pas autorisé à mettre à jour cette commande.",
+  "order_update_successful": "Commande mise à jour avec succès"
 }

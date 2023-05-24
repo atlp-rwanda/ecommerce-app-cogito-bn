@@ -47,17 +47,22 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 'pending',
       },
       shippingStatus: {
-        type: DataTypes.ENUM('pending', 'shipped', 'delivered'),
+        type: DataTypes.ENUM(
+          'pending',
+          'shipped',
+          'delivered',
+          'processing',
+          'out for delivery',
+          'cancelled',
+          'refunded',
+          'on hold',
+        ),
         allowNull: false,
         defaultValue: 'pending',
       },
-      createdAt: {
+      deliveryDate: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+        allowNull: false,
       },
     },
     {
