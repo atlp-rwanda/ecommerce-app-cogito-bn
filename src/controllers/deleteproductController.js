@@ -1,4 +1,5 @@
 import { product } from '../database/models';
+import {deleteProductNotify} from './notificationController'
 
 const deleteItem = async (req, res) => {
   const { id } = req.params;
@@ -23,6 +24,9 @@ const deleteItem = async (req, res) => {
         message: req.t('productid_unexist_message'),
       });
     }
+const loggedInUser = await user.findOne({where:{ roleId:2 }})
+const email = loggedInUser.email;
+await deleteProductNotify(email);
   } catch (error) {
     res.status(400).json({ statusCode: 400, data: error });
   }
