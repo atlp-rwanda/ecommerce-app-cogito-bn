@@ -39,8 +39,6 @@ const isSeller = async (req, res, next) => {
   }
   try {
     const decodedToken = JwtUtility.verifyToken(token.split(' ')[1]);
-    console.log(decodedToken);
-
     const { id, roleId } = decodedToken.value;
     const roleName = await getUserRoleName(roleId);
     const User = await db.user.findOne({

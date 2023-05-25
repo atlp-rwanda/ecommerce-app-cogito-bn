@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       roleId: DataTypes.INTEGER,
-
+      lastPasswordUpdate: DataTypes.STRING,
       confirmationCode: DataTypes.INTEGER,
       confirmed: DataTypes.BOOLEAN,
       status: DataTypes.STRING,

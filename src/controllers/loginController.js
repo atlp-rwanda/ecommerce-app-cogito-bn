@@ -29,11 +29,12 @@ const LoginUser = async (req, res) => {
     user.password = null;
     const token = generateToken({ user });
 
-    return res
-      .status(200)
-      .json({
-        status: 200, user, token, message: req.t('Login Successfully message'),
-      });
+    return res.status(200).json({
+      status: 200,
+      user,
+      token,
+      message: req.t('Login Successfully message'),
+    });
   }
   return res
     .status(400)

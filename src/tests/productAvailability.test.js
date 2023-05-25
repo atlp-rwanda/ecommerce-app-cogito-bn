@@ -28,7 +28,7 @@ const req = {
 };
 const user = {
   name: 'Jack smith',
-  email: 'janesmithdoe2@gmail.com',
+  email: 'janesmithdoe29@gmail.com',
   gender: 'Female',
   phone: '0780000000',
   birthdate: '2023-04-07',

@@ -183,5 +183,11 @@
   "order_not_found": "Commande introuvable",
   "get_order_status_successful": "Statut de la commande récupéré avec succès",
   "unauthorized_order_update": "Vous n'êtes pas autorisé à mettre à jour cette commande.",
-  "order_update_successful": "Commande mise à jour avec succès"
+  "order_update_successful": "Commande mise à jour avec succès",
+  "Please_fill_Password": "Veuillez remplir l'ancien mot de passe, le nouveau mot de passe et confirmer le mot de passe",
+  "old_password": "Votre ancien mot de passe n'est pas correct",
+  "password_validation": "Votre mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère majuscule",
+  "new_password": "votre nouveau mot de passe ne correspond pas",
+  "password_updated": "your password was updated sucessfully",
+  "update_expired_password": "votre mot de passe doit être mis à jour. Veuillez changer votre mot de passe pour plus de sécurité."
 }
