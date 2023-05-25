@@ -56,7 +56,7 @@ export default async function pay(req, res) {
     const confirmation = {
       orderNumber: updatedOrder.order_id,
       totalCost: updatedOrder.totalCost,
-      expectedDeliveryDate: updatedOrder.expectedDeliveryDate,
+      expectedDeliveryDate: updatedOrder.deliveryDate,
     };
     await updateProductQuantity(req, res);
     return res.status(200).send({

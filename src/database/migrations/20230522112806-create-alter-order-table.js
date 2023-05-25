@@ -2,7 +2,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.addColumn('orders', 'deliveryDate', {
       type: Sequelize.DATE,
-      allowNull: false,
+      allowNull: true,
       defaultValue: Date.now(),
     });
 

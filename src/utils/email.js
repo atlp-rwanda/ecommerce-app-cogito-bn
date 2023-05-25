@@ -1,10 +1,10 @@
-import nodemailer from 'nodemailer'
+import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.PASSWORD_RESET_EMAIL,
-    pass: 'hznvdgnuhsalrroy'
-  }
+    pass: 'hznvdgnuhsalrroy',
+  },
 });
 
 const sendPasswordResetEmail = (to, resetToken) => {
@@ -21,4 +21,4 @@ const sendPasswordResetEmail = (to, resetToken) => {
   return transporter.sendMail(mailOptions);
 };
 
-export default  sendPasswordResetEmail ;
+export default sendPasswordResetEmail;
