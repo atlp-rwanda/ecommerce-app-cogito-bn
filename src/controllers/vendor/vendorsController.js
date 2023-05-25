@@ -10,7 +10,7 @@ import {
   validateVendorLogin,
 } from '../../middleware/vendor/registerVendorValidator';
 import vendorSignAccessToken from '../../middleware/vendor/vendorJWT';
-import sendEmail from '../../middleware/vendor/vendorSendMail';
+import sendEmail from '../../utils/sendEmail';
 import vendorConfirmationEmail from '../../helpers/email';
 
 dotenv.config();
@@ -107,36 +107,29 @@ export const registerVendor = async (req, res) => {
     const emailSubject = 'Welcome to Cogito Ecommerce';
     const emailMessage = vendorConfirmationEmail(User.dataValues, req.body);
     const emailResult = await sendEmail(recipientEmail, emailSubject, emailMessage);
-    if (emailResult.success) {
-      // Storing the vendors info only after the email was sent too the newly registered vendors.
-      const newVendor = await vendors.create({
-        userId: req.body.userId,
-        businessName: req.body.businessName,
-        businessAddress: req.body.businessAddress,
-        businessPhoneNumber: req.body.businessPhoneNumber,
-        businessEmail: req.body.businessEmail,
-        businessWebsite: req.body.businessWebsite,
-        businessDescription: req.body.businessDescription,
-        businessLogo: req.body.businessLogo,
-        productCategories: req.body.productCategories,
-        paymentMethods: req.body.paymentMethods,
-        status: req.body.status,
-      });
+    // Storing the vendors info only after the email was sent too the newly registered vendors.
+    const newVendor = await vendors.create({
+      userId: req.body.userId,
+      businessName: req.body.businessName,
+      businessAddress: req.body.businessAddress,
+      businessPhoneNumber: req.body.businessPhoneNumber,
+      businessEmail: req.body.businessEmail,
+      businessWebsite: req.body.businessWebsite,
+      businessDescription: req.body.businessDescription,
+      businessLogo: req.body.businessLogo,
+      productCategories: req.body.productCategories,
+      paymentMethods: req.body.paymentMethods,
+      status: req.body.status,
+    });
 
-      res.status(201).json({
-        success: true,
-        message: req.t('registerVendor_201_msg'),
-        user: updatedUser,
-        response: newVendor,
-      });
-    } else {
-      res.status(500).json({
-        success: false,
-        message: req.t('registerVendor_500_001_msg'),
-        Error: emailResult.error,
-      });
-    }
+    res.status(201).json({
+      success: true,
+      message: req.t('registerVendor_201_msg'),
+      user: updatedUser,
+      response: newVendor,
+    });
   } catch (error) {
+    console.log(error);
     res
       .status(500)
       .json({ success: false, message: req.t('registerVendor_500_002_msg'), Error: error });
@@ -252,21 +245,26 @@ export const vendorLogin = async (req, res) => {
         Error: error.details[0].message,
       });
     }
-    const vendor = await vendors.findOne({ where: { email } });
+    const vendor = await user.findOne({ where: { email } });
     if (!vendor) {
       return res.status(401).json({ success: false, message: req.t('vendorLogin_401_001_msg') });
     }
-    const isMatch = await bcrypt.compare(password, vendor.password);
-    if (!isMatch) {
+    if (vendor.password !== password) {
       return res.status(401).json({ success: false, message: req.t('vendorLogin_401_002_msg') });
     }
-    const vendorLoginToken = await vendorSignAccessToken(vendor.id, vendor.fullName, vendor.status);
+    if (vendor.status !== 'active') {
+      return res.status(403).json({
+        status: 403,
+        message: req.t('inactivestatusmsg'),
+      });
+    }
+    const vendorLoginToken = await vendorSignAccessToken(user.userId, user.name, user.status);
     res
       .cookie('token', vendorLoginToken, { httpOnly: true, secure: true })
       .status(200)
       .json({
         success: true,
-        message: `${vendor.fullName} ${req.t('vendorLogin_200_msg')}`,
+        message: `${vendor.name} ${req.t('vendorLogin_200_msg')}`,
         token: vendorLoginToken,
       });
   } catch (error) {

@@ -5,10 +5,7 @@
  *     Vendor:
  *       type: object
  *       required:
- *         - fullName
- *         - email
- *         - password
- *         - phoneNumber
+ *         - userId
  *         - businessName
  *         - businessAddress
  *         - businessPhoneNumber
@@ -20,26 +17,14 @@
  *         - paymentMethods
  *         - status
  *       properties:
- *         id:
- *           type: string
- *           description: The auto-generated id of the Vendor
- *         fullName:
- *           type: string
- *           description: The Full Name of your Vendor
- *         email:
- *           type: string
- *           description: The Vendor email
- *         password:
- *           type: string
- *           description: The Vendor password
- *         phoneNumber:
- *           type: string
- *           description: Vendor Phone Number
+ *         userId:
+ *           type: integer
+ *           description: UserId mapped from the users table
  *         businessName:
  *           type: string
  *           description: Business Name
  *         businessAddress:
- *           type: string
+ *           type: array
  *           description: Business Address
  *         businessPhoneNumber:
  *           type: string
@@ -57,10 +42,10 @@
  *           type: string
  *           description: Vendor Business Logo
  *         productCategories:
- *           type: string
+ *           type: array
  *           description: Product Categoriesthe vendor will offer
  *         paymentMethods:
- *           type: string
+ *           type: array
  *           description: Vendor Business Payment Methods
  *         status:
  *           type: string
@@ -74,23 +59,17 @@
  *           format: date
  *           description: The date the Vendor was updated
  *       example:
- *         id: 1
- *         fullName: NDAHAYO Bertin
- *         email: ndahayosibertin17@gmail.com
- *         password: NDABer123
- *         phoneNumber: +250786949188
- *         businessName: ITH
- *         businessAddress: KN 48B ST
- *         businessPhoneNumber: +250781346188
- *         businessEmail: ith.querries@gmail.com
- *         businessWebsite: www.ith.com
- *         businessDescription: We are the Number One Wholesale company of all IT related product
- *         businessLogo: https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/
- *         productCategories: Computers, Phones, Printers, Phones, Accessories
- *         paymentMethods: MoMo, PayPal, VISA
- *         status: ACTIVE
- *         createdAt: 2023-03-13T15:35:35.582Z
- *         updatedAt: 2023-03-13T15:35:35.582Z
+ *         userId: 1
+ *         businessName: "ITH"
+ *         businessAddress: ["KN 48B ST, KG 192 St B"]
+ *         businessPhoneNumber: "+250781346188"
+ *         businessEmail: "ith.querries@gmail.com"
+ *         businessWebsite: "http://www.ith.com"
+ *         businessDescription: "We are the Number One Wholesale company of all IT related product"
+ *         businessLogo: "https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/"
+ *         productCategories: [1,3]
+ *         paymentMethods: [1,2,3]
+ *         status: "active"
  */
 
 // Vendor Login SWagger description

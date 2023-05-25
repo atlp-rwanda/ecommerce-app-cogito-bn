@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { isEnable } from '../../middleware/Isenable';
+import isEnable from '../../middleware/Isenable';
 import emptyCart from '../../controllers/cart/clearCartController';
 
 const shoppingCart = Router();

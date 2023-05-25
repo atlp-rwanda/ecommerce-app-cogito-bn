@@ -1,5 +1,37 @@
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Chat:
+ *       type: object
+ *       required:
+ *         - sender
+ *         - message
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the chat message
+ *         sender:
+ *           type: string
+ *           description: Name of the sender
+ *         message:
+ *           type: string
+ *           description: Message sent
+ *         createdAt:
+ *           type: string
+ *           format: date
+ *           description: The date the Product was created
+ *         updatedAt:
+ *           type: string
+ *           format: date
+ *           description: The date the Product was updated
+ *       example:
+ *         sender: "Charles"
+ *         message: "Hello Brian!"
+ */
+
+/**
+ * @swagger
  * /chat/messages/send:
  *   post:
  *     summary: Create a new chat message
@@ -15,7 +47,7 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Message'
+ *             $ref: '#/components/schemas/Chat'
  *             example:
  *               "sender": "theo"
  *               "message": "how is everything"
@@ -25,13 +57,13 @@
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/MessageResponse'
+ *               $ref: '#/components/schemas/Chat'
  *       400:
  *         description: Bad request. Returns an error message.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ErrorResponse'
+ *               $ref: '#/components/schemas/Chat'
  */
 /**
  * @swagger
@@ -51,7 +83,7 @@
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/MessageListResponse'
+ *               $ref: '#/components/schemas/Chat'
  *               example:
  *                 "id": 5
  *                 "message": "how is everything"
@@ -63,5 +95,5 @@
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ErrorResponse'
+ *               $ref: '#/components/schemas/Chat'
  */

@@ -55,15 +55,3 @@ module.exports = {
     await queryInterface.dropTable('vendors');
   },
 };
-
-
-
-
-
-
-
-
-
-
-
-
