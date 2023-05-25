@@ -37,6 +37,12 @@ export async function loginUser(req, res) {
     });
   }
   if (User.password === password) {
+    if (User.status !== 'active') {
+      return res.status(403).json({
+        status: 403,
+        message: req.t('inactivestatusmsg'),
+      });
+    }
     const accessToken = jwt.sign(
       {
         id: User.id,

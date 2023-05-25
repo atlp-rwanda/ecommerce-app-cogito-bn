@@ -32,7 +32,7 @@
  *                {
  *                    "productId": 1,
  *                    "rating": 2,
- *                    "review": "Good product",
+ *                    "message": "Good product",
  *                }
  *   responses:
  *    200:

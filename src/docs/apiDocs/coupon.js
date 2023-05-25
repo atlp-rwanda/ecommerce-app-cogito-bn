@@ -50,11 +50,12 @@
  *           type: integer
  *           description: The number of times the coupon have been used
  *       example:
- *         coupon_code: cogito
+ *         id: 1
+ *         coupon_code: "Cogito1000"
  *         discount_type: Percentage
- *         discount_percentage: 10
+ *         discount_percentage: 20
  *         minimum_purchase_amount: 1
- *         vendorId: 1
+ *         vendorId: 2
  *         associated_products: [3]
  *         start_date: 2023-08-09
  *         end_date: 2023-08-15
