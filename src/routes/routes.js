@@ -47,6 +47,7 @@ import orderRouter from './order/orderRouter';
 import authRoutes from './API/SendResetEmail';
 import passwordUpdate from './passwordUpdateRoute';
 import passwordPromptt from '../middleware/passwordPrompt';
+import buyerSignup from "./user/userRoutes"
 
 const router = express.Router();
 i18next
@@ -111,5 +112,6 @@ router.use('/checkout', payment);
 router.use('/chat', chatRouter);
 router.use('/order', orderRouter);
 router.use(orderNotify);
+router.use(buyerSignup);
 
 export default router;

@@ -1,0 +1,48 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+
+    environment:
+      CLIENT_ID: $CLIENT_ID
+      CLIENT_SECRET: $CLIENT_SECRET
+      FACEBOOK_APP_ID: $FACEBOOK_APP_ID
+      FACEBOOK_APP_SECRET: $FACEBOOK_APP_SECRET
+      EMAIL_ADDRESS: $EMAIL_ADDRESS
+      EMAIL_PASSWORD: $EMAIL_PASSWORD
+      EMAIL_SENDER: $EMAIL_SENDER
+      EMAIL_PORT: $EMAIL_PORT
+      EMAIL_HOST: $EMAIL_HOST
+      EMAIL_SERVICE: $EMAIL_SERVICE
+      NODE_ENV: $NODE_ENV
+      DB_TEST_NAME: test_rhym
+      DB_TEST_USERNAME: test_rhym_user
+      DB_TEST_PASSWORD: 0Zfa4YMMztMIalcfcGnO1mWw6vS4c83k
+      DB_TEST_HOST: dpg-ch58evak728glsktsuk0-a.oregon-postgres.render.com
+      DB_TEST_PORT: 5432
+      JWT_KEY: $JWT_KEY
+      RESET_URL: $RESET_URL
+      ACCESS_TOKEN_SECRET: $ACCESS_TOKEN_SECRET
+      PASSWORD_RESET_EMAIL: $PASSWORD_RESET_EMAIL
+      PASSWORD_EXPIRED_DATE: $PASSWORD_EXPIRED_DATE
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - run:
+          name: Run linter
+          command: npm run lint
+
+      - run:
+          name: Run tests
+          command: npm test
+
+      - run:
+          name: Run coverage
+          command: npm run coverage
