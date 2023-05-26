@@ -1,13 +1,9 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import {
-  describe, it, before, after,
-} from 'mocha';
+import { describe, it, before, after } from 'mocha';
 import dotenv from 'dotenv';
 import app from '../index';
-import {
-  coupon, product, user, vendors, cart,
-} from '../database/models';
+import { coupon, product, user, vendors, cart } from '../database/models';
 
 const { expect } = chai;
 chai.should();
@@ -38,7 +34,12 @@ const sellerUser = {
   birthdate: '2023-04-07',
   preferred_language: 'en',
   preferred_currency: 'RF',
-  billingAddress: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+  billingAddress: [
+    'KN 12 St, Kigali, Rwanda',
+    'Nyarugenge',
+    'Kigali',
+    'Rwanda',
+  ],
   password: '123',
 };
 
@@ -50,7 +51,12 @@ const buyerUser = {
   birthdate: '2023-04-07',
   preferred_language: 'en',
   preferred_currency: 'RF',
-  billingAddress: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+  billingAddress: [
+    'KN 12 St, Kigali, Rwanda',
+    'Nyarugenge',
+    'Kigali',
+    'Rwanda',
+  ],
   password: '123',
 };
 
@@ -62,7 +68,12 @@ const adminUser = {
   birthdate: '2023-04-07',
   preferred_language: 'en',
   preferred_currency: 'RF',
-  billingAddress: ['KN 12 St, Kigali, Rwanda', 'Nyarugenge', 'Kigali', 'Rwanda'],
+  billingAddress: [
+    'KN 12 St, Kigali, Rwanda',
+    'Nyarugenge',
+    'Kigali',
+    'Rwanda',
+  ],
   password: '123',
   roleId: 1,
 };
@@ -73,8 +84,10 @@ const vendorData = {
   businessPhoneNumber: '+250781346188',
   businessEmail: 'ith.querries@gmail.com',
   businessWebsite: 'https://biteable.com/tools/image-resizer/',
-  businessDescription: 'We are the Number One Wholesale company of all IT related product',
-  businessLogo: 'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
+  businessDescription:
+    'We are the Number One Wholesale company of all IT related product',
+  businessLogo:
+    'https://www.pexels.com/photo/photo-of-computers-near-windows-3747481/',
   productCategories: [1],
   paymentMethods: [1],
   status: 'ACTIVE',
@@ -98,11 +111,17 @@ let secondCartItem;
 let secondCartItemId;
 
 before(async () => {
-  const registerSellerRes = await chai.request(app).post('/register').send(sellerUser);
+  const registerSellerRes = await chai
+    .request(app)
+    .post('/register')
+    .send(sellerUser);
   sellerUserId = JSON.parse(registerSellerRes.text).data.id;
   vendorData.userId = sellerUserId;
 
-  const registerAdminRes = await chai.request(app).post('/register').send(adminUser);
+  const registerAdminRes = await chai
+    .request(app)
+    .post('/register')
+    .send(adminUser);
   adminUserId = JSON.parse(registerAdminRes.text).data.id;
 
   const res = await chai
@@ -201,7 +220,10 @@ describe("Retrieve seller's coupons tests", () => {
 
 describe('Apply coupon in checkout tests', () => {
   before(async () => {
-    const registerBuyerRes = await chai.request(app).post('/register').send(buyerUser);
+    const registerBuyerRes = await chai
+      .request(app)
+      .post('/register')
+      .send(buyerUser);
     buyerUserId = registerBuyerRes.body.data.id;
 
     const buyerRes = await chai
@@ -239,7 +261,11 @@ describe('update coupon tests', () => {
     const updateCouponRes = await chai
       .request(app)
       .put('/coupon/update')
-      .send({ id: firstCoupon.id, coupon_code: 'new117', vendorId: couponData.vendorId })
+      .send({
+        id: firstCoupon.id,
+        coupon_code: 'new117',
+        vendorId: couponData.vendorId,
+      })
       .set({ Authorization: `Bearer ${sellerToken}` });
     expect(updateCouponRes.status).to.equal(200);
     const updateCouponJson = JSON.parse(updateCouponRes.text);

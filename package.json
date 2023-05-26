@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint",
     "make-model": "npx sequelize-cli model:generate --name",
-    "seed": "cross-env NODE_ENV=test npx sequelize-cli db:seed:all --config=./src/database/config/config.js",
+    "seed": "cross-env NODE_ENV=development npx sequelize-cli db:seed:all --config=./src/database/config/config.js",
     "seed-down": "cross-env NODE_ENV=development npx sequelize-cli db:seed:undo:all",
     "make-seed": "cross-env NODE_ENV=development  npx sequelize-cli seed:generate --name ",
     "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
@@ -15,7 +15,7 @@
     "downall": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo:all",
     "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register src/tests --recursive --exit --timeout 120000",
-    "coverage": "nyc --reporter=html --reporter=text npm run test"
+    "coverage": "nyc npm run test && nyc report --reporter=lcov"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +26,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "bunyan": "^1.8.15",
+    "c8": "^7.14.0",
     "chance": "^1.1.11",
     "cloudinary": "^1.36.2",
     "connect-pg-simple": "^8.0.0",
