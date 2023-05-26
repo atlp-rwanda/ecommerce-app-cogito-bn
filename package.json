@@ -10,9 +10,9 @@
     "seed-down": "cross-env NODE_ENV=development npx sequelize-cli db:seed:undo:all",
     "make-seed": "cross-env NODE_ENV=development  npx sequelize-cli seed:generate --name ",
     "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
-    "migrate": "cross-env NODE_ENV=development npx sequelize-cli db:migrate --config=./src/database/config/config.js",
+    "migrate": "cross-env NODE_ENV=test npx sequelize-cli db:migrate --config=./src/database/config/config.js",
     "down": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo  --config=./src/database/config/config.js",
-    "downall": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo:all",
+    "downall": "cross-env NODE_ENV=test npx sequelize-cli db:migrate:undo:all",
     "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register src/tests --recursive --exit --timeout 120000",
     "coverage": "nyc --reporter=html --reporter=text npm run test"
