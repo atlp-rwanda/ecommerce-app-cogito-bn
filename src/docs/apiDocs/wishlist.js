@@ -57,9 +57,6 @@
 
 /**
  * @swagger
- * tags:
- *  name: Wishlist
- *  description: Manage buyer's wishlist APIs
  * /wishlist:
  *  post:
  *   security:
@@ -112,4 +109,87 @@
  *                   }
  *                 status: 200
  *                 message: "Product added"
+ *  delete:
+ *   security:
+ *     - bearerAuth: []
+ *   summary: Empty buyer's wishlist
+ *   tags: [Wishlist]
+ *   parameters:
+ *     - name: Accept-Language
+ *       in: header
+ *       description: Preferred language
+ *       default: en
+ *       required: true
+ *   responses:
+ *    200:
+ *      description: Wishlist emptied successfully
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *                data:
+ *                  type: object
+ *                status:
+ *                  type: integer
+ *                message:
+ *                  type: string
+ *    500:
+ *      description: Error
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *                status:
+ *                  type: integer
+ *                message:
+ *                  type: string
+ */
+
+/**
+ * @swagger
+ * /wishlist/{id}:
+ *  delete:
+ *   security:
+ *     - bearerAuth: []
+ *   summary: Deletes specific product from wishlist
+ *   tags: [Wishlist]
+ *   parameters:
+ *     - name: Accept-Language
+ *       in: header
+ *       description: Preferred language
+ *       default: en
+ *       required: true
+ *     - name: id
+ *       in: path
+ *       description: wishlist item id
+ *       required: true
+ *       schema:
+ *           type: string
+ *   responses:
+ *    200:
+ *      description: Product deleted successfully from wishlist
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *                data:
+ *                  type: object
+ *                status:
+ *                  type: integer
+ *                message:
+ *                  type: string
+ *    500:
+ *      description: Error
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *                status:
+ *                  type: integer
+ *                message:
+ *                  type: string
  */

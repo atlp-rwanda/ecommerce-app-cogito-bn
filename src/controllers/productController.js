@@ -4,13 +4,6 @@ import checkProductsExpiration from '../utils/checkProductExpiration';
 
 export const getAllProducts = async (req, res) => {
   try {
-    const { authenticatedBuyer } = req;
-    if (!authenticatedBuyer) {
-      return res.status(403).json({
-        status: 403,
-        message: req.t('unauthorized_msg'),
-      });
-    }
     const RetrieveAllProducts = await product.findAll({
       where: {
         stock: 'In Stock',

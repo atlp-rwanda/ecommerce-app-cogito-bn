@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // models.product.hasOne(wishlist, { foreignKey: 'product_id', as: 'product' });
       wishlist.belongsTo(models.product);
+      wishlist.belongsTo(models.user);
     }
   }
   wishlist.init(

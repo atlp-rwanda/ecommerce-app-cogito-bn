@@ -191,5 +191,9 @@
   "password_updated": "your password was updated sucessfully",
   "update_expired_password": "votre mot de passe doit être mis à jour. Veuillez changer votre mot de passe pour plus de sécurité.",
   "no_categories": "pas de catégories",
-  "all_categories": "toutes catégories"
+  "all_categories": "toutes catégories",
+  "wishlist_delete_message":"tous les éléments de la liste de souhaits supprimés",
+  "wishlist_item_deleted": "élément de la liste de souhaits supprimé avec succès",
+  "product_not_in_wishlist": "produit pas dans la liste de souhaits",
+  "category_products":"Tous les produits de la catégorie"
 }

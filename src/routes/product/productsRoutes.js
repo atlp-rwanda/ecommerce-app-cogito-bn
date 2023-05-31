@@ -56,6 +56,6 @@ productRouter.post(
   isVendorEnabled,
   getUnavailableProducts,
 );
-productRouter.get('/buyer', buyerAuth, getAllProducts);
+productRouter.get('/buyer', getAllProducts);
 productRouter.get('/buyer/:id', buyerAuth, findproductByID);
 export default productRouter;
