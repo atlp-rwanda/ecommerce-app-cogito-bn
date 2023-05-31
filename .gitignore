@@ -3,3 +3,4 @@ node_modules
 Logs
 .nyc_output/
 coverage
+build
