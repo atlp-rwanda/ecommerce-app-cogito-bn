@@ -8,6 +8,11 @@ const wishListRouter = express.Router();
 wishListRouter
   .route('/')
   .get(isBuyer, wishListController.index)
-  .post(isBuyer, wishlistValidator, wishListController.store);
+  .post(isBuyer, wishlistValidator, wishListController.store)
+  .delete(isBuyer, wishListController.empty);
+
+wishListRouter
+  .route('/:id')
+  .delete(isBuyer, wishListController.deleteOne);
 
 export default wishListRouter;

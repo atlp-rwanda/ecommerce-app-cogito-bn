@@ -202,6 +202,11 @@
   "password_validation": "Your password must contain at least 1 uppercase, 1 lowercase, 1 digit, and one case character",
   "new_password": "your new password does not match",
   "password_updated": "your password was updated sucessfully",
-  "update_expired_password": "your password needs to be updated. Please change your password for enhanced security."
+  "update_expired_password": "your password needs to be updated. Please change your password for enhanced security.",
+  "no_categories": "No categories found",
+  "all_categories": "All categories retrieved succesfully",
+  "wishlist_delete_message":"all wishlist items deleted",
+  "wishlist_item_deleted": "wishlist item deleted successfully",
+  "product_not_in_wishlist": "product not in wishlist"
 }
   

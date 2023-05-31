@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       confirmationCode: DataTypes.INTEGER,
       confirmed: DataTypes.BOOLEAN,
       status: DataTypes.STRING,
+      otp: DataTypes.STRING,
       createdAt: { type: DataTypes.DATE, field: 'created_at' },
       updatedAt: { type: DataTypes.DATE, field: 'updated_at' },
     },

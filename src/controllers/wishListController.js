@@ -1,15 +1,43 @@
-import { wishlist, product } from '../database/models';
+import {
+  wishlist, product, review, vendors,
+} from '../database/models';
 
-const index = (req, res) => {
+const { sequelize } = require('../database/models/index');
+
+const index = async (req, res) => {
   const { userId } = req.body;
-  wishlist
-    .findAll({ include: product, where: { userId } })
-    .then((data) => {
-      res.json({ status: 200, message: req.t('wishlist_fetched'), data });
-    })
-    .catch((err) => {
-      res.json({ status: err.status, message: err.message, data: [] });
+  try {
+    const wishlistProducts = await wishlist.findAll({ include: product, where: { userId } });
+    const wishlistWithReviews = await Promise.all(
+      wishlistProducts.map(async (item) => {
+        const { productId } = item;
+
+        const averageReview = await review.findOne({
+          attributes: [[sequelize.fn('AVG', sequelize.col('rating')), 'averageRating']],
+          where: { productId },
+          raw: true,
+        });
+
+        const vendor = await vendors.findOne({
+          where: { userId },
+        });
+
+        return {
+          wishlistItem: item,
+          product: item.Product,
+          averageReview: averageReview.averageRating || 0,
+          vendor,
+        };
+      }),
+    );
+    res.json({
+      status: 200,
+      message: req.t('wishlist_fetched'),
+      data: wishlistWithReviews,
     });
+  } catch (err) {
+    res.json({ status: err.status, message: err.message, data: [] });
+  }
 };
 
 const store = async (req, res) => {
@@ -25,4 +53,63 @@ const store = async (req, res) => {
     return res.json({ status: err.status, message: err.message, data: [] });
   }
 };
-export default { index, store };
+
+const empty = async (req, res) => {
+  const { userId } = req.body;
+  try {
+    const deletedItems = await wishlist.destroy({
+      where: {
+        userId,
+      },
+      return: true,
+    });
+    res.status(200).json({
+      statusCode: 200,
+      message: req.t('wishlist_delete_message'),
+      data: deletedItems,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: error.status,
+      message: error.message,
+    });
+  }
+};
+
+const deleteOne = async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  try {
+    const result = await wishlist.findOne({ where: { id, userId } });
+    if (!result) {
+      return res.json({ status: 404, message: req.t('product_not_in_wishlist') });
+    }
+
+    const deletedItem = await wishlist.destroy({
+      where: {
+        id,
+        userId,
+      },
+      return: true,
+    });
+
+    res.status(200).json({
+      statusCode: 200,
+      message: req.t('wishlist_item_deleted'),
+      data: deletedItem,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: error.status,
+      message: error.message,
+    });
+  }
+};
+
+export default {
+  index,
+  store,
+  empty,
+  deleteOne,
+};

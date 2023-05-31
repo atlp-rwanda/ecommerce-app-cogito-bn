@@ -1,6 +1,7 @@
 import { product, user } from '../../database/models';
 import CloudUpload from '../../utils/cloudinary/cloudinary';
-import { addedProductNotify } from "../notificationController";
+import { addedProductNotify } from '../notificationController';
+
 const createNewProduct = async (req, res) => {
   const {
     name, description, price, quantity, stock, category_id, expiredAt,
@@ -18,10 +19,10 @@ const createNewProduct = async (req, res) => {
     if (productCheck) {
       res.status(409).json({ status: 409, message: req.t('product_duplicate_error') });
     }
-const loggedInUser = await user.findOne({where:{ roleId:2 }})
-const email = loggedInUser.email;
+    const loggedInUser = await user.findOne({ where: { roleId: 2 } });
+    const { email } = loggedInUser;
     const result = await product.findOne({ where: { id, name } });
-     const newItem = await product.create({
+    const newItem = await product.create({
       name,
       description,
       price,
@@ -33,7 +34,7 @@ const email = loggedInUser.email;
       expiredAt,
     });
 
-     await addedProductNotify(email);
+    await addedProductNotify(email);
     // Return a success response to the client
     res.status(201).json({
       status: 201,

@@ -57,13 +57,13 @@ export async function sendOtp(req, res) {
     }
   });
   const encodedOTP = Buffer.from(hashedOTP).toString('base64');
+  User.otp = encodedOTP;
+  User.save();
   delete User.dataValues.password;
-  res.cookie('loginOTP', encodedOTP);
   res.status(200).json({
     status: 200,
     message: req.t('otp_sent'),
     data: User,
-    cookie: encodedOTP,
   });
 }
 export async function verify(req, res) {
@@ -74,49 +74,50 @@ export async function verify(req, res) {
       message: req.t('enter_otp'),
     });
   }
-  if (req.headers.cookie) {
-    const Cookiearray = req.headers.cookie.trim().split(';');
-    const cookiesObj = {};
-    for (let i = 0; i < Cookiearray.length; i++) {
-      const parts = Cookiearray[i].split('=');
-      const key = parts[0].trim(); // Trim the key
-      const value = parts[1].trim().replace(/=/g, ':');
-      cookiesObj[key] = value;
-    }
-    const hashedOTP = cookiesObj.loginOTP;
-    // compare incoming OTP with OTP sent in a cookie
-    const decodedOTP = Buffer.from(hashedOTP, 'base64').toString('utf-8');
-    const newOtp = otp.trim();
-    const isMatch = await Bcrypt.compare(newOtp, decodedOTP);
-    if (isMatch) {
-      res.cookie('loginOTP', '');
-      const userDetails = decodeJWT(req.headers.authorization);
-      const User = await user.findOne({
-        where: { id: userDetails.id },
-      });
-      const accessToken = jwt.sign(
-        {
+  const userDetails = decodeJWT(req.headers.authorization);
+  const User = await user.findOne({
+    where: { id: userDetails.id },
+  });
+
+  const storedHashedOTP = User.otp;
+  const decodedOTP = Buffer.from(storedHashedOTP, 'base64').toString();
+  const isMatch = await Bcrypt.compare(otp.trim(), decodedOTP);
+
+  if (isMatch) {
+    const accessToken = jwt.sign(
+      {
+        id: userDetails.id,
+        email: userDetails.email,
+        name: userDetails.name,
+        roleId: userDetails.roleId,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: '1d' },
+    );
+    delete User.dataValues.password;
+    delete User.dataValues.otp;
+    await user.update(
+      {
+        otp: '',
+      },
+      {
+        where: {
           id: userDetails.id,
-          email: userDetails.email,
-          name: userDetails.name,
-          roleId: userDetails.roleId,
         },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: '1d' },
-      );
-      delete User.dataValues.password;
-      res.status(200).json({
-        status: 200,
-        message: req.t('otp_verified'),
-        data: User,
-        token: accessToken,
-      });
-    } else {
-      return res.status(401).json({
-        status: 401,
-        message: req.t('otp_invalid'),
-      });
-    }
+        returning: false,
+      },
+    );
+    res.status(200).json({
+      status: 200,
+      message: req.t('otp_verified'),
+      data: User,
+      token: accessToken,
+    });
+  } else {
+    return res.status(401).json({
+      status: 401,
+      message: req.t('otp_invalid'),
+    });
   }
 }
 export async function deleteUser(req, res) {
