@@ -1,6 +1,10 @@
 import EventEmitter from 'events';
 import sendEmail from './sendEmail';
-import { product, vendors } from '../database/models';
+import {
+  product, vendors, user, notification,
+} from '../database/models';
+import { getUser, io, getAllUsers } from '../index';
+import { getUserRoleName } from '../middleware/role';
 
 const cron = require('node-cron');
 
@@ -13,6 +17,17 @@ emitter.on('FoundExpiredProduct', (products) => {
   const vendorIDs = [];
   products.forEach(async (producta) => {
     const vendorID = producta.dataValues.vendor_id;
+    const seller = getUser(vendorID);
+    const users = getAllUsers();
+    console.log('All users', users);
+    console.log('seller', seller);
+    if (seller) {
+      io.to(seller.socketId).emit('getNotification', {
+        id: producta.dataValues.id,
+        name: producta.dataValues.name,
+        expiredAt: producta.dataValues.expiredAt,
+      });
+    }
     const VendorInfo = await vendors.findOne({
       where: {
         userId: vendorID,
@@ -66,11 +81,55 @@ const checkProductExpiration = (products) => {
 const checkExpiredProducts = (products) => {
   const currentDate = new Date();
   const expiredProducts = products.filter((AllProduct) => AllProduct.expiredAt < currentDate);
+  console.log(expiredProducts);
   return expiredProducts;
 };
+
+export async function checkSellerExpiredProducts(userId) {
+  const User = await user.findOne({
+    where: {
+      id: userId,
+    },
+  });
+  const userRole = await getUserRoleName(User.roleId);
+  if (userRole === 'Vendor') {
+    const RetrieveAllSellerProducts = await product.findAll({
+      where: {
+        stock: 'In Stock',
+        vendor_id: userId,
+      },
+      Raw: true,
+    });
+    const sellerProducts = Object.values(RetrieveAllSellerProducts);
+    const currentDate = new Date();
+    const expiredProducts = sellerProducts.filter((prod) => prod.expiredAt < currentDate);
+    console.log('expiredProducts', expiredProducts.length);
+    if (expiredProducts.length !== 0) {
+      const seller = getUser(userId);
+      expiredProducts.map(async (productItem) => {
+        const res = await notification.create({
+          subject: 'Expired product',
+          message: `Your product called ${productItem.name} has expired. It's quantity in stock is ${productItem.quantity}`,
+          type: 'Expired product',
+          userId,
+          isRead: false,
+        });
+        io.to(seller.socketId).emit('getNotification', {
+          id: res.dataValues.id,
+          subject: res.dataValues.subject,
+          message: res.dataValues.message,
+          isRead: res.dataValues.isRead,
+          createdAt: res.dataValues.createdAt,
+        });
+      });
+    }
+  }
+}
+
 // Retrieving all the products whose quantity is less than 1
 const checkProductQuantity = (products) => {
   const ProductQuantity = products.filter((AllProduct) => AllProduct.quantity < 1);
+  console.log('entered quantity2', ProductQuantity);
   return ProductQuantity;
 };
 async function checkAvailableProducts() {
@@ -81,8 +140,11 @@ async function checkAvailableProducts() {
     Raw: true,
   });
   const RetrievedProducts = Object.values(RetrieveAllProducts);
+  console.log('heree');
   const productsExpired = checkExpiredProducts(RetrievedProducts);
+  console.log('Expired products', productsExpired);
   const ZeroQuantityProduct = checkProductQuantity(RetrieveAllProducts);
+  console.log(ZeroQuantityProduct);
   if (!(productsExpired.length === 0)) {
     const count = productsExpired.length;
     console.log('You Have ', count, ' Expired Products and the products are listed below');
@@ -93,6 +155,7 @@ async function checkAvailableProducts() {
     console.log('You Have ', count, ' Runned out of stock');
     emitter.emit('ProductOutOfStock', ZeroQuantityProduct);
   }
+  console.log('exit');
 }
 // Set up cron job to run once at the running time on the current date in the testing environment
 // Cron job to run once at the running time on the current date in the development environment
@@ -119,7 +182,8 @@ if (testingEnvironment) {
 } else {
   // Set up cron job to run every midnight (00:00)
   // In production environment
-  cron.schedule(' 0 0 * * *', () => {
+  cron.schedule('0 0 * * *', () => {
+    console.log(new Date());
     checkAvailableProducts();
   });
 }

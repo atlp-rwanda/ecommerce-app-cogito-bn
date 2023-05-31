@@ -1,7 +1,7 @@
 import db from "../database/models";
 import JwtUtility from "../utils/jwt";
 
-const getUserRoleName = async (userId) => {
+export const getUserRoleName = async (userId) => {
   const res = await db.role.findOne({ where: { id: userId } });
   // const { roleName } = await db.role.findOne({ where: { id: userId } });
   return res.dataValues.roleName;

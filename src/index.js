@@ -2,10 +2,11 @@ import express from 'express';
 import http from 'http';
 import dotenv from 'dotenv';
 import { Server } from 'socket.io';
-import { sequelize } from './database/models';
 import cors from 'cors';
+import { sequelize } from './database/models';
 import router from './routes/routes';
 import { passwordUpdated } from './services/nodeCron';
+import { checkSellerExpiredProducts } from './utils/checkProductExpiration';
 
 const app = express();
 dotenv.config();
@@ -16,9 +17,27 @@ const io = new Server(server, {
 });
 // nodecron restart
 passwordUpdated.start();
+
+let onlineUsers = [];
+const addNewUser = (userId, socketId) => {
+  !onlineUsers.some((user) => user.userId === userId) && onlineUsers.push({ userId, socketId });
+};
+
+const removeUser = (socketId) => {
+  onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
+};
+
+const getUser = (userId) => onlineUsers.find((user) => user.userId === userId);
+const getAllUsers = () => onlineUsers;
+
 // Listening events using socket.io instance
 io.on('connection', (socket) => {
-  console.log('A client has connected');
+  socket.on('newUser', (userId) => {
+    console.log('A client has connected');
+    console.log('all connected users', onlineUsers);
+    addNewUser(userId, socket.id);
+    checkSellerExpiredProducts(userId);
+  });
 
   // Notifications events
   socket.on('notification', (data) => {
@@ -33,6 +52,7 @@ io.on('connection', (socket) => {
   // Listening to chat events
   socket.on('disconnect', () => {
     console.log('User disconnected');
+    removeUser(socket.id);
   });
 
   socket.on('chat message', (msg) => {
@@ -56,5 +76,5 @@ server.listen(port, async () => {
   console.log('Database Connected!');
 });
 
-export { io };
+export { io, getUser, getAllUsers };
 export default app;

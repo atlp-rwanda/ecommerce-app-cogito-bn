@@ -209,7 +209,6 @@
   "wishlist_item_deleted": "wishlist item deleted successfully",
   "product_not_in_wishlist": "product not in wishlist",
   "category_products":"All products in the category",
-
   "notification_404_message": "No Notification Found",
   "notification_200_message": "Notification were retrieved successfully",
   "notification_500_message": "Error in retrieving notification"
