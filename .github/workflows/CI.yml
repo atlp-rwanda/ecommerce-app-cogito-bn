@@ -12,6 +12,8 @@ jobs:
     env:
       CLIENT_ID: ${{ secrets.CLIENT_ID }}
       CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      GOOGLE_CALLBACK_URL: ${{ secrets.GOOGLE_CALLBACK_URL}}
+      BN_BASE_URL: ${{ secrets.BN_BASE_URL}}
       FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID}}
       FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET}}
       EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS}}
@@ -31,10 +33,14 @@ jobs:
       ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
       PASSWORD_RESET_EMAIL: ${{secrets.PASSWORD_RESET_EMAIL}}
       PASSWORD_EXPIRED_DATE: ${{secrets.PASSWORD_EXPIRED_DATE}}
+      CLOUD_NAME: ${{secrets.CLOUD_NAME}}
+      API_KEY: ${{secrets.API_KEY}}
+      API_SECRET: ${{secrets.API_SECRET}}
+      EMAIL_PASS: ${{secrets.EMAIL_PASS}}
+      EMAIL_ADDRESS_98: ${{secrets.EMAIL_ADDRESS_98}}
       COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_REPO_TOKEN}}
       CODECLIMATE_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_TEST_REPORTER_ID }}
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2

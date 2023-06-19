@@ -6,13 +6,13 @@
   "scripts": {
     "lint": "eslint",
     "make-model": "npx sequelize-cli model:generate --name",
-    "seed": "cross-env NODE_ENV=development npx sequelize-cli db:seed:all --config=./src/database/config/config.js",
+    "seed": "cross-env NODE_ENV=test npx sequelize-cli db:seed:all --config=./src/database/config/config.js",
     "seed-down": "cross-env NODE_ENV=development npx sequelize-cli db:seed:undo:all",
     "make-seed": "cross-env NODE_ENV=development  npx sequelize-cli seed:generate --name ",
     "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
-    "migrate": "cross-env NODE_ENV=development npx sequelize-cli db:migrate --config=./src/database/config/config.js",
-    "down": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo  --config=./src/database/config/config.js",
-    "downall": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo:all",
+    "migrate": "cross-env NODE_ENV=test npx sequelize-cli db:migrate --config=./src/database/config/config.js",
+    "down": "cross-env NODE_ENV=test npx sequelize-cli db:migrate:undo  --config=./src/database/config/config.js",
+    "downall": "cross-env NODE_ENV=test npx sequelize-cli db:migrate:undo:all",
     "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000",
     "coverage": "nyc npm run test && nyc report --reporter=lcov"
@@ -22,6 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "@opensearch-project/opensearch": "^2.2.1",
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",

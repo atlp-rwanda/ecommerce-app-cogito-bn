@@ -105,7 +105,7 @@ router.use('/', productUpdate);
 router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
-router.use('/', passwordUpdate);
+router.use(passwordUpdate);
 
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);

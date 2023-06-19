@@ -60,8 +60,15 @@
  *           schema:
  *             type: object
  *             example:
- *               email: john@gmail.com
- *               password: $2b$10$2wf.EnA8/taKGcG3O/DxqefTFhRzqSXzWv.gr5kB672xAMb46dP4m
+ *               email: example@gmail.com
+ *               password: Your Password
+ *               name: Your Names
+ *               gender: Male
+ *               phone: 0784736173
+ *               preferred_language: en
+ *               preferred_currency: RWF
+ *               birthdate: 2020-02-03
+ *               billingAddress: ["KN 12 St, Kigali, Rwanda", "Nyarugenge", "Kigali", "Rwanda"]
  *     responses:
  *       200:
  *         description: The user logged in successfully
