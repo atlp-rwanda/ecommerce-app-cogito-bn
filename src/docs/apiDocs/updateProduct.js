@@ -1,30 +1,50 @@
 /**
  * @swagger
- * tags:
- *  name: Product
- *  description: Seller updating product
-* /product/{id}:
- *  put:
- *   security:
- *     - bearerAuth: []
- *   summary: Update a Product
- *   tags: [Product]
- *   parameters:
- *     - name: Accept-Language
- *       in: header
- *       description: Preferred language
- *       default: en
- *       required: true
- *     - name: id
- *       in: path
- *       description: ID of the product to update
- *       required: true
- *       schema:
- *       type: integer
- *   requestBody:
- *     required: true
- *     content:
- *       multipart/form-data:
+ * /product/{id}:
+ *   get:
+ *     summary: Get a product by ID
+ *     tags:
+ *       - Product
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the product to retrieve
+ *     responses:
+ *       200:
+ *         description: Product retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Product not found
+ *
+ *   put:
+ *     summary: Update a product
+ *     tags:
+ *       - Product
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the product to update
+ *       - in: formData
+ *         name: image
+ *         type: file
+ *         description: Product images
+ *       - in: body
+ *         name: product
+ *         description: Product details to update
+ *         required: true
  *         schema:
  *           type: object
  *           properties:
@@ -32,79 +52,23 @@
  *               type: string
  *             description:
  *               type: string
- *             image:
- *               type: array
- *               items:
- *                 type: string
- *                 format: binary
  *             price:
- *               type: string
+ *               type: number
+ *             category_id:
+ *               type: number
  *             quantity:
- *               type: string
+ *               type: number
  *             stock:
  *               type: string
- *             category_id:
- *               type: integer
- *             vendor_id:
- *               type: integer
- *             
- *           example:
- *             name: Laptop
- *             description: MacBook Pro
- *             images:
- *              [
- *               - binary_image_data_1
- *               -binary_image_data_2;
- *               -binary_image_data_3;
- *               -binary_image_data_4;
- *              ]
- *             price: 600$
- *             quantity: 1
- *             stock: In Stock
- *             category_id: 1
- *             expiredAt: '2030-04-22T10:30:00.000Z'
- *   responses:
- *    201:
- *      description: Product created successfully
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:
- *              status:
- *                type: integer
- *              data:
- *                type: object
- *              message:
- *                type: string
- *            example:
- *              status: 201
- *              data:
- *                id: 1
- *                name: Laptop
- *                description: MacBook Pro
- *                image: image
- *                price: 600$
- *                stock: In Stock
- *                expiredAt: '2030-04-22T10:30:00.000Z'
- *                createdAt: '2023-04-22T10:30:00.000Z'
- *                updatedAt: '2023-04-22T10:30:00.000Z'
- *              message: Product added successfully
- *    400:
- *      description: Bad request
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:
- *              data:
- *                type: object
- *              status:
- *                type: integer
- *              message:
- *                type: string
- *            example:
- *              data: {}
- *              status: 400
- *              message: Bad request
+ *     responses:
+ *       200:
+ *         description: Product updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: Product not found
  */
