@@ -19,6 +19,7 @@ const passwordPrompt = async (req, res, next) => {
     return res.status(201).json({
       status: 307,
       message: req.t('update_expired_password'),
+      data: User,
     });
   }
 

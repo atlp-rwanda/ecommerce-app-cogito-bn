@@ -189,5 +189,7 @@
   "password_validation": "Votre mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère majuscule",
   "new_password": "votre nouveau mot de passe ne correspond pas",
   "password_updated": "your password was updated sucessfully",
-  "update_expired_password": "votre mot de passe doit être mis à jour. Veuillez changer votre mot de passe pour plus de sécurité."
+  "update_expired_password": "votre mot de passe doit être mis à jour. Veuillez changer votre mot de passe pour plus de sécurité.",
+  "no_categories": "pas de catégories",
+  "all_categories": "toutes catégories"
 }

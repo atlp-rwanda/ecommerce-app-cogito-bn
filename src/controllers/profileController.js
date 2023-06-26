@@ -12,8 +12,16 @@ const getProfile = async (req, res) => {
 
 const updateProfile = async (req, res) => {
   const { id } = req.params;
+  const updatedProfileData = {
+    ...req.body,
+    preferred_language: req.body.preferredLanguage,
+    preferred_currency: req.body.preferredCurrency,
+  };
+  delete updatedProfileData.preferredLanguage;
+  delete updatedProfileData.preferredCurrency;
+  console.log(req.body);
   try {
-    const updatedProfile = await user.update(req.body, {
+    const updatedProfile = await user.update(updatedProfileData, {
       where: { id },
       returning: true,
     });

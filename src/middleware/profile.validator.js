@@ -4,6 +4,7 @@ const validation = Joi.object({
   name: Joi.string(),
   email: Joi.string().email(),
   gender: Joi.string(),
+  phone: Joi.string(),
   birthdate: Joi.date(),
   preferredLanguage: Joi.string(),
   preferredCurrency: Joi.string(),

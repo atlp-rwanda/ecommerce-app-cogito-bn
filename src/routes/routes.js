@@ -47,7 +47,8 @@ import orderRouter from './order/orderRouter';
 import authRoutes from './API/SendResetEmail';
 import passwordUpdate from './passwordUpdateRoute';
 import passwordPromptt from '../middleware/passwordPrompt';
-import buyerSignup from "./user/userRoutes"
+import buyerSignup from './user/userRoutes';
+import categoryRouter from './categoryRouter';
 
 const router = express.Router();
 i18next
@@ -111,6 +112,7 @@ router.use(clearCartRouter);
 router.use('/checkout', payment);
 router.use('/chat', chatRouter);
 router.use('/order', orderRouter);
+router.use('/category', categoryRouter);
 router.use(orderNotify);
-router.use(buyerSignup)
+router.use(buyerSignup);
 export default router;

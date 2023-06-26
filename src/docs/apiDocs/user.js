@@ -124,11 +124,6 @@
  *         type: string
  *         enum: [de, en, es]
  *         description: Language preference for the response
- *       - in: header
- *         name: Cookie
- *         schema:
- *          type: string
- *          description: The cookie for the user's session
  *     requestBody:
  *       required: true
  *       content:

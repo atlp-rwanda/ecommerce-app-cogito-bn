@@ -181,18 +181,7 @@ module.exports = {
       ],
       {},
     );
-    await queryInterface.bulkInsert(
-      'categories',
-      [
-        {
-          name: 'Laptop',
-          product_id: 4,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {},
-    );
+
     await queryInterface.bulkInsert(
       'roles',
       [
@@ -385,7 +374,6 @@ module.exports = {
     await queryInterface.bulkDelete('carts', null, {});
     await queryInterface.bulkDelete('products', null, {});
     await queryInterface.bulkDelete('wishlists', null, {});
-    await queryInterface.bulkDelete('categories', null, {});
     await queryInterface.bulkDelete('payments', null, {});
     await queryInterface.bulkDelete('orders', null, {});
     await queryInterface.bulkDelete('vendors', null, {});
