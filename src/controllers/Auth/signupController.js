@@ -44,22 +44,19 @@ const signUp = async (req, res) => {
       roleId: 3,
     });
 
-    // req.body['roleId'] = buyer.id;
-    // req.body['password'] = hashedPassword
-
     const option = {
-      from: process.env.EMAIL_ADDRESS_98,
+      from: process.env.EMAIL_ADDRESS,
       to: email,
       subject: 'confirmAccount',
-      html: `<p>${'clickLink'} <a href="https://cogito-api.onrender.com/user/confirm/$%7BconfirmationCode%7D">${'here'}</a> ${'toConfirmAccount'}.</p>`,
+      html: `<p>${'clickLink'} <a href="${process.env.CONFIRMATION_URL}${confirmationCode}">${'here'}</a> ${'toConfirmAccount'}.</p>`,
     };
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
       secure: true,
       auth: {
-        user: process.env.EMAIL_ADDRESS_98,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
     const sendEmail = (option) => new Promise((resolve, reject) => {
