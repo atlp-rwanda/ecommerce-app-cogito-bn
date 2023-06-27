@@ -35,7 +35,6 @@ describe('createNewProduct', () => {
       .send({ email: 'john@example.com', password: 'kunda123' });
     token = res.body.token;
   });
-
   it('should create a new product successfully', async () => {
     const files = [];
     const fakeImage = [
@@ -58,6 +57,29 @@ describe('createNewProduct', () => {
     chai.expect(res.status).to.equal(201);
     productId = res.body.data.id;
   });
+  it('should return 409 status for duplicate product', (done) => {
+    const files = [];
+    chai
+      .request(app)
+      .post('/products/add')
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'multipart/form-data')
+      .field(req.body)
+      .field('image', files)
+      .end((error, res) => {
+        chai.expect(res.status).to.equal(409);
+        done();
+      });
+  });
+  it('should fetch product details successfully', async () => {
+    const res = await chai
+      .request(app)
+      .get(`/product/${productId}`)
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    chai.expect(res.status).to.equal(200);
+    chai.expect(res.body).to.be.an('object');
+  });
   it('should update an existing product successfully', async () => {
     const updateData = {
       name: 'Updated Product',
@@ -68,7 +90,6 @@ describe('createNewProduct', () => {
       category_id: 2,
     };
     const files = [];
-
     const res = await chai
       .request(app)
       .put(`/product/${productId}`)
@@ -83,5 +104,17 @@ describe('createNewProduct', () => {
     chai.expect(res.body.item.quantity).to.equal(updateData.quantity);
     chai.expect(res.body.item.stock).to.equal(updateData.stock);
     chai.expect(res.body.item.category_id).to.equal(updateData.category_id);
+  });
+  it('should return an error message if the product is not found', async () => {
+    const productID = 99999;
+    const res = await chai
+      .request(app)
+      .get(`/product/${productID}`)
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+
+    chai.expect(res.status).to.equal(404);
+    chai.expect(res.body).to.be.an('object');
+    chai.expect(res.body.error).to.equal('Item not found');
   });
 });
