@@ -22,6 +22,7 @@ const productValidation = async (req, res, next) => {
       field: err.path[0],
       message: err.message,
     }));
+    console.log(errorDetails);
     res.status(422).send({ status: 422, errors: errorDetails });
   } else {
     next();

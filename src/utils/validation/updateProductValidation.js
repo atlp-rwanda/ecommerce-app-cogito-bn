@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { product } from '../database/models';
-import CloudUpload from './../utils/cloudinary/cloudinary';
+import CloudUpload from '../utils/cloudinary/cloudinary';
 
 const updateProduct = async (req, res) => {
   const images = await CloudUpload.multi(req.files);
@@ -17,8 +17,19 @@ const updateProduct = async (req, res) => {
   }
 
   try {
-    const { name, description, price, category_id, vendor_id, quantity, stock } = req.body;
-    const updatedItem = await item.update({ name, description, image: images, price, category_id, vendor_id, quantity, stock });
+    const {
+      name, description, price, category_id, vendor_id, quantity, stock,
+    } = req.body;
+    const updatedItem = await item.update({
+      name,
+      description,
+      image: images,
+      price,
+      category_id,
+      vendor_id,
+      quantity,
+      stock,
+    });
     return res.json({ status: 'success', message: 'Item updated', item: updatedItem });
   } catch (error) {
     return res.status(400).json({ error: 'Invalid request body' });

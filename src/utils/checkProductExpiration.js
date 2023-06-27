@@ -5,7 +5,7 @@ import { product, vendors } from '../database/models';
 const cron = require('node-cron');
 
 const testingEnvironment = process.env.NODE_ENV === 'test';
-const developmentEnvironment = process.env.NODE_ENV === 'development';
+// const developmentEnvironment = process.env.NODE_ENV === 'development';
 
 const emitter = new EventEmitter();
 // Expired Product Email Notification Sending

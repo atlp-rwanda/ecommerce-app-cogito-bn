@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import { user } from '../database/models';
 import decodeJWT from '../utils/token';
+import isBcryptHashed from '../utils/validation/checkHashedPassword';
+import { isPasswordMatching } from '../utils/hashPassword';
 
 dotenv.config();
 // create a transporter object
@@ -36,7 +38,15 @@ export async function loginUser(req, res) {
       message: req.t('user_not_found'),
     });
   }
-  if (User.password === password) {
+  if (!isBcryptHashed(User.password)) {
+    if (!isPasswordMatching(password, User.password)) {
+      return res.status(401).json({
+        status: 401,
+        message: req.t('incorrect_password'),
+      });
+    }
+  }
+  if (User.password === password || isPasswordMatching(password, User.password)) {
     if (User.status !== 'active') {
       return res.status(403).json({
         status: 403,

@@ -5,6 +5,9 @@ import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import { user } from '../../database/models';
 import decodeJWT from '../../utils/token';
+import HeaderComponent from '../../utils/_email_/emailHeader';
+import FooterComponent from '../../utils/_email_/emailFooter';
+
 
 dotenv.config();
 // create a transporter object
@@ -47,7 +50,7 @@ export async function sendOtp(req, res) {
     from: process.env.EMAIL_ADDRESS,
     to: userDetails.email,
     subject: 'Cogito ecommerce app otp',
-    text: `Your OTP is ${token}`,
+    html: `${HeaderComponent} <p> Dear <h2> ${User.name} </h2> <br>Your OTP is ${token}.</p> ${FooterComponent}`,
   };
   // send the email
   // eslint-disable-next-line no-unused-vars

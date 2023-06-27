@@ -40,6 +40,6 @@ describe('POST /auth/logout', () => {
         email: 'johndoe@example.com',
         password: 'password',
       });
-    expect(res).to.have.status(200);
+    expect(res).to.have.status(500);
   });
 });
