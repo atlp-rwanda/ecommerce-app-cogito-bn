@@ -51,6 +51,12 @@ import buyerSignup from './user/userRoutes';
 import categoryRouter from './categoryRouter';
 
 const router = express.Router();
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+router.use(cors(corsOptions));
 i18next
   .use(Backend)
   .use(i18nextMiddleware.LanguageDetector)
@@ -64,14 +70,13 @@ i18next
 router.use(express.urlencoded({ extended: false }));
 router.use(i18nextMiddleware.handle(i18next));
 router.use(bodyParser.json());
-router.use(cors());
 router.use(cookieParser());
 router.use(express.json());
 
 const specs = swaggerJSDoc(options);
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 router.use('/user', signupRouter);
-router.use(googleAuth);
+router.use('/auth', googleAuth);
 router.use(facebookAuth);
 router.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 router.use(userRouter);
@@ -105,7 +110,7 @@ router.use('/', productUpdate);
 router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
-router.use('/', passwordUpdate);
+router.use(passwordUpdate);
 
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);

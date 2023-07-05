@@ -104,9 +104,10 @@ export const registerVendor = async (req, res) => {
     );
 
     const recipientEmail = User.dataValues.email;
+    const userName = User.dataValues.name;
     const emailSubject = 'Welcome to Cogito Ecommerce';
     const emailMessage = vendorConfirmationEmail(User.dataValues, req.body);
-    const emailResult = await sendEmail(recipientEmail, emailSubject, emailMessage);
+    const emailResult = await sendEmail(userName, recipientEmail, emailSubject, emailMessage);
     // Storing the vendors info only after the email was sent too the newly registered vendors.
     const newVendor = await vendors.create({
       userId: req.body.userId,

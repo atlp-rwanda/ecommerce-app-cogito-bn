@@ -3,10 +3,12 @@ import dotenv from 'dotenv';
 import { user, role } from '../../database/models';
 import { generateConfirmationCode } from '../../utils/validation/generateCode';
 import { hashPassword } from '../../utils/validation/hashedPassword';
+import HeaderComponent from '../../utils/_email_/emailHeader';
+import FooterComponent from '../../utils/_email_/emailFooter';
 
 dotenv.config();
 const signUp = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
   const confirmationCode = generateConfirmationCode();
   const emailRegex = /\S+@\S+\.\S+/;
   if (!emailRegex.test(email)) {
@@ -34,7 +36,7 @@ const signUp = async (req, res) => {
       email,
       password: hashedPassword,
       confirmationCode,
-      name: 'defaultName',
+      name,
       gender: 'defaultGender',
       phone: 'defaultPhone',
       preferred_language: 'en',
@@ -47,8 +49,8 @@ const signUp = async (req, res) => {
     const option = {
       from: process.env.EMAIL_ADDRESS,
       to: email,
-      subject: 'confirmAccount',
-      html: `<p>${'clickLink'} <a href="${process.env.CONFIRMATION_URL}${confirmationCode}">${'here'}</a> ${'toConfirmAccount'}.</p>`,
+      subject: 'Account Confirmation',
+      html: `<p>${HeaderComponent}<br> Dear ${newUser.name}, <br> <br>Click <a href="${process.env.CONFIRMATION_URL}${confirmationCode}">${'here'}</a> To Confirm Your Account.<br><br> ${FooterComponent}</p>`,
     };
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',

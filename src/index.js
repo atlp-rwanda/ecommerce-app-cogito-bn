@@ -3,12 +3,13 @@ import http from 'http';
 import dotenv from 'dotenv';
 import { Server } from 'socket.io';
 import { sequelize } from './database/models';
+import cors from 'cors';
 import router from './routes/routes';
 import { passwordUpdated } from './services/nodeCron';
 
 const app = express();
 dotenv.config();
-
+app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: true,

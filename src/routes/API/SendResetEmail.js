@@ -25,7 +25,7 @@ router.post('/forgot', async (req, res) => {
   await User.save();
 
   // Send password reset email
-  await sendPasswordResetEmail(User.email, resetToken);
+  await sendPasswordResetEmail(User.email, User.name, resetToken);
 
   return res.status(200).json({
     status: 200,
