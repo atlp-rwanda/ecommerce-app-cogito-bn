@@ -12,7 +12,7 @@
     "dev": " cross-env NODE_ENV=development nodemon -r @babel/register src/index",
     "migrate": "cross-env NODE_ENV=test npx sequelize-cli db:migrate --config=./src/database/config/config.js",
     "down": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo  --config=./src/database/config/config.js",
-    "downall": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo:all",
+    "downall": "cross-env NODE_ENV=test npx sequelize-cli db:migrate:undo:all",
     "start": "cross-env NODE_ENV=production node -r @babel/register src/index",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register src/tests/ --recursive --exit --timeout 120000",
     "coverage": "nyc npm run test && nyc report --reporter=lcov"
