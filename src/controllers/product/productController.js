@@ -1,6 +1,6 @@
 import { product, user } from '../../database/models';
 import CloudUpload from '../../utils/cloudinary/cloudinary';
-import { addedProductNotify } from '../notificationController';
+import { addNotification } from '../notificationController';
 
 const createNewProduct = async (req, res) => {
   const {
@@ -19,7 +19,7 @@ const createNewProduct = async (req, res) => {
     if (productCheck) {
       res.status(409).json({ status: 409, message: req.t('product_duplicate_error') });
     }
-    const loggedInUser = await user.findOne({ where: { roleId: 2 } });
+    const loggedInUser = await user.findOne({ where: { id } });
     const { email } = loggedInUser;
     const result = await product.findOne({ where: { id, name } });
     const newItem = await product.create({
@@ -33,15 +33,14 @@ const createNewProduct = async (req, res) => {
       vendor_id: id,
       expiredAt,
     });
-    console.log(
-      'Your email Is: ',
-      email,
-      ', Product Name: ',
-      name,
-      ' , and category_id: ',
-      category_id,
-    );
-    await addedProductNotify(email, loggedInUser.name, name);
+    const notificationMessage = {
+      subject: 'New Product Added',
+      message: `Hello ${loggedInUser.name} your new product ${name} was added successfully! `,
+      type: 'New Product',
+      product: newItem.name,
+      emailBody: `<p> Dear <h2> ${loggedInUser.name} </h2> We want to inform you that a new product <b>${newItem.name}</b> has been added into your collection successfully.</p>`,
+    };
+    await addNotification(email, loggedInUser.id, notificationMessage);
     // Return a success response to the client
     res.status(201).json({
       status: 201,

@@ -49,6 +49,7 @@ import passwordUpdate from './passwordUpdateRoute';
 import passwordPromptt from '../middleware/passwordPrompt';
 import buyerSignup from './user/userRoutes';
 import categoryRouter from './categoryRouter';
+import NotificationRouter from './notificationRouter';
 
 const router = express.Router();
 const corsOptions = {
@@ -120,4 +121,6 @@ router.use('/order', orderRouter);
 router.use('/category', categoryRouter);
 router.use(orderNotify);
 router.use(buyerSignup);
+router.use(NotificationRouter);
+
 export default router;

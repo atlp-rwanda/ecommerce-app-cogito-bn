@@ -195,5 +195,9 @@
   "wishlist_delete_message":"tous les éléments de la liste de souhaits supprimés",
   "wishlist_item_deleted": "élément de la liste de souhaits supprimé avec succès",
   "product_not_in_wishlist": "produit pas dans la liste de souhaits",
-  "category_products":"Tous les produits de la catégorie"
+  "category_products":"Tous les produits de la catégorie",
+
+  "notification_404_message": "Aucune notification trouvée",
+  "notification_200_message": "Les notifications ont été récupérées avec succès",
+  "notification_500_message": "Erreur lors de la récupération des notifications"
 }
