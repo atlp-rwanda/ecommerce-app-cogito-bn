@@ -1,18 +1,20 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-import { notification } from '../database/models';
+import { notification, product } from '../database/models';
 import HeaderComponent from '../utils/_email_/emailHeader';
 import FooterComponent from '../utils/_email_/emailFooter';
 
 dotenv.config();
 const templateHeader = HeaderComponent;
 const templateFotter = FooterComponent;
-const addedProductNotify = async (userEmail, userName, productName) => {
+const addedProductNotify = async (userEmail, userId, userName, productName) => {
   try {
     const notificationEmail = await notification.create({
       subject: 'New Product added',
       message: `Hello ${userName} your product ${productName} was added successfully! `,
       type: 'newProduct',
+      userId,
+      isRead: false,
     });
     // Send email to the user
     const transporter = nodemailer.createTransport({
@@ -70,4 +72,93 @@ const deleteProductNotify = async () => {
     console.log(error);
   }
 };
-export { addedProductNotify, deleteProductNotify };
+const getAllNotification = async (req, res) => {
+  try {
+    const Notifications = await notification.findAll({
+      where: { userId: req.params.id },
+      order: [['isRead', 'ASC']],
+    });
+    if (!Notifications) {
+      return res.status(404).json({
+        status: 404,
+        message: req.t('notification_404_message'),
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: req.t('notification_200_message'),
+      notifications: Notifications,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: req.t('notification_500_message') });
+  }
+};
+
+const vendorMarkAllAsRead = async (req, res) => {
+  try {
+    const [numUpdated] = await notification.update(
+      { isRead: true },
+      { where: { userId: req.params.id } },
+    );
+
+    if (numUpdated > 0) {
+      res.status(200).json({ message: 'Updated All Notification Status Successfully!!' });
+    } else {
+      res.status(404).json({ error: 'No notification found with the provided User ID' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to Mark All Notification As Read' });
+  }
+};
+const vendorMarkAsRead = async (req, res) => {
+  try {
+    const [numUpdated] = await notification.update(
+      { isRead: true },
+      { where: { id: req.params.id } },
+    );
+
+    if (numUpdated > 0) {
+      res.status(200).json({ message: 'Updated Notification Status Successfully!!' });
+    } else {
+      res.status(404).json({ error: 'No notification found with the provided ID' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to Mark Notification As Read' });
+  }
+};
+
+const vendorDeleteNotification = async (req, res) => {
+  try {
+    const notice = await notification.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!notice) {
+      return res.status(404).json({
+        status: 404,
+        message: req.t('notification_404_message'),
+      });
+    }
+    await notice.destroy();
+    return res.status(200).json({
+      status: 200,
+      message: req.t('Notification deleted successfully'),
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: req.t('Error deleting notification') });
+  }
+};
+
+export {
+  addedProductNotify,
+  deleteProductNotify,
+  getAllNotification,
+  vendorMarkAllAsRead,
+  vendorDeleteNotification,
+  vendorMarkAsRead,
+};

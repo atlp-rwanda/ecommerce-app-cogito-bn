@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       userId: {
-        type: Sequelize.UUID
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

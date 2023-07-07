@@ -19,7 +19,7 @@ const createNewProduct = async (req, res) => {
     if (productCheck) {
       res.status(409).json({ status: 409, message: req.t('product_duplicate_error') });
     }
-    const loggedInUser = await user.findOne({ where: { roleId: 2 } });
+    const loggedInUser = await user.findOne({ where: { id } });
     const { email } = loggedInUser;
     const result = await product.findOne({ where: { id, name } });
     const newItem = await product.create({
@@ -40,8 +40,10 @@ const createNewProduct = async (req, res) => {
       name,
       ' , and category_id: ',
       category_id,
+      'User ID Is: ',
+      loggedInUser.id,
     );
-    await addedProductNotify(email, loggedInUser.name, name);
+    await addedProductNotify(email, loggedInUser.id, loggedInUser.name, name);
     // Return a success response to the client
     res.status(201).json({
       status: 201,

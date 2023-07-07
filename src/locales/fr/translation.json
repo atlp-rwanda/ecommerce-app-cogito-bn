@@ -191,5 +191,9 @@
   "password_updated": "your password was updated sucessfully",
   "update_expired_password": "votre mot de passe doit être mis à jour. Veuillez changer votre mot de passe pour plus de sécurité.",
   "no_categories": "pas de catégories",
-  "all_categories": "toutes catégories"
+  "all_categories": "toutes catégories",
+
+  "notification_404_message": "Aucune notification trouvée",
+  "notification_200_message": "Les notifications ont été récupérées avec succès",
+  "notification_500_message": "Erreur lors de la récupération des notifications"
 }

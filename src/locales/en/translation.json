@@ -204,6 +204,11 @@
   "password_updated": "your password was updated sucessfully",
   "update_expired_password": "your password needs to be updated. Please change your password for enhanced security.",
   "no_categories": "No categories found",
-  "all_categories": "All categories retrieved succesfully"
+  "all_categories": "All categories retrieved succesfully",
+
+  "notification_404_message": "No Notification Found",
+  "notification_200_message": "Notification were retrieved successfully",
+  "notification_500_message": "Error in retrieving notification"
+
 }
   
