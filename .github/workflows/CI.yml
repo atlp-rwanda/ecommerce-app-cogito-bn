@@ -1,11 +1,11 @@
 name: CI
-
 on:
   push:
     branches: ['develop']
   pull_request:
-    branches: ['develop']
-
+    branches:
+      - main
+      - develop
 jobs:
   npm-tasks:
     runs-on: ubuntu-latest
@@ -33,15 +33,6 @@ jobs:
       ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
       PASSWORD_RESET_EMAIL: ${{secrets.PASSWORD_RESET_EMAIL}}
       PASSWORD_EXPIRED_DATE: ${{secrets.PASSWORD_EXPIRED_DATE}}
-      CLOUD_NAME: ${{secrets.CLOUD_NAME}}
-      API_KEY: ${{secrets.API_KEY}}
-      API_SECRET: ${{secrets.API_SECRET}}
-      EMAIL_PASS: ${{secrets.EMAIL_PASS}}
-      EMAIL_ADDRESS_98: ${{secrets.EMAIL_ADDRESS_98}}
-      COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_REPO_TOKEN}}
-      CODECLIMATE_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_TEST_REPORTER_ID }}
-      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      CONFIRMATION_URL: ${{secrets.CONFIRMATION_URL}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
