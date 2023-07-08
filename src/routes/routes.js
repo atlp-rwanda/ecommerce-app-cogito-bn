@@ -54,8 +54,6 @@ import passwordPromptt from "../middleware/passwordPrompt";
 import buyerSignup from "./user/userRoutes";
 import categoryRouter from "./categoryRouter";
 
-import authRoutes from "./API/SendResetEmail";
-
 const router = express.Router();
 const corsOptions = {
   origin: "*",

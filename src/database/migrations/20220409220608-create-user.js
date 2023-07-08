@@ -1,7 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable("users", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -47,11 +47,12 @@ module.exports = {
       roleId: {
         type: Sequelize.INTEGER,
         defaultValue: 3,
+        references: { model: "roles", key: "id" },
       },
       status: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'active',
+        defaultValue: "active",
       },
       confirmationCode: {
         type: Sequelize.INTEGER,
@@ -70,6 +71,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable("users");
   },
 };
