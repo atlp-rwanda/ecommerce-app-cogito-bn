@@ -8,7 +8,6 @@ import decodeJWT from '../../utils/token';
 import HeaderComponent from '../../utils/_email_/emailHeader';
 import FooterComponent from '../../utils/_email_/emailFooter';
 
-
 dotenv.config();
 // create a transporter object
 const transporter = nodemailer.createTransport({

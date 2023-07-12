@@ -49,8 +49,8 @@ const signUp = async (req, res) => {
     const option = {
       from: process.env.EMAIL_ADDRESS,
       to: email,
-      subject: 'Account Confirmation',
-      html: `<p>${HeaderComponent}<br> Dear ${newUser.name}, <br> <br>Click <a href="${process.env.CONFIRMATION_URL}${confirmationCode}">${'here'}</a> To Confirm Your Account.<br><br> ${FooterComponent}</p>`,
+      subject: 'confirmAccount',
+      html: `<p>${'clickLink'} <a href="${process.env.CONFIRMATION_URL}${confirmationCode}">${'here'}</a> ${'toConfirmAccount'}.</p>`,
     };
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
