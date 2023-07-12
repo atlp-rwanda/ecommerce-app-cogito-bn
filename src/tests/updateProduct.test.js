@@ -117,4 +117,35 @@ describe('createNewProduct', () => {
     chai.expect(res.body).to.be.an('object');
     chai.expect(res.body.error).to.equal('Item not found');
   });
+  it('should allow delete on update product', async () => {
+    const ImageFiles = await product.findAll({
+      where: { id: productId },
+      attributes: ['image'],
+      raw: true,
+    });
+    const updateData = {
+      name: 'Updated Product',
+      description: 'Updated Test description',
+      price: 20,
+      quantity: 5,
+      stock: 'Out of Stock',
+      category_id: 2,
+      deletedImages: ImageFiles[0].image[0],
+    };
+    const files = [];
+    const res = await chai
+      .request(app)
+      .put(`/product/${productId}`)
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'multipart/form-data')
+      .field(updateData)
+      .field('image', files);
+    chai.expect(res.status).to.equal(200);
+    chai.expect(res.body.item.name).to.equal(updateData.name);
+    chai.expect(res.body.item.description).to.equal(updateData.description);
+    chai.expect(res.body.item.price).to.equal(updateData.price);
+    chai.expect(res.body.item.quantity).to.equal(updateData.quantity);
+    chai.expect(res.body.item.stock).to.equal(updateData.stock);
+    chai.expect(res.body.item.category_id).to.equal(updateData.category_id);
+  });
 });
