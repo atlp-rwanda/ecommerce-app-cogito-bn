@@ -18,11 +18,13 @@ export default class CloudUpload {
   }
 
   static async multi(files) {
-    const results = [];
+    console.log('send picture')
+    try {const results = [];
     for (const file of files) {
       const newPath = await this.single(file);
       results.push(newPath.secure_url);
     }
-    return results;
+    return results;}
+    catch(error){console.log(error)}
   }
 }
