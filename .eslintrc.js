@@ -10,6 +10,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  globals: {
+    sequelize: true,
+  },
   rules: {
     'linebreak-style': 0,
     'no-console': 0,

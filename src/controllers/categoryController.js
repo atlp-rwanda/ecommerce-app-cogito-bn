@@ -1,4 +1,4 @@
-import { Category } from '../database/models';
+import { Category, product } from '../database/models';
 
 export default async function getCategories(req, res) {
   try {
@@ -11,6 +11,26 @@ export default async function getCategories(req, res) {
       .status(200)
       .json({ status: 200, message: req.t('all-categories'), data: categories });
   } catch (error) {
-    return res.status(500).json({ status: 500, message: req.t('server_error'), Error: error.message });
+    return res
+      .status(500)
+      .json({ status: 500, message: req.t('server_error'), Error: error.message });
+  }
+}
+
+export async function getProductsByCategory(req, res) {
+  const { id } = req.params;
+  try {
+    const products = await product.findAll({
+      where: {
+        category_id: id,
+      },
+    });
+    return res
+      .status(200)
+      .json({ status: 200, message: req.t('category_products'), data: products });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: 500, message: req.t('server_error'), Error: error.message });
   }
 }

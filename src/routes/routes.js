@@ -120,5 +120,4 @@ router.use('/order', orderRouter);
 router.use('/category', categoryRouter);
 router.use(orderNotify);
 router.use(buyerSignup);
-
 export default router;
