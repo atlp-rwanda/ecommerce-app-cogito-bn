@@ -5,16 +5,17 @@ import {
 } from 'mocha';
 import { user } from '../database/models';
 import app from '../index';
+import { hashPassword } from '../utils/validation/hashedPassword';
 
 chai.use(chaiHttp);
 const { expect } = chai;
-
+const oldPassword = hashPassword('oldPassword@123');
 describe('Password Update API', () => {
   let testUserId;
   before(async () => {
     const testUser = await user.create({
       email: 'test@gmail.com',
-      password: 'oldPassword@123',
+      password: oldPassword,
       name: 'Kunda',
       gender: 'Female',
       phone: '0786992299',
@@ -87,8 +88,8 @@ describe('Password Update API', () => {
         .put(`/updatepassword/${testUserId}`)
         .send({
           old_password: 'oldPassword@123',
-          new_password: 'weakpassword',
-          confirm_password: 'weakpassword',
+          new_password: 'weakPassword',
+          confirm_password: 'weakPassword',
         })
         .end((err, res) => {
           expect(res).to.have.status(401);

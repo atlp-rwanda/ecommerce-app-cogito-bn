@@ -168,14 +168,14 @@
   "addtocart_500_msg": "Erreur lors de l'ajout du produit au panier",
   "review_added": "Avis ajouté",
   "review_exists": "Avis déjà ajouté",
-  "set-role-message":"Rôle attribué à un utilisateur spécifique avec succès!",
-  "set-permission-message":"Autorisation attribuée à un rôle spécifique avec succès!",
-  "clear_cart_successfuly":"Panier effacé avec succès",
-  "cart_empty":"Le panier est vide.",
-  "Order is not paid":"Commande non payée",
-  "Thank you for your order!":"Merci pour votre commande!",
-  "Order updated with tracking number":"Commande mise à jour avec numéro de suivi.",
-  "Error sending confirmation email":"Erreur lors de l'envoi de l'e-mail de confirmation.",
+  "set-role-message": "Rôle attribué à un utilisateur spécifique avec succès!",
+  "set-permission-message": "Autorisation attribuée à un rôle spécifique avec succès!",
+  "clear_cart_successfuly": "Panier effacé avec succès",
+  "cart_empty": "Le panier est vide.",
+  "Order is not paid": "Commande non payée",
+  "Thank you for your order!": "Merci pour votre commande!",
+  "Order updated with tracking number": "Commande mise à jour avec numéro de suivi.",
+  "Error sending confirmation email": "Erreur lors de l'envoi de l'e-mail de confirmation.",
   "messages_retrieved": "tous les messages récupérés avec succès",
   "no_message_found": "no message found",
   "message_sent": "message envoyé avec succès",
@@ -195,5 +195,9 @@
   "wishlist_delete_message":"tous les éléments de la liste de souhaits supprimés",
   "wishlist_item_deleted": "élément de la liste de souhaits supprimé avec succès",
   "product_not_in_wishlist": "produit pas dans la liste de souhaits",
-  "category_products":"Tous les produits de la catégorie"
+  "category_products":"Tous les produits de la catégorie",
+
+  "notification_404_message": "Aucune notification trouvée",
+  "notification_200_message": "Les notifications ont été récupérées avec succès",
+  "notification_500_message": "Erreur lors de la récupération des notifications"
 }

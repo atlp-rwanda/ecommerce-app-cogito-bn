@@ -1,4 +1,4 @@
-import { permission, rolepermission } from '../database/models';
+import { permission, rolepermission, role } from '../database/models';
 
 const createNewPermission = async (req, res) => {
   const { permissionName, description } = req.body;
@@ -128,7 +128,7 @@ const setPermission = async (req, res) => {
 
 const getRoleWithPermission = async (req, res) => {
   try {
-    const RoleWithPermission = await rolepermission.findAll();
+    const RoleWithPermission = await rolepermission.findAll({ include: [role, permission] });
     res.status(200).json({ statusCode: 200, data: RoleWithPermission });
   } catch (error) {
     res.status(400).json({ statusCode: 400, data: error });
