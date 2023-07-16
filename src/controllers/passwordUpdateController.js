@@ -1,4 +1,6 @@
 import { user } from '../database/models';
+import { addNotification } from './notificationController';
+import { isPasswordMatching } from '../utils/hashPassword';
 
 const updatePassword = async (req, res) => {
   const { id } = req.params;
@@ -20,9 +22,8 @@ const updatePassword = async (req, res) => {
         message: req.t('user_unexist_message'),
       });
     }
-    // Check if the user password matches
-
-    if (User.old_password !== Logged.password) {
+    if (!isPasswordMatching(User.old_password, Logged.password)) {
+      console.log('Not Match');
       return res.status(401).json({
         message: req.t('old_password'),
       });
@@ -42,6 +43,13 @@ const updatePassword = async (req, res) => {
     } else {
       Logged.password = await User.new_password;
       Logged.lastPasswordUpdate = new Date().toISOString();
+      const notificationMessage = {
+        subject: 'Password Update',
+        message: `Hello ${Logged.name} your Password has been updated successfully! `,
+        type: 'Password Update',
+        emailBody: `<p> Dear <h2> ${Logged.name} </h2> We want to inform you that your password to Cogito Ecommerce have been changed successfully! </p>`,
+      };
+      await addNotification(Logged.email, Logged.id, notificationMessage);
       await Logged.save();
       return res.status(200).json({
         message: req.t('password_updated'),

@@ -9,7 +9,7 @@ const searchProducts = async (req, res) => {
     let products;
     if (id && !Number.isNaN(id)) {
       products = await product.findByPk(id, {
-        attributes: ['name', 'price', 'category_id', 'description'],
+        attributes: ['name', 'price', 'image', 'category_id', 'description'],
       });
       if (products) {
         res.json(products);
@@ -21,7 +21,7 @@ const searchProducts = async (req, res) => {
         where: {
           name: { [Op.iLike]: `%${name}%` },
         },
-        attributes: ['name', 'price', 'category_id', 'description'],
+        attributes: ['name', 'price', 'image', 'category_id', 'description'],
       });
       if (products.length > 0) {
         res.json(products);
@@ -33,7 +33,7 @@ const searchProducts = async (req, res) => {
         where: {
           description: { [Op.iLike]: `%${description}%` },
         },
-        attributes: ['name', 'price', 'category_id', 'description'],
+        attributes: ['name', 'price', 'image', 'category_id', 'description'],
       });
       if (products.length > 0) {
         res.json(products);
@@ -45,7 +45,7 @@ const searchProducts = async (req, res) => {
         where: {
           price,
         },
-        attributes: ['name', 'price', 'category_id', 'description'],
+        attributes: ['name', 'price', 'image', 'category_id', 'description'],
       });
       if (products.length > 0) {
         res.json(products);
