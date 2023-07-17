@@ -77,7 +77,7 @@ router.use(express.json());
 const specs = swaggerJSDoc(options);
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 router.use('/user', signupRouter);
-router.use('/auth', googleAuth);
+router.use(googleAuth);
 router.use(facebookAuth);
 router.get('/', (req, res) => res.status(200).json({ status: 200, message: req.t('welcome_message') }));
 router.use(userRouter);
@@ -111,7 +111,7 @@ router.use('/', productUpdate);
 router.use(productItem);
 router.use('/users', usersRouter);
 router.use('/auth', authRoutes);
-router.use(passwordUpdate);
+router.use('/', passwordUpdate);
 
 router.use('/coupon', couponRouter);
 router.use(clearCartRouter);

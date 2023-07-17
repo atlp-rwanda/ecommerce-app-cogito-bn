@@ -154,8 +154,8 @@
   "failId": "no user found with that ID",
   "retrievedAll": "all users retrieved",
   "updateStatus": "status updated successfully",
-  "set-role-message": "Role Assined to specific user Successfully!",
-  "set-permission-message": "Permission Assined to specific role Successfully!",
+  "set-role-message": "Role Assigned to specific user Successfully!",
+  "set-permission-message": "Permission Assigned to specific role Successfully!",
   "Missing id parameter in request_message": "Missing id parameter in request",
   "Product not found_message": "Product not found",
   "Product not available for sale_message": "Product not available for sale",
@@ -185,9 +185,9 @@
   "clear_cart_successfuly": "Cart cleared successfully",
   "cart_empty": "Cart is empty",
   "buyer_id_missing": "Buyer id is missing",
-  "Order is not paid":"Order is not paid",
-  "Thank you for your order!":"Thank you for your order!",
-  "Order updated with tracking number":"Order updated with tracking number",
+  "Order is not paid": "Order is not paid",
+  "Thank you for your order!": "Thank you for your order!",
+  "Order updated with tracking number": "Order updated with tracking number",
   "Error sending confirmation email": "Error sending confirmation email",
   "messages_retrieved": "all messages retrieved succesfully",
   "no_message_found": "no message found",
@@ -215,4 +215,3 @@
   "notification_500_message": "Error in retrieving notification"
 
 }
-  

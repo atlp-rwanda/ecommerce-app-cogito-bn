@@ -1,5 +1,5 @@
-import { user } from '../database/models';
-import eventEmitter from '../services/eventEmitter';
+import { user } from "../database/models";
+import eventEmitter from "../services/eventEmitter";
 
 const passwordPrompt = async (req, res, next) => {
   const { email, password } = req.body;
@@ -7,7 +7,9 @@ const passwordPrompt = async (req, res, next) => {
     where: { email },
   });
   if (!User) {
-    return res.status(400).json({ status: 400, message: req.t('User does not exist Message') });
+    return res
+      .status(400)
+      .json({ status: 400, message: req.t("User does not exist Message") });
   }
   // console.log(password, user)
 
@@ -18,8 +20,7 @@ const passwordPrompt = async (req, res, next) => {
   if (timeElapsed >= PASSWORD_EXPIRED_DATE) {
     return res.status(201).json({
       status: 307,
-      message: req.t('update_expired_password'),
-      data: User,
+      message: req.t("update_expired_password"),
     });
   }
 
