@@ -4,6 +4,8 @@ import {
   describe, it, before, after,
 } from 'mocha';
 import dotenv from 'dotenv';
+import getOrderDetails from '../middleware/payment/getOrderDetails';
+import updateOrderStatus from '../middleware/payment/updateOrderStatus';
 import app from '../index';
 import { user, orders } from '../database/models';
 
@@ -111,5 +113,45 @@ describe('update order status', () => {
     const orderResJson = JSON.parse(orderRes.text);
     expect(orderResJson.orderstatus).to.equal('shipped');
     expect(orderResJson.deliveryDate).to.equal('2023-05-02T08:27:23.010Z');
+  });
+  it('should return the order details for a valid order id', async () => {
+    const orderDetails = await getOrderDetails(orderId);
+    expect(orderDetails).to.be.an('object');
+    expect(orderDetails).to.have.property('order_id');
+    expect(orderDetails).to.have.property('buyerId');
+    expect(orderDetails).to.have.property('productId');
+    expect(orderDetails).to.have.property('shippingAddress');
+    expect(orderDetails).to.have.property('totalCost');
+    expect(orderDetails).to.have.property('paymentStatus');
+    expect(orderDetails).to.have.property('shippingStatus');
+    expect(orderDetails).to.have.property('deliveryDate');
+  });
+  it('should return null for an invalid order id', async () => {
+    const invalidOrderId = '783942f1-37c7-4f86-1111-7f234205d000';
+    const orderDetails = await getOrderDetails(invalidOrderId);
+    expect(orderDetails).to.be.null;
+  });
+  it('should throw an error for a non-existent order id', async () => {
+    const nonExistentOrderId = 'invalidOrderId';
+    try {
+      await getOrderDetails(nonExistentOrderId);
+    } catch (error) {
+      expect(error.message).to.equal('Error fetching order details');
+    }
+  });
+  it('should update the order status to paid', async () => {
+    await updateOrderStatus(orderId, 'paid');
+    const orderDetails = await getOrderDetails(orderId);
+    console.log(orderDetails);
+    expect(orderDetails).to.be.an('object');
+    expect(orderDetails).to.have.property('order_id');
+    expect(orderDetails).to.have.property('buyerId');
+    expect(orderDetails).to.have.property('productId');
+    expect(orderDetails).to.have.property('shippingAddress');
+    expect(orderDetails).to.have.property('totalCost');
+    expect(orderDetails).to.have.property('paymentStatus');
+    expect(orderDetails).to.have.property('shippingStatus');
+    expect(orderDetails).to.have.property('deliveryDate');
+    expect(orderDetails.paymentStatus).to.equal('paid'); // The Payment Status should be updated to paid
   });
 });

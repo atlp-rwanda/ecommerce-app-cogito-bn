@@ -11,21 +11,21 @@ describe('Search Products', () => {
     const res = await chai.request(app).get('/search?id=1');
     expect(res).to.have.status(200);
     expect(res.body).to.be.an('object');
-    expect(res.body.name).to.equal('tablet');
+    expect(res.body.name).to.equal('Tablet');
   });
 
   it('should return products by name', async () => {
     const res = await chai.request(app).get('/search?name=tablet');
     expect(res).to.have.status(200);
     expect(res.body).to.be.an('array');
-    expect(res.body[0].name).to.equal('tablet');
+    expect(res.body[0].name).to.equal('Tablet');
   });
 
   it('should return products by description', async () => {
-    const res = await chai.request(app).get('/search?description=electronic device');
+    const res = await chai.request(app).get('/search?description=A Brand New Tablet');
     expect(res).to.have.status(200);
     expect(res.body).to.be.an('array');
-    expect(res.body[0].description).to.equal('electronic device');
+    expect(res.body[0].description).to.equal('A Brand New Tablet');
   });
 
   it('should return products by price', async () => {
