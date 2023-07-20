@@ -10,7 +10,7 @@ const createNewPermission = async (req, res) => {
       data: newPermission,
     });
   } catch (err) {
-    return res.status(500).json(err);
+    return res.status(500).json({ Error: err });
   }
 };
 
@@ -92,7 +92,7 @@ const updateOnePermission = async (req, res) => {
         message: req.t('id_unexist_message'),
       });
     }
-    await permission.update(
+    const updatedPermission = await permission.update(
       { permissionName, description },
       {
         where: { id },
@@ -101,6 +101,7 @@ const updateOnePermission = async (req, res) => {
     return res.status(201).json({
       statusCode: 201,
       message: req.t('permission_update_message'),
+      data: updatedPermission,
     });
   } catch (error) {
     return res.status(500).json({

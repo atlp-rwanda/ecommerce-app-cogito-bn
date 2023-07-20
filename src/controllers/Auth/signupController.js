@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import { user, role } from '../../database/models';
 import { generateConfirmationCode } from '../../utils/validation/generateCode';
 import { hashPassword } from '../../utils/validation/hashedPassword';
+import HeaderComponent from '../../utils/_email_/emailHeader';
+import FooterComponent from '../../utils/_email_/emailFooter';
 
 dotenv.config();
 const signUp = async (req, res) => {

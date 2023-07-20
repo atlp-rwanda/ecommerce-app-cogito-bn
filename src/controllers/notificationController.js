@@ -31,39 +31,7 @@ const addNotification = async (userEmail, userId, Message) => {
       from: process.env.EMAIL_ADDRESS,
       to: userEmail,
       subject: notificationEmail.subject,
-      html: `${templateHeader} ${Message.emailBody} <p>You can Login<a href="${process.env.FN_COGITO_URL}/login"> here</a>.</p> ${templateFotter}`,
-    };
-
-    const info = await transporter.sendMail(mailOptions);
-    console.log(`Email sent: ${info.response}`);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const deleteProductNotify = async (userEmail) => {
-  try {
-    const notificationEmail = await notification.create({
-      subject: 'Deleted Product',
-      message: 'Hello your product  was deleted into  category successfully',
-      type: 'newProduct',
-    });
-    // Send email to the user
-    const transporter = nodemailer.createTransport({
-      // Configure the email service here
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_ADDRESS_98,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-    const mailOptions = {
-      from: process.env.EMAIL_ADDRESS_98,
-      to: userEmail,
-      subject: notificationEmail.subject,
-      html: `${templateHeader} <p> Dear <h2> ${userEmail} </h2> We want to inform you new category  deleted by admin, you can add related product on it 🍏</p> ${templateFotter}`,
+      html: `${templateHeader} ${Message.emailBody} <p>You can Login<a href="${process.env.FN_COGITO_URL}/login"> here</a>, to make a followup</p> ${templateFotter}`,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -160,7 +128,6 @@ const vendorDeleteNotification = async (req, res) => {
 
 export {
   addNotification,
-  deleteProductNotify,
   getAllNotification,
   vendorMarkAllAsRead,
   vendorDeleteNotification,

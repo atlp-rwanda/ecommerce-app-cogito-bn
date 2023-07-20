@@ -51,7 +51,6 @@ const updateProduct = async (req, res) => {
           quantity: req.body.quantity,
           stock: req.body.stock,
           category_id: req.body.category_id,
-          vendor_id: id,
           expiredAt: req.body.expiredAt,
         },
         {

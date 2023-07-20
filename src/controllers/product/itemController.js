@@ -6,8 +6,7 @@ export const getAllItems = async (req, res) => {
   try {
     const items = await product.findAndCountAll({
       where: { vendor_id: id },
-      limit: page_size,
-      offset: (page - 1) * page_size,
+      order: [['updatedAt', 'DESC']],
     });
     if (items.count === 0) {
       return res
