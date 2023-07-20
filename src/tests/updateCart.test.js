@@ -34,7 +34,7 @@ describe('updateCart', () => {
       .set('Authorization', `Bearer ${buyerToken}`)
       .send({ neededQuantity: 30 });
     expect(res.status).to.equal(404);
-    expect(res.body.message).to.equal('Product not found');
+    expect(res.body.message).to.equal('Cart item not found');
   });
 
   it('should return an error message if the cart item is not found', async () => {
