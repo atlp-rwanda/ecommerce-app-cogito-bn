@@ -1,5 +1,5 @@
-import { product } from '../database/models';
-import {deleteProductNotify} from './notificationController'
+import { product, user } from '../database/models';
+import { addNotification } from './notificationController';
 
 const deleteItem = async (req, res) => {
   const { id } = req.params;
@@ -23,9 +23,15 @@ const deleteItem = async (req, res) => {
         message: req.t('productid_unexist_message'),
       });
     }
-const loggedInUser = await user.findOne({where:{ roleId:2 }})
-const email = loggedInUser.email;
-await deleteProductNotify(email);
+    const vendor = specificItem.vendor_id;
+    const loggedInUser = await user.findOne({ where: { id: vendor } });
+    const notificationMessage = {
+      subject: 'Product Deletion',
+      message: `Hello ${loggedInUser.name}, your product ${specificItem.name} with ID ${specificItem.id}, has been deleted successfully!`,
+      type: 'Product Deletion',
+      emailBody: `<p> Dear <strong>${loggedInUser.name}</strong>, We want to inform you that your product <strong>${specificItem.name}</strong> with ID <strong>${specificItem.id}</strong>, has been deleted successfully! </p>`,
+    };
+    await addNotification(loggedInUser.email, loggedInUser.id, notificationMessage);
   } catch (error) {
     res.status(400).json({ statusCode: 400, data: error });
   }
